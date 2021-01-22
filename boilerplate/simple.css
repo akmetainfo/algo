@@ -1,0 +1,33 @@
+body {
+    max-width: 55em;
+}
+
+blockquote {
+    border-radius: 3px;
+    background-color: #fafafa;
+    margin: 20px 0;
+    padding: 15px;
+    border-left: 3px solid #bdbdbd;
+}
+
+pre {
+    white-space: pre-wrap;
+    margin-top: 0;
+    margin-bottom: 1em;
+    overflow: auto;
+    background: #f7f9fa;
+    padding: 10px 15px;
+    color: #263238;
+    line-height: 1.6;
+    font-size: 13px;
+    border-radius: 3px;
+}
+
+hr {
+    height: 1px;
+    padding: 0;
+    margin: 10px 0;
+    overflow: hidden;
+    background: #e0e0e0;
+    border: none;
+}
