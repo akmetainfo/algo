@@ -1,0 +1,5 @@
+Check perfect square using addition/subtraction
+https://www.geeksforgeeks.org/check-number-is-perfect-square-using-additionsubtraction/
+
+C# solutions (Binary Search & Math)
+https://leetcode.com/problems/valid-perfect-square/discuss/623417/C-solutions-(Binary-Search-and-Math)

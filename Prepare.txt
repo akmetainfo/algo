@@ -1,5 +1,4 @@
 22.01.2021 0219
-21.01.2021 0367
 20.01.2021 0349
 19.01.2021 0237
 17.01.2021 0034
@@ -32,4 +31,3 @@
 0219 Contains Duplicate II.linq
 0237 Delete Node in a Linked List.linq
 0349 Intersection of Two Arrays.linq
-0367 Valid Perfect Square.linq

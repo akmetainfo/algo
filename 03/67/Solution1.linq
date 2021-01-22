@@ -4,6 +4,66 @@
   <Namespace>NUnitLite</Namespace>
 </Query>
 
+// 367. Valid Perfect Square
+// https://leetcode.com/problems/valid-perfect-square/
+
+/*
+    Time: O(logn)
+    Space: O(1)
+*/
+public class Solution
+{
+	public bool IsPerfectSquare(int num)
+	{
+		if (num == 1)
+			return true;
+
+		var left = 1;
+		var right = num / 2; // 2 * x < x ^ 2 when x > 2
+
+		while (left <= right)
+		{
+			var mid = left + (right - left) / 2;
+
+			ulong sq = (ulong)mid * (ulong)mid;
+
+			if (sq == (ulong)num)
+				return true;
+
+			if (sq < (ulong)num)
+			{
+				left = mid + 1;
+			}
+			else
+			{
+				right = mid - 1;
+			}
+		}
+
+		return false;
+	}
+}
+
+[Test]
+[TestCase(1, true)]
+[TestCase(2, false)]
+[TestCase(3, false)]
+[TestCase(4, true)]
+[TestCase(5, false)]
+[TestCase(6, false)]
+[TestCase(7, false)]
+[TestCase(8, false)]
+[TestCase(9, true)]
+[TestCase(14, false)]
+[TestCase(16, true)]
+public void SolutionTests(int nums, bool expected)
+{
+	var actual = new Solution().IsPerfectSquare(nums);
+	Assert.That(actual, Is.EqualTo(expected));
+}
+
+#region unit tests runner
+
 void Main()
 {
 	var workDir = Path.Combine(Util.MyQueriesFolder, "nunit-work");
@@ -16,95 +76,6 @@ void Main()
 
 	RunUnitTests(args);
 }
-
-// Define other methods and classes here
-
-[Test]
-[TestCase(1, true)]
-[TestCase(2, false)]
-[TestCase(4, true)]
-[TestCase(14, false)]
-[TestCase(16, true)]
-public void ValidPerfectSquare(int nums, bool expected)
-{
-	var actual = new Solution().IsPerfectSquare(nums);
-	Assert.That(actual, Is.EqualTo(expected));
-}
-
-// https://leetcode.com/problems/valid-perfect-square/
-#region Условие задачи
-/*
-
-Given a positive integer num, write a function which returns True if num is a perfect square else False.
-
-Follow up: Do not use any built-in library function such as sqrt.
-
-Example 1:
-
-Input: num = 16
-Output: true
-
-Example 2:
-
-Input: num = 14
-Output: false
-
-Constraints:
-
-    1 <= num <= 2^31 - 1
-
-*/
-
-#endregion
-
-public class Solution
-{
-	public bool IsPerfectSquare(int num)
-	{
-		if(num == 1)
-			return true;
-
-		var left = 1;
-		var right = num;
-		
-		while(left <= right)
-		{
-			var mid = left + (right - left) / 2;
-			
-			ulong sq = (ulong)mid * (ulong)mid;
-			
-			if(sq == (ulong)num)
-				return true;
-				
-			if(sq < (ulong)num)
-			{
-				left = mid + 1;
-			}
-			else
-			{
-				right = mid - 1;
-			}
-		}
-		
-		return false;
-	}
-}
-
-#region Solution
-
-/*
-
-*/
-
-#endregion
-
-#region Хорошие алгоритмы-победители
-
-//
-
-#endregion
-
-#region unit tests runner
 
 void RunUnitTests(string[] args, Assembly assembly = null)
 {

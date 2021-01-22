@@ -1,1 +1,2 @@
 0217,Contains Duplicate
+0367,Valid Perfect Square
