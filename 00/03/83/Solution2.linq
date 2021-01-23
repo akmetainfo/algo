@@ -7,6 +7,12 @@
 // 383. Ransom Note
 // https://leetcode.com/problems/ransom-note/
 
+/*
+    Time: O(N+M)
+    Space: O(1)
+    
+    N - length of ransomNote, M - length of magazine
+*/
 public class Solution
 {
     public bool CanConstruct(string ransomNote, string magazine)
