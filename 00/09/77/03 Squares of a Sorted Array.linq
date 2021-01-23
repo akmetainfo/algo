@@ -6,15 +6,15 @@
 
 void Main()
 {
-	var workDir = Path.Combine(Util.MyQueriesFolder, "nunit-work");
+    var workDir = Path.Combine(Util.MyQueriesFolder, "nunit-work");
 
-	var args = new string[]
-	{
-		 "-noheader",
-		 $"--work={workDir}",
-	};
+    var args = new string[]
+    {
+         "-noheader",
+         $"--work={workDir}",
+    };
 
-	RunUnitTests(args);
+    RunUnitTests(args);
 }
 
 // Define other methods and classes here
@@ -24,9 +24,9 @@ void Main()
 [TestCase(new int[] { -7,-3,2,3,11 }, new int[] {4,9,9,49,121 })]
 public void SortedSquares(int[] nums, int[] expected)
 {
-	var actual = new Solution().SortedSquares(nums);
-	//actual.Dump();
-	Assert.That(expected, Is.EqualTo(actual));
+    var actual = new Solution().SortedSquares(nums);
+    //actual.Dump();
+    Assert.That(expected, Is.EqualTo(actual));
 }
 
 // https://leetcode.com/explore/item/3261
@@ -63,15 +63,15 @@ Constraints:
 public class Solution
 {
     public int[] SortedSquares(int[] nums) {
-		var sq = new int[nums.Length];
-		
-		for(var i =0; i < nums.Length; i++)
-		{
-			sq[i] = nums[i] * nums[i];
-		}
-		
-		Array.Sort(sq);
-		return sq;
+        var sq = new int[nums.Length];
+        
+        for(var i =0; i < nums.Length; i++)
+        {
+            sq[i] = nums[i] * nums[i];
+        }
+        
+        Array.Sort(sq);
+        return sq;
     }
 }
 
@@ -85,27 +85,27 @@ public class Solution
 
 void RunUnitTests(string[] args, Assembly assembly = null)
 {
-	Console.SetOut(new NoDisposeTextWriter(Console.Out));
-	Console.SetError(new NoDisposeTextWriter(Console.Error));
-	new AutoRun(assembly ?? Assembly.GetExecutingAssembly()).Execute(args);
+    Console.SetOut(new NoDisposeTextWriter(Console.Out));
+    Console.SetError(new NoDisposeTextWriter(Console.Error));
+    new AutoRun(assembly ?? Assembly.GetExecutingAssembly()).Execute(args);
 }
 
 // https://stackoverflow.com/q/52883672/5752652
 class NoDisposeTextWriter : TextWriter
 {
-	private readonly TextWriter writer;
-	public NoDisposeTextWriter(TextWriter writer) => this.writer = writer;
+    private readonly TextWriter writer;
+    public NoDisposeTextWriter(TextWriter writer) => this.writer = writer;
 
-	public override Encoding Encoding => writer.Encoding;
-	public override IFormatProvider FormatProvider => writer.FormatProvider;
-	public override void Write(char value) => writer.Write(value);
-	public override void Flush() => writer.Flush();
-	// forward all other overrides as necessary
+    public override Encoding Encoding => writer.Encoding;
+    public override IFormatProvider FormatProvider => writer.FormatProvider;
+    public override void Write(char value) => writer.Write(value);
+    public override void Flush() => writer.Flush();
+    // forward all other overrides as necessary
 
-	protected override void Dispose(bool disposing)
-	{
-		// no nothing
-	}
+    protected override void Dispose(bool disposing)
+    {
+        // no nothing
+    }
 }
 
 #endregion

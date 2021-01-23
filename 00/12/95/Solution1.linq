@@ -13,33 +13,33 @@
 */
 public class Solution
 {
-	public int FindNumbers(int[] nums)
-	{
-		var result = 0;
-		
-		for (int i = 0; i < nums.Length; i++)
-		{
-			if(DigitsCount(nums[i]) % 2 == 0)
-			{
-				result++;
-			}
-		}
-		
-		return result;
-	}
-	
-	private static int DigitsCount(int num)
-	{
-		int count = 0;
+    public int FindNumbers(int[] nums)
+    {
+        var result = 0;
+        
+        for (int i = 0; i < nums.Length; i++)
+        {
+            if(DigitsCount(nums[i]) % 2 == 0)
+            {
+                result++;
+            }
+        }
+        
+        return result;
+    }
+    
+    private static int DigitsCount(int num)
+    {
+        int count = 0;
 
-		while (num > 0)
-		{
-			num /= 10;
-			count++;
-		}
-		
-		return count;
-	}
+        while (num > 0)
+        {
+            num /= 10;
+            count++;
+        }
+        
+        return count;
+    }
 }
 
 [Test]
@@ -51,48 +51,48 @@ public class Solution
 [TestCase(new int[] { 11, 22, 33 }, 3)]
 public void SolutionTests(int[] nums, int expected)
 {
-	var actual = new Solution().FindNumbers(nums);
-	Assert.That(actual, Is.EqualTo(expected));
+    var actual = new Solution().FindNumbers(nums);
+    Assert.That(actual, Is.EqualTo(expected));
 }
 
 #region unit tests runner
 
 void Main()
 {
-	var workDir = Path.Combine(Util.MyQueriesFolder, "nunit-work");
+    var workDir = Path.Combine(Util.MyQueriesFolder, "nunit-work");
 
-	var args = new string[]
-	{
-		 "-noheader",
-		 $"--work={workDir}",
-	};
+    var args = new string[]
+    {
+         "-noheader",
+         $"--work={workDir}",
+    };
 
-	RunUnitTests(args);
+    RunUnitTests(args);
 }
 
 void RunUnitTests(string[] args, Assembly assembly = null)
 {
-	Console.SetOut(new NoDisposeTextWriter(Console.Out));
-	Console.SetError(new NoDisposeTextWriter(Console.Error));
-	new AutoRun(assembly ?? Assembly.GetExecutingAssembly()).Execute(args);
+    Console.SetOut(new NoDisposeTextWriter(Console.Out));
+    Console.SetError(new NoDisposeTextWriter(Console.Error));
+    new AutoRun(assembly ?? Assembly.GetExecutingAssembly()).Execute(args);
 }
 
 // https://stackoverflow.com/q/52883672/5752652
 class NoDisposeTextWriter : TextWriter
 {
-	private readonly TextWriter writer;
-	public NoDisposeTextWriter(TextWriter writer) => this.writer = writer;
+    private readonly TextWriter writer;
+    public NoDisposeTextWriter(TextWriter writer) => this.writer = writer;
 
-	public override Encoding Encoding => writer.Encoding;
-	public override IFormatProvider FormatProvider => writer.FormatProvider;
-	public override void Write(char value) => writer.Write(value);
-	public override void Flush() => writer.Flush();
-	// forward all other overrides as necessary
+    public override Encoding Encoding => writer.Encoding;
+    public override IFormatProvider FormatProvider => writer.FormatProvider;
+    public override void Write(char value) => writer.Write(value);
+    public override void Flush() => writer.Flush();
+    // forward all other overrides as necessary
 
-	protected override void Dispose(bool disposing)
-	{
-		// no nothing
-	}
+    protected override void Dispose(bool disposing)
+    {
+        // no nothing
+    }
 }
 
 #endregion
