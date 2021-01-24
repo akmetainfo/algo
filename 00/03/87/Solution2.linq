@@ -11,22 +11,40 @@ public class Solution
 {
     public int FirstUniqChar(string s)
     {
-        var dict = new Dictionary<char, int>();
-        
-        for (int i = 0; i < s.Length; i++)
-        {
-            if (!dict.ContainsKey(s[i]))
-            {
-                dict.Add(s[i], 0);
-            }
+        var charAndCount = new int[26];
 
-            dict[s[i]] += 1;
+        foreach (var c in s)
+        {
+            charAndCount[c - 'a']++;
         }
 
-        for (int i = 0; i <s.Length; i++)
+        for (int i = 0; i < s.Length; i++)
         {
-            if (dict[s[i]] == 1)
+            if (charAndCount[s[i] - 'a'] == 1)
+            {
                 return i;
+            }
+        }
+
+        return -1;
+    }
+    
+    // can be optimized as new int[26]
+    public int FirstUniqCharOld(string s)
+    {
+        var charAndCount = new int[256];
+
+        foreach (var c in s)
+        {
+            charAndCount[c]++;
+        }
+
+        for (int i = 0; i < s.Length; i++)
+        {
+            if (charAndCount[s[i]] == 1)
+            {
+                return i;
+            }
         }
         
         return -1;
