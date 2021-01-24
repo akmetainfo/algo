@@ -1,0 +1,154 @@
+<div class="content__QRGW">
+    <div>
+        <h2>Solution</h2>
+        <p>The problem demands the array to be modified in-place. If <code>in-place</code> was not a constraint we might
+            have just copied the elements from a source array to a destination array.</p>
+        <center>
+            <img src="1089_Duplicate_Zeros_1.png" width="600">
+        </center>
+        <br>
+        Notice, how we copied zero twice.
+        <pre><code>  s = 0
+      d = 0
+    
+      <span class="hljs-comment"># Copy is performed until the destination array is full.</span>
+      <span class="hljs-keyword">for</span> s <span class="hljs-keyword">in</span> range(N):
+        <span class="hljs-keyword">if</span> <span class="hljs-built_in">source</span>[s] == 0:
+          <span class="hljs-comment"># Copy zero twice.</span>
+          destination[d] = 0
+          d += 1
+          destination[d] = 0
+        <span class="hljs-keyword">else</span>:
+          destination[d] = <span class="hljs-built_in">source</span>[s]
+    
+        d += 1
+    </code></pre>
+        <p>The problem statement also mentions that we do not grow the new array, rather we just trim it to its original
+            array length. This means we have to discard some elements from the end of the array. These are the elements
+            whose new indices are beyond the length of the original array.</p>
+        <center>
+            <img src="1089_Duplicate_Zeros_2.png" width="600">
+        </center>
+        <p>Let's remind ourselves about the problem constraint that we are given. Since we can't use extra space, our
+            source and destination array is essentially the same. We just can't go about copying the source into
+            destination array the same way. If we do that we would lose some elements. Since, we would be overwriting
+            the array.</p>
+        <center>
+            <img src="1089_Duplicate_Zeros_3.png" width="600">
+        </center>
+        <p>Keeping this in mind, in the approach below we start copying to the end of the array.</p>
+        <h4 id="approach-1-two-pass,-o1-space">Approach 1: Two pass, O(1) space</h4>
+        <p><strong>Intuition</strong></p>
+        <p>If we know the number of elements which would be discarded from the end of the array, we can copy the rest.
+            How do we find out how many elements would be discarded in the end? The number would be equal to the number
+            of extra zeros which would be added to the array. The extra zero would create space for itself by pushing
+            out an element from the end of the array.</p>
+        <p>Once we know how many elements from the original array would be part of the final array, we can just start
+            copying from the end. Copying from the end ensures we don't lose any element since, the last few extraneous
+            elements can be overwritten.</p>
+        <p><strong>Algorithm</strong></p>
+        <ol>
+            <li>
+                <p>Find the number of zeros which would be duplicated. Let's call it <code>possible_dups</code>. We do
+                    need to make sure we are not counting the zeros which would be trimmed off. Since, the discarded
+                    zeros won't be part of the final array. The count of <code>possible_dups</code> would give us the
+                    number of elements to be trimmed off the original array. Hence at any point,
+                    <code>length_ - possible_dups</code> is the number of elements which would be included in the final
+                    array.
+                </p>
+                <center>
+                    <img src="1089_Duplicate_Zeros_4.png" width="600">
+                </center>
+                <br>
+                Note: In the diagram above we just show source and destination array for understanding purpose. We will
+                be doing these operations only on one array.
+            </li>
+            <li>
+                <p>Handle the edge case for a zero present on the boundary of the leftover elements.</p>
+                <p>Let's talk about the edge case of this problem. We need to be extra careful when we are duplicating
+                    the zeros in the leftover array. This care should be taken for the <code>zero</code> which is lying
+                    on the boundary. Since, this zero might be counted as with possible duplicates, or may be just got
+                    included in the left over when there was no space left to accommodate its duplicate. If it is part
+                    of the <code>possible_dups</code> we would want to duplicate it otherwise we don't.</p>
+                <blockquote>
+                    <p>An example of the edge case is - [8,4,5,0,0,0,0,7].
+                        In this array there is space to accommodate the duplicates of first and second occurrences of
+                        zero. But we don't have enough space for the duplicate of the third occurrence of zero.
+                        Hence when we are copying we need to make sure for the third occurrence we don't copy twice.
+                        Result = [8,4,5,0,<code>0</code>,0,<code>0</code>,0]</p>
+                </blockquote>
+            </li>
+            <li>
+                <p>Iterate the array from the end and copy a non-zero element once and zero element twice.
+                    When we say we discard the extraneous elements, it simply means we start from the left of the
+                    extraneous elements and start overwriting them with new values, eventually right shifting the left
+                    over elements and creating space for all the duplicated elements in the array.</p>
+            </li>
+        </ol>
+        <center>
+            <img src="1089_Duplicate_Zeros_5.png" width="500">
+        </center>
+        <br>
+        <iframe src="https://leetcode.com/playground/3wUwdzEP/shared" name="3wUwdzEP" width="100%" height="500"
+            frameborder="0"></iframe>
+        <p><strong>Complexity Analysis</strong></p>
+        <ul>
+            <li>
+                <p>Time Complexity: <span class="katex"><span class="katex-mathml"><math>
+                                <semantics>
+                                    <mrow>
+                                        <mi>O</mi>
+                                        <mo>(</mo>
+                                        <mi>N</mi>
+                                        <mo>)</mo>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">O(N)</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                                    class="mord mathdefault" style="margin-right:0.02778em;">O</span><span
+                                    class="mopen">(</span><span class="mord mathdefault"
+                                    style="margin-right:0.10903em;">N</span><span
+                                    class="mclose">)</span></span></span></span>, where <span class="katex"><span
+                            class="katex-mathml"><math>
+                                <semantics>
+                                    <mrow>
+                                        <mi>N</mi>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">N</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut" style="height:0.68333em;vertical-align:0em;"></span><span
+                                    class="mord mathdefault"
+                                    style="margin-right:0.10903em;">N</span></span></span></span> is the number of
+                    elements in the array. We do two passes through the array, one to find the number of
+                    <code>possible_dups</code> and the other to copy the elements. In the worst case we might be
+                    iterating the entire array, when there are less or no zeros in the array.
+                </p>
+            </li>
+            <li>
+                <p>Space Complexity: <span class="katex"><span class="katex-mathml"><math>
+                                <semantics>
+                                    <mrow>
+                                        <mi>O</mi>
+                                        <mo>(</mo>
+                                        <mn>1</mn>
+                                        <mo>)</mo>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">O(1)</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                                    class="mord mathdefault" style="margin-right:0.02778em;">O</span><span
+                                    class="mopen">(</span><span class="mord">1</span><span
+                                    class="mclose">)</span></span></span></span>. We do not use any extra space.</p>
+            </li>
+        </ul>
+        <br>
+    </div>
+</div>
+
+
+<link rel="stylesheet" href="../../../boilerplate/simple.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css"
+    integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
