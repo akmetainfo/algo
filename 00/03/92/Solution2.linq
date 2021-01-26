@@ -15,18 +15,15 @@ public class Solution
 {
     public bool IsSubsequence(string s, string t)
     {
-        if (string.IsNullOrEmpty(s))
+        if (s.Length == 0)
             return true;
 
-        var queue = new Queue<char>();
-
-        for (int i = 0; i < s.Length; i++)
-            queue.Enqueue(s[i]);
+        var queue = new Queue<char>(s);
 
         for (int i = 0; i < t.Length; i++)
         {
-            if (!queue.Any())
-                break;
+            if (queue.Count == 0)
+                return false;
 
             if (queue.Peek() == t[i])
                 queue.Dequeue();
