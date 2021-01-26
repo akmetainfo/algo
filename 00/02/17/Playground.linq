@@ -7,6 +7,10 @@
 // 217. Contains Duplicate
 // https://leetcode.com/problems/contains-duplicate/
 
+/*
+    Time: O(n)
+    Space: O(1)
+*/
 public class Solution
 {
     public bool ContainsDuplicate(int[] nums)

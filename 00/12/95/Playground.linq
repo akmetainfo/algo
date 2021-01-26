@@ -7,6 +7,10 @@
 // 1295. Find Numbers with Even Number of Digits
 // https://leetcode.com/problems/find-numbers-with-even-number-of-digits/
 
+/*
+    Time: O(n)
+    Space: O(1)
+*/
 public class Solution
 {
     public int FindNumbers(int[] nums)

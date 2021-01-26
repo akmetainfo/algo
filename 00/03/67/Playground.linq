@@ -7,6 +7,10 @@
 // 367. Valid Perfect Square
 // https://leetcode.com/problems/valid-perfect-square/
 
+/*
+    Time: O(n)
+    Space: O(1)
+*/
 public class Solution
 {
     public bool IsPerfectSquare(int num)

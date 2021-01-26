@@ -7,6 +7,10 @@
 // 389. Find the Difference
 // https://leetcode.com/problems/find-the-difference/
 
+/*
+    Time: O(n)
+    Space: O(1)
+*/
 public class Solution
 {
     public char FindTheDifference(string s, string t)

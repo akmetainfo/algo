@@ -7,6 +7,10 @@
 // 485. Max Consecutive Ones
 // https://leetcode.com/problems/max-consecutive-ones/
 
+/*
+    Time: O(n)
+    Space: O(1)
+*/
 public class Solution
 {
     public int FindMaxConsecutiveOnes(int[] nums)

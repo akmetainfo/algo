@@ -7,6 +7,10 @@
 // 1089. Duplicate Zeros
 // https://leetcode.com/problems/duplicate-zeros/
 
+/*
+    Time: O(n)
+    Space: O(1)
+*/
 public class Solution
 {
     public void DuplicateZeros(int[] arr)
