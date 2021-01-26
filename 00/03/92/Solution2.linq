@@ -8,14 +8,31 @@
 // https://leetcode.com/problems/is-subsequence/
 
 /*
-    Time: O(n)
-    Space: O(1)
+    Time: O(n), where n = t.Length
+    Space: O(m), where m = s.Length (for store queue)
 */
 public class Solution
 {
     public bool IsSubsequence(string s, string t)
     {
-        throw new NotImplementedException();
+        if (string.IsNullOrEmpty(s))
+            return true;
+
+        var queue = new Queue<char>();
+
+        for (int i = 0; i < s.Length; i++)
+            queue.Enqueue(s[i]);
+
+        for (int i = 0; i < t.Length; i++)
+        {
+            if (!queue.Any())
+                break;
+
+            if (queue.Peek() == t[i])
+                queue.Dequeue();
+        }
+
+        return queue.Count == 0;
     }
 }
 
