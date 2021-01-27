@@ -1,0 +1,530 @@
+<div class="content__QRGW">
+    <div>
+        <h2>Summary</h2>
+        <p>This is a pretty easy problem, but one may get confused by the term "in-place" and think it is impossible to
+            remove an element from the array without making a copy of the array.</p>
+        <h2>Hints</h2>
+        <ol>
+            <li>Try two pointers.</li>
+            <li>Did you use the fact that the order of elements can be changed?</li>
+            <li>What happens when the elements to remove are rare?</li>
+        </ol>
+        <h2>Solution</h2>
+        <hr>
+        <h4 id="approach-1-two-pointers">Approach 1: Two Pointers</h4>
+        <p><strong>Intuition</strong></p>
+        <p>Since this question is asking us to remove all elements of the given value in-place, we have to handle it
+            with <span class="katex"><span class="katex-mathml"><math>
+                        <semantics>
+                            <mrow>
+                                <mi>O</mi>
+                                <mo>(</mo>
+                                <mn>1</mn>
+                                <mo>)</mo>
+                            </mrow>
+                            <annotation encoding="application/x-tex">O(1)</annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault"
+                            style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span
+                            class="mord">1</span><span class="mclose">)</span></span></span></span> extra space. How to
+            solve it? We can keep two pointers <span class="katex"><span class="katex-mathml"><math>
+                        <semantics>
+                            <mrow>
+                                <mi>i</mi>
+                            </mrow>
+                            <annotation encoding="application/x-tex">i</annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:0.65952em;vertical-align:0em;"></span><span
+                            class="mord mathdefault">i</span></span></span></span> and <span class="katex"><span
+                    class="katex-mathml"><math>
+                        <semantics>
+                            <mrow>
+                                <mi>j</mi>
+                            </mrow>
+                            <annotation encoding="application/x-tex">j</annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:0.85396em;vertical-align:-0.19444em;"></span><span class="mord mathdefault"
+                            style="margin-right:0.05724em;">j</span></span></span></span>, where <span
+                class="katex"><span class="katex-mathml"><math>
+                        <semantics>
+                            <mrow>
+                                <mi>i</mi>
+                            </mrow>
+                            <annotation encoding="application/x-tex">i</annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:0.65952em;vertical-align:0em;"></span><span
+                            class="mord mathdefault">i</span></span></span></span> is the slow-runner while <span
+                class="katex"><span class="katex-mathml"><math>
+                        <semantics>
+                            <mrow>
+                                <mi>j</mi>
+                            </mrow>
+                            <annotation encoding="application/x-tex">j</annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:0.85396em;vertical-align:-0.19444em;"></span><span class="mord mathdefault"
+                            style="margin-right:0.05724em;">j</span></span></span></span> is the fast-runner.</p>
+        <p><strong>Algorithm</strong></p>
+        <p>When <span class="katex"><span class="katex-mathml"><math>
+                        <semantics>
+                            <mrow>
+                                <mi>n</mi>
+                                <mi>u</mi>
+                                <mi>m</mi>
+                                <mi>s</mi>
+                                <mo>[</mo>
+                                <mi>j</mi>
+                                <mo>]</mo>
+                            </mrow>
+                            <annotation encoding="application/x-tex">nums[j]</annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:1em;vertical-align:-0.25em;"></span><span
+                            class="mord mathdefault">n</span><span class="mord mathdefault">u</span><span
+                            class="mord mathdefault">m</span><span class="mord mathdefault">s</span><span
+                            class="mopen">[</span><span class="mord mathdefault"
+                            style="margin-right:0.05724em;">j</span><span class="mclose">]</span></span></span></span>
+            equals to the given value, skip this element by incrementing <span class="katex"><span
+                    class="katex-mathml"><math>
+                        <semantics>
+                            <mrow>
+                                <mi>j</mi>
+                            </mrow>
+                            <annotation encoding="application/x-tex">j</annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:0.85396em;vertical-align:-0.19444em;"></span><span class="mord mathdefault"
+                            style="margin-right:0.05724em;">j</span></span></span></span>. As long as <span
+                class="katex"><span class="katex-mathml"><math>
+                        <semantics>
+                            <mrow>
+                                <mi>n</mi>
+                                <mi>u</mi>
+                                <mi>m</mi>
+                                <mi>s</mi>
+                                <mo>[</mo>
+                                <mi>j</mi>
+                                <mo>]</mo>
+                                <mi mathvariant="normal">≠</mi>
+                                <mi>v</mi>
+                                <mi>a</mi>
+                                <mi>l</mi>
+                            </mrow>
+                            <annotation encoding="application/x-tex">nums[j] \neq val</annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:1em;vertical-align:-0.25em;"></span><span
+                            class="mord mathdefault">n</span><span class="mord mathdefault">u</span><span
+                            class="mord mathdefault">m</span><span class="mord mathdefault">s</span><span
+                            class="mopen">[</span><span class="mord mathdefault"
+                            style="margin-right:0.05724em;">j</span><span class="mclose">]</span><span class="mspace"
+                            style="margin-right:0.2777777777777778em;"></span><span class="mrel"><span
+                                class="mrel"><span class="mord"><span class="vlist-t vlist-t2"><span
+                                            class="vlist-r"><span class="vlist" style="height:0.69444em;"><span
+                                                    style="top:-3em;"><span class="pstrut"
+                                                        style="height:3em;"></span><span class="rlap"><span
+                                                            class="strut"
+                                                            style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span
+                                                            class="inner"><span class="mrel"></span></span><span
+                                                            class="fix"></span></span></span></span><span
+                                                class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                                style="height:0.19444em;"><span></span></span></span></span></span></span><span
+                                class="mrel">=</span></span><span class="mspace"
+                            style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span
+                            class="strut" style="height:0.69444em;vertical-align:0em;"></span><span
+                            class="mord mathdefault" style="margin-right:0.03588em;">v</span><span
+                            class="mord mathdefault">a</span><span class="mord mathdefault"
+                            style="margin-right:0.01968em;">l</span></span></span></span>, we copy <span
+                class="katex"><span class="katex-mathml"><math>
+                        <semantics>
+                            <mrow>
+                                <mi>n</mi>
+                                <mi>u</mi>
+                                <mi>m</mi>
+                                <mi>s</mi>
+                                <mo>[</mo>
+                                <mi>j</mi>
+                                <mo>]</mo>
+                            </mrow>
+                            <annotation encoding="application/x-tex">nums[j]</annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:1em;vertical-align:-0.25em;"></span><span
+                            class="mord mathdefault">n</span><span class="mord mathdefault">u</span><span
+                            class="mord mathdefault">m</span><span class="mord mathdefault">s</span><span
+                            class="mopen">[</span><span class="mord mathdefault"
+                            style="margin-right:0.05724em;">j</span><span class="mclose">]</span></span></span></span>
+            to <span class="katex"><span class="katex-mathml"><math>
+                        <semantics>
+                            <mrow>
+                                <mi>n</mi>
+                                <mi>u</mi>
+                                <mi>m</mi>
+                                <mi>s</mi>
+                                <mo>[</mo>
+                                <mi>i</mi>
+                                <mo>]</mo>
+                            </mrow>
+                            <annotation encoding="application/x-tex">nums[i]</annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:1em;vertical-align:-0.25em;"></span><span
+                            class="mord mathdefault">n</span><span class="mord mathdefault">u</span><span
+                            class="mord mathdefault">m</span><span class="mord mathdefault">s</span><span
+                            class="mopen">[</span><span class="mord mathdefault">i</span><span
+                            class="mclose">]</span></span></span></span> and increment both indexes at the same time.
+            Repeat the process until <span class="katex"><span class="katex-mathml"><math>
+                        <semantics>
+                            <mrow>
+                                <mi>j</mi>
+                            </mrow>
+                            <annotation encoding="application/x-tex">j</annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:0.85396em;vertical-align:-0.19444em;"></span><span class="mord mathdefault"
+                            style="margin-right:0.05724em;">j</span></span></span></span> reaches the end of the array
+            and the new length is <span class="katex"><span class="katex-mathml"><math>
+                        <semantics>
+                            <mrow>
+                                <mi>i</mi>
+                            </mrow>
+                            <annotation encoding="application/x-tex">i</annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:0.65952em;vertical-align:0em;"></span><span
+                            class="mord mathdefault">i</span></span></span></span>.</p>
+        <p>This solution is very similar to the solution to <a
+                href="https://leetcode.com/articles/remove-duplicates-from-sorted-array/">Remove Duplicates from Sorted
+                Array</a>.</p>
+        <iframe src="https://leetcode.com/playground/5ypGn6XG/shared" name="5ypGn6XG" width="100%" height="225"
+            frameborder="0"></iframe>
+        <p><strong>Complexity analysis</strong></p>
+        <ul>
+            <li>
+                <p>Time complexity : <span class="katex"><span class="katex-mathml"><math>
+                                <semantics>
+                                    <mrow>
+                                        <mi>O</mi>
+                                        <mo>(</mo>
+                                        <mi>n</mi>
+                                        <mo>)</mo>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">O(n)</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                                    class="mord mathdefault" style="margin-right:0.02778em;">O</span><span
+                                    class="mopen">(</span><span class="mord mathdefault">n</span><span
+                                    class="mclose">)</span></span></span></span>.
+                    Assume the array has a total of <span class="katex"><span class="katex-mathml"><math>
+                                <semantics>
+                                    <mrow>
+                                        <mi>n</mi>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">n</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut" style="height:0.43056em;vertical-align:0em;"></span><span
+                                    class="mord mathdefault">n</span></span></span></span> elements, both <span
+                        class="katex"><span class="katex-mathml"><math>
+                                <semantics>
+                                    <mrow>
+                                        <mi>i</mi>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">i</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut" style="height:0.65952em;vertical-align:0em;"></span><span
+                                    class="mord mathdefault">i</span></span></span></span> and <span class="katex"><span
+                            class="katex-mathml"><math>
+                                <semantics>
+                                    <mrow>
+                                        <mi>j</mi>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">j</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut" style="height:0.85396em;vertical-align:-0.19444em;"></span><span
+                                    class="mord mathdefault"
+                                    style="margin-right:0.05724em;">j</span></span></span></span> traverse at most <span
+                        class="katex"><span class="katex-mathml"><math>
+                                <semantics>
+                                    <mrow>
+                                        <mn>2</mn>
+                                        <mi>n</mi>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">2n</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut" style="height:0.64444em;vertical-align:0em;"></span><span
+                                    class="mord">2</span><span class="mord mathdefault">n</span></span></span></span>
+                    steps.</p>
+            </li>
+            <li>
+                <p>Space complexity : <span class="katex"><span class="katex-mathml"><math>
+                                <semantics>
+                                    <mrow>
+                                        <mi>O</mi>
+                                        <mo>(</mo>
+                                        <mn>1</mn>
+                                        <mo>)</mo>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">O(1)</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                                    class="mord mathdefault" style="margin-right:0.02778em;">O</span><span
+                                    class="mopen">(</span><span class="mord">1</span><span
+                                    class="mclose">)</span></span></span></span>.
+                    <br>
+                    <br>
+                </p>
+            </li>
+        </ul>
+        <hr>
+        <h4 id="approach-2-two-pointers-when-elements-to-remove-are-rare">Approach 2: Two Pointers - when elements to
+            remove are rare</h4>
+        <p><strong>Intuition</strong></p>
+        <p>Now consider cases where the array contains few elements to remove. For example, <span class="katex"><span
+                    class="katex-mathml"><math>
+                        <semantics>
+                            <mrow>
+                                <mi>n</mi>
+                                <mi>u</mi>
+                                <mi>m</mi>
+                                <mi>s</mi>
+                                <mo>=</mo>
+                                <mo>[</mo>
+                                <mn>1</mn>
+                                <mo separator="true">,</mo>
+                                <mn>2</mn>
+                                <mo separator="true">,</mo>
+                                <mn>3</mn>
+                                <mo separator="true">,</mo>
+                                <mn>5</mn>
+                                <mo separator="true">,</mo>
+                                <mn>4</mn>
+                                <mo>]</mo>
+                                <mo separator="true">,</mo>
+                                <mi>v</mi>
+                                <mi>a</mi>
+                                <mi>l</mi>
+                                <mo>=</mo>
+                                <mn>4</mn>
+                            </mrow>
+                            <annotation encoding="application/x-tex">nums = [1,2,3,5,4], val = 4</annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:0.43056em;vertical-align:0em;"></span><span
+                            class="mord mathdefault">n</span><span class="mord mathdefault">u</span><span
+                            class="mord mathdefault">m</span><span class="mord mathdefault">s</span><span class="mspace"
+                            style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
+                            class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span
+                        class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                            class="mopen">[</span><span class="mord">1</span><span class="mpunct">,</span><span
+                            class="mspace" style="margin-right:0.16666666666666666em;"></span><span
+                            class="mord">2</span><span class="mpunct">,</span><span class="mspace"
+                            style="margin-right:0.16666666666666666em;"></span><span class="mord">3</span><span
+                            class="mpunct">,</span><span class="mspace"
+                            style="margin-right:0.16666666666666666em;"></span><span class="mord">5</span><span
+                            class="mpunct">,</span><span class="mspace"
+                            style="margin-right:0.16666666666666666em;"></span><span class="mord">4</span><span
+                            class="mclose">]</span><span class="mpunct">,</span><span class="mspace"
+                            style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault"
+                            style="margin-right:0.03588em;">v</span><span class="mord mathdefault">a</span><span
+                            class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mspace"
+                            style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
+                            class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span
+                        class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span
+                            class="mord">4</span></span></span></span>. The previous algorithm will do unnecessary copy
+            operation of the first four elements. Another example is <span class="katex"><span
+                    class="katex-mathml"><math>
+                        <semantics>
+                            <mrow>
+                                <mi>n</mi>
+                                <mi>u</mi>
+                                <mi>m</mi>
+                                <mi>s</mi>
+                                <mo>=</mo>
+                                <mo>[</mo>
+                                <mn>4</mn>
+                                <mo separator="true">,</mo>
+                                <mn>1</mn>
+                                <mo separator="true">,</mo>
+                                <mn>2</mn>
+                                <mo separator="true">,</mo>
+                                <mn>3</mn>
+                                <mo separator="true">,</mo>
+                                <mn>5</mn>
+                                <mo>]</mo>
+                                <mo separator="true">,</mo>
+                                <mi>v</mi>
+                                <mi>a</mi>
+                                <mi>l</mi>
+                                <mo>=</mo>
+                                <mn>4</mn>
+                            </mrow>
+                            <annotation encoding="application/x-tex">nums = [4,1,2,3,5], val = 4</annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:0.43056em;vertical-align:0em;"></span><span
+                            class="mord mathdefault">n</span><span class="mord mathdefault">u</span><span
+                            class="mord mathdefault">m</span><span class="mord mathdefault">s</span><span class="mspace"
+                            style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
+                            class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span
+                        class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                            class="mopen">[</span><span class="mord">4</span><span class="mpunct">,</span><span
+                            class="mspace" style="margin-right:0.16666666666666666em;"></span><span
+                            class="mord">1</span><span class="mpunct">,</span><span class="mspace"
+                            style="margin-right:0.16666666666666666em;"></span><span class="mord">2</span><span
+                            class="mpunct">,</span><span class="mspace"
+                            style="margin-right:0.16666666666666666em;"></span><span class="mord">3</span><span
+                            class="mpunct">,</span><span class="mspace"
+                            style="margin-right:0.16666666666666666em;"></span><span class="mord">5</span><span
+                            class="mclose">]</span><span class="mpunct">,</span><span class="mspace"
+                            style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault"
+                            style="margin-right:0.03588em;">v</span><span class="mord mathdefault">a</span><span
+                            class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mspace"
+                            style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
+                            class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span
+                        class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span
+                            class="mord">4</span></span></span></span>. It seems unnecessary to move elements <span
+                class="katex"><span class="katex-mathml"><math>
+                        <semantics>
+                            <mrow>
+                                <mo>[</mo>
+                                <mn>1</mn>
+                                <mo separator="true">,</mo>
+                                <mn>2</mn>
+                                <mo separator="true">,</mo>
+                                <mn>3</mn>
+                                <mo separator="true">,</mo>
+                                <mn>5</mn>
+                                <mo>]</mo>
+                            </mrow>
+                            <annotation encoding="application/x-tex">[1,2,3,5]</annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span
+                            class="mord">1</span><span class="mpunct">,</span><span class="mspace"
+                            style="margin-right:0.16666666666666666em;"></span><span class="mord">2</span><span
+                            class="mpunct">,</span><span class="mspace"
+                            style="margin-right:0.16666666666666666em;"></span><span class="mord">3</span><span
+                            class="mpunct">,</span><span class="mspace"
+                            style="margin-right:0.16666666666666666em;"></span><span class="mord">5</span><span
+                            class="mclose">]</span></span></span></span> one step left as the problem description
+            mentions that the order of elements could be changed.</p>
+        <p><strong>Algorithm</strong></p>
+        <p>When we encounter <span class="katex"><span class="katex-mathml"><math>
+                        <semantics>
+                            <mrow>
+                                <mi>n</mi>
+                                <mi>u</mi>
+                                <mi>m</mi>
+                                <mi>s</mi>
+                                <mo>[</mo>
+                                <mi>i</mi>
+                                <mo>]</mo>
+                                <mo>=</mo>
+                                <mi>v</mi>
+                                <mi>a</mi>
+                                <mi>l</mi>
+                            </mrow>
+                            <annotation encoding="application/x-tex">nums[i] = val</annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:1em;vertical-align:-0.25em;"></span><span
+                            class="mord mathdefault">n</span><span class="mord mathdefault">u</span><span
+                            class="mord mathdefault">m</span><span class="mord mathdefault">s</span><span
+                            class="mopen">[</span><span class="mord mathdefault">i</span><span
+                            class="mclose">]</span><span class="mspace"
+                            style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
+                            class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span
+                        class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span
+                            class="mord mathdefault" style="margin-right:0.03588em;">v</span><span
+                            class="mord mathdefault">a</span><span class="mord mathdefault"
+                            style="margin-right:0.01968em;">l</span></span></span></span>, we can swap the current
+            element out with the last element and dispose the last one. This essentially reduces the array's size by 1.
+        </p>
+        <p>Note that the last element that was swapped in could be the value you want to remove itself. But don't worry,
+            in the next iteration we will still check this element.</p>
+        <iframe src="https://leetcode.com/playground/bNr9hpND/shared" name="bNr9hpND" width="100%" height="293"
+            frameborder="0"></iframe>
+        <p><strong>Complexity analysis</strong></p>
+        <ul>
+            <li>
+                <p>Time complexity : <span class="katex"><span class="katex-mathml"><math>
+                                <semantics>
+                                    <mrow>
+                                        <mi>O</mi>
+                                        <mo>(</mo>
+                                        <mi>n</mi>
+                                        <mo>)</mo>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">O(n)</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                                    class="mord mathdefault" style="margin-right:0.02778em;">O</span><span
+                                    class="mopen">(</span><span class="mord mathdefault">n</span><span
+                                    class="mclose">)</span></span></span></span>.
+                    Both <span class="katex"><span class="katex-mathml"><math>
+                                <semantics>
+                                    <mrow>
+                                        <mi>i</mi>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">i</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut" style="height:0.65952em;vertical-align:0em;"></span><span
+                                    class="mord mathdefault">i</span></span></span></span> and <span class="katex"><span
+                            class="katex-mathml"><math>
+                                <semantics>
+                                    <mrow>
+                                        <mi>n</mi>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">n</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut" style="height:0.43056em;vertical-align:0em;"></span><span
+                                    class="mord mathdefault">n</span></span></span></span> traverse at most <span
+                        class="katex"><span class="katex-mathml"><math>
+                                <semantics>
+                                    <mrow>
+                                        <mi>n</mi>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">n</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut" style="height:0.43056em;vertical-align:0em;"></span><span
+                                    class="mord mathdefault">n</span></span></span></span> steps. In this approach, the
+                    number of assignment operations is equal to the number of elements to remove. So it is more
+                    efficient if elements to remove are rare.</p>
+            </li>
+            <li>
+                <p>Space complexity : <span class="katex"><span class="katex-mathml"><math>
+                                <semantics>
+                                    <mrow>
+                                        <mi>O</mi>
+                                        <mo>(</mo>
+                                        <mn>1</mn>
+                                        <mo>)</mo>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">O(1)</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                                    class="mord mathdefault" style="margin-right:0.02778em;">O</span><span
+                                    class="mopen">(</span><span class="mord">1</span><span
+                                    class="mclose">)</span></span></span></span>.</p>
+            </li>
+        </ul>
+    </div>
+</div>
+<link rel="stylesheet" href="../../../boilerplate/simple.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css"
+    integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">

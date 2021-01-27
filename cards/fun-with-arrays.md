@@ -13,7 +13,7 @@ Inserting Items Into an Array
 
 Deleting Items From an Array
 
-- 06 Remove Element - 0027 https://leetcode.com/explore/learn/card/fun-with-arrays/526/deleting-items-from-an-array/3247/
++ 06 Remove Element - 0027 https://leetcode.com/explore/learn/card/fun-with-arrays/526/deleting-items-from-an-array/3247/
 - 07 Remove Duplicates from Sorted Array - 0026 https://leetcode.com/explore/learn/card/fun-with-arrays/526/deleting-items-from-an-array/3248/
 
 Searching for Items in an Array
