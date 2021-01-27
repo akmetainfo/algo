@@ -1,0 +1,404 @@
+<div class="content__QRGW">
+    <div>
+        <hr>
+        <h4 id="overview">Overview</h4>
+        <p>Facebook interviewers like this question and propose it in four main variations.
+            The choice of algorithm should be based on the input format:</p>
+        <ol>
+            <li>
+                <p>Strings (the current problem).
+                    Use schoolbook digit-by-digit addition.
+                    Note, that to fit into constant space is not possible for
+                    languages with immutable strings, for example, for Java and Python.
+                    Here are two examples:</p>
+                <ul>
+                    <li>
+                        <p><a href="https://leetcode.com/articles/add-binary/">Add Binary</a>: sum
+                            two binary strings.</p>
+                    </li>
+                    <li>
+                        <p><a href="https://leetcode.com/problems/add-strings/">Add Strings</a>: sum two non-negative
+                            numbers
+                            in a string representation without converting them to integers directly.</p>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <p>Integers.
+                    Usually, the interviewer would ask you to implement a sum without
+                    using <code>+</code> and <code>-</code> operators.
+                    Use bit manipulation approach.
+                    Here is an example:</p>
+                <ul>
+                    <li><a href="https://leetcode.com/articles/sum-of-two-integers/">Sum of Two Integers</a>:
+                        Sum two integers without using <code>+</code> and <code>-</code> operators.</li>
+                </ul>
+            </li>
+            <li>
+                <p>Arrays.
+                    The same textbook addition.
+                    Here is an example:</p>
+                <ul>
+                    <li><a href="https://leetcode.com/articles/add-to-array-form-of-integer/">Add to Array Form of
+                            Integer</a>.</li>
+                </ul>
+            </li>
+            <li>
+                <p>Linked Lists.
+                    Sentinel Head + Textbook Addition.
+                    Here are some examples:</p>
+                <ul>
+                    <li>
+                        <p><a href="https://leetcode.com/articles/plus-one/">Plus One</a>.</p>
+                    </li>
+                    <li>
+                        <p><a href="https://leetcode.com/articles/add-two-numbers/">Add Two Numbers</a>.</p>
+                    </li>
+                    <li>
+                        <p><a href="https://leetcode.com/problems/add-two-numbers-ii/">Add Two Numbers II</a>.</p>
+                    </li>
+                </ul>
+            </li>
+        </ol>
+        <br>
+        <br>
+        <hr>
+        <h4 id="approach-1-elementary-math">Approach 1: Elementary Math</h4>
+        <p>Here we have two strings as input and asked not to convert them to
+            integers. Digit-by-digit addition is the only option here.</p>
+        <div>
+            <div>
+                <div class="dia-container__T7JA" style="width: 803.5px;">
+                    <div class="diaporama__1x84"><img alt="Current" class="dia-img__3-yE"
+                            src="data:image/png;base64,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/vGP5ff7v/P3+9GPflTrHDij8q8pkTewt2rVSq1atXI9RgoKCpyzNC1atKhx5mbr1q3ECAAA7iBG6lo4RowxatiwocrKylRSUiJjjLp37y5JuuOO22WM0aZNm5z3VVRUqHHjxrrk0hNnRmbOnOF8TrNmzbR582Y1b95cxhi1a9dOX375pXOfx7BhwySdOCsSfv26deuc+Hjrrbe0cuXKGnPdunWrzjnnHBljdNpppyk/P/97f7/CwkIdLDiowsLCiPF9EYPUlKgYOXLkiDIzM9W5c2fXY+SLL76IiI+5c+dq69atmjJliqy1atOmDTECAIA7iJG6tnz5ciciDh06JOnEfSPGGHXt2lWSNGTIEBljdPDgQed94RgJB8vGjRtljFH9+vW1detWSVKHDh3UpEkTBYNB5z1NmjRRZmampOoYadCggX7zm9/ojjvucObwbY+NeEz169eXMUbXXnutysrK6uaAIKUlKkZ2794ta63uuusu12NkxYoVTojs3LkzYt9NN90ka63y8vKIEQAAko8YqWsTJkxwzl6E+Xy+WmPkwIEDzmvCMRJ+TThGxo4d67zm97//vRo3bqyjR4862/7t3/5Np5xyiqqqqiRJ06ZNi7h8qkGDBrrlllsi5vjwww87+3NzcxN/EPAvI1ExsnPnTllrNfPvM12PkcOHD2vy5Mm1Pk9k8eLFstbqww8/JEYAAEg+YqSu3XrrrTLGaP369c62I0eOyBijjIwMSdX3jGzevNl5zbdjZM2aNTLGaPbs2c5rBg4cKGOMiouLnW2//OUvZIyJ+KatqqoqBQIBvfrqq050LFiwQNKJm9XPOussGWNUWFgY9e933nnnqWHDhjVG//79o/4suC/RMTJj5gzXY+S7xpIlS2St1fwF84kRAACSjxipa4MHD5YxRp9++qmzLXyZVvPmzSVJzz//vIwxztftSjVjJHwDe15envOaESNGyBijzz77zNl2ySWXyBij8vJyhUIh5xu7wpYsWSJjjB599FFJ1c8ZycrKUigUUlVVlaqqqlRZWemcXfku//Ef/6FmzZrptNNOixiPPfZYDEcLbvuhxcjQoUNlrdUnn3xCjAAAkHzESF0bNGiQjDHavn27s+3YsWMyxuiss85SVVWVFi1aJGOMrLVaunSp5syZo86dO0dcyhWOkfD9IpI0derUiLMckpSdnS1jjAoKCtSmTRsZYzT5lcn67LPP9PHHH6tt27YyxujZZ5+VJB04cOA7v5nrT3/6U3IOFFJComNk7NixrsfInj17dN9992nv3r0R27/66iulpaUpIyMjruePECMAAMSMGKlr4XtGvhkRoVBI5557rs466yyFQiEdPXpUP/3pT2uNgXCMvPvuuzXOnoQvu3rllVecbeGzLFu2bHF+9rfH2WefrcOHD0uSSktLdeqpp8oYo5/85Cc6//zz9fOf/1wXXXSRfvzjHzuXkuGHId4YOXLkiIYPH67f/e53zk3j/fv3V0lJiWsxMn/BfOdbs1auXKkdO3Zo7ty5Sk9Pl7VWY8aMiWtuxAgAADEjRuqaz+fTqFGjalwuNXHiRN1www3O36uqqjRr1iw9/PDD+utf/6ri4mL16NFDzz//vKQTT3K/8847FQwGnfesXHnigYozZ850tm3btk1t2rRx7v8oLi7WyJEj1bVrV/Xu3Vvz58//P11+hR+meGMkLy9PmZmZEV+lm5aWpvz8fNdiJBgMatiwYTWeL2Kt1bBhw+KaFzECAEBciJF/deXl5W5PAR6SyIceJnIk4p6R3NxcjRgxQkOHDtWIESO0Z8+ehMyNGAEAIGbECIBqXo6RuhrECAAAMSNGAFQjRogRAACSiBgBUI0YIUYAAEgiYgRANWKEGAEAIImIEQDViBFiBACAJCJGAFQjRogRAACSiBgBUI0YIUYAAEgiYgRANWKEGAEAIImIEQDViBFiBACAJCJGAFQjRogRAACSiBgBUC0nJ0c7d+5MubFo0SJNnDjR9XnUNogRAABiRowAqPbcc88xYhgAACAmxAgAAAAAVxAjAAAAAFxBjAAAAABwBTECAAAAwBXECAAAAABXECMAAAAAXEGMAAAAAHAFMQIAAADAFcQIAAAAAFcQIwAAAABcQYwAAAAAcAUxAgAAAMAVxAgAAAAAVxAjAAAAAFxBjAAAAABwBTECAAAAwBXECAAAAABXECMAAAAAXEGMAAAAAHAFMQIAAADAFcQIAAAAAFcQIwAAAABcQYwAAAAAcAUxAgAAAMAVxAgAAAAAVxAjAAAAAFxBjAAAAABwBTECAAAAwBXECAAAAABXECMAAAAAXEGMAAAAAHAFMQIAAADAFcQIAAAAAFcQIwAAAABcQYwAAAAAcAUxAgAAAMAVxAgAAAAAVxAj8K6cnBwGIykDAADEhBiBd+Xk5CgYDKbcmDp1qtasWeP6PGobqXrMVq9erWnTprk+j5MdMwAAEBNiBN6VqgtrYiT6QYwAAOBJxAi8K1UX1sRI9IMYAQDAk4gReFeqLqyJkegHMQIAgCcRI/CuVF1YEyPRD2IEAABPIkbgXam6sCZGoh/ECAAAnkSMwLtSdWFNjEQ/iBEAADyJGIF3perCmhiJfhAjAAB4EjEC70rVhTUxEv0gRgAA8CRiBN6VqgtrYiT6QYwAAOBJxAi8K1UX1sRI9IMYAQDAk4gReFeqLqyJkegHMQIAgCcRI/CuRC2sy8rK5PP55Pf7E/J5iYoRv98vn88nn8+nQCCQsIV1Io9ZWVlZQj4vUTESCATq5JgBAICYECPwrngX1rt375a1NmIMGTJEPp8vrs+NN0YCgYBefvnliHllZGRo1apVrsfIgQMH1LVr14i5XXnllTp8+LCrMRIIBDR37twa/z/nz59PjAAA4B5iBN4Vz8J63759SktLk7VWV111lbKzs9WpUydZa5WTkxPXv6rHGyMPPPCArLXKzMxU37591adPH2dxvXr1atdipLCwUJdffrmsterevbuys7PVrVs3WWuVlZUV15mleGPklVdecaKtd+/e6tu3rzIyMmSt1YIFC4gRAADcQYwkU1VVlSoqKhQKhRLyeZWVld/78xL1s/4VxbOw7tixo6y1mjFjhrOttLRUV155pay1Wv7hcldiJDc3V9ZatW3bVqWlpc72lStXylqrq6++Oq5QiueYDRkyRNZaPfvssxHbs7OzTxzLmTNi/ux4YuSrr76StVatWrVSXl6es33Hjh1KS0tTRkZG3McMAADEhBhJllWrVumUU06RMUannnqqxo8fr4qKCmd/VVWVFi5cqB49euhnP/uZrrnmGi1cuNCJiXXr1qlfv36qrKzUG2+8od/+9rcyxqhfv34KhULy+/3q1auX9u3bp9zcXA0YMEDGGJ122mkqKSlRr1699Pe//73GvCoqKpSVlaV58+bVOu+qUJXeffddzZw5s8bYvn173RysBIl1YR1epPbo0aPGvnXr1slaq2HDhrkSI3/4wx9krdWGDRtqXRRba/XJJ58kPUb279+vFi1aKCsrS0eOHInYd+jQISeU3IiRcePGyVqr6dOn19g3YsRjstbGdYkbMQIAQMyIkWTIy8tTo0aNZIxRVucsJ0pGjBgh6UQQXH311TLGyBijiy++2Pnz6tWrJUm33nqrjDHKzMyUMUb16tVTgwYNZIxRcXGx1q1bK2OMmjdvrnr16skYo5/85CcyxujlSS/LGKMzzjhDRUVFEXN76KGHZIzR7bffXuvci4qKnLl8e9x44411e+DiFOvCesyYMbLWatOmTTX2FRcXKzMzU3369In5X9NjjZFAIKAuXbqoZcuWtd63smDBghpnc5IVI2+//bastXrttddq7PP7/WrZsqU6dOgQ8zGLJ0auv/56ZWZm6uDBgzX25efny1qrP/3pT8QIAADJR4wkw4UXXihjjFatWiVJOnr0qO644w7n708++aSMMfr1r3+tbdu2SZJzZmPHjh2STiyswxHw4IMPyufz6Y477pAxRkVFRVq3bp2zv0uXLsrPz9euXbtkjNHrr7+uW265RcYY9enTx5lXeXm5Eyx79uw56fxzc3O1adMmbd26VVu35jrjyJEjdXXIEiLWhfU999wja22tN137/X5169ZNXbp0ifmbomKNEZ/Pp7Zt2+rWW2+tdf/69etlrdW4ceOSHiOTJ0+WtVYff/xxrfv79OmjNm3a1DhrUtcx4vf71aVLF2VnZ9caQoePHJa1VrfffjsxAgBA8hEjdW358uUyxmjAgNoPc2lpqRo2bKhGjRpp7969zvbu3bvLGKPS0lJJ1TFy5513Oq956qmn1KRJE/n9fidGzjvvPOfyr0AgIGOM1qxZo4MHDzpnVHJzcyVJI0eOlDFG3bp18+S9JbEurO+9997vjZEePXrIH4jthuyYY6TsRIwMHDjwO2PklVdeSXqMvDLlxA3i69evP2mMtGvXTmX+2AIunhjp2rXrSc9khWPk/vvvJ0YAAEg+YqSuXXXVVTLGaP/+/bXu//zzz2uNlV69eskYo/LyckknFtYNGzZ0/i6duM/k+PHjkuTEyFtvvRXxOUePHnX+HL4kq2fPnqqsrNRFF10kY4y2bt2akN811dRFjPh8PnXs2FG9e/dO+mVa4Ri57bbbat2/YsWKk94bkawYqe3MSCAQULdu3dS+ffukX6YVjpGTnRkpLCyUtVYjRowgRgAASD5ipK61b99expiIKPimLVu2yBijhx56KGL7ddddJ2OMgsGgpBML6/r166usrKzWzwnHyIwZM046l/D9H/Xq1dOLL74oY4xatGihqqqqk77n2LFj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">
+                    </div>
+                    <div class="initial-play-wrapper__1tcs">
+                        <div class="initial-play__3FKu play-container__1ZB9">
+                            <div class="fa fa-play"></div>
+                        </div>
+                    </div>
+                    <div class="control-panel__zPwY">
+                        <div class="controls__1q0X">
+                            <div class="control-group__16z9 fa fa-step-backward"></div>
+                            <div class="fa fa-play toggle-play__3DqW control-group__16z9"></div>
+                            <div class="fa fa-step-forward control-group__16z9"></div>
+                        </div>
+                        <div class="frame-counter__1YA2">1 / 6</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <p><strong>Algorithm</strong></p>
+        <ul>
+            <li>
+                <p>Initialize an empty <code>res</code> structure. Once could use array in Python and
+                    StringBuilder in Java.</p>
+            </li>
+            <li>
+                <p>Start from <code>carry = 0</code>.</p>
+            </li>
+            <li>
+                <p>Set a pointer at the end of each string:
+                    <code>p1 = num1.length() - 1</code>, <code>p2 = num2.length() - 1</code>.
+                </p>
+            </li>
+            <li>
+                <p>Loop over the strings from the end to the beginning using <code>p1</code> and <code>p2</code>.
+                    Stop when both strings are used entirely.</p>
+                <ul>
+                    <li>
+                        <p>Set <code>x1</code> to be equal to a digit from string <code>nums1</code> at index
+                            <code>p1</code>. If
+                            <code>p1</code> has reached the beginning of <code>nums1</code>, set <code>x1</code> to
+                            <code>0</code>.
+                        </p>
+                    </li>
+                    <li>
+                        <p>Do the same for <code>x2</code>. Set <code>x2</code> to be equal to digit from string
+                            <code>nums2</code> at index <code>p2</code>. If <code>p2</code> has reached the beginning of
+                            <code>nums2</code>, set <code>x2</code> to <code>0</code>.
+                        </p>
+                    </li>
+                    <li>
+                        <p>Compute the current value: <code>value = (x1 + x2 + carry) % 10</code>, and update the carry:
+                            <code>carry = (x1 + x2 + carry) / 10</code>.
+                        </p>
+                    </li>
+                    <li>
+                        <p>Append the current value to the result: <code>res.append(value)</code>.</p>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <p>Now both strings are done. If the carry is still non-zero, update the result:
+                    <code>res.append(carry)</code>.
+                </p>
+            </li>
+            <li>
+                <p>Reverse the result, convert it to a string, and return that string.</p>
+            </li>
+        </ul>
+        <p><strong>Implementation</strong></p>
+        <iframe src="https://leetcode.com/playground/WEFSCAgo/shared" name="WEFSCAgo" width="100%" height="446"
+            frameborder="0"></iframe>
+        <p><strong>Complexity Analysis</strong></p>
+        <ul>
+            <li>
+                <p>Time Complexity: <span class="katex"><span class="katex-mathml"><math>
+                                <semantics>
+                                    <mrow>
+                                        <mi mathvariant="script">O</mi>
+                                        <mo>(</mo>
+                                        <mi>max</mi>
+                                        <mo>⁡</mo>
+                                        <mo>(</mo>
+                                        <msub>
+                                            <mi>N</mi>
+                                            <mn>1</mn>
+                                        </msub>
+                                        <mo separator="true">,</mo>
+                                        <msub>
+                                            <mi>N</mi>
+                                            <mn>2</mn>
+                                        </msub>
+                                        <mo>)</mo>
+                                        <mo>)</mo>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">\mathcal{O}(\max(N_1, N_2))</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                                    class="mord"><span class="mord mathcal"
+                                        style="margin-right:0.02778em;">O</span></span><span class="mopen">(</span><span
+                                    class="mop">max</span><span class="mopen">(</span><span class="mord"><span
+                                        class="mord mathdefault" style="margin-right:0.10903em;">N</span><span
+                                        class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span
+                                                    class="vlist" style="height:0.30110799999999993em;"><span
+                                                        style="top:-2.5500000000000003em;margin-left:-0.10903em;margin-right:0.05em;"><span
+                                                            class="pstrut" style="height:2.7em;"></span><span
+                                                            class="sizing reset-size6 size3 mtight"><span
+                                                                class="mord mtight">1</span></span></span></span><span
+                                                    class="vlist-s">​</span></span><span class="vlist-r"><span
+                                                    class="vlist"
+                                                    style="height:0.15em;"><span></span></span></span></span></span></span><span
+                                    class="mpunct">,</span><span class="mspace"
+                                    style="margin-right:0.16666666666666666em;"></span><span class="mord"><span
+                                        class="mord mathdefault" style="margin-right:0.10903em;">N</span><span
+                                        class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span
+                                                    class="vlist" style="height:0.30110799999999993em;"><span
+                                                        style="top:-2.5500000000000003em;margin-left:-0.10903em;margin-right:0.05em;"><span
+                                                            class="pstrut" style="height:2.7em;"></span><span
+                                                            class="sizing reset-size6 size3 mtight"><span
+                                                                class="mord mtight">2</span></span></span></span><span
+                                                    class="vlist-s">​</span></span><span class="vlist-r"><span
+                                                    class="vlist"
+                                                    style="height:0.15em;"><span></span></span></span></span></span></span><span
+                                    class="mclose">)</span><span class="mclose">)</span></span></span></span>, where
+                    <span class="katex"><span class="katex-mathml"><math>
+                                <semantics>
+                                    <mrow>
+                                        <msub>
+                                            <mi>N</mi>
+                                            <mn>1</mn>
+                                        </msub>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">N_1</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span
+                                    class="mord"><span class="mord mathdefault"
+                                        style="margin-right:0.10903em;">N</span><span class="msupsub"><span
+                                            class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                                    style="height:0.30110799999999993em;"><span
+                                                        style="top:-2.5500000000000003em;margin-left:-0.10903em;margin-right:0.05em;"><span
+                                                            class="pstrut" style="height:2.7em;"></span><span
+                                                            class="sizing reset-size6 size3 mtight"><span
+                                                                class="mord mtight">1</span></span></span></span><span
+                                                    class="vlist-s">​</span></span><span class="vlist-r"><span
+                                                    class="vlist"
+                                                    style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>
+                    and <span class="katex"><span class="katex-mathml"><math>
+                                <semantics>
+                                    <mrow>
+                                        <msub>
+                                            <mi>N</mi>
+                                            <mn>2</mn>
+                                        </msub>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">N_2</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span
+                                    class="mord"><span class="mord mathdefault"
+                                        style="margin-right:0.10903em;">N</span><span class="msupsub"><span
+                                            class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                                    style="height:0.30110799999999993em;"><span
+                                                        style="top:-2.5500000000000003em;margin-left:-0.10903em;margin-right:0.05em;"><span
+                                                            class="pstrut" style="height:2.7em;"></span><span
+                                                            class="sizing reset-size6 size3 mtight"><span
+                                                                class="mord mtight">2</span></span></span></span><span
+                                                    class="vlist-s">​</span></span><span class="vlist-r"><span
+                                                    class="vlist"
+                                                    style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>
+                    are length of <code>nums1</code> and <code>nums2</code>. Here we do <span class="katex"><span
+                            class="katex-mathml"><math>
+                                <semantics>
+                                    <mrow>
+                                        <mi>max</mi>
+                                        <mo>⁡</mo>
+                                        <mo>(</mo>
+                                        <msub>
+                                            <mi>N</mi>
+                                            <mn>1</mn>
+                                        </msub>
+                                        <mo separator="true">,</mo>
+                                        <msub>
+                                            <mi>N</mi>
+                                            <mn>2</mn>
+                                        </msub>
+                                        <mo>)</mo>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">\max(N_1, N_2)</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                                    class="mop">max</span><span class="mopen">(</span><span class="mord"><span
+                                        class="mord mathdefault" style="margin-right:0.10903em;">N</span><span
+                                        class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span
+                                                    class="vlist" style="height:0.30110799999999993em;"><span
+                                                        style="top:-2.5500000000000003em;margin-left:-0.10903em;margin-right:0.05em;"><span
+                                                            class="pstrut" style="height:2.7em;"></span><span
+                                                            class="sizing reset-size6 size3 mtight"><span
+                                                                class="mord mtight">1</span></span></span></span><span
+                                                    class="vlist-s">​</span></span><span class="vlist-r"><span
+                                                    class="vlist"
+                                                    style="height:0.15em;"><span></span></span></span></span></span></span><span
+                                    class="mpunct">,</span><span class="mspace"
+                                    style="margin-right:0.16666666666666666em;"></span><span class="mord"><span
+                                        class="mord mathdefault" style="margin-right:0.10903em;">N</span><span
+                                        class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span
+                                                    class="vlist" style="height:0.30110799999999993em;"><span
+                                                        style="top:-2.5500000000000003em;margin-left:-0.10903em;margin-right:0.05em;"><span
+                                                            class="pstrut" style="height:2.7em;"></span><span
+                                                            class="sizing reset-size6 size3 mtight"><span
+                                                                class="mord mtight">2</span></span></span></span><span
+                                                    class="vlist-s">​</span></span><span class="vlist-r"><span
+                                                    class="vlist"
+                                                    style="height:0.15em;"><span></span></span></span></span></span></span><span
+                                    class="mclose">)</span></span></span></span>
+                    iterations at most.</p>
+            </li>
+            <li>
+                <p>Space Complexity: <span class="katex"><span class="katex-mathml"><math>
+                                <semantics>
+                                    <mrow>
+                                        <mi mathvariant="script">O</mi>
+                                        <mo>(</mo>
+                                        <mi>max</mi>
+                                        <mo>⁡</mo>
+                                        <mo>(</mo>
+                                        <msub>
+                                            <mi>N</mi>
+                                            <mn>1</mn>
+                                        </msub>
+                                        <mo separator="true">,</mo>
+                                        <msub>
+                                            <mi>N</mi>
+                                            <mn>2</mn>
+                                        </msub>
+                                        <mo>)</mo>
+                                        <mo>)</mo>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">\mathcal{O}(\max(N_1, N_2))</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                                    class="mord"><span class="mord mathcal"
+                                        style="margin-right:0.02778em;">O</span></span><span class="mopen">(</span><span
+                                    class="mop">max</span><span class="mopen">(</span><span class="mord"><span
+                                        class="mord mathdefault" style="margin-right:0.10903em;">N</span><span
+                                        class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span
+                                                    class="vlist" style="height:0.30110799999999993em;"><span
+                                                        style="top:-2.5500000000000003em;margin-left:-0.10903em;margin-right:0.05em;"><span
+                                                            class="pstrut" style="height:2.7em;"></span><span
+                                                            class="sizing reset-size6 size3 mtight"><span
+                                                                class="mord mtight">1</span></span></span></span><span
+                                                    class="vlist-s">​</span></span><span class="vlist-r"><span
+                                                    class="vlist"
+                                                    style="height:0.15em;"><span></span></span></span></span></span></span><span
+                                    class="mpunct">,</span><span class="mspace"
+                                    style="margin-right:0.16666666666666666em;"></span><span class="mord"><span
+                                        class="mord mathdefault" style="margin-right:0.10903em;">N</span><span
+                                        class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span
+                                                    class="vlist" style="height:0.30110799999999993em;"><span
+                                                        style="top:-2.5500000000000003em;margin-left:-0.10903em;margin-right:0.05em;"><span
+                                                            class="pstrut" style="height:2.7em;"></span><span
+                                                            class="sizing reset-size6 size3 mtight"><span
+                                                                class="mord mtight">2</span></span></span></span><span
+                                                    class="vlist-s">​</span></span><span class="vlist-r"><span
+                                                    class="vlist"
+                                                    style="height:0.15em;"><span></span></span></span></span></span></span><span
+                                    class="mclose">)</span><span class="mclose">)</span></span></span></span>, because
+                    the length
+                    of the new string is at most <span class="katex"><span class="katex-mathml"><math>
+                                <semantics>
+                                    <mrow>
+                                        <mi>max</mi>
+                                        <mo>⁡</mo>
+                                        <mo>(</mo>
+                                        <msub>
+                                            <mi>N</mi>
+                                            <mn>1</mn>
+                                        </msub>
+                                        <mo separator="true">,</mo>
+                                        <msub>
+                                            <mi>N</mi>
+                                            <mn>2</mn>
+                                        </msub>
+                                        <mo>)</mo>
+                                        <mo>+</mo>
+                                        <mn>1</mn>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">\max(N_1, N_2) + 1</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                                    class="mop">max</span><span class="mopen">(</span><span class="mord"><span
+                                        class="mord mathdefault" style="margin-right:0.10903em;">N</span><span
+                                        class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span
+                                                    class="vlist" style="height:0.30110799999999993em;"><span
+                                                        style="top:-2.5500000000000003em;margin-left:-0.10903em;margin-right:0.05em;"><span
+                                                            class="pstrut" style="height:2.7em;"></span><span
+                                                            class="sizing reset-size6 size3 mtight"><span
+                                                                class="mord mtight">1</span></span></span></span><span
+                                                    class="vlist-s">​</span></span><span class="vlist-r"><span
+                                                    class="vlist"
+                                                    style="height:0.15em;"><span></span></span></span></span></span></span><span
+                                    class="mpunct">,</span><span class="mspace"
+                                    style="margin-right:0.16666666666666666em;"></span><span class="mord"><span
+                                        class="mord mathdefault" style="margin-right:0.10903em;">N</span><span
+                                        class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span
+                                                    class="vlist" style="height:0.30110799999999993em;"><span
+                                                        style="top:-2.5500000000000003em;margin-left:-0.10903em;margin-right:0.05em;"><span
+                                                            class="pstrut" style="height:2.7em;"></span><span
+                                                            class="sizing reset-size6 size3 mtight"><span
+                                                                class="mord mtight">2</span></span></span></span><span
+                                                    class="vlist-s">​</span></span><span class="vlist-r"><span
+                                                    class="vlist"
+                                                    style="height:0.15em;"><span></span></span></span></span></span></span><span
+                                    class="mclose">)</span><span class="mspace"
+                                    style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span
+                                    class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span
+                                class="base"><span class="strut"
+                                    style="height:0.64444em;vertical-align:0em;"></span><span
+                                    class="mord">1</span></span></span></span>.</p>
+            </li>
+        </ul>
+        <br>
+        <br>
+        <hr>
+    </div>
+</div>
+<link rel="stylesheet" href="../../../boilerplate/simple.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css"
+    integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
