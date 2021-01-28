@@ -5,6 +5,7 @@
 0387,First Unique Character in a String
 0389,Find the Difference
 0415,Add Strings
+0434,Number of Segments in a String
 0485,Max Consecutive Ones
 0977,Squares of a Sorted Array
 1295,Find Numbers with Even Number of Digits
