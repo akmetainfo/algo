@@ -25,9 +25,7 @@ public class Solution
         foreach (var c in magazine)
         {
             if (!dict.ContainsKey(c))
-            {
                 dict[c] = 0;
-            }
 
             dict[c]++;
         }
@@ -35,9 +33,7 @@ public class Solution
         foreach (var c in ransomNote)
         {
             if (!dict.ContainsKey(c) || dict[c] == 0)
-            {
                 return false;
-            }
 
             dict[c]--;
         }

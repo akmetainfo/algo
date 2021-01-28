@@ -17,7 +17,7 @@ public class Solution
     {
         var i = m - 1;
         var j = n - 1;
-        var index = m + n - 1;
+        var index = m + n - 1; // don't use nums1.Length - 1 becouse edge cases when more zero space than m + n
 
         while (i >= 0 && j >= 0)
         {
