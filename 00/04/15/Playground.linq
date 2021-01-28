@@ -20,6 +20,9 @@ public class Solution
 }
 
 [Test]
+[TestCase("0", "0", "0")]
+[TestCase("0", "2", "2")]
+[TestCase("2", "0", "2")]
 [TestCase("1", "9", "10")]
 [TestCase("100", "201", "301")]
 public void SolutionTests(string num1, string num2, string expected)

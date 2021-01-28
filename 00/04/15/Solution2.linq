@@ -8,48 +8,41 @@
 // https://leetcode.com/problems/add-strings/
 
 /*
-    Time: O(n)
-    Space: O(1)
+    Time: O(max(N1​,N2​)), where N1​ and N2​ are length of nums1 and nums2. Here we do max⁡(N1,N2) iterations at most.
+    Space: O(max(N1​,N2​)), because the length of the new string is at most max(N1​,N2​) + 1.
 */
 public class Solution
 {
     public string AddStrings(string num1, string num2)
     {
-        var stack = new Stack<string>();
-
-        var i = num1.Length - 1;
-        var j = num2.Length - 1;
+        var stack = new Stack<char>();
 
         int carry = 0;
+        int i = num1.Length - 1;
+        int j = num2.Length - 1;
 
-        while (i >= 0 && j >= 0)
+        while (i >= 0 || j >= 0)
         {
             int x1 = i >= 0 ? num1[i] - '0' : 0;
             int x2 = j >= 0 ? num2[j] - '0' : 0;
             int value = (x1 + x2 + carry) % 10;
             carry = (x1 + x2 + carry) / 10;
-
-            stack.Push(value.ToString());
-
+            stack.Push((char)(value + '0'));
             i--;
             j--;
         }
 
-
         if (carry != 0)
-            stack.Push(carry.ToString());
+            stack.Push('1');
 
-        var sb = new StringBuilder();
-        while (stack.Count != 0)
-        {
-            sb.Append(stack.Pop());
-        }
-
-        return sb.ToString();
+        return new string(stack.ToArray());
     }
 }
 
 [Test]
+[TestCase("0", "0", "0")]
+[TestCase("0", "2", "2")]
+[TestCase("2", "0", "2")]
 [TestCase("1", "9", "10")]
 [TestCase("100", "201", "301")]
 public void SolutionTests(string num1, string num2, string expected)

@@ -8,14 +8,14 @@
 // https://leetcode.com/problems/add-strings/
 
 /*
-    Time: O(n)
-    Space: O(1)
+    Time: O(max(N1​,N2​)), where N1​ and N2​ are length of nums1 and nums2. Here we do max⁡(N1,N2) iterations at most.
+    Space: O(max(N1​,N2​)), because the length of the new string is at most max(N1​,N2​) + 1.
 */
 public class Solution
 {
     public string AddStrings(string num1, string num2)
     {
-        StringBuilder res = new StringBuilder();
+        var res = new StringBuilder();
 
         int carry = 0;
         int p1 = num1.Length - 1;
@@ -26,19 +26,22 @@ public class Solution
             int x2 = p2 >= 0 ? num2[p2] - '0' : 0;
             int value = (x1 + x2 + carry) % 10;
             carry = (x1 + x2 + carry) / 10;
-            res.Append(value);
+            res.Insert(0, value);
             p1--;
             p2--;
         }
 
         if (carry != 0)
-            res.Append(carry);
+            res.Insert(0, carry);
 
-        return new string(res.ToString().Reverse().ToArray());
+        return res.ToString();
     }
 }
 
 [Test]
+[TestCase("0", "0", "0")]
+[TestCase("0", "2", "2")]
+[TestCase("2", "0", "2")]
 [TestCase("1", "9", "10")]
 [TestCase("100", "201", "301")]
 public void SolutionTests(string num1, string num2, string expected)
