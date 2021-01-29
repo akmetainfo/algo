@@ -35,7 +35,7 @@ public class Solution
             i = i + 2;
         }
 
-        return num == 0 ? true : false;
+        return num == 0;
     }
 }
 
