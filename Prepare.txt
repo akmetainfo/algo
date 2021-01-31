@@ -1,4 +1,5 @@
 0482,License Key Formatting
+0500,Keyboard Row
 1089,Duplicate Zeros
 
 22.01.2021 0219
