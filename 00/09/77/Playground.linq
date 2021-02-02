@@ -8,8 +8,8 @@
 // https://leetcode.com/problems/squares-of-a-sorted-array/
 
 /*
-    Time: O(n)
-    Space: O(1)
+    Time: O()
+    Space: O()
 */
 public class Solution
 {

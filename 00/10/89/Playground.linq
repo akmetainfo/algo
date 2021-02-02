@@ -8,8 +8,8 @@
 // https://leetcode.com/problems/duplicate-zeros/
 
 /*
-    Time: O(n)
-    Space: O(1)
+    Time: O()
+    Space: O()
 */
 public class Solution
 {

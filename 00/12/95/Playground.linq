@@ -8,8 +8,8 @@
 // https://leetcode.com/problems/find-numbers-with-even-number-of-digits/
 
 /*
-    Time: O(n)
-    Space: O(1)
+    Time: O()
+    Space: O()
 */
 public class Solution
 {

@@ -8,8 +8,8 @@
 // https://leetcode.com/problems/ransom-note/
 
 /*
-    Time: O(n)
-    Space: O(1)
+    Time: O()
+    Space: O()
 */
 public class Solution
 {
