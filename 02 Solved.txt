@@ -1,0 +1,5 @@
+0482,License Key Formatting
+0500,Keyboard Row
+0509,Fibonacci Number
+0520,Detect Capital
+1089,Duplicate Zeros

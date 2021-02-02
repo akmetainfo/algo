@@ -1,9 +1,11 @@
 0027,Remove Element
+0088,Merge Sorted Array
 0217,Contains Duplicate
 0367,Valid Perfect Square
 0383,Ransom Note
 0387,First Unique Character in a String
 0389,Find the Difference
+0392,Is Subsequence
 0412,Fizz Buzz
 0415,Add Strings
 0434,Number of Segments in a String
