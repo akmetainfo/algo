@@ -8,8 +8,8 @@
 // https://leetcode.com/problems/add-strings/
 
 /*
-    Time: O(n)
-    Space: O(1)
+    Time: O()
+    Space: O()
 */
 public class Solution
 {
@@ -25,6 +25,7 @@ public class Solution
 [TestCase("2", "0", "2")]
 [TestCase("1", "9", "10")]
 [TestCase("100", "201", "301")]
+[TestCase("100", "1201", "1301")]
 public void SolutionTests(string num1, string num2, string expected)
 {
     var actual = new Solution().AddStrings(num1, num2);
