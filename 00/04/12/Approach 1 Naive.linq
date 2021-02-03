@@ -19,8 +19,8 @@ public class Solution
 
         for (int num = 1; num <= n; num++)
         {
-            var divisibleBy3 = (num % 3 == 0);
-            var divisibleBy5 = (num % 5 == 0);
+            var divisibleBy3 = num % 3 == 0;
+            var divisibleBy5 = num % 5 == 0;
 
             if (divisibleBy3 && divisibleBy5)
             {
