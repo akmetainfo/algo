@@ -13,18 +13,6 @@
 */
 public class Solution
 {
-    /* https://leetcode.com/problems/find-the-difference/discuss/177091/C-using-XOR
-
-    It is an easy level algorithm. I chose to use XOR to calculate the answer.
-    
-    Case study
-    Input: s = "abcd", t = "abcde"
-    Output: "e"
-    Explanation: 'e' is the letter that was added.
-    
-    XOR bit operation can be used to solve the problem. Since 1^1 = 0 and 0^0 = 0, 2's complement, (1+1) %2 = 0, (0 + 0)%2 = 0. So 'a'^'a' = 0.    
-    
-    */
     public char FindTheDifference(string s, string t)
     {
         var sum = 0;
