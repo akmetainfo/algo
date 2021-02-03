@@ -21,7 +21,7 @@ public class Solution
         var result = new StringBuilder();
         foreach (char c in str)
         {
-            result.Append((char)((int) c | 32));
+            result.Append((char)(c | 32));
         }
         return result.ToString();
     }

@@ -18,7 +18,7 @@ public class Solution
         var result = new StringBuilder();
         foreach (char c in str)
         {
-            if (('A' <= c) && (c <= 'Z'))
+            if ('A' <= c && c <= 'Z')
             {
                 result.Append((char)(c + 32));
             }
