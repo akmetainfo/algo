@@ -26,7 +26,7 @@ public class Solution
 public void SolutionTests(string[] words, string[] expectedResult)
 {
     var result = new Solution().FindWords(words);
-    Assert.That(expectedResult, Is.EquivalentTo(result));
+    Assert.That(result, Is.EquivalentTo(expectedResult));
 }
 
 #region unit tests runner

@@ -25,7 +25,7 @@ public class Solution
 public void SolutionTests(int n, string[] expected)
 {
     var result = new Solution().FizzBuzz(n);
-    Assert.That(expected, Is.EqualTo(result));
+    Assert.That(result, Is.EqualTo(expected));
 }
 
 #region unit tests runner

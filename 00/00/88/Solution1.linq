@@ -61,7 +61,7 @@ public class Solution
 public void SolutionTests(int[] nums1, int m, int[] nums2, int n, int[] expected)
 {
     new Solution().Merge(nums1, m, nums2, n);
-    Assert.That(expected, Is.EqualTo(nums1));
+    Assert.That(nums1, Is.EqualTo(expected));
 }
 
 #region unit tests runner

@@ -34,8 +34,8 @@ public class Solution
 public void SolutionTests(int[] nums, int val, int[] expectedArr, int expectedResult)
 {
     var result = new Solution().RemoveElement(nums, val);
-    Assert.That(expectedResult, Is.EqualTo(result));
-    Assert.That(expectedArr, Is.EquivalentTo(nums.Take(expectedResult)));
+    Assert.That(result, Is.EqualTo(expectedResult));
+    Assert.That(nums.Take(expectedResult), Is.EquivalentTo(expectedArr));
 }
 
 #region unit tests runner
