@@ -1,0 +1,247 @@
+<div class="content__QRGW">
+    <div>
+        <h2>Solution</h2>
+        <hr>
+        <br>
+        <p><strong>Intuition</strong></p>
+        <p>Imagine you are writing a small compiler for your college project and one of the tasks (or say sub-tasks) for
+            the compiler would be to detect if the parenthesis are in place or not.</p>
+        <p>The algorithm we will look at in this article can be then used to process all the parenthesis in the program
+            your compiler is compiling and checking if all the parenthesis are in place. This makes checking if a given
+            string of parenthesis is valid or not, an important programming problem.</p>
+        <p>The expressions that we will deal with in this problem can consist of three different type of parenthesis:
+        </p>
+        <ul>
+            <li><code>()</code>,</li>
+            <li><code>{}</code> and</li>
+            <li><code>[]</code></li>
+        </ul>
+        <p>Before looking at how we can check if a given expression consisting of these parenthesis is valid or not, let
+            us look at a simpler version of the problem that consists of just one type of parenthesis. So, the
+            expressions we can encounter in this simplified version of the problem are e.g.</p>
+        <pre>(((((()))))) -- VALID
+    
+    ()()()()     -- VALID
+    
+    (((((((()    -- INVALID
+    
+    ((()(())))   -- VALID
+    </pre>
+        <p>Let's look at a simple algorithm to deal with this problem.</p>
+        <ol>
+            <li>
+                <p>We process the expression one bracket at a time starting from the left.</p>
+            </li>
+            <li>
+                <p>Suppose we encounter an opening bracket i.e. <code>(</code>, it may or may not be an invalid
+                    expression because there can be a matching ending bracket somewhere in the remaining part of the
+                    expression. Here, we simply increment the counter keeping track of left parenthesis till now.
+                    <code>left += 1</code>
+                </p>
+            </li>
+            <li>
+                <p>If we encounter a closing bracket, this has two meanings:</p>
+                <ol>
+                    <li>One, there was no matching opening bracket for this closing bracket and in that case we have an
+                        invalid expression. This is the case when <code>left == 0</code> i.e. when there are no
+                        unmatched left brackets available.</li>
+                    <li>We had <code>some unmatched</code> opening bracket available to match this closing bracket. This
+                        is the case when <code>left &gt; 0</code> i.e. we have unmatched left brackets available.</li>
+                </ol>
+            </li>
+            <li>
+                <p>If we encounter a closing bracket i.e. <code>)</code> when <code>left == 0</code>, then we have an
+                    invalid expression on our hands. Else, we decrement <code>left</code> thus reducing the number of
+                    unmatched left parenthesis available.</p>
+            </li>
+            <li>
+                <p>Continue processing the string until all parenthesis have been processed.</p>
+            </li>
+            <li>
+                <p>If in the end we still have unmatched left parenthesis available, this implies an invalid expression.
+                </p>
+            </li>
+        </ol>
+        <p>The reason we discussed this particular algorithm here is because the approach for the original problem
+            derives its inspiration from this very solution. Have a look at the following dry run of the algorithm we
+            discussed to have a better understanding.</p>
+        <div>
+            <div>
+                <div class="dia-container__T7JA" style="width: 789px;">
+                    <div class="diaporama__1x84"><img alt="Current" class="dia-img__3-yE"
+                            src="data:image/png;base64,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">
+                    </div>
+                    <div class="initial-play-wrapper__1tcs">
+                        <div class="initial-play__3FKu play-container__1ZB9">
+                            <div class="fa fa-play"></div>
+                        </div>
+                    </div>
+                    <div class="control-panel__zPwY">
+                        <div class="controls__1q0X">
+                            <div class="control-group__16z9 fa fa-step-backward"></div>
+                            <div class="fa fa-play toggle-play__3DqW control-group__16z9"></div>
+                            <div class="fa fa-step-forward control-group__16z9"></div>
+                        </div>
+                        <div class="frame-counter__1YA2">1 / 12</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <p>If we try and follow the same approach for our original problem, then it simply won't work. The reason a
+            simple counter based approach works above is because all the parenthesis are of the same type. So when we
+            encounter a closing bracket, we simply assume a corresponding opening matching bracket to be available i.e.
+            if <code>left &gt; 0</code>.</p>
+        <p>But, in our problem, if we encounter say <code>]</code>, we don't really know if there is a corresponding
+            opening <code>[</code> available or not. You could say:</p>
+        <blockquote>
+            <p>Why not maintain a separate counter for the different types of parenthesis?</p>
+        </blockquote>
+        <p>This doesn't work because the relative placement of the parenthesis also matters here. e.g.:</p>
+        <pre>[{]
+    </pre>
+        <p>If we simply keep counters here, then as soon as we encounter the closing square bracket, we would know there
+            is an unmatched opening square bracket available as well. But, the <strong>closest unmatched opening bracket
+                available is a curly bracket and not a square bracket</strong> and hence the counting approach breaks
+            here.
+            <br>
+            <br>
+        </p>
+        <hr>
+        <h4 id="approach-1-stacks">Approach 1: Stacks</h4>
+        <p>An interesting property about a valid parenthesis expression is that a sub-expression of a valid expression
+            should also be a valid expression. (Not every sub-expression) e.g.</p>
+        <center>
+            <img src="20-Valid-Parentheses-Recursive-Property.png" width="700">
+        </center>
+        <p>Also, if you look at the above structure carefully, the color coded cells mark the opening and closing pairs
+            of parenthesis. The entire expression is valid, but sub portions of it are also valid in themselves. This
+            lends a sort of a recursive structure to the problem. For e.g. Consider the expression enclosed within the
+            two green parenthesis in the diagram above. The opening bracket at index <code>1</code> and the
+            corresponding closing bracket at index <code>6</code>.</p>
+        <blockquote>
+            <p>What if whenever we encounter a matching pair of parenthesis in the expression, we simply remove it from
+                the expression?</p>
+        </blockquote>
+        <p>Let's have a look at this idea below where remove the smaller expressions one at a time from the overall
+            expression and since this is a valid expression, we would be left with an empty string in the end.</p>
+        <div>
+            <div>
+                <div class="dia-container__T7JA" style="width: 789px;">
+                    <div class="diaporama__1x84"><img alt="Current" class="dia-img__3-yE"
+                            src="data:image/png;base64,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saPi8OOHs+2yba/+e04hKl655Rd/7oZJRcWl173jf579lcVkouKev/6nDItFjjn22NzztX8UFcyVqKBGRAUzMXZUjLUxo2LsjRUVY2/M//405saOijE39o/fTSkq1mJj/07FmBMVFBMV1IioYCZEhagQFcu/Q1SICmZHVFAjooKZEBWiQlQs/w5RISqYHVFBjYgKZkJUiApRsfw7RIWoYHZEBTUiKpgJUSEqRMXy7xAVooLZERXUiKhgJkSFqBAVy79DVIgKZkdUUCOigpkQFaJCVCz/DlEhKpgdUUGNiApmQlSIClGx/DtEhahgdkQFNSIqmAlRISpExfLvEBWigtkRFdSIqGAmRIWoEBXLv0NUiApmR1RQI6KCmXjhhReyeetPTnLnbzk3W7aeP7mdvemsXHTheZPblvPPWfoN3/O2zVuy9YKtk9s7zj576TestvPOPW/pz/n32k9csHXp7w2r7eDBg8t+O+XoIiqoEVEBANCVqKBGRAUAQFeighoRFQAAXYkKakRUAAB0JSqoEVEBANCVqKBGRAUAQFeighoRFQAAXYkKakRUAAB0JSqoEVEBANCVqKBGRAUAQFeighoRFQAAXYkKakRUAAB0JSqoEVEBANCVqKBGRAUAQFeighoRFQAAXYkKakRUAAB0JSqoEVEBANCVqKBGRAUAQFeighoRFQAAXYkKakRUAAB0JSqoEVEBANCVqKBGRAUAQFeighoRFQAAXYkKakRUAAB0JSqoEVEBANCVqKBGRAUAQFeighoRFQAAXYkKakRUAAB0JSqoEVEBANCVqKBGRAUAQFeighoRFQAAXYkKakRUAAB0JSqoEVEBANCVqKBGRAUAQFeighoRFQAAXYkKakRUAAB0JSqoEVEBANCVqKBGRAUAQFeighoRFQAAXYkKakRUAAB0JSqoEVEBANCVqKBGRAUAQFeighoRFQAAXYkKakRUAAB0JSqoEVEBANCVqKBGRAUAQFeighoRFQAAXYkKakRUAAB0JSqoEVEBANCVqKBGRAUAQFeighoRFQAAXYkKakRUAAB0JSqoEVEBANCVqKBGRAUAQFeighoRFQAAXYkKakRUAAB0JSqoEVEBANCVqKBGRAUAQFeighoRFQAAXYkKakRUAAB0JSqoEVEBANCVqKBGRAUAQFeighoRFQAAXYkKakRUAAB0JSqoEVEBANCVqKBGRAUAQFeighoRFQAAXYkKakRUAAB0JSqoEVEBANCVqKBGRAUAQFeighoRFQAAXYkKakRUAAB0JSqoEVEBANCVqKBGRAUAQFeighoRFQAAXYkKakRUAAB0JSqoEVEBANCVqKBGRAUAQFeighoRFQAAXYkKakRUAAB0JSqoEVEBANCVqKBGRAUAQFeighoRFQAAXYkKakRUAAB0JSqoEVEBANCVqKBGRAUAQFeighoRFQAAXYkKakRUAAB0JSqoEVEBANCVqKBGRAUAQFeighoRFQAAXYkKakRUAAB0JSqoEVEBANCVqKBGRAUAQFeighoRFQAAXYkKakRUAAB0JSqoEVEBANCVqKBGRAUAQFeighoRFQAAXYkKakRUAAB0JSqoEVEBANCVqKBGRAUAQFeighoRFQAAXYkKakRUAAB0JSqoEVEBANCVqKBGRAUAQFeighoRFQAAXYkKakRUAAB0JSqoEVEBANCVqKBGRAUAQFeighoRFQAAXYkKakRUAAB0JSqoEVEBANCVqKBGRAUAQFeighoRFQAAXYkKakRUAAB0JSqoEVEBANCVqKBGRAUAQFeighoRFQAAXYkKakRUAAB0JSqoEVEBANCVqKBGRAUAQFeighoRFQAAXYkKakRUAAB0JSqoEVEBANCVqKBGRAUAQFeighoRFQAAXYkKakRUAAB0JSqoEVEBANCVqKBGRAUAQFeighoRFQAAXYkKakRUAAB0JSqoEVEBANCVqKBGRAUAQFeighoRFQAAXYkKakRUAAB0JSqoEVEBANCVqKBGRAUAQFeighoRFQAAXYkKakRUAAB0JSqoEVEBANCVqKBGRAUAQFeighoRFQAAXYkKakRUAAB0JSqoEVEBANCVqKBGRAUAQFeighoRFQAAXYkKakRUAAB0JSr+H/4LmUfo3k9fo8EAAAAASUVORK5CYII=">
+                    </div>
+                    <div class="initial-play-wrapper__1tcs">
+                        <div class="initial-play__3FKu play-container__1ZB9">
+                            <div class="fa fa-play"></div>
+                        </div>
+                    </div>
+                    <div class="control-panel__zPwY">
+                        <div class="controls__1q0X">
+                            <div class="control-group__16z9 fa fa-step-backward"></div>
+                            <div class="fa fa-play toggle-play__3DqW control-group__16z9"></div>
+                            <div class="fa fa-step-forward control-group__16z9"></div>
+                        </div>
+                        <div class="frame-counter__1YA2">1 / 5</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <blockquote>
+            <p>The stack data structure can come in handy here in representing this recursive structure of the problem.
+                We can't really process this from the inside out because we don't have an idea about the overall
+                structure. But, the stack can help us process this recursively i.e. from outside to inwards.</p>
+        </blockquote>
+        <p>Let us have a look at the algorithm for this problem using stacks as the intermediate data structure.</p>
+        <p><strong>Algorithm</strong></p>
+        <ol>
+            <li>Initialize a stack S.</li>
+            <li>Process each bracket of the expression one at a time.</li>
+            <li>If we encounter an opening bracket, we simply push it onto the stack. This means we will process it
+                later, let us simply move onto the <strong>sub-expression</strong> ahead.</li>
+            <li>If we encounter a closing bracket, then we check the element on top of the stack. If the element at the
+                top of the stack is an opening bracket <code>of the same type</code>, then we pop it off the stack and
+                continue processing. Else, this implies an invalid expression.</li>
+            <li>In the end, if we are left with a stack still having elements, then this implies an invalid expression.
+            </li>
+        </ol>
+        <p>We'll have a look a dry run for the algorithm and then move onto the implementation.</p>
+        <div>
+            <div>
+                <div class="dia-container__T7JA" style="width: 789px;">
+                    <div class="diaporama__1x84"><img alt="Current" class="dia-img__3-yE"
+                            src="data:image/png;base64,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nJ0999zzSefmXe9619gfY6TF9X/i7F/96lfHvv/IJKLirrvuilJKvOhFL0oRFXfccUeUUmL58uVj3/upJhEVe++9d5RSYt26dWPdt0VU/P73v49SSrzyla8c675bIiryERXJNI2K71wSpZRY+jfbxhs+f0H8/Zf/LV1UXHnllbFu3bqx/3COmExUjGb/4x//OPbHaDH//fffPz9z5qi44YYbopQSL33pS+POO++Me++9d6z7t4qKW265JY477rgopcTLX/7yJo8R0ebs3HXXXbFu3br4wQ9+kDIqbrvttrjoootiamoqSinNXqVrHRWbN2+O5z73ubHddtuleYU0IuKyyy6LUkqcffbZTfYfaR0VZ5xxRpRS4tJLLx373q3e/nTttddGKSVOPfXUse/9RKIiH1GRTMuoOPKs/xWllNjvrf/QZP9JRMUPf/jDJvtHTCYqWmr95Jg5Kk477bQopcQvfvGLJvu3fk9/62vf8uzceeedKaNi5OSTT45SSnzta19rsn/rqDj++OOjlBLXX399k/1bnp099tgjSilN/hNmpOX8DzzwQJRSYrfddmuyf8vPVBx44IFRSon77ruvyf4RoiIjUZFMy6hY/pa/j1JKvOHfPyYqtkBULCxzVBx77LFNb05ExdZlj4qvfOUrUUqJmZmZJvu3PPdzc3MxNTUVu+yyS7PHaHl2Hn300eZvg2o5/5FHHhmllGafi2oZFY899ljTIIoQFRmJimSaRsXJb45SShz3n/8iKrZAVCwsc1Qcc8wxUUqJP//5z032FxVblz0qLr/88qafq2h57k855ZQopcQVV1zR7DFa/9x52cteFqWUZh8cbjX/5s2bm79tsfVvf9p3332jlBJ/+MMfmuwvKvIRFcm0jIrX/PPjL4P/7X98QlRsgahYWOaoGL1S8eCDDzbZX1RsXfaomJmZiVJKrF27tsn+Lc9963MT0f7nzoUXXhillDjnnHOa7N9q/nPOOSdKKfHhD3+4yf4R7aPikkse/xzme97znib7i4p8REUyLaNin3/42yilxJtmPikqtkBULCxzVKxa9fhvPXvooYea7C8qti57VHz961+PUkpcffXVTfZvde5/97vfPf6LOZYubbL/SOufOw899FDTP0er+XfYYYcopcTDDz/cZP+I9lHx8MMPRyklpqammuwvKvIRFcm0jIqd935FlFLihGu+KCq2QFQsLHNUbLfddk3fQtE6Kka/gagVUbF1f/rTn6KUEp/61Kea7N/q3F9//fWP/7w/4YQm+49M4leytryxbTX/Ntts0/xn/iS+/K7lz31RkY+oSKZZVFzzxZjedlmUqalm0SIqtk5UPLNWN1ej/21btmxZk/0j2kfF6C0g3/zmN5vsLyoWVkqJffbZp8nerc795z//+SilxEUXXdRk/5FJRUWrX+vbYv7169c3DaGRSUZFi1dcREU+oiKZFlGx7wnHxdT0kliybJt43QXvFxVbISoWljEq3v3ud8eSJUti5513bvo2hNY3tRs3bpz/8r5TTjll7PuLioWdd955MT09HXvssUd89KMfHeveraLigx/8YNO3bY1MMiqyfL/Pgw8++FcXFb/97W/HvreoyEdUJNMiKpYsXRplqkSZmoo3/NsFomIrRMXCMkbFsmXLopQS09PTTb74a6T1TW1ExAEHHDD/Zxk3UbGwn//85/NvQRv3K16touLss8+OUkp897vfbbL/yCSj4v777x/73i3mH30/xV9TVMzOzo59b1GRj6hIptXbn/7xG/8RU9PT3v60AFGxsIxRERHxq1/9Kv3bn6644ooopcR5553XZH9RsbDp6enYaaedmnzfQKtz/5nPfCZKafNNzk80yaho8Wpji/lH3/Hw1xQVDzzwwNj3FhX5iIpkWn5Q+wX//4PaomLLRMXCskZFRMRznvOcprO3vql93vOe54PaC2h5/Uc3iB/60Iea7N/q3H/nO9+JUkqcdtppTfYf8UHtLZuenvZB7WcgKvIRFcm0jIr9/vs/Rikljv+//0dUbIGoWFjmqHjjG98YpbT7Zlu/UnbrskfFTTfdFKWU+MIXvtBk/1bn/rbbbotSSuy6665N9h9p/XNn48aNzd72F9Fu/u233z5KKU3fdtk6KkbX3q+UZURUJNMyKg7+n//j8V8x+O0ZUbEFomJhmaPi5JNPbvoELyq2LntUjP7HP9uvlI346/jyuy996UuPf7/Sm97UZP9W85944olRSolLLrmkyf4R7aPi2muvjVJKHH300U32FxX5iIpkWkbFinf8k7c/LUBULCxzVLz5zW9O/fYnUbGwltf/uuuui1JKnH/++U32b3nuDz/88CilxI9//ONmj9H6587oz9Di18lGtJt/w4YNUUqJlStXNtk/on1UjF7hvfvu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">
+                    </div>
+                    <div class="initial-play-wrapper__1tcs">
+                        <div class="initial-play__3FKu play-container__1ZB9">
+                            <div class="fa fa-play"></div>
+                        </div>
+                    </div>
+                    <div class="control-panel__zPwY">
+                        <div class="controls__1q0X">
+                            <div class="control-group__16z9 fa fa-step-backward"></div>
+                            <div class="fa fa-play toggle-play__3DqW control-group__16z9"></div>
+                            <div class="fa fa-step-forward control-group__16z9"></div>
+                        </div>
+                        <div class="frame-counter__1YA2">1 / 12</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <p>Let us now have a look at the implementation for this algorithm.</p>
+        <iframe src="https://leetcode.com/playground/BjZDnC7Y/shared" name="BjZDnC7Y" width="100%" height="500"
+            frameborder="0"></iframe>
+        <p><strong>Complexity analysis</strong></p>
+        <ul>
+            <li>Time complexity : <span class="katex"><span class="katex-mathml"><math>
+                            <semantics>
+                                <mrow>
+                                    <mi>O</mi>
+                                    <mo>(</mo>
+                                    <mi>n</mi>
+                                    <mo>)</mo>
+                                </mrow>
+                                <annotation encoding="application/x-tex">O(n)</annotation>
+                            </semantics>
+                        </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                                style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault"
+                                style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span
+                                class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span>
+                because we simply traverse the given string one character at a time and push and pop operations on a
+                stack take <span class="katex"><span class="katex-mathml"><math>
+                            <semantics>
+                                <mrow>
+                                    <mi>O</mi>
+                                    <mo>(</mo>
+                                    <mn>1</mn>
+                                    <mo>)</mo>
+                                </mrow>
+                                <annotation encoding="application/x-tex">O(1)</annotation>
+                            </semantics>
+                        </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                                style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault"
+                                style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span
+                                class="mord">1</span><span class="mclose">)</span></span></span></span> time.</li>
+            <li>Space complexity : <span class="katex"><span class="katex-mathml"><math>
+                            <semantics>
+                                <mrow>
+                                    <mi>O</mi>
+                                    <mo>(</mo>
+                                    <mi>n</mi>
+                                    <mo>)</mo>
+                                </mrow>
+                                <annotation encoding="application/x-tex">O(n)</annotation>
+                            </semantics>
+                        </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                                style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault"
+                                style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span
+                                class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span> as
+                we push all opening brackets onto the stack and in the worst case, we will end up pushing all the
+                brackets onto the stack. e.g. <code>((((((((((</code>.</li>
+        </ul>
+        <br>
+        <br>
+    </div>
+</div>
+<link rel="stylesheet" href="../../../boilerplate/simple.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css"
+    integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">

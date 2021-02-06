@@ -15,7 +15,7 @@ Queue and BFS
 Stack: Last-in-first-out Data Structure
 
 + 07 Min Stack - 0155 https://leetcode.com/explore/learn/card/queue-stack/230/usage-stack/1360/
-- 08 Valid Parentheses - 0020 https://leetcode.com/explore/learn/card/queue-stack/230/usage-stack/1361/
++ 08 Valid Parentheses - 0020 https://leetcode.com/explore/learn/card/queue-stack/230/usage-stack/1361/
 - 09 Daily Temperatures - 0739 https://leetcode.com/explore/learn/card/queue-stack/230/usage-stack/1363/
 - 10 Evaluate Reverse Polish Notation - 0150 https://leetcode.com/explore/learn/card/queue-stack/230/usage-stack/1394/
 
