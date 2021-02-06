@@ -1,0 +1,2046 @@
+<div class="content__QRGW">
+    <div>
+        <h2>Solution</h2>
+        <hr>
+        <h4 id="approach-1-brute-force">Approach 1: Brute Force</h4>
+        <p>We check every number from 1 to n-1 and pass it to the <span class="katex"><span class="katex-mathml"><math>
+                        <semantics>
+                            <mrow>
+                                <mi>g</mi>
+                                <mi>u</mi>
+                                <mi>e</mi>
+                                <mi>s</mi>
+                                <mi>s</mi>
+                            </mrow>
+                            <annotation encoding="application/x-tex">guess</annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord mathdefault"
+                            style="margin-right:0.03588em;">g</span><span class="mord mathdefault">u</span><span
+                            class="mord mathdefault">e</span><span class="mord mathdefault">s</span><span
+                            class="mord mathdefault">s</span></span></span></span> function. The number
+            for which a 0 is returned is the required answer.</p>
+        <iframe src="https://leetcode.com/playground/fbFHDKsc/shared" name="fbFHDKsc" width="100%" height="276"
+            frameborder="0"></iframe>
+        <p><strong>Complexity Analysis</strong></p>
+        <ul>
+            <li>Time complexity : <span class="katex"><span class="katex-mathml"><math>
+                            <semantics>
+                                <mrow>
+                                    <mi>O</mi>
+                                    <mo>(</mo>
+                                    <mi>n</mi>
+                                    <mo>)</mo>
+                                </mrow>
+                                <annotation encoding="application/x-tex">O(n)</annotation>
+                            </semantics>
+                        </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                                style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault"
+                                style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span
+                                class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span>. We
+                scan all the numbers from 1 to n.</li>
+            <li>Space complexity : <span class="katex"><span class="katex-mathml"><math>
+                            <semantics>
+                                <mrow>
+                                    <mi>O</mi>
+                                    <mo>(</mo>
+                                    <mn>1</mn>
+                                    <mo>)</mo>
+                                </mrow>
+                                <annotation encoding="application/x-tex">O(1)</annotation>
+                            </semantics>
+                        </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                                style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault"
+                                style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span
+                                class="mord">1</span><span class="mclose">)</span></span></span></span>. No extra space
+                is used.
+                <br>
+                <br>
+            </li>
+        </ul>
+        <hr>
+        <h4 id="approach-2-using-binary-search">Approach 2: Using Binary Search</h4>
+        <p><strong>Algorithm</strong></p>
+        <p>We can apply Binary Search to find the given number. We start with the mid
+            number. We pass that number to the <span class="katex"><span class="katex-mathml"><math>
+                        <semantics>
+                            <mrow>
+                                <mi>g</mi>
+                                <mi>u</mi>
+                                <mi>e</mi>
+                                <mi>s</mi>
+                                <mi>s</mi>
+                            </mrow>
+                            <annotation encoding="application/x-tex">guess</annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord mathdefault"
+                            style="margin-right:0.03588em;">g</span><span class="mord mathdefault">u</span><span
+                            class="mord mathdefault">e</span><span class="mord mathdefault">s</span><span
+                            class="mord mathdefault">s</span></span></span></span> function. If it returns a -1, it
+            implies that the guessed number is larger than the required one. Thus, we use Binary Search for numbers
+            lower than itself. Similarly, if it returns a 1, we use Binary Search
+            for numbers higher than itself.</p>
+        <iframe src="https://leetcode.com/playground/84NfKnsE/shared" name="84NfKnsE" width="100%" height="429"
+            frameborder="0"></iframe>
+        <p><strong>Complexity Analysis</strong></p>
+        <ul>
+            <li>Time complexity : <span class="katex"><span class="katex-mathml"><math>
+                            <semantics>
+                                <mrow>
+                                    <mi>O</mi>
+                                    <mo fence="false">(</mo>
+                                    <msub>
+                                        <mi>log</mi>
+                                        <mo>⁡</mo>
+                                        <mn>2</mn>
+                                    </msub>
+                                    <mi>n</mi>
+                                    <mo fence="false">)</mo>
+                                </mrow>
+                                <annotation encoding="application/x-tex">O\big(\log_2 n\big)</annotation>
+                            </semantics>
+                        </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                                style="height:1.20001em;vertical-align:-0.35001em;"></span><span
+                                class="mord mathdefault" style="margin-right:0.02778em;">O</span><span
+                                class="mord"><span class="delimsizing size1">(</span></span><span class="mspace"
+                                style="margin-right:0.16666666666666666em;"></span><span class="mop"><span
+                                    class="mop">lo<span style="margin-right:0.01389em;">g</span></span><span
+                                    class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span
+                                                class="vlist" style="height:0.20696799999999996em;"><span
+                                                    style="top:-2.4558600000000004em;margin-right:0.05em;"><span
+                                                        class="pstrut" style="height:2.7em;"></span><span
+                                                        class="sizing reset-size6 size3 mtight"><span
+                                                            class="mord mtight">2</span></span></span></span><span
+                                                class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                                style="height:0.24414em;"><span></span></span></span></span></span></span><span
+                                class="mspace" style="margin-right:0.16666666666666666em;"></span><span
+                                class="mord mathdefault">n</span><span class="mord"><span
+                                    class="delimsizing size1">)</span></span></span></span></span>. Binary Search is
+                used.</li>
+            <li>Space complexity : <span class="katex"><span class="katex-mathml"><math>
+                            <semantics>
+                                <mrow>
+                                    <mi>O</mi>
+                                    <mo>(</mo>
+                                    <mn>1</mn>
+                                    <mo>)</mo>
+                                </mrow>
+                                <annotation encoding="application/x-tex">O(1)</annotation>
+                            </semantics>
+                        </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                                style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault"
+                                style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span
+                                class="mord">1</span><span class="mclose">)</span></span></span></span>. No extra space
+                is used.
+                <br>
+                <br>
+            </li>
+        </ul>
+        <hr>
+        <h4 id="approach-3-ternary-search">Approach 3: Ternary Search</h4>
+        <p><strong>Algorithm</strong></p>
+        <p>In Binary Search, we choose the middle element as the pivot in splitting. In Ternary Search, we choose two
+            pivots (say <span class="katex"><span class="katex-mathml"><math>
+                        <semantics>
+                            <mrow>
+                                <mi>m</mi>
+                                <mn>1</mn>
+                            </mrow>
+                            <annotation encoding="application/x-tex">m1</annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:0.64444em;vertical-align:0em;"></span><span
+                            class="mord mathdefault">m</span><span class="mord">1</span></span></span></span> and <span
+                class="katex"><span class="katex-mathml"><math>
+                        <semantics>
+                            <mrow>
+                                <mi>m</mi>
+                                <mn>2</mn>
+                            </mrow>
+                            <annotation encoding="application/x-tex">m2</annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:0.64444em;vertical-align:0em;"></span><span
+                            class="mord mathdefault">m</span><span class="mord">2</span></span></span></span>) such that
+            the given range is divided into three equal parts. If the required number <span class="katex"><span
+                    class="katex-mathml"><math>
+                        <semantics>
+                            <mrow>
+                                <mi>n</mi>
+                                <mi>u</mi>
+                                <mi>m</mi>
+                            </mrow>
+                            <annotation encoding="application/x-tex">num</annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:0.43056em;vertical-align:0em;"></span><span
+                            class="mord mathdefault">n</span><span class="mord mathdefault">u</span><span
+                            class="mord mathdefault">m</span></span></span></span> is less than <span
+                class="katex"><span class="katex-mathml"><math>
+                        <semantics>
+                            <mrow>
+                                <mi>m</mi>
+                                <mn>1</mn>
+                            </mrow>
+                            <annotation encoding="application/x-tex">m1</annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:0.64444em;vertical-align:0em;"></span><span
+                            class="mord mathdefault">m</span><span class="mord">1</span></span></span></span> then we
+            apply ternary search on the left segment of <span class="katex"><span class="katex-mathml"><math>
+                        <semantics>
+                            <mrow>
+                                <mi>m</mi>
+                                <mn>1</mn>
+                            </mrow>
+                            <annotation encoding="application/x-tex">m1</annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:0.64444em;vertical-align:0em;"></span><span
+                            class="mord mathdefault">m</span><span class="mord">1</span></span></span></span>. If <span
+                class="katex"><span class="katex-mathml"><math>
+                        <semantics>
+                            <mrow>
+                                <mi>n</mi>
+                                <mi>u</mi>
+                                <mi>m</mi>
+                            </mrow>
+                            <annotation encoding="application/x-tex">num</annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:0.43056em;vertical-align:0em;"></span><span
+                            class="mord mathdefault">n</span><span class="mord mathdefault">u</span><span
+                            class="mord mathdefault">m</span></span></span></span> lies between <span
+                class="katex"><span class="katex-mathml"><math>
+                        <semantics>
+                            <mrow>
+                                <mi>m</mi>
+                                <mn>1</mn>
+                            </mrow>
+                            <annotation encoding="application/x-tex">m1</annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:0.64444em;vertical-align:0em;"></span><span
+                            class="mord mathdefault">m</span><span class="mord">1</span></span></span></span> and <span
+                class="katex"><span class="katex-mathml"><math>
+                        <semantics>
+                            <mrow>
+                                <mi>m</mi>
+                                <mn>2</mn>
+                            </mrow>
+                            <annotation encoding="application/x-tex">m2</annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:0.64444em;vertical-align:0em;"></span><span
+                            class="mord mathdefault">m</span><span class="mord">2</span></span></span></span>, we apply
+            ternary search between <span class="katex"><span class="katex-mathml"><math>
+                        <semantics>
+                            <mrow>
+                                <mi>m</mi>
+                                <mn>1</mn>
+                            </mrow>
+                            <annotation encoding="application/x-tex">m1</annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:0.64444em;vertical-align:0em;"></span><span
+                            class="mord mathdefault">m</span><span class="mord">1</span></span></span></span> and <span
+                class="katex"><span class="katex-mathml"><math>
+                        <semantics>
+                            <mrow>
+                                <mi>m</mi>
+                                <mn>2</mn>
+                            </mrow>
+                            <annotation encoding="application/x-tex">m2</annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:0.64444em;vertical-align:0em;"></span><span
+                            class="mord mathdefault">m</span><span class="mord">2</span></span></span></span>. Otherwise
+            we will search in the segment right to <span class="katex"><span class="katex-mathml"><math>
+                        <semantics>
+                            <mrow>
+                                <mi>m</mi>
+                                <mn>2</mn>
+                            </mrow>
+                            <annotation encoding="application/x-tex">m2</annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:0.64444em;vertical-align:0em;"></span><span
+                            class="mord mathdefault">m</span><span class="mord">2</span></span></span></span>.</p>
+        <iframe src="https://leetcode.com/playground/ZVkdvE5j/shared" name="ZVkdvE5j" width="100%" height="500"
+            frameborder="0"></iframe>
+        <p><strong>Complexity Analysis</strong></p>
+        <ul>
+            <li>Time complexity : <span class="katex"><span class="katex-mathml"><math>
+                            <semantics>
+                                <mrow>
+                                    <mi>O</mi>
+                                    <mo fence="false">(</mo>
+                                    <msub>
+                                        <mi>log</mi>
+                                        <mo>⁡</mo>
+                                        <mn>3</mn>
+                                    </msub>
+                                    <mi>n</mi>
+                                    <mo fence="false">)</mo>
+                                </mrow>
+                                <annotation encoding="application/x-tex">O\big(\log_3 n \big)</annotation>
+                            </semantics>
+                        </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                                style="height:1.20001em;vertical-align:-0.35001em;"></span><span
+                                class="mord mathdefault" style="margin-right:0.02778em;">O</span><span
+                                class="mord"><span class="delimsizing size1">(</span></span><span class="mspace"
+                                style="margin-right:0.16666666666666666em;"></span><span class="mop"><span
+                                    class="mop">lo<span style="margin-right:0.01389em;">g</span></span><span
+                                    class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span
+                                                class="vlist" style="height:0.20696799999999996em;"><span
+                                                    style="top:-2.4558600000000004em;margin-right:0.05em;"><span
+                                                        class="pstrut" style="height:2.7em;"></span><span
+                                                        class="sizing reset-size6 size3 mtight"><span
+                                                            class="mord mtight">3</span></span></span></span><span
+                                                class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                                style="height:0.24414em;"><span></span></span></span></span></span></span><span
+                                class="mspace" style="margin-right:0.16666666666666666em;"></span><span
+                                class="mord mathdefault">n</span><span class="mord"><span
+                                    class="delimsizing size1">)</span></span></span></span></span>. Ternary Search is
+                used.</li>
+            <li>Space complexity : <span class="katex"><span class="katex-mathml"><math>
+                            <semantics>
+                                <mrow>
+                                    <mi>O</mi>
+                                    <mo>(</mo>
+                                    <mn>1</mn>
+                                    <mo>)</mo>
+                                </mrow>
+                                <annotation encoding="application/x-tex">O(1)</annotation>
+                            </semantics>
+                        </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                                style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault"
+                                style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span
+                                class="mord">1</span><span class="mclose">)</span></span></span></span>. No extra space
+                is used.
+                <br>
+                <br>
+            </li>
+        </ul>
+        <hr>
+        <h2>Follow up</h2>
+        <p>It seems that ternary search is able to terminate earlier compared to binary search. But why is binary search
+            more widely used?</p>
+        <h4 id="comparisons-between-binary-search-and-ternary-search">Comparisons between Binary Search and Ternary
+            Search</h4>
+        <p>Ternary Search is worse than Binary Search. The following outlines the recursive formula to count comparisons
+            of Binary Search in the worst case.</p>
+        <p><span class="katex"><span class="katex-mathml"><math>
+                        <semantics>
+                            <mtable>
+                                <mtr>
+                                    <mtd>
+                                        <mstyle displaystyle="true" scriptlevel="0">
+                                            <mrow>
+                                                <mi>T</mi>
+                                                <mo>(</mo>
+                                                <mi>n</mi>
+                                                <mo>)</mo>
+                                            </mrow>
+                                        </mstyle>
+                                    </mtd>
+                                    <mtd>
+                                        <mstyle displaystyle="true" scriptlevel="0">
+                                            <mrow>
+                                                <mrow></mrow>
+                                                <mo>=</mo>
+                                                <mi>T</mi>
+                                                <mo fence="false">(</mo>
+                                                <mfrac>
+                                                    <mi>n</mi>
+                                                    <mn>2</mn>
+                                                </mfrac>
+                                                <mo fence="false">)</mo>
+                                                <mo>+</mo>
+                                                <mn>2</mn>
+                                                <mo separator="true">,</mo>
+                                                <mspace width="1em"></mspace>
+                                                <mi>T</mi>
+                                                <mo>(</mo>
+                                                <mn>1</mn>
+                                                <mo>)</mo>
+                                                <mo>=</mo>
+                                                <mn>1</mn>
+                                            </mrow>
+                                        </mstyle>
+                                    </mtd>
+                                </mtr>
+                                <mtr>
+                                    <mtd>
+                                        <mstyle displaystyle="true" scriptlevel="0">
+                                            <mrow>
+                                                <mi>T</mi>
+                                                <mo fence="false">(</mo>
+                                                <mfrac>
+                                                    <mi>n</mi>
+                                                    <mn>2</mn>
+                                                </mfrac>
+                                                <mo fence="false">)</mo>
+                                            </mrow>
+                                        </mstyle>
+                                    </mtd>
+                                    <mtd>
+                                        <mstyle displaystyle="true" scriptlevel="0">
+                                            <mrow>
+                                                <mrow></mrow>
+                                                <mo>=</mo>
+                                                <mi>T</mi>
+                                                <mo fence="false">(</mo>
+                                                <mfrac>
+                                                    <mi>n</mi>
+                                                    <msup>
+                                                        <mn>2</mn>
+                                                        <mn>2</mn>
+                                                    </msup>
+                                                </mfrac>
+                                                <mo fence="false">)</mo>
+                                                <mo>+</mo>
+                                                <mn>2</mn>
+                                            </mrow>
+                                        </mstyle>
+                                    </mtd>
+                                </mtr>
+                                <mtr>
+                                    <mtd>
+                                        <mstyle displaystyle="true" scriptlevel="0">
+                                            <mrow></mrow>
+                                        </mstyle>
+                                    </mtd>
+                                </mtr>
+                                <mtr>
+                                    <mtd>
+                                        <mstyle displaystyle="true" scriptlevel="0">
+                                            <mrow>
+                                                <mo>∴</mo>
+                                                <mrow></mrow>
+                                                <mspace width="1em"></mspace>
+                                                <mi>T</mi>
+                                                <mo>(</mo>
+                                                <mi>n</mi>
+                                                <mo>)</mo>
+                                            </mrow>
+                                        </mstyle>
+                                    </mtd>
+                                    <mtd>
+                                        <mstyle displaystyle="true" scriptlevel="0">
+                                            <mrow>
+                                                <mrow></mrow>
+                                                <mo>=</mo>
+                                                <mi>T</mi>
+                                                <mo fence="false">(</mo>
+                                                <mfrac>
+                                                    <mi>n</mi>
+                                                    <msup>
+                                                        <mn>2</mn>
+                                                        <mn>2</mn>
+                                                    </msup>
+                                                </mfrac>
+                                                <mo fence="false">)</mo>
+                                                <mo>+</mo>
+                                                <mn>2</mn>
+                                                <mo>×</mo>
+                                                <mn>2</mn>
+                                            </mrow>
+                                        </mstyle>
+                                    </mtd>
+                                </mtr>
+                                <mtr>
+                                    <mtd>
+                                        <mstyle displaystyle="true" scriptlevel="0">
+                                            <mrow></mrow>
+                                        </mstyle>
+                                    </mtd>
+                                    <mtd>
+                                        <mstyle displaystyle="true" scriptlevel="0">
+                                            <mrow>
+                                                <mrow></mrow>
+                                                <mo>=</mo>
+                                                <mi>T</mi>
+                                                <mo fence="false">(</mo>
+                                                <mfrac>
+                                                    <mi>n</mi>
+                                                    <msup>
+                                                        <mn>2</mn>
+                                                        <mn>3</mn>
+                                                    </msup>
+                                                </mfrac>
+                                                <mo fence="false">)</mo>
+                                                <mo>+</mo>
+                                                <mn>3</mn>
+                                                <mo>×</mo>
+                                                <mn>2</mn>
+                                            </mrow>
+                                        </mstyle>
+                                    </mtd>
+                                </mtr>
+                                <mtr>
+                                    <mtd>
+                                        <mstyle displaystyle="true" scriptlevel="0">
+                                            <mrow></mrow>
+                                        </mstyle>
+                                    </mtd>
+                                    <mtd>
+                                        <mstyle displaystyle="true" scriptlevel="0">
+                                            <mrow>
+                                                <mrow></mrow>
+                                                <mo>=</mo>
+                                                <mo>…</mo>
+                                            </mrow>
+                                        </mstyle>
+                                    </mtd>
+                                </mtr>
+                                <mtr>
+                                    <mtd>
+                                        <mstyle displaystyle="true" scriptlevel="0">
+                                            <mrow></mrow>
+                                        </mstyle>
+                                    </mtd>
+                                    <mtd>
+                                        <mstyle displaystyle="true" scriptlevel="0">
+                                            <mrow>
+                                                <mrow></mrow>
+                                                <mo>=</mo>
+                                                <mi>T</mi>
+                                                <mo fence="false">(</mo>
+                                                <mfrac>
+                                                    <mi>n</mi>
+                                                    <msup>
+                                                        <mn>2</mn>
+                                                        <mrow>
+                                                            <msub>
+                                                                <mi>log</mi>
+                                                                <mo>⁡</mo>
+                                                                <mn>2</mn>
+                                                            </msub>
+                                                            <mi>n</mi>
+                                                        </mrow>
+                                                    </msup>
+                                                </mfrac>
+                                                <mo fence="false">)</mo>
+                                                <mo>+</mo>
+                                                <mn>2</mn>
+                                                <msub>
+                                                    <mi>log</mi>
+                                                    <mo>⁡</mo>
+                                                    <mn>2</mn>
+                                                </msub>
+                                                <mi>n</mi>
+                                            </mrow>
+                                        </mstyle>
+                                    </mtd>
+                                </mtr>
+                                <mtr>
+                                    <mtd>
+                                        <mstyle displaystyle="true" scriptlevel="0">
+                                            <mrow></mrow>
+                                        </mstyle>
+                                    </mtd>
+                                    <mtd>
+                                        <mstyle displaystyle="true" scriptlevel="0">
+                                            <mrow>
+                                                <mrow></mrow>
+                                                <mo>=</mo>
+                                                <mi>T</mi>
+                                                <mo>(</mo>
+                                                <mn>1</mn>
+                                                <mo>)</mo>
+                                                <mo>+</mo>
+                                                <mn>2</mn>
+                                                <msub>
+                                                    <mi>log</mi>
+                                                    <mo>⁡</mo>
+                                                    <mn>2</mn>
+                                                </msub>
+                                                <mi>n</mi>
+                                            </mrow>
+                                        </mstyle>
+                                    </mtd>
+                                </mtr>
+                                <mtr>
+                                    <mtd>
+                                        <mstyle displaystyle="true" scriptlevel="0">
+                                            <mrow></mrow>
+                                        </mstyle>
+                                    </mtd>
+                                    <mtd>
+                                        <mstyle displaystyle="true" scriptlevel="0">
+                                            <mrow>
+                                                <mrow></mrow>
+                                                <mo>=</mo>
+                                                <mn>1</mn>
+                                                <mo>+</mo>
+                                                <mn>2</mn>
+                                                <msub>
+                                                    <mi>log</mi>
+                                                    <mo>⁡</mo>
+                                                    <mn>2</mn>
+                                                </msub>
+                                                <mi>n</mi>
+                                            </mrow>
+                                        </mstyle>
+                                    </mtd>
+                                </mtr>
+                            </mtable>
+                            <annotation encoding="application/x-tex">
+                                \begin{aligned}
+                                T(n) &amp;= T\bigg(\frac{n}{2} \bigg) + 2, \quad T(1) = 1 \\
+                                T\bigg(\frac{n}{2} \bigg) &amp;= T\bigg(\frac{n}{2^2} \bigg) + 2 \\
+                                \\
+                                \therefore{} \quad T(n) &amp;= T\bigg(\frac{n}{2^2} \bigg) + 2 \times 2 \\
+                                &amp;= T\bigg(\frac{n}{2^3} \bigg) + 3 \times 2 \\
+                                &amp;= \ldots \\
+                                &amp;= T\bigg(\frac{n}{2^{\log_2 n}} \bigg) + 2 \log_2 n \\
+                                &amp;= T(1) + 2 \log_2 n \\
+                                &amp;= 1 + 2 \log_2 n
+                                \end{aligned}
+                            </annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:19.500149999999998em;vertical-align:-9.500074999999999em;"></span><span
+                            class="mord"><span class="mtable"><span class="col-align-r"><span
+                                        class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                                style="height:10.000074999999999em;"><span
+                                                    style="top:-12.000075em;"><span class="pstrut"
+                                                        style="height:3.45em;"></span><span class="mord"><span
+                                                            class="mord mathdefault"
+                                                            style="margin-right:0.13889em;">T</span><span
+                                                            class="mopen">(</span><span
+                                                            class="mord mathdefault">n</span><span
+                                                            class="mclose">)</span></span></span><span
+                                                    style="top:-9.300044999999999em;"><span class="pstrut"
+                                                        style="height:3.45em;"></span><span class="mord"><span
+                                                            class="mord mathdefault"
+                                                            style="margin-right:0.13889em;">T</span><span
+                                                            class="mord"><span
+                                                                class="delimsizing size3">(</span></span><span
+                                                            class="mord"><span class="mopen nulldelimiter"></span><span
+                                                                class="mfrac"><span class="vlist-t vlist-t2"><span
+                                                                        class="vlist-r"><span class="vlist"
+                                                                            style="height:1.10756em;"><span
+                                                                                style="top:-2.314em;"><span
+                                                                                    class="pstrut"
+                                                                                    style="height:3em;"></span><span
+                                                                                    class="mord"><span
+                                                                                        class="mord">2</span></span></span><span
+                                                                                style="top:-3.23em;"><span
+                                                                                    class="pstrut"
+                                                                                    style="height:3em;"></span><span
+                                                                                    class="frac-line"
+                                                                                    style="border-bottom-width:0.04em;"></span></span><span
+                                                                                style="top:-3.677em;"><span
+                                                                                    class="pstrut"
+                                                                                    style="height:3em;"></span><span
+                                                                                    class="mord"><span
+                                                                                        class="mord mathdefault">n</span></span></span></span><span
+                                                                            class="vlist-s">​</span></span><span
+                                                                        class="vlist-r"><span class="vlist"
+                                                                            style="height:0.686em;"><span></span></span></span></span></span><span
+                                                                class="mclose nulldelimiter"></span></span><span
+                                                            class="mord"><span
+                                                                class="delimsizing size3">)</span></span></span></span><span
+                                                    style="top:-7.210014999999999em;"><span class="pstrut"
+                                                        style="height:3.45em;"></span><span
+                                                        class="mord"></span></span><span
+                                                    style="top:-5.100014999999999em;"><span class="pstrut"
+                                                        style="height:3.45em;"></span><span class="mord"><span
+                                                            class="mrel amsrm">∴</span><span class="mspace"
+                                                            style="margin-right:0.2777777777777778em;"></span><span
+                                                            class="mord"></span><span class="mspace"
+                                                            style="margin-right:1em;"></span><span
+                                                            class="mord mathdefault"
+                                                            style="margin-right:0.13889em;">T</span><span
+                                                            class="mopen">(</span><span
+                                                            class="mord mathdefault">n</span><span
+                                                            class="mclose">)</span></span></span><span
+                                                    style="top:-2.3999849999999996em;"><span class="pstrut"
+                                                        style="height:3.45em;"></span><span
+                                                        class="mord"></span></span><span
+                                                    style="top:-0.30995499999999954em;"><span class="pstrut"
+                                                        style="height:3.45em;"></span><span
+                                                        class="mord"></span></span><span
+                                                    style="top:1.8000450000000003em;"><span class="pstrut"
+                                                        style="height:3.45em;"></span><span
+                                                        class="mord"></span></span><span
+                                                    style="top:3.8900749999999986em;"><span class="pstrut"
+                                                        style="height:3.45em;"></span><span
+                                                        class="mord"></span></span><span
+                                                    style="top:5.390074999999999em;"><span class="pstrut"
+                                                        style="height:3.45em;"></span><span
+                                                        class="mord"></span></span></span><span
+                                                class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                                style="height:9.500074999999999em;"><span></span></span></span></span></span><span
+                                    class="col-align-l"><span class="vlist-t vlist-t2"><span class="vlist-r"><span
+                                                class="vlist" style="height:10.000074999999999em;"><span
+                                                    style="top:-12.000075em;"><span class="pstrut"
+                                                        style="height:3.45em;"></span><span class="mord"><span
+                                                            class="mord"></span><span class="mspace"
+                                                            style="margin-right:0.2777777777777778em;"></span><span
+                                                            class="mrel">=</span><span class="mspace"
+                                                            style="margin-right:0.2777777777777778em;"></span><span
+                                                            class="mord mathdefault"
+                                                            style="margin-right:0.13889em;">T</span><span
+                                                            class="mord"><span
+                                                                class="delimsizing size3">(</span></span><span
+                                                            class="mord"><span class="mopen nulldelimiter"></span><span
+                                                                class="mfrac"><span class="vlist-t vlist-t2"><span
+                                                                        class="vlist-r"><span class="vlist"
+                                                                            style="height:1.10756em;"><span
+                                                                                style="top:-2.314em;"><span
+                                                                                    class="pstrut"
+                                                                                    style="height:3em;"></span><span
+                                                                                    class="mord"><span
+                                                                                        class="mord">2</span></span></span><span
+                                                                                style="top:-3.23em;"><span
+                                                                                    class="pstrut"
+                                                                                    style="height:3em;"></span><span
+                                                                                    class="frac-line"
+                                                                                    style="border-bottom-width:0.04em;"></span></span><span
+                                                                                style="top:-3.677em;"><span
+                                                                                    class="pstrut"
+                                                                                    style="height:3em;"></span><span
+                                                                                    class="mord"><span
+                                                                                        class="mord mathdefault">n</span></span></span></span><span
+                                                                            class="vlist-s">​</span></span><span
+                                                                        class="vlist-r"><span class="vlist"
+                                                                            style="height:0.686em;"><span></span></span></span></span></span><span
+                                                                class="mclose nulldelimiter"></span></span><span
+                                                            class="mord"><span
+                                                                class="delimsizing size3">)</span></span><span
+                                                            class="mspace"
+                                                            style="margin-right:0.2222222222222222em;"></span><span
+                                                            class="mbin">+</span><span class="mspace"
+                                                            style="margin-right:0.2222222222222222em;"></span><span
+                                                            class="mord">2</span><span class="mpunct">,</span><span
+                                                            class="mspace"
+                                                            style="margin-right:0.16666666666666666em;"></span><span
+                                                            class="mspace" style="margin-right:1em;"></span><span
+                                                            class="mord mathdefault"
+                                                            style="margin-right:0.13889em;">T</span><span
+                                                            class="mopen">(</span><span class="mord">1</span><span
+                                                            class="mclose">)</span><span class="mspace"
+                                                            style="margin-right:0.2777777777777778em;"></span><span
+                                                            class="mrel">=</span><span class="mspace"
+                                                            style="margin-right:0.2777777777777778em;"></span><span
+                                                            class="mord">1</span></span></span><span
+                                                    style="top:-9.300044999999999em;"><span class="pstrut"
+                                                        style="height:3.45em;"></span><span class="mord"><span
+                                                            class="mord"></span><span class="mspace"
+                                                            style="margin-right:0.2777777777777778em;"></span><span
+                                                            class="mrel">=</span><span class="mspace"
+                                                            style="margin-right:0.2777777777777778em;"></span><span
+                                                            class="mord mathdefault"
+                                                            style="margin-right:0.13889em;">T</span><span
+                                                            class="mord"><span
+                                                                class="delimsizing size3">(</span></span><span
+                                                            class="mord"><span class="mopen nulldelimiter"></span><span
+                                                                class="mfrac"><span class="vlist-t vlist-t2"><span
+                                                                        class="vlist-r"><span class="vlist"
+                                                                            style="height:1.10756em;"><span
+                                                                                style="top:-2.314em;"><span
+                                                                                    class="pstrut"
+                                                                                    style="height:3em;"></span><span
+                                                                                    class="mord"><span
+                                                                                        class="mord"><span
+                                                                                            class="mord">2</span><span
+                                                                                            class="msupsub"><span
+                                                                                                class="vlist-t"><span
+                                                                                                    class="vlist-r"><span
+                                                                                                        class="vlist"
+                                                                                                        style="height:0.740108em;"><span
+                                                                                                            style="top:-2.9890000000000003em;margin-right:0.05em;"><span
+                                                                                                                class="pstrut"
+                                                                                                                style="height:2.7em;"></span><span
+                                                                                                                class="sizing reset-size6 size3 mtight"><span
+                                                                                                                    class="mord mtight">2</span></span></span></span></span></span></span></span></span></span><span
+                                                                                style="top:-3.23em;"><span
+                                                                                    class="pstrut"
+                                                                                    style="height:3em;"></span><span
+                                                                                    class="frac-line"
+                                                                                    style="border-bottom-width:0.04em;"></span></span><span
+                                                                                style="top:-3.677em;"><span
+                                                                                    class="pstrut"
+                                                                                    style="height:3em;"></span><span
+                                                                                    class="mord"><span
+                                                                                        class="mord mathdefault">n</span></span></span></span><span
+                                                                            class="vlist-s">​</span></span><span
+                                                                        class="vlist-r"><span class="vlist"
+                                                                            style="height:0.686em;"><span></span></span></span></span></span><span
+                                                                class="mclose nulldelimiter"></span></span><span
+                                                            class="mord"><span
+                                                                class="delimsizing size3">)</span></span><span
+                                                            class="mspace"
+                                                            style="margin-right:0.2222222222222222em;"></span><span
+                                                            class="mbin">+</span><span class="mspace"
+                                                            style="margin-right:0.2222222222222222em;"></span><span
+                                                            class="mord">2</span></span></span><span
+                                                    style="top:-5.100014999999999em;"><span class="pstrut"
+                                                        style="height:3.45em;"></span><span class="mord"><span
+                                                            class="mord"></span><span class="mspace"
+                                                            style="margin-right:0.2777777777777778em;"></span><span
+                                                            class="mrel">=</span><span class="mspace"
+                                                            style="margin-right:0.2777777777777778em;"></span><span
+                                                            class="mord mathdefault"
+                                                            style="margin-right:0.13889em;">T</span><span
+                                                            class="mord"><span
+                                                                class="delimsizing size3">(</span></span><span
+                                                            class="mord"><span class="mopen nulldelimiter"></span><span
+                                                                class="mfrac"><span class="vlist-t vlist-t2"><span
+                                                                        class="vlist-r"><span class="vlist"
+                                                                            style="height:1.10756em;"><span
+                                                                                style="top:-2.314em;"><span
+                                                                                    class="pstrut"
+                                                                                    style="height:3em;"></span><span
+                                                                                    class="mord"><span
+                                                                                        class="mord"><span
+                                                                                            class="mord">2</span><span
+                                                                                            class="msupsub"><span
+                                                                                                class="vlist-t"><span
+                                                                                                    class="vlist-r"><span
+                                                                                                        class="vlist"
+                                                                                                        style="height:0.740108em;"><span
+                                                                                                            style="top:-2.9890000000000003em;margin-right:0.05em;"><span
+                                                                                                                class="pstrut"
+                                                                                                                style="height:2.7em;"></span><span
+                                                                                                                class="sizing reset-size6 size3 mtight"><span
+                                                                                                                    class="mord mtight">2</span></span></span></span></span></span></span></span></span></span><span
+                                                                                style="top:-3.23em;"><span
+                                                                                    class="pstrut"
+                                                                                    style="height:3em;"></span><span
+                                                                                    class="frac-line"
+                                                                                    style="border-bottom-width:0.04em;"></span></span><span
+                                                                                style="top:-3.677em;"><span
+                                                                                    class="pstrut"
+                                                                                    style="height:3em;"></span><span
+                                                                                    class="mord"><span
+                                                                                        class="mord mathdefault">n</span></span></span></span><span
+                                                                            class="vlist-s">​</span></span><span
+                                                                        class="vlist-r"><span class="vlist"
+                                                                            style="height:0.686em;"><span></span></span></span></span></span><span
+                                                                class="mclose nulldelimiter"></span></span><span
+                                                            class="mord"><span
+                                                                class="delimsizing size3">)</span></span><span
+                                                            class="mspace"
+                                                            style="margin-right:0.2222222222222222em;"></span><span
+                                                            class="mbin">+</span><span class="mspace"
+                                                            style="margin-right:0.2222222222222222em;"></span><span
+                                                            class="mord">2</span><span class="mspace"
+                                                            style="margin-right:0.2222222222222222em;"></span><span
+                                                            class="mbin">×</span><span class="mspace"
+                                                            style="margin-right:0.2222222222222222em;"></span><span
+                                                            class="mord">2</span></span></span><span
+                                                    style="top:-2.3999849999999996em;"><span class="pstrut"
+                                                        style="height:3.45em;"></span><span class="mord"><span
+                                                            class="mord"></span><span class="mspace"
+                                                            style="margin-right:0.2777777777777778em;"></span><span
+                                                            class="mrel">=</span><span class="mspace"
+                                                            style="margin-right:0.2777777777777778em;"></span><span
+                                                            class="mord mathdefault"
+                                                            style="margin-right:0.13889em;">T</span><span
+                                                            class="mord"><span
+                                                                class="delimsizing size3">(</span></span><span
+                                                            class="mord"><span class="mopen nulldelimiter"></span><span
+                                                                class="mfrac"><span class="vlist-t vlist-t2"><span
+                                                                        class="vlist-r"><span class="vlist"
+                                                                            style="height:1.10756em;"><span
+                                                                                style="top:-2.314em;"><span
+                                                                                    class="pstrut"
+                                                                                    style="height:3em;"></span><span
+                                                                                    class="mord"><span
+                                                                                        class="mord"><span
+                                                                                            class="mord">2</span><span
+                                                                                            class="msupsub"><span
+                                                                                                class="vlist-t"><span
+                                                                                                    class="vlist-r"><span
+                                                                                                        class="vlist"
+                                                                                                        style="height:0.740108em;"><span
+                                                                                                            style="top:-2.9890000000000003em;margin-right:0.05em;"><span
+                                                                                                                class="pstrut"
+                                                                                                                style="height:2.7em;"></span><span
+                                                                                                                class="sizing reset-size6 size3 mtight"><span
+                                                                                                                    class="mord mtight">3</span></span></span></span></span></span></span></span></span></span><span
+                                                                                style="top:-3.23em;"><span
+                                                                                    class="pstrut"
+                                                                                    style="height:3em;"></span><span
+                                                                                    class="frac-line"
+                                                                                    style="border-bottom-width:0.04em;"></span></span><span
+                                                                                style="top:-3.677em;"><span
+                                                                                    class="pstrut"
+                                                                                    style="height:3em;"></span><span
+                                                                                    class="mord"><span
+                                                                                        class="mord mathdefault">n</span></span></span></span><span
+                                                                            class="vlist-s">​</span></span><span
+                                                                        class="vlist-r"><span class="vlist"
+                                                                            style="height:0.686em;"><span></span></span></span></span></span><span
+                                                                class="mclose nulldelimiter"></span></span><span
+                                                            class="mord"><span
+                                                                class="delimsizing size3">)</span></span><span
+                                                            class="mspace"
+                                                            style="margin-right:0.2222222222222222em;"></span><span
+                                                            class="mbin">+</span><span class="mspace"
+                                                            style="margin-right:0.2222222222222222em;"></span><span
+                                                            class="mord">3</span><span class="mspace"
+                                                            style="margin-right:0.2222222222222222em;"></span><span
+                                                            class="mbin">×</span><span class="mspace"
+                                                            style="margin-right:0.2222222222222222em;"></span><span
+                                                            class="mord">2</span></span></span><span
+                                                    style="top:-0.30995499999999954em;"><span class="pstrut"
+                                                        style="height:3.45em;"></span><span class="mord"><span
+                                                            class="mord"></span><span class="mspace"
+                                                            style="margin-right:0.2777777777777778em;"></span><span
+                                                            class="mrel">=</span><span class="mspace"
+                                                            style="margin-right:0.2777777777777778em;"></span><span
+                                                            class="minner">…</span></span></span><span
+                                                    style="top:1.8000450000000003em;"><span class="pstrut"
+                                                        style="height:3.45em;"></span><span class="mord"><span
+                                                            class="mord"></span><span class="mspace"
+                                                            style="margin-right:0.2777777777777778em;"></span><span
+                                                            class="mrel">=</span><span class="mspace"
+                                                            style="margin-right:0.2777777777777778em;"></span><span
+                                                            class="mord mathdefault"
+                                                            style="margin-right:0.13889em;">T</span><span
+                                                            class="mord"><span
+                                                                class="delimsizing size3">(</span></span><span
+                                                            class="mord"><span class="mopen nulldelimiter"></span><span
+                                                                class="mfrac"><span class="vlist-t vlist-t2"><span
+                                                                        class="vlist-r"><span class="vlist"
+                                                                            style="height:1.10756em;"><span
+                                                                                style="top:-2.314em;"><span
+                                                                                    class="pstrut"
+                                                                                    style="height:3em;"></span><span
+                                                                                    class="mord"><span
+                                                                                        class="mord"><span
+                                                                                            class="mord">2</span><span
+                                                                                            class="msupsub"><span
+                                                                                                class="vlist-t"><span
+                                                                                                    class="vlist-r"><span
+                                                                                                        class="vlist"
+                                                                                                        style="height:0.7799659999999999em;"><span
+                                                                                                            style="top:-2.9938580000000004em;margin-right:0.05em;"><span
+                                                                                                                class="pstrut"
+                                                                                                                style="height:2.7em;"></span><span
+                                                                                                                class="sizing reset-size6 size3 mtight"><span
+                                                                                                                    class="mord mtight"><span
+                                                                                                                        class="mop mtight"><span
+                                                                                                                            class="mop mtight">lo<span
+                                                                                                                                style="margin-right:0.01389em;">g</span></span><span
+                                                                                                                            class="msupsub"><span
+                                                                                                                                class="vlist-t vlist-t2"><span
+                                                                                                                                    class="vlist-r"><span
+                                                                                                                                        class="vlist"
+                                                                                                                                        style="height:0.19444571428571428em;"><span
+                                                                                                                                            style="top:-2.2341314285714287em;margin-right:0.07142857142857144em;"><span
+                                                                                                                                                class="pstrut"
+                                                                                                                                                style="height:2.5em;"></span><span
+                                                                                                                                                class="sizing reset-size3 size1 mtight"><span
+                                                                                                                                                    class="mord mtight">2</span></span></span></span><span
+                                                                                                                                        class="vlist-s">​</span></span><span
+                                                                                                                                    class="vlist-r"><span
+                                                                                                                                        class="vlist"
+                                                                                                                                        style="height:0.26586857142857145em;"><span></span></span></span></span></span></span><span
+                                                                                                                        class="mspace mtight"
+                                                                                                                        style="margin-right:0.19516666666666668em;"></span><span
+                                                                                                                        class="mord mathdefault mtight">n</span></span></span></span></span></span></span></span></span></span></span><span
+                                                                                style="top:-3.23em;"><span
+                                                                                    class="pstrut"
+                                                                                    style="height:3em;"></span><span
+                                                                                    class="frac-line"
+                                                                                    style="border-bottom-width:0.04em;"></span></span><span
+                                                                                style="top:-3.677em;"><span
+                                                                                    class="pstrut"
+                                                                                    style="height:3em;"></span><span
+                                                                                    class="mord"><span
+                                                                                        class="mord mathdefault">n</span></span></span></span><span
+                                                                            class="vlist-s">​</span></span><span
+                                                                        class="vlist-r"><span class="vlist"
+                                                                            style="height:0.686em;"><span></span></span></span></span></span><span
+                                                                class="mclose nulldelimiter"></span></span><span
+                                                            class="mord"><span
+                                                                class="delimsizing size3">)</span></span><span
+                                                            class="mspace"
+                                                            style="margin-right:0.2222222222222222em;"></span><span
+                                                            class="mbin">+</span><span class="mspace"
+                                                            style="margin-right:0.2222222222222222em;"></span><span
+                                                            class="mord">2</span><span class="mspace"
+                                                            style="margin-right:0.16666666666666666em;"></span><span
+                                                            class="mop"><span class="mop">lo<span
+                                                                    style="margin-right:0.01389em;">g</span></span><span
+                                                                class="msupsub"><span class="vlist-t vlist-t2"><span
+                                                                        class="vlist-r"><span class="vlist"
+                                                                            style="height:0.20696799999999996em;"><span
+                                                                                style="top:-2.4558600000000004em;margin-right:0.05em;"><span
+                                                                                    class="pstrut"
+                                                                                    style="height:2.7em;"></span><span
+                                                                                    class="sizing reset-size6 size3 mtight"><span
+                                                                                        class="mord mtight">2</span></span></span></span><span
+                                                                            class="vlist-s">​</span></span><span
+                                                                        class="vlist-r"><span class="vlist"
+                                                                            style="height:0.24414em;"><span></span></span></span></span></span></span><span
+                                                            class="mspace"
+                                                            style="margin-right:0.16666666666666666em;"></span><span
+                                                            class="mord mathdefault">n</span></span></span><span
+                                                    style="top:3.8900749999999986em;"><span class="pstrut"
+                                                        style="height:3.45em;"></span><span class="mord"><span
+                                                            class="mord"></span><span class="mspace"
+                                                            style="margin-right:0.2777777777777778em;"></span><span
+                                                            class="mrel">=</span><span class="mspace"
+                                                            style="margin-right:0.2777777777777778em;"></span><span
+                                                            class="mord mathdefault"
+                                                            style="margin-right:0.13889em;">T</span><span
+                                                            class="mopen">(</span><span class="mord">1</span><span
+                                                            class="mclose">)</span><span class="mspace"
+                                                            style="margin-right:0.2222222222222222em;"></span><span
+                                                            class="mbin">+</span><span class="mspace"
+                                                            style="margin-right:0.2222222222222222em;"></span><span
+                                                            class="mord">2</span><span class="mspace"
+                                                            style="margin-right:0.16666666666666666em;"></span><span
+                                                            class="mop"><span class="mop">lo<span
+                                                                    style="margin-right:0.01389em;">g</span></span><span
+                                                                class="msupsub"><span class="vlist-t vlist-t2"><span
+                                                                        class="vlist-r"><span class="vlist"
+                                                                            style="height:0.20696799999999996em;"><span
+                                                                                style="top:-2.4558600000000004em;margin-right:0.05em;"><span
+                                                                                    class="pstrut"
+                                                                                    style="height:2.7em;"></span><span
+                                                                                    class="sizing reset-size6 size3 mtight"><span
+                                                                                        class="mord mtight">2</span></span></span></span><span
+                                                                            class="vlist-s">​</span></span><span
+                                                                        class="vlist-r"><span class="vlist"
+                                                                            style="height:0.24414em;"><span></span></span></span></span></span></span><span
+                                                            class="mspace"
+                                                            style="margin-right:0.16666666666666666em;"></span><span
+                                                            class="mord mathdefault">n</span></span></span><span
+                                                    style="top:5.390074999999999em;"><span class="pstrut"
+                                                        style="height:3.45em;"></span><span class="mord"><span
+                                                            class="mord"></span><span class="mspace"
+                                                            style="margin-right:0.2777777777777778em;"></span><span
+                                                            class="mrel">=</span><span class="mspace"
+                                                            style="margin-right:0.2777777777777778em;"></span><span
+                                                            class="mord">1</span><span class="mspace"
+                                                            style="margin-right:0.2222222222222222em;"></span><span
+                                                            class="mbin">+</span><span class="mspace"
+                                                            style="margin-right:0.2222222222222222em;"></span><span
+                                                            class="mord">2</span><span class="mspace"
+                                                            style="margin-right:0.16666666666666666em;"></span><span
+                                                            class="mop"><span class="mop">lo<span
+                                                                    style="margin-right:0.01389em;">g</span></span><span
+                                                                class="msupsub"><span class="vlist-t vlist-t2"><span
+                                                                        class="vlist-r"><span class="vlist"
+                                                                            style="height:0.20696799999999996em;"><span
+                                                                                style="top:-2.4558600000000004em;margin-right:0.05em;"><span
+                                                                                    class="pstrut"
+                                                                                    style="height:2.7em;"></span><span
+                                                                                    class="sizing reset-size6 size3 mtight"><span
+                                                                                        class="mord mtight">2</span></span></span></span><span
+                                                                            class="vlist-s">​</span></span><span
+                                                                        class="vlist-r"><span class="vlist"
+                                                                            style="height:0.24414em;"><span></span></span></span></span></span></span><span
+                                                            class="mspace"
+                                                            style="margin-right:0.16666666666666666em;"></span><span
+                                                            class="mord mathdefault">n</span></span></span></span><span
+                                                class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                                style="height:9.500074999999999em;"><span></span></span></span></span></span></span></span></span></span></span>
+        </p>
+        <p>The following outlines the recursive formula to count comparisons of Ternary Search in the worst case.</p>
+        <p><span class="katex"><span class="katex-mathml"><math>
+                        <semantics>
+                            <mtable>
+                                <mtr>
+                                    <mtd>
+                                        <mstyle displaystyle="true" scriptlevel="0">
+                                            <mrow>
+                                                <mi>T</mi>
+                                                <mo>(</mo>
+                                                <mi>n</mi>
+                                                <mo>)</mo>
+                                            </mrow>
+                                        </mstyle>
+                                    </mtd>
+                                    <mtd>
+                                        <mstyle displaystyle="true" scriptlevel="0">
+                                            <mrow>
+                                                <mrow></mrow>
+                                                <mo>=</mo>
+                                                <mi>T</mi>
+                                                <mo fence="false">(</mo>
+                                                <mfrac>
+                                                    <mi>n</mi>
+                                                    <mn>3</mn>
+                                                </mfrac>
+                                                <mo fence="false">)</mo>
+                                                <mo>+</mo>
+                                                <mn>4</mn>
+                                                <mo separator="true">,</mo>
+                                                <mspace width="1em"></mspace>
+                                                <mi>T</mi>
+                                                <mo>(</mo>
+                                                <mn>1</mn>
+                                                <mo>)</mo>
+                                                <mo>=</mo>
+                                                <mn>1</mn>
+                                            </mrow>
+                                        </mstyle>
+                                    </mtd>
+                                </mtr>
+                                <mtr>
+                                    <mtd>
+                                        <mstyle displaystyle="true" scriptlevel="0">
+                                            <mrow>
+                                                <mi>T</mi>
+                                                <mo fence="false">(</mo>
+                                                <mfrac>
+                                                    <mi>n</mi>
+                                                    <mn>3</mn>
+                                                </mfrac>
+                                                <mo fence="false">)</mo>
+                                            </mrow>
+                                        </mstyle>
+                                    </mtd>
+                                    <mtd>
+                                        <mstyle displaystyle="true" scriptlevel="0">
+                                            <mrow>
+                                                <mrow></mrow>
+                                                <mo>=</mo>
+                                                <mi>T</mi>
+                                                <mo fence="false">(</mo>
+                                                <mfrac>
+                                                    <mi>n</mi>
+                                                    <msup>
+                                                        <mn>3</mn>
+                                                        <mn>2</mn>
+                                                    </msup>
+                                                </mfrac>
+                                                <mo fence="false">)</mo>
+                                                <mo>+</mo>
+                                                <mn>4</mn>
+                                            </mrow>
+                                        </mstyle>
+                                    </mtd>
+                                </mtr>
+                                <mtr>
+                                    <mtd>
+                                        <mstyle displaystyle="true" scriptlevel="0">
+                                            <mrow></mrow>
+                                        </mstyle>
+                                    </mtd>
+                                </mtr>
+                                <mtr>
+                                    <mtd>
+                                        <mstyle displaystyle="true" scriptlevel="0">
+                                            <mrow>
+                                                <mo>∴</mo>
+                                                <mrow></mrow>
+                                                <mspace width="1em"></mspace>
+                                                <mi>T</mi>
+                                                <mo>(</mo>
+                                                <mi>n</mi>
+                                                <mo>)</mo>
+                                            </mrow>
+                                        </mstyle>
+                                    </mtd>
+                                    <mtd>
+                                        <mstyle displaystyle="true" scriptlevel="0">
+                                            <mrow>
+                                                <mrow></mrow>
+                                                <mo>=</mo>
+                                                <mi>T</mi>
+                                                <mo fence="false">(</mo>
+                                                <mfrac>
+                                                    <mi>n</mi>
+                                                    <msup>
+                                                        <mn>3</mn>
+                                                        <mn>2</mn>
+                                                    </msup>
+                                                </mfrac>
+                                                <mo fence="false">)</mo>
+                                                <mo>+</mo>
+                                                <mn>2</mn>
+                                                <mo>×</mo>
+                                                <mn>4</mn>
+                                            </mrow>
+                                        </mstyle>
+                                    </mtd>
+                                </mtr>
+                                <mtr>
+                                    <mtd>
+                                        <mstyle displaystyle="true" scriptlevel="0">
+                                            <mrow></mrow>
+                                        </mstyle>
+                                    </mtd>
+                                    <mtd>
+                                        <mstyle displaystyle="true" scriptlevel="0">
+                                            <mrow>
+                                                <mrow></mrow>
+                                                <mo>=</mo>
+                                                <mi>T</mi>
+                                                <mo fence="false">(</mo>
+                                                <mfrac>
+                                                    <mi>n</mi>
+                                                    <msup>
+                                                        <mn>3</mn>
+                                                        <mn>3</mn>
+                                                    </msup>
+                                                </mfrac>
+                                                <mo fence="false">)</mo>
+                                                <mo>+</mo>
+                                                <mn>3</mn>
+                                                <mo>×</mo>
+                                                <mn>4</mn>
+                                            </mrow>
+                                        </mstyle>
+                                    </mtd>
+                                </mtr>
+                                <mtr>
+                                    <mtd>
+                                        <mstyle displaystyle="true" scriptlevel="0">
+                                            <mrow></mrow>
+                                        </mstyle>
+                                    </mtd>
+                                    <mtd>
+                                        <mstyle displaystyle="true" scriptlevel="0">
+                                            <mrow>
+                                                <mrow></mrow>
+                                                <mo>=</mo>
+                                                <mo>…</mo>
+                                            </mrow>
+                                        </mstyle>
+                                    </mtd>
+                                </mtr>
+                                <mtr>
+                                    <mtd>
+                                        <mstyle displaystyle="true" scriptlevel="0">
+                                            <mrow></mrow>
+                                        </mstyle>
+                                    </mtd>
+                                    <mtd>
+                                        <mstyle displaystyle="true" scriptlevel="0">
+                                            <mrow>
+                                                <mrow></mrow>
+                                                <mo>=</mo>
+                                                <mi>T</mi>
+                                                <mo fence="false">(</mo>
+                                                <mfrac>
+                                                    <mi>n</mi>
+                                                    <msup>
+                                                        <mn>3</mn>
+                                                        <mrow>
+                                                            <msub>
+                                                                <mi>log</mi>
+                                                                <mo>⁡</mo>
+                                                                <mn>3</mn>
+                                                            </msub>
+                                                            <mi>n</mi>
+                                                        </mrow>
+                                                    </msup>
+                                                </mfrac>
+                                                <mo fence="false">)</mo>
+                                                <mo>+</mo>
+                                                <mn>4</mn>
+                                                <msub>
+                                                    <mi>log</mi>
+                                                    <mo>⁡</mo>
+                                                    <mn>3</mn>
+                                                </msub>
+                                                <mi>n</mi>
+                                            </mrow>
+                                        </mstyle>
+                                    </mtd>
+                                </mtr>
+                                <mtr>
+                                    <mtd>
+                                        <mstyle displaystyle="true" scriptlevel="0">
+                                            <mrow></mrow>
+                                        </mstyle>
+                                    </mtd>
+                                    <mtd>
+                                        <mstyle displaystyle="true" scriptlevel="0">
+                                            <mrow>
+                                                <mrow></mrow>
+                                                <mo>=</mo>
+                                                <mi>T</mi>
+                                                <mo>(</mo>
+                                                <mn>1</mn>
+                                                <mo>)</mo>
+                                                <mo>+</mo>
+                                                <mn>4</mn>
+                                                <msub>
+                                                    <mi>log</mi>
+                                                    <mo>⁡</mo>
+                                                    <mn>3</mn>
+                                                </msub>
+                                                <mi>n</mi>
+                                            </mrow>
+                                        </mstyle>
+                                    </mtd>
+                                </mtr>
+                                <mtr>
+                                    <mtd>
+                                        <mstyle displaystyle="true" scriptlevel="0">
+                                            <mrow></mrow>
+                                        </mstyle>
+                                    </mtd>
+                                    <mtd>
+                                        <mstyle displaystyle="true" scriptlevel="0">
+                                            <mrow>
+                                                <mrow></mrow>
+                                                <mo>=</mo>
+                                                <mn>1</mn>
+                                                <mo>+</mo>
+                                                <mn>4</mn>
+                                                <msub>
+                                                    <mi>log</mi>
+                                                    <mo>⁡</mo>
+                                                    <mn>3</mn>
+                                                </msub>
+                                                <mi>n</mi>
+                                            </mrow>
+                                        </mstyle>
+                                    </mtd>
+                                </mtr>
+                            </mtable>
+                            <annotation encoding="application/x-tex">
+                                \begin{aligned}
+                                T(n) &amp;= T\bigg(\frac{n}{3} \bigg) + 4, \quad T(1) = 1 \\
+                                T\bigg(\frac{n}{3} \bigg) &amp;= T\bigg(\frac{n}{3^2} \bigg) + 4 \\
+                                \\
+                                \therefore{} \quad T(n) &amp;= T\bigg(\frac{n}{3^2} \bigg) + 2 \times 4 \\
+                                &amp;= T\bigg(\frac{n}{3^3} \bigg) + 3 \times 4 \\
+                                &amp;= \ldots \\
+                                &amp;= T\bigg(\frac{n}{3^{\log_3 n}} \bigg) + 4 \log_3 n \\
+                                &amp;= T(1) + 4 \log_3 n \\
+                                &amp;= 1 + 4 \log_3 n
+                                \end{aligned}
+                            </annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:19.500149999999998em;vertical-align:-9.500074999999999em;"></span><span
+                            class="mord"><span class="mtable"><span class="col-align-r"><span
+                                        class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                                style="height:10.000074999999999em;"><span
+                                                    style="top:-12.000075em;"><span class="pstrut"
+                                                        style="height:3.45em;"></span><span class="mord"><span
+                                                            class="mord mathdefault"
+                                                            style="margin-right:0.13889em;">T</span><span
+                                                            class="mopen">(</span><span
+                                                            class="mord mathdefault">n</span><span
+                                                            class="mclose">)</span></span></span><span
+                                                    style="top:-9.300044999999999em;"><span class="pstrut"
+                                                        style="height:3.45em;"></span><span class="mord"><span
+                                                            class="mord mathdefault"
+                                                            style="margin-right:0.13889em;">T</span><span
+                                                            class="mord"><span
+                                                                class="delimsizing size3">(</span></span><span
+                                                            class="mord"><span class="mopen nulldelimiter"></span><span
+                                                                class="mfrac"><span class="vlist-t vlist-t2"><span
+                                                                        class="vlist-r"><span class="vlist"
+                                                                            style="height:1.10756em;"><span
+                                                                                style="top:-2.314em;"><span
+                                                                                    class="pstrut"
+                                                                                    style="height:3em;"></span><span
+                                                                                    class="mord"><span
+                                                                                        class="mord">3</span></span></span><span
+                                                                                style="top:-3.23em;"><span
+                                                                                    class="pstrut"
+                                                                                    style="height:3em;"></span><span
+                                                                                    class="frac-line"
+                                                                                    style="border-bottom-width:0.04em;"></span></span><span
+                                                                                style="top:-3.677em;"><span
+                                                                                    class="pstrut"
+                                                                                    style="height:3em;"></span><span
+                                                                                    class="mord"><span
+                                                                                        class="mord mathdefault">n</span></span></span></span><span
+                                                                            class="vlist-s">​</span></span><span
+                                                                        class="vlist-r"><span class="vlist"
+                                                                            style="height:0.686em;"><span></span></span></span></span></span><span
+                                                                class="mclose nulldelimiter"></span></span><span
+                                                            class="mord"><span
+                                                                class="delimsizing size3">)</span></span></span></span><span
+                                                    style="top:-7.210014999999999em;"><span class="pstrut"
+                                                        style="height:3.45em;"></span><span
+                                                        class="mord"></span></span><span
+                                                    style="top:-5.100014999999999em;"><span class="pstrut"
+                                                        style="height:3.45em;"></span><span class="mord"><span
+                                                            class="mrel amsrm">∴</span><span class="mspace"
+                                                            style="margin-right:0.2777777777777778em;"></span><span
+                                                            class="mord"></span><span class="mspace"
+                                                            style="margin-right:1em;"></span><span
+                                                            class="mord mathdefault"
+                                                            style="margin-right:0.13889em;">T</span><span
+                                                            class="mopen">(</span><span
+                                                            class="mord mathdefault">n</span><span
+                                                            class="mclose">)</span></span></span><span
+                                                    style="top:-2.3999849999999996em;"><span class="pstrut"
+                                                        style="height:3.45em;"></span><span
+                                                        class="mord"></span></span><span
+                                                    style="top:-0.30995499999999954em;"><span class="pstrut"
+                                                        style="height:3.45em;"></span><span
+                                                        class="mord"></span></span><span
+                                                    style="top:1.8000450000000003em;"><span class="pstrut"
+                                                        style="height:3.45em;"></span><span
+                                                        class="mord"></span></span><span
+                                                    style="top:3.8900749999999986em;"><span class="pstrut"
+                                                        style="height:3.45em;"></span><span
+                                                        class="mord"></span></span><span
+                                                    style="top:5.390074999999999em;"><span class="pstrut"
+                                                        style="height:3.45em;"></span><span
+                                                        class="mord"></span></span></span><span
+                                                class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                                style="height:9.500074999999999em;"><span></span></span></span></span></span><span
+                                    class="col-align-l"><span class="vlist-t vlist-t2"><span class="vlist-r"><span
+                                                class="vlist" style="height:10.000074999999999em;"><span
+                                                    style="top:-12.000075em;"><span class="pstrut"
+                                                        style="height:3.45em;"></span><span class="mord"><span
+                                                            class="mord"></span><span class="mspace"
+                                                            style="margin-right:0.2777777777777778em;"></span><span
+                                                            class="mrel">=</span><span class="mspace"
+                                                            style="margin-right:0.2777777777777778em;"></span><span
+                                                            class="mord mathdefault"
+                                                            style="margin-right:0.13889em;">T</span><span
+                                                            class="mord"><span
+                                                                class="delimsizing size3">(</span></span><span
+                                                            class="mord"><span class="mopen nulldelimiter"></span><span
+                                                                class="mfrac"><span class="vlist-t vlist-t2"><span
+                                                                        class="vlist-r"><span class="vlist"
+                                                                            style="height:1.10756em;"><span
+                                                                                style="top:-2.314em;"><span
+                                                                                    class="pstrut"
+                                                                                    style="height:3em;"></span><span
+                                                                                    class="mord"><span
+                                                                                        class="mord">3</span></span></span><span
+                                                                                style="top:-3.23em;"><span
+                                                                                    class="pstrut"
+                                                                                    style="height:3em;"></span><span
+                                                                                    class="frac-line"
+                                                                                    style="border-bottom-width:0.04em;"></span></span><span
+                                                                                style="top:-3.677em;"><span
+                                                                                    class="pstrut"
+                                                                                    style="height:3em;"></span><span
+                                                                                    class="mord"><span
+                                                                                        class="mord mathdefault">n</span></span></span></span><span
+                                                                            class="vlist-s">​</span></span><span
+                                                                        class="vlist-r"><span class="vlist"
+                                                                            style="height:0.686em;"><span></span></span></span></span></span><span
+                                                                class="mclose nulldelimiter"></span></span><span
+                                                            class="mord"><span
+                                                                class="delimsizing size3">)</span></span><span
+                                                            class="mspace"
+                                                            style="margin-right:0.2222222222222222em;"></span><span
+                                                            class="mbin">+</span><span class="mspace"
+                                                            style="margin-right:0.2222222222222222em;"></span><span
+                                                            class="mord">4</span><span class="mpunct">,</span><span
+                                                            class="mspace"
+                                                            style="margin-right:0.16666666666666666em;"></span><span
+                                                            class="mspace" style="margin-right:1em;"></span><span
+                                                            class="mord mathdefault"
+                                                            style="margin-right:0.13889em;">T</span><span
+                                                            class="mopen">(</span><span class="mord">1</span><span
+                                                            class="mclose">)</span><span class="mspace"
+                                                            style="margin-right:0.2777777777777778em;"></span><span
+                                                            class="mrel">=</span><span class="mspace"
+                                                            style="margin-right:0.2777777777777778em;"></span><span
+                                                            class="mord">1</span></span></span><span
+                                                    style="top:-9.300044999999999em;"><span class="pstrut"
+                                                        style="height:3.45em;"></span><span class="mord"><span
+                                                            class="mord"></span><span class="mspace"
+                                                            style="margin-right:0.2777777777777778em;"></span><span
+                                                            class="mrel">=</span><span class="mspace"
+                                                            style="margin-right:0.2777777777777778em;"></span><span
+                                                            class="mord mathdefault"
+                                                            style="margin-right:0.13889em;">T</span><span
+                                                            class="mord"><span
+                                                                class="delimsizing size3">(</span></span><span
+                                                            class="mord"><span class="mopen nulldelimiter"></span><span
+                                                                class="mfrac"><span class="vlist-t vlist-t2"><span
+                                                                        class="vlist-r"><span class="vlist"
+                                                                            style="height:1.10756em;"><span
+                                                                                style="top:-2.314em;"><span
+                                                                                    class="pstrut"
+                                                                                    style="height:3em;"></span><span
+                                                                                    class="mord"><span
+                                                                                        class="mord"><span
+                                                                                            class="mord">3</span><span
+                                                                                            class="msupsub"><span
+                                                                                                class="vlist-t"><span
+                                                                                                    class="vlist-r"><span
+                                                                                                        class="vlist"
+                                                                                                        style="height:0.740108em;"><span
+                                                                                                            style="top:-2.9890000000000003em;margin-right:0.05em;"><span
+                                                                                                                class="pstrut"
+                                                                                                                style="height:2.7em;"></span><span
+                                                                                                                class="sizing reset-size6 size3 mtight"><span
+                                                                                                                    class="mord mtight">2</span></span></span></span></span></span></span></span></span></span><span
+                                                                                style="top:-3.23em;"><span
+                                                                                    class="pstrut"
+                                                                                    style="height:3em;"></span><span
+                                                                                    class="frac-line"
+                                                                                    style="border-bottom-width:0.04em;"></span></span><span
+                                                                                style="top:-3.677em;"><span
+                                                                                    class="pstrut"
+                                                                                    style="height:3em;"></span><span
+                                                                                    class="mord"><span
+                                                                                        class="mord mathdefault">n</span></span></span></span><span
+                                                                            class="vlist-s">​</span></span><span
+                                                                        class="vlist-r"><span class="vlist"
+                                                                            style="height:0.686em;"><span></span></span></span></span></span><span
+                                                                class="mclose nulldelimiter"></span></span><span
+                                                            class="mord"><span
+                                                                class="delimsizing size3">)</span></span><span
+                                                            class="mspace"
+                                                            style="margin-right:0.2222222222222222em;"></span><span
+                                                            class="mbin">+</span><span class="mspace"
+                                                            style="margin-right:0.2222222222222222em;"></span><span
+                                                            class="mord">4</span></span></span><span
+                                                    style="top:-5.100014999999999em;"><span class="pstrut"
+                                                        style="height:3.45em;"></span><span class="mord"><span
+                                                            class="mord"></span><span class="mspace"
+                                                            style="margin-right:0.2777777777777778em;"></span><span
+                                                            class="mrel">=</span><span class="mspace"
+                                                            style="margin-right:0.2777777777777778em;"></span><span
+                                                            class="mord mathdefault"
+                                                            style="margin-right:0.13889em;">T</span><span
+                                                            class="mord"><span
+                                                                class="delimsizing size3">(</span></span><span
+                                                            class="mord"><span class="mopen nulldelimiter"></span><span
+                                                                class="mfrac"><span class="vlist-t vlist-t2"><span
+                                                                        class="vlist-r"><span class="vlist"
+                                                                            style="height:1.10756em;"><span
+                                                                                style="top:-2.314em;"><span
+                                                                                    class="pstrut"
+                                                                                    style="height:3em;"></span><span
+                                                                                    class="mord"><span
+                                                                                        class="mord"><span
+                                                                                            class="mord">3</span><span
+                                                                                            class="msupsub"><span
+                                                                                                class="vlist-t"><span
+                                                                                                    class="vlist-r"><span
+                                                                                                        class="vlist"
+                                                                                                        style="height:0.740108em;"><span
+                                                                                                            style="top:-2.9890000000000003em;margin-right:0.05em;"><span
+                                                                                                                class="pstrut"
+                                                                                                                style="height:2.7em;"></span><span
+                                                                                                                class="sizing reset-size6 size3 mtight"><span
+                                                                                                                    class="mord mtight">2</span></span></span></span></span></span></span></span></span></span><span
+                                                                                style="top:-3.23em;"><span
+                                                                                    class="pstrut"
+                                                                                    style="height:3em;"></span><span
+                                                                                    class="frac-line"
+                                                                                    style="border-bottom-width:0.04em;"></span></span><span
+                                                                                style="top:-3.677em;"><span
+                                                                                    class="pstrut"
+                                                                                    style="height:3em;"></span><span
+                                                                                    class="mord"><span
+                                                                                        class="mord mathdefault">n</span></span></span></span><span
+                                                                            class="vlist-s">​</span></span><span
+                                                                        class="vlist-r"><span class="vlist"
+                                                                            style="height:0.686em;"><span></span></span></span></span></span><span
+                                                                class="mclose nulldelimiter"></span></span><span
+                                                            class="mord"><span
+                                                                class="delimsizing size3">)</span></span><span
+                                                            class="mspace"
+                                                            style="margin-right:0.2222222222222222em;"></span><span
+                                                            class="mbin">+</span><span class="mspace"
+                                                            style="margin-right:0.2222222222222222em;"></span><span
+                                                            class="mord">2</span><span class="mspace"
+                                                            style="margin-right:0.2222222222222222em;"></span><span
+                                                            class="mbin">×</span><span class="mspace"
+                                                            style="margin-right:0.2222222222222222em;"></span><span
+                                                            class="mord">4</span></span></span><span
+                                                    style="top:-2.3999849999999996em;"><span class="pstrut"
+                                                        style="height:3.45em;"></span><span class="mord"><span
+                                                            class="mord"></span><span class="mspace"
+                                                            style="margin-right:0.2777777777777778em;"></span><span
+                                                            class="mrel">=</span><span class="mspace"
+                                                            style="margin-right:0.2777777777777778em;"></span><span
+                                                            class="mord mathdefault"
+                                                            style="margin-right:0.13889em;">T</span><span
+                                                            class="mord"><span
+                                                                class="delimsizing size3">(</span></span><span
+                                                            class="mord"><span class="mopen nulldelimiter"></span><span
+                                                                class="mfrac"><span class="vlist-t vlist-t2"><span
+                                                                        class="vlist-r"><span class="vlist"
+                                                                            style="height:1.10756em;"><span
+                                                                                style="top:-2.314em;"><span
+                                                                                    class="pstrut"
+                                                                                    style="height:3em;"></span><span
+                                                                                    class="mord"><span
+                                                                                        class="mord"><span
+                                                                                            class="mord">3</span><span
+                                                                                            class="msupsub"><span
+                                                                                                class="vlist-t"><span
+                                                                                                    class="vlist-r"><span
+                                                                                                        class="vlist"
+                                                                                                        style="height:0.740108em;"><span
+                                                                                                            style="top:-2.9890000000000003em;margin-right:0.05em;"><span
+                                                                                                                class="pstrut"
+                                                                                                                style="height:2.7em;"></span><span
+                                                                                                                class="sizing reset-size6 size3 mtight"><span
+                                                                                                                    class="mord mtight">3</span></span></span></span></span></span></span></span></span></span><span
+                                                                                style="top:-3.23em;"><span
+                                                                                    class="pstrut"
+                                                                                    style="height:3em;"></span><span
+                                                                                    class="frac-line"
+                                                                                    style="border-bottom-width:0.04em;"></span></span><span
+                                                                                style="top:-3.677em;"><span
+                                                                                    class="pstrut"
+                                                                                    style="height:3em;"></span><span
+                                                                                    class="mord"><span
+                                                                                        class="mord mathdefault">n</span></span></span></span><span
+                                                                            class="vlist-s">​</span></span><span
+                                                                        class="vlist-r"><span class="vlist"
+                                                                            style="height:0.686em;"><span></span></span></span></span></span><span
+                                                                class="mclose nulldelimiter"></span></span><span
+                                                            class="mord"><span
+                                                                class="delimsizing size3">)</span></span><span
+                                                            class="mspace"
+                                                            style="margin-right:0.2222222222222222em;"></span><span
+                                                            class="mbin">+</span><span class="mspace"
+                                                            style="margin-right:0.2222222222222222em;"></span><span
+                                                            class="mord">3</span><span class="mspace"
+                                                            style="margin-right:0.2222222222222222em;"></span><span
+                                                            class="mbin">×</span><span class="mspace"
+                                                            style="margin-right:0.2222222222222222em;"></span><span
+                                                            class="mord">4</span></span></span><span
+                                                    style="top:-0.30995499999999954em;"><span class="pstrut"
+                                                        style="height:3.45em;"></span><span class="mord"><span
+                                                            class="mord"></span><span class="mspace"
+                                                            style="margin-right:0.2777777777777778em;"></span><span
+                                                            class="mrel">=</span><span class="mspace"
+                                                            style="margin-right:0.2777777777777778em;"></span><span
+                                                            class="minner">…</span></span></span><span
+                                                    style="top:1.8000450000000003em;"><span class="pstrut"
+                                                        style="height:3.45em;"></span><span class="mord"><span
+                                                            class="mord"></span><span class="mspace"
+                                                            style="margin-right:0.2777777777777778em;"></span><span
+                                                            class="mrel">=</span><span class="mspace"
+                                                            style="margin-right:0.2777777777777778em;"></span><span
+                                                            class="mord mathdefault"
+                                                            style="margin-right:0.13889em;">T</span><span
+                                                            class="mord"><span
+                                                                class="delimsizing size3">(</span></span><span
+                                                            class="mord"><span class="mopen nulldelimiter"></span><span
+                                                                class="mfrac"><span class="vlist-t vlist-t2"><span
+                                                                        class="vlist-r"><span class="vlist"
+                                                                            style="height:1.10756em;"><span
+                                                                                style="top:-2.314em;"><span
+                                                                                    class="pstrut"
+                                                                                    style="height:3em;"></span><span
+                                                                                    class="mord"><span
+                                                                                        class="mord"><span
+                                                                                            class="mord">3</span><span
+                                                                                            class="msupsub"><span
+                                                                                                class="vlist-t"><span
+                                                                                                    class="vlist-r"><span
+                                                                                                        class="vlist"
+                                                                                                        style="height:0.7799659999999999em;"><span
+                                                                                                            style="top:-2.9938580000000004em;margin-right:0.05em;"><span
+                                                                                                                class="pstrut"
+                                                                                                                style="height:2.7em;"></span><span
+                                                                                                                class="sizing reset-size6 size3 mtight"><span
+                                                                                                                    class="mord mtight"><span
+                                                                                                                        class="mop mtight"><span
+                                                                                                                            class="mop mtight">lo<span
+                                                                                                                                style="margin-right:0.01389em;">g</span></span><span
+                                                                                                                            class="msupsub"><span
+                                                                                                                                class="vlist-t vlist-t2"><span
+                                                                                                                                    class="vlist-r"><span
+                                                                                                                                        class="vlist"
+                                                                                                                                        style="height:0.19444571428571428em;"><span
+                                                                                                                                            style="top:-2.2341314285714287em;margin-right:0.07142857142857144em;"><span
+                                                                                                                                                class="pstrut"
+                                                                                                                                                style="height:2.5em;"></span><span
+                                                                                                                                                class="sizing reset-size3 size1 mtight"><span
+                                                                                                                                                    class="mord mtight">3</span></span></span></span><span
+                                                                                                                                        class="vlist-s">​</span></span><span
+                                                                                                                                    class="vlist-r"><span
+                                                                                                                                        class="vlist"
+                                                                                                                                        style="height:0.26586857142857145em;"><span></span></span></span></span></span></span><span
+                                                                                                                        class="mspace mtight"
+                                                                                                                        style="margin-right:0.19516666666666668em;"></span><span
+                                                                                                                        class="mord mathdefault mtight">n</span></span></span></span></span></span></span></span></span></span></span><span
+                                                                                style="top:-3.23em;"><span
+                                                                                    class="pstrut"
+                                                                                    style="height:3em;"></span><span
+                                                                                    class="frac-line"
+                                                                                    style="border-bottom-width:0.04em;"></span></span><span
+                                                                                style="top:-3.677em;"><span
+                                                                                    class="pstrut"
+                                                                                    style="height:3em;"></span><span
+                                                                                    class="mord"><span
+                                                                                        class="mord mathdefault">n</span></span></span></span><span
+                                                                            class="vlist-s">​</span></span><span
+                                                                        class="vlist-r"><span class="vlist"
+                                                                            style="height:0.686em;"><span></span></span></span></span></span><span
+                                                                class="mclose nulldelimiter"></span></span><span
+                                                            class="mord"><span
+                                                                class="delimsizing size3">)</span></span><span
+                                                            class="mspace"
+                                                            style="margin-right:0.2222222222222222em;"></span><span
+                                                            class="mbin">+</span><span class="mspace"
+                                                            style="margin-right:0.2222222222222222em;"></span><span
+                                                            class="mord">4</span><span class="mspace"
+                                                            style="margin-right:0.16666666666666666em;"></span><span
+                                                            class="mop"><span class="mop">lo<span
+                                                                    style="margin-right:0.01389em;">g</span></span><span
+                                                                class="msupsub"><span class="vlist-t vlist-t2"><span
+                                                                        class="vlist-r"><span class="vlist"
+                                                                            style="height:0.20696799999999996em;"><span
+                                                                                style="top:-2.4558600000000004em;margin-right:0.05em;"><span
+                                                                                    class="pstrut"
+                                                                                    style="height:2.7em;"></span><span
+                                                                                    class="sizing reset-size6 size3 mtight"><span
+                                                                                        class="mord mtight">3</span></span></span></span><span
+                                                                            class="vlist-s">​</span></span><span
+                                                                        class="vlist-r"><span class="vlist"
+                                                                            style="height:0.24414em;"><span></span></span></span></span></span></span><span
+                                                            class="mspace"
+                                                            style="margin-right:0.16666666666666666em;"></span><span
+                                                            class="mord mathdefault">n</span></span></span><span
+                                                    style="top:3.8900749999999986em;"><span class="pstrut"
+                                                        style="height:3.45em;"></span><span class="mord"><span
+                                                            class="mord"></span><span class="mspace"
+                                                            style="margin-right:0.2777777777777778em;"></span><span
+                                                            class="mrel">=</span><span class="mspace"
+                                                            style="margin-right:0.2777777777777778em;"></span><span
+                                                            class="mord mathdefault"
+                                                            style="margin-right:0.13889em;">T</span><span
+                                                            class="mopen">(</span><span class="mord">1</span><span
+                                                            class="mclose">)</span><span class="mspace"
+                                                            style="margin-right:0.2222222222222222em;"></span><span
+                                                            class="mbin">+</span><span class="mspace"
+                                                            style="margin-right:0.2222222222222222em;"></span><span
+                                                            class="mord">4</span><span class="mspace"
+                                                            style="margin-right:0.16666666666666666em;"></span><span
+                                                            class="mop"><span class="mop">lo<span
+                                                                    style="margin-right:0.01389em;">g</span></span><span
+                                                                class="msupsub"><span class="vlist-t vlist-t2"><span
+                                                                        class="vlist-r"><span class="vlist"
+                                                                            style="height:0.20696799999999996em;"><span
+                                                                                style="top:-2.4558600000000004em;margin-right:0.05em;"><span
+                                                                                    class="pstrut"
+                                                                                    style="height:2.7em;"></span><span
+                                                                                    class="sizing reset-size6 size3 mtight"><span
+                                                                                        class="mord mtight">3</span></span></span></span><span
+                                                                            class="vlist-s">​</span></span><span
+                                                                        class="vlist-r"><span class="vlist"
+                                                                            style="height:0.24414em;"><span></span></span></span></span></span></span><span
+                                                            class="mspace"
+                                                            style="margin-right:0.16666666666666666em;"></span><span
+                                                            class="mord mathdefault">n</span></span></span><span
+                                                    style="top:5.390074999999999em;"><span class="pstrut"
+                                                        style="height:3.45em;"></span><span class="mord"><span
+                                                            class="mord"></span><span class="mspace"
+                                                            style="margin-right:0.2777777777777778em;"></span><span
+                                                            class="mrel">=</span><span class="mspace"
+                                                            style="margin-right:0.2777777777777778em;"></span><span
+                                                            class="mord">1</span><span class="mspace"
+                                                            style="margin-right:0.2222222222222222em;"></span><span
+                                                            class="mbin">+</span><span class="mspace"
+                                                            style="margin-right:0.2222222222222222em;"></span><span
+                                                            class="mord">4</span><span class="mspace"
+                                                            style="margin-right:0.16666666666666666em;"></span><span
+                                                            class="mop"><span class="mop">lo<span
+                                                                    style="margin-right:0.01389em;">g</span></span><span
+                                                                class="msupsub"><span class="vlist-t vlist-t2"><span
+                                                                        class="vlist-r"><span class="vlist"
+                                                                            style="height:0.20696799999999996em;"><span
+                                                                                style="top:-2.4558600000000004em;margin-right:0.05em;"><span
+                                                                                    class="pstrut"
+                                                                                    style="height:2.7em;"></span><span
+                                                                                    class="sizing reset-size6 size3 mtight"><span
+                                                                                        class="mord mtight">3</span></span></span></span><span
+                                                                            class="vlist-s">​</span></span><span
+                                                                        class="vlist-r"><span class="vlist"
+                                                                            style="height:0.24414em;"><span></span></span></span></span></span></span><span
+                                                            class="mspace"
+                                                            style="margin-right:0.16666666666666666em;"></span><span
+                                                            class="mord mathdefault">n</span></span></span></span><span
+                                                class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                                style="height:9.500074999999999em;"><span></span></span></span></span></span></span></span></span></span></span>
+        </p>
+        <p>As shown above, the total comparisons in the worst case for ternary and binary search are <span
+                class="katex"><span class="katex-mathml"><math>
+                        <semantics>
+                            <mrow>
+                                <mn>1</mn>
+                                <mo>+</mo>
+                                <mn>4</mn>
+                                <msub>
+                                    <mi>log</mi>
+                                    <mo>⁡</mo>
+                                    <mn>3</mn>
+                                </msub>
+                                <mi>n</mi>
+                            </mrow>
+                            <annotation encoding="application/x-tex">1 + 4 \log_3 n</annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">1</span><span
+                            class="mspace" style="margin-right:0.2222222222222222em;"></span><span
+                            class="mbin">+</span><span class="mspace"
+                            style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span
+                            class="strut" style="height:0.93858em;vertical-align:-0.24414em;"></span><span
+                            class="mord">4</span><span class="mspace"
+                            style="margin-right:0.16666666666666666em;"></span><span class="mop"><span
+                                class="mop">lo<span style="margin-right:0.01389em;">g</span></span><span
+                                class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                            style="height:0.20696799999999996em;"><span
+                                                style="top:-2.4558600000000004em;margin-right:0.05em;"><span
+                                                    class="pstrut" style="height:2.7em;"></span><span
+                                                    class="sizing reset-size6 size3 mtight"><span
+                                                        class="mord mtight">3</span></span></span></span><span
+                                            class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                            style="height:0.24414em;"><span></span></span></span></span></span></span><span
+                            class="mspace" style="margin-right:0.16666666666666666em;"></span><span
+                            class="mord mathdefault">n</span></span></span></span> and <span class="katex"><span
+                    class="katex-mathml"><math>
+                        <semantics>
+                            <mrow>
+                                <mn>1</mn>
+                                <mo>+</mo>
+                                <mn>2</mn>
+                                <msub>
+                                    <mi>log</mi>
+                                    <mo>⁡</mo>
+                                    <mn>2</mn>
+                                </msub>
+                                <mi>n</mi>
+                            </mrow>
+                            <annotation encoding="application/x-tex">1 + 2 \log_2 n</annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">1</span><span
+                            class="mspace" style="margin-right:0.2222222222222222em;"></span><span
+                            class="mbin">+</span><span class="mspace"
+                            style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span
+                            class="strut" style="height:0.93858em;vertical-align:-0.24414em;"></span><span
+                            class="mord">2</span><span class="mspace"
+                            style="margin-right:0.16666666666666666em;"></span><span class="mop"><span
+                                class="mop">lo<span style="margin-right:0.01389em;">g</span></span><span
+                                class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                            style="height:0.20696799999999996em;"><span
+                                                style="top:-2.4558600000000004em;margin-right:0.05em;"><span
+                                                    class="pstrut" style="height:2.7em;"></span><span
+                                                    class="sizing reset-size6 size3 mtight"><span
+                                                        class="mord mtight">2</span></span></span></span><span
+                                            class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                            style="height:0.24414em;"><span></span></span></span></span></span></span><span
+                            class="mspace" style="margin-right:0.16666666666666666em;"></span><span
+                            class="mord mathdefault">n</span></span></span></span> comparisons respectively. To
+            determine which is larger, we can just look at the expression <span class="katex"><span
+                    class="katex-mathml"><math>
+                        <semantics>
+                            <mrow>
+                                <mn>2</mn>
+                                <msub>
+                                    <mi>log</mi>
+                                    <mo>⁡</mo>
+                                    <mn>3</mn>
+                                </msub>
+                                <mi>n</mi>
+                            </mrow>
+                            <annotation encoding="application/x-tex">2 \log_3 n</annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:0.93858em;vertical-align:-0.24414em;"></span><span class="mord">2</span><span
+                            class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mop"><span
+                                class="mop">lo<span style="margin-right:0.01389em;">g</span></span><span
+                                class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                            style="height:0.20696799999999996em;"><span
+                                                style="top:-2.4558600000000004em;margin-right:0.05em;"><span
+                                                    class="pstrut" style="height:2.7em;"></span><span
+                                                    class="sizing reset-size6 size3 mtight"><span
+                                                        class="mord mtight">3</span></span></span></span><span
+                                            class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                            style="height:0.24414em;"><span></span></span></span></span></span></span><span
+                            class="mspace" style="margin-right:0.16666666666666666em;"></span><span
+                            class="mord mathdefault">n</span></span></span></span> and <span class="katex"><span
+                    class="katex-mathml"><math>
+                        <semantics>
+                            <mrow>
+                                <msub>
+                                    <mi>log</mi>
+                                    <mo>⁡</mo>
+                                    <mn>2</mn>
+                                </msub>
+                                <mi>n</mi>
+                            </mrow>
+                            <annotation encoding="application/x-tex">\log_2 n</annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:0.93858em;vertical-align:-0.24414em;"></span><span class="mop"><span
+                                class="mop">lo<span style="margin-right:0.01389em;">g</span></span><span
+                                class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                            style="height:0.20696799999999996em;"><span
+                                                style="top:-2.4558600000000004em;margin-right:0.05em;"><span
+                                                    class="pstrut" style="height:2.7em;"></span><span
+                                                    class="sizing reset-size6 size3 mtight"><span
+                                                        class="mord mtight">2</span></span></span></span><span
+                                            class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                            style="height:0.24414em;"><span></span></span></span></span></span></span><span
+                            class="mspace" style="margin-right:0.16666666666666666em;"></span><span
+                            class="mord mathdefault">n</span></span></span></span> . The expression <span
+                class="katex"><span class="katex-mathml"><math>
+                        <semantics>
+                            <mrow>
+                                <mn>2</mn>
+                                <msub>
+                                    <mi>log</mi>
+                                    <mo>⁡</mo>
+                                    <mn>3</mn>
+                                </msub>
+                                <mi>n</mi>
+                            </mrow>
+                            <annotation encoding="application/x-tex">2 \log_3 n</annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:0.93858em;vertical-align:-0.24414em;"></span><span class="mord">2</span><span
+                            class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mop"><span
+                                class="mop">lo<span style="margin-right:0.01389em;">g</span></span><span
+                                class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                            style="height:0.20696799999999996em;"><span
+                                                style="top:-2.4558600000000004em;margin-right:0.05em;"><span
+                                                    class="pstrut" style="height:2.7em;"></span><span
+                                                    class="sizing reset-size6 size3 mtight"><span
+                                                        class="mord mtight">3</span></span></span></span><span
+                                            class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                            style="height:0.24414em;"><span></span></span></span></span></span></span><span
+                            class="mspace" style="margin-right:0.16666666666666666em;"></span><span
+                            class="mord mathdefault">n</span></span></span></span> can be written as <span
+                class="katex"><span class="katex-mathml"><math>
+                        <semantics>
+                            <mrow>
+                                <mfrac>
+                                    <mn>2</mn>
+                                    <mrow>
+                                        <msub>
+                                            <mi>log</mi>
+                                            <mo>⁡</mo>
+                                            <mn>2</mn>
+                                        </msub>
+                                        <mn>3</mn>
+                                    </mrow>
+                                </mfrac>
+                                <mo>×</mo>
+                                <msub>
+                                    <mi>log</mi>
+                                    <mo>⁡</mo>
+                                    <mn>2</mn>
+                                </msub>
+                                <mi>n</mi>
+                            </mrow>
+                            <annotation encoding="application/x-tex">\frac{2}{\log_2 3} \times \log_2 n</annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:1.3762159999999999em;vertical-align:-0.5311079999999999em;"></span><span
+                            class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span
+                                    class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                            style="height:0.845108em;"><span style="top:-2.6550000000000002em;"><span
+                                                    class="pstrut" style="height:3em;"></span><span
+                                                    class="sizing reset-size6 size3 mtight"><span
+                                                        class="mord mtight"><span class="mop mtight"><span
+                                                                class="mop mtight">lo<span
+                                                                    style="margin-right:0.01389em;">g</span></span><span
+                                                                class="msupsub"><span class="vlist-t vlist-t2"><span
+                                                                        class="vlist-r"><span class="vlist"
+                                                                            style="height:0.19444571428571428em;"><span
+                                                                                style="top:-2.2341314285714287em;margin-right:0.07142857142857144em;"><span
+                                                                                    class="pstrut"
+                                                                                    style="height:2.5em;"></span><span
+                                                                                    class="sizing reset-size3 size1 mtight"><span
+                                                                                        class="mord mtight">2</span></span></span></span><span
+                                                                            class="vlist-s">​</span></span><span
+                                                                        class="vlist-r"><span class="vlist"
+                                                                            style="height:0.26586857142857145em;"><span></span></span></span></span></span></span><span
+                                                            class="mspace mtight"
+                                                            style="margin-right:0.19516666666666668em;"></span><span
+                                                            class="mord mtight">3</span></span></span></span><span
+                                                style="top:-3.23em;"><span class="pstrut"
+                                                    style="height:3em;"></span><span class="frac-line"
+                                                    style="border-bottom-width:0.04em;"></span></span><span
+                                                style="top:-3.394em;"><span class="pstrut"
+                                                    style="height:3em;"></span><span
+                                                    class="sizing reset-size6 size3 mtight"><span
+                                                        class="mord mtight"><span
+                                                            class="mord mtight">2</span></span></span></span></span><span
+                                            class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                            style="height:0.5311079999999999em;"><span></span></span></span></span></span><span
+                                class="mclose nulldelimiter"></span></span><span class="mspace"
+                            style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span
+                            class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span
+                        class="base"><span class="strut"
+                            style="height:0.93858em;vertical-align:-0.24414em;"></span><span class="mop"><span
+                                class="mop">lo<span style="margin-right:0.01389em;">g</span></span><span
+                                class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                            style="height:0.20696799999999996em;"><span
+                                                style="top:-2.4558600000000004em;margin-right:0.05em;"><span
+                                                    class="pstrut" style="height:2.7em;"></span><span
+                                                    class="sizing reset-size6 size3 mtight"><span
+                                                        class="mord mtight">2</span></span></span></span><span
+                                            class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                            style="height:0.24414em;"><span></span></span></span></span></span></span><span
+                            class="mspace" style="margin-right:0.16666666666666666em;"></span><span
+                            class="mord mathdefault">n</span></span></span></span> . Since the value of <span
+                class="katex"><span class="katex-mathml"><math>
+                        <semantics>
+                            <mrow>
+                                <mfrac>
+                                    <mn>2</mn>
+                                    <mrow>
+                                        <msub>
+                                            <mi>log</mi>
+                                            <mo>⁡</mo>
+                                            <mn>2</mn>
+                                        </msub>
+                                        <mn>3</mn>
+                                    </mrow>
+                                </mfrac>
+                            </mrow>
+                            <annotation encoding="application/x-tex">\frac{2}{\log_2 3}</annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:1.3762159999999999em;vertical-align:-0.5311079999999999em;"></span><span
+                            class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span
+                                    class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                            style="height:0.845108em;"><span style="top:-2.6550000000000002em;"><span
+                                                    class="pstrut" style="height:3em;"></span><span
+                                                    class="sizing reset-size6 size3 mtight"><span
+                                                        class="mord mtight"><span class="mop mtight"><span
+                                                                class="mop mtight">lo<span
+                                                                    style="margin-right:0.01389em;">g</span></span><span
+                                                                class="msupsub"><span class="vlist-t vlist-t2"><span
+                                                                        class="vlist-r"><span class="vlist"
+                                                                            style="height:0.19444571428571428em;"><span
+                                                                                style="top:-2.2341314285714287em;margin-right:0.07142857142857144em;"><span
+                                                                                    class="pstrut"
+                                                                                    style="height:2.5em;"></span><span
+                                                                                    class="sizing reset-size3 size1 mtight"><span
+                                                                                        class="mord mtight">2</span></span></span></span><span
+                                                                            class="vlist-s">​</span></span><span
+                                                                        class="vlist-r"><span class="vlist"
+                                                                            style="height:0.26586857142857145em;"><span></span></span></span></span></span></span><span
+                                                            class="mspace mtight"
+                                                            style="margin-right:0.19516666666666668em;"></span><span
+                                                            class="mord mtight">3</span></span></span></span><span
+                                                style="top:-3.23em;"><span class="pstrut"
+                                                    style="height:3em;"></span><span class="frac-line"
+                                                    style="border-bottom-width:0.04em;"></span></span><span
+                                                style="top:-3.394em;"><span class="pstrut"
+                                                    style="height:3em;"></span><span
+                                                    class="sizing reset-size6 size3 mtight"><span
+                                                        class="mord mtight"><span
+                                                            class="mord mtight">2</span></span></span></span></span><span
+                                            class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                            style="height:0.5311079999999999em;"><span></span></span></span></span></span><span
+                                class="mclose nulldelimiter"></span></span></span></span></span> is greater than one,
+            Ternary Search does more comparisons than Binary Search in the worst case.</p>
+        <p>Analysis written by: <a href="https://leetcode.com/vinod23">@vinod23</a></p>
+    </div>
+</div>
+<link rel="stylesheet" href="../../../boilerplate/simple.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css"
+    integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
