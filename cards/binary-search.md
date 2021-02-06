@@ -4,7 +4,7 @@ Introduction
 
 Background
 
-- 01 Binary Search - 0704 https://leetcode.com/explore/learn/card/binary-search/138/background/1038/
++ 01 Binary Search - 0704 https://leetcode.com/explore/learn/card/binary-search/138/background/1038/
 
 Template I
 

@@ -4,8 +4,8 @@
   <Namespace>NUnitLite</Namespace>
 </Query>
 
-// 27. Remove Element
-// https://leetcode.com/problems/remove-element/
+// 704. Binary Search
+// https://leetcode.com/problems/binary-search/
 
 /*
     Time: O()
@@ -13,34 +13,22 @@
 */
 public class Solution
 {
-    public int RemoveElement(int[] nums, int val)
+    public int Search(int[] nums, int target)
     {
-        var i = 0;
-        var n = nums.Length;
-        while (i < n)
-        {
-            if(nums[i] == val)
-            {
-                nums[i] = nums[n-1];
-                n--;
-            }
-            else
-            {
-                i++;
-            }
-        }
-        return n + 1;
+        throw new NotImplementedException();
     }
 }
 
 [Test]
-[TestCase(new int[] { 3, 2, 2, 3 }, 3, new int[] { 2, 2 }, 2)]
-[TestCase(new int[] { 0, 1, 2, 2, 3, 0, 4, 2 }, 2, new int[] { 0, 1, 4, 0, 3 }, 5)]
-public void SolutionTests(int[] nums, int val, int[] expectedArr, int expectedResult)
+[TestCase(new int[] { -1, 0, 3, 5, 9, 12 }, 9, 4)]
+[TestCase(new int[] { -1, 0, 3, 5, 9, 12 }, 2, -1)]
+[TestCase(new int[] { 5 }, 5, 0)]
+[TestCase(new int[] { -1, 0, 3, 5, 9, 12 }, 2, -1)]
+[TestCase(new int[] { -1, 0, 3, 5, 9, 12 }, 0, 1)]
+public void SolutionTests(int[] nums, int target, int expected)
 {
-    var result = new Solution().RemoveElement(nums, val);
-    Assert.That(result, Is.EqualTo(expectedResult));
-    Assert.That(nums.Take(expectedResult), Is.EquivalentTo(expectedArr));
+    var actual = new Solution().Search(nums, target);
+    Assert.That(actual, Is.EqualTo(expected));
 }
 
 #region unit tests runner
