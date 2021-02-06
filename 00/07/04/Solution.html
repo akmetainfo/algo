@@ -1,0 +1,403 @@
+<div class="content__QRGW">
+    <div>
+        <h2>Solution</h2>
+        <hr>
+        <h4 id="approach-1-binary-search">Approach 1: Binary Search</h4>
+        <p><strong>Intuition</strong></p>
+        <p><a href="https://leetcode.com/explore/learn/card/binary-search/">Binary search</a>
+            is a textbook algorithm based on the idea to
+            compare the target value to the middle element of the array.</p>
+        <p>If the target value is equal to the middle element - we're done.</p>
+        <p>If the target value is smaller - continue to search on the left.</p>
+        <p>If the target value is larger - continue to search on the right.</p>
+        <p><img src="./search.png" alt="postorder"></p>
+        <p><strong>Algorithm</strong></p>
+        <ul>
+            <li>
+                <p>Initialise left and right pointers : <code>left = 0</code>, <code>right = n - 1</code>.</p>
+            </li>
+            <li>
+                <p>While <code>left &lt;= right</code> :</p>
+                <ul>
+                    <li>
+                        <p>Compare middle element of the array <code>nums[pivot]</code> to the target
+                            value <code>target</code>.</p>
+                        <ul>
+                            <li>
+                                <p>If the middle element <em>is</em> the target <code>target = nums[pivot]</code> :
+                                    return <code>pivot</code>.</p>
+                            </li>
+                            <li>
+                                <p>If the target is not yet found :</p>
+                                <ul>
+                                    <li>
+                                        <p>If <code>target &lt; nums[pivot]</code>, continue the search on the left
+                                            <code>right = pivot - 1</code>.
+                                        </p>
+                                    </li>
+                                    <li>
+                                        <p>Else continue the search on the right
+                                            <code>left = pivot + 1</code>.
+                                        </p>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+        <p><strong>Implementation</strong></p>
+        <div>
+            <div>
+                <div class="dia-container__T7JA" style="width: 637px;">
+                    <div class="diaporama__1x84"><img alt="Current" class="dia-img__3-yE"
+                            src="data:image/png;base64,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/BIi4jHTc++vcPl3xqn2J0YfEZFHMS76Zi3czcmgaco/VqJ3794eM02bt9Xl3xmn2p/mrT5kxP86iIiodhgXfURERETkthh9RERERD6A0UdERETkAxh9RERERD6A0UdERETkAxh9RERERD6A0UdERETkAxh9RERERD6A0ecrsrOzERAQAIvF4uqhEBERUe1j9PmCrKws+Pn5ITExEYGBgcjNzXX1kIiIiKh2Mfp8QVRUFM6fPw8ASE5ORnR0tItHRERERLWM0eft+vXrh7i4ON1zkydPxmOPPeaiEREREZELMPq82dSpU3Hrrbc6ndexY0fMnTu3lkdERERELsLo81b79u1Dx44dy5xvtVrRokULHDp0qBZHRURERC7C6PNGWVlZMJlMsNvt5S5nt9thNpt5YgcREZH3Y/R5o8aNG+PcuXMVWvbw4cNo0qRJDY+IiIiIXIzR522aNGmCefPmVeo1s2bNKvPYPyIiIvIKjD5vMmHCBEyYMKFKr33qqafwzjvvGDwiIiIichOMPm+xceNG3HHHHdVaR7t27bB9+3aDRkRERERuhNHnDQ4fPoygoKBq32KtqKgIwcHBOHXqlEEjIyIiIjfB6PN0VqsVAQEByM7ONmR9Z86cgdlshtVqNWR9RERE5BYYfZ7uhhtuwMaNGw1d56pVq9C5c2dD10lEREQuxejzZCNGjMDMmTNrZN2TJk3CuHHjamTdREREVOsYfZ5MRMqdQkJCyn19nTp1rrkOIiIi8gqMPm92rWhj1BEREfkMRp83Y/QRERHRFYw+b8boIyIioisYfd6M0UdERERXMPq8GaOPiIiIrmD0eTNGHxEREV3B6PNmjD4iIiK6gtHnzRh9REREdAWjz5sx+oiIiOgKRp83Y/QRERHRFYw+b8boIyIioisYfd6M0UdERERXMPq8GaOPiIiIrmD0eTNGHxEREV3B6PNmjD4iIiK6gtHnzRh9REREdAWjz5sx+oiIiOgKRp83Y/QRERHRFYw+b8boIyIioisYfd6sTZs28Pf3L3Pq1KmTq4dIREREtYPRR0REROQDGH1EREREPoDRR0REROQDGH1EREREPoDRR0REROQDGH1EREREPoDRR0REROQDGH1EREREPoDRR0REROQDGH1EREREPoDRR0REROQDGH3e5pNPPoGIoLCw0JD17dq1C5cvXzZkXUREROQyjD5vc+HCBYwfPx52u92Q9YkInn76aUPWRURERC7D6PM02dnZOHr0aIWXt1qtVXofm80GoDj6evfuDYvFYlhIEhERUa1j9Hma22+/HTfddBNGjBiBli1bIjo6GitXrlTzP/zwQ/Tv3x8A8J///Acioou12bNnIzw8XD1+9dVX0bx5c0RGRuLFF19Uz/v7+8PPzw8ightuuAEiAj8/v1r4hERERFQDGH2epnPnzhARiAi6du2KevXqQUSQnZ0NALjrrrvQunVrAMD27dshIli9erV6vYigW7duAIARI0ZARNChQwfccsstEBHMnTsXAPDmm2/igQceQHBwMBo0aICHHnqIu3mJiIg8F6PP08TExMBsNuPkyZMAgIKCAogI5s+fDwDo0KGDij6gOPLuu+8+AMD+/fshIli2bBlycnIgIujevTvsdjvsdjs6deqEtm3b6t6vVatW6NevXy19OiIiIqohjD5P89hjjyEoKEh3rJ6I4O233wYAhIWFqcgDgHfeeQciAgB45JFHEBgYCJvNhkOHDkFEkJubq5YdPXo0GjRooNsd3LJlSzRo0KCmPxYRERHVLEafp3nvvfecRt9f//pXAMXR17dvXzXPZrNBRLBmzRqYTCa8/vrrAIANGzZARNQJG0Bx9DVr1kz3fg899BCjj4iIyPMx+jzNtGnTdNG3e/dutcsWKI6+3//+97rXdO/eXR0HqG3FO336NEREnQRSVFSEyMhI9OjRQ/daRh8REZFXYPR5mmnTpkFEEBwcjMaNG8NkMukiMCwszOG4vMWLF0NEEBsbq56z2+1o2bIlTCYToqKiULduXYgIMjIydK9l9BEREXkFRp+nmTZtGvz8/PDoo4+iX79+GDJkiO7uGytXrlRn4Grsdjtuv/127N27V/d8UVER+vfvj4YNGyIqKgrbtm1zeL8RI0bg/vvvr5kPQ0RERLWF0edpSu/eJSIiIqoARp+nYfQRERFRFTD6PA2jj4iIiKqA0edpkpOT8eGHH7p6GERERORZGH1EREREPoDRR0REROQDGH1EREREPoDRR0REROQDGH1EREREPoDRR0REROQDGH1EREREPoDRR0REROQDGH1EREREPoDRR0REROQDGH1EREREPoDRR0REROQDGH1EREREPoDRR0REROQDGH1EREREPqDP/wM+GAvCD6jhzwAAAABJRU5ErkJggg==">
+                    </div>
+                    <div class="control-panel__zPwY">
+                        <div class="controls__1q0X">
+                            <div class="control-group__16z9 fa fa-step-backward"></div>
+                            <div class="fa fa-pause toggle-play__3DqW control-group__16z9"></div>
+                            <div class="fa fa-step-forward control-group__16z9"></div>
+                        </div>
+                        <div class="frame-counter__1YA2">1 / 2</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <iframe src="https://leetcode.com/playground/6Y6zY87x/shared" name="6Y6zY87x" width="100%" height="276"
+            frameborder="0"></iframe>
+        <p><strong>Complexity Analysis</strong></p>
+        <ul>
+            <li>
+                <p>Time complexity : <span class="katex"><span class="katex-mathml"><math>
+                                <semantics>
+                                    <mrow>
+                                        <mi mathvariant="script">O</mi>
+                                        <mo>(</mo>
+                                        <mi>log</mi>
+                                        <mo>⁡</mo>
+                                        <mi>N</mi>
+                                        <mo>)</mo>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">\mathcal{O}(\log N)</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                                    class="mord"><span class="mord mathcal"
+                                        style="margin-right:0.02778em;">O</span></span><span class="mopen">(</span><span
+                                    class="mop">lo<span style="margin-right:0.01389em;">g</span></span><span
+                                    class="mspace" style="margin-right:0.16666666666666666em;"></span><span
+                                    class="mord mathdefault" style="margin-right:0.10903em;">N</span><span
+                                    class="mclose">)</span></span></span></span>.</p>
+                <p>Let's compute time complexity with the help of
+                    <a href="https://en.wikipedia.org/wiki/Master_theorem_(analysis_of_algorithms)">master theorem</a>
+                    <span class="katex"><span class="katex-mathml"><math>
+                                <semantics>
+                                    <mrow>
+                                        <mi>T</mi>
+                                        <mo>(</mo>
+                                        <mi>N</mi>
+                                        <mo>)</mo>
+                                        <mo>=</mo>
+                                        <mi>a</mi>
+                                        <mi>T</mi>
+                                        <mrow>
+                                            <mo fence="true">(</mo>
+                                            <mfrac>
+                                                <mi>N</mi>
+                                                <mi>b</mi>
+                                            </mfrac>
+                                            <mo fence="true">)</mo>
+                                        </mrow>
+                                        <mo>+</mo>
+                                        <mi mathvariant="normal">Θ</mi>
+                                        <mo>(</mo>
+                                        <msup>
+                                            <mi>N</mi>
+                                            <mi>d</mi>
+                                        </msup>
+                                        <mo>)</mo>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">T(N) = aT\left(\frac{N}{b}\right) +
+                                        \Theta(N^d)</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                                    class="mord mathdefault" style="margin-right:0.13889em;">T</span><span
+                                    class="mopen">(</span><span class="mord mathdefault"
+                                    style="margin-right:0.10903em;">N</span><span class="mclose">)</span><span
+                                    class="mspace" style="margin-right:0.2777777777777778em;"></span><span
+                                    class="mrel">=</span><span class="mspace"
+                                    style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span
+                                    class="strut" style="height:1.222341em;vertical-align:-0.35001em;"></span><span
+                                    class="mord mathdefault">a</span><span class="mord mathdefault"
+                                    style="margin-right:0.13889em;">T</span><span class="mspace"
+                                    style="margin-right:0.16666666666666666em;"></span><span class="minner"><span
+                                        class="mopen delimcenter" style="top:0em;"><span
+                                            class="delimsizing size1">(</span></span><span class="mord"><span
+                                            class="mopen nulldelimiter"></span><span class="mfrac"><span
+                                                class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                                        style="height:0.872331em;"><span
+                                                            style="top:-2.6550000000000002em;"><span class="pstrut"
+                                                                style="height:3em;"></span><span
+                                                                class="sizing reset-size6 size3 mtight"><span
+                                                                    class="mord mtight"><span
+                                                                        class="mord mathdefault mtight">b</span></span></span></span><span
+                                                            style="top:-3.23em;"><span class="pstrut"
+                                                                style="height:3em;"></span><span class="frac-line"
+                                                                style="border-bottom-width:0.04em;"></span></span><span
+                                                            style="top:-3.394em;"><span class="pstrut"
+                                                                style="height:3em;"></span><span
+                                                                class="sizing reset-size6 size3 mtight"><span
+                                                                    class="mord mtight"><span
+                                                                        class="mord mathdefault mtight"
+                                                                        style="margin-right:0.10903em;">N</span></span></span></span></span><span
+                                                        class="vlist-s">​</span></span><span class="vlist-r"><span
+                                                        class="vlist"
+                                                        style="height:0.345em;"><span></span></span></span></span></span><span
+                                            class="mclose nulldelimiter"></span></span><span class="mclose delimcenter"
+                                        style="top:0em;"><span class="delimsizing size1">)</span></span></span><span
+                                    class="mspace" style="margin-right:0.2222222222222222em;"></span><span
+                                    class="mbin">+</span><span class="mspace"
+                                    style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span
+                                    class="strut" style="height:1.099108em;vertical-align:-0.25em;"></span><span
+                                    class="mord">Θ</span><span class="mopen">(</span><span class="mord"><span
+                                        class="mord mathdefault" style="margin-right:0.10903em;">N</span><span
+                                        class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist"
+                                                    style="height:0.849108em;"><span
+                                                        style="top:-3.063em;margin-right:0.05em;"><span class="pstrut"
+                                                            style="height:2.7em;"></span><span
+                                                            class="sizing reset-size6 size3 mtight"><span
+                                                                class="mord mathdefault mtight">d</span></span></span></span></span></span></span></span><span
+                                    class="mclose">)</span></span></span></span>.
+                    The equation represents dividing the problem
+                    up into <span class="katex"><span class="katex-mathml"><math>
+                                <semantics>
+                                    <mrow>
+                                        <mi>a</mi>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">a</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut" style="height:0.43056em;vertical-align:0em;"></span><span
+                                    class="mord mathdefault">a</span></span></span></span> subproblems of size <span
+                        class="katex"><span class="katex-mathml"><math>
+                                <semantics>
+                                    <mrow>
+                                        <mfrac>
+                                            <mi>N</mi>
+                                            <mi>b</mi>
+                                        </mfrac>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">\frac{N}{b}</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut" style="height:1.217331em;vertical-align:-0.345em;"></span><span
+                                    class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span
+                                            class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                                    style="height:0.872331em;"><span
+                                                        style="top:-2.6550000000000002em;"><span class="pstrut"
+                                                            style="height:3em;"></span><span
+                                                            class="sizing reset-size6 size3 mtight"><span
+                                                                class="mord mtight"><span
+                                                                    class="mord mathdefault mtight">b</span></span></span></span><span
+                                                        style="top:-3.23em;"><span class="pstrut"
+                                                            style="height:3em;"></span><span class="frac-line"
+                                                            style="border-bottom-width:0.04em;"></span></span><span
+                                                        style="top:-3.394em;"><span class="pstrut"
+                                                            style="height:3em;"></span><span
+                                                            class="sizing reset-size6 size3 mtight"><span
+                                                                class="mord mtight"><span
+                                                                    class="mord mathdefault mtight"
+                                                                    style="margin-right:0.10903em;">N</span></span></span></span></span><span
+                                                    class="vlist-s">​</span></span><span class="vlist-r"><span
+                                                    class="vlist"
+                                                    style="height:0.345em;"><span></span></span></span></span></span><span
+                                        class="mclose nulldelimiter"></span></span></span></span></span> in <span
+                        class="katex"><span class="katex-mathml"><math>
+                                <semantics>
+                                    <mrow>
+                                        <mi mathvariant="normal">Θ</mi>
+                                        <mo>(</mo>
+                                        <msup>
+                                            <mi>N</mi>
+                                            <mi>d</mi>
+                                        </msup>
+                                        <mo>)</mo>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">\Theta(N^d)</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut" style="height:1.099108em;vertical-align:-0.25em;"></span><span
+                                    class="mord">Θ</span><span class="mopen">(</span><span class="mord"><span
+                                        class="mord mathdefault" style="margin-right:0.10903em;">N</span><span
+                                        class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist"
+                                                    style="height:0.849108em;"><span
+                                                        style="top:-3.063em;margin-right:0.05em;"><span class="pstrut"
+                                                            style="height:2.7em;"></span><span
+                                                            class="sizing reset-size6 size3 mtight"><span
+                                                                class="mord mathdefault mtight">d</span></span></span></span></span></span></span></span><span
+                                    class="mclose">)</span></span></span></span> time.
+                    Here at step there is only one subproblem <code>a = 1</code>, its size
+                    is a half of the initial problem <code>b = 2</code>,
+                    and all this happens in a constant time <code>d = 0</code>.
+                    That means that <span class="katex"><span class="katex-mathml"><math>
+                                <semantics>
+                                    <mrow>
+                                        <msub>
+                                            <mi>log</mi>
+                                            <mo>⁡</mo>
+                                            <mi>b</mi>
+                                        </msub>
+                                        <mi>a</mi>
+                                        <mo>=</mo>
+                                        <mi>d</mi>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">\log_b{a} = d</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut" style="height:0.93858em;vertical-align:-0.24414em;"></span><span
+                                    class="mop"><span class="mop">lo<span
+                                            style="margin-right:0.01389em;">g</span></span><span class="msupsub"><span
+                                            class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                                    style="height:0.24196799999999993em;"><span
+                                                        style="top:-2.4558600000000004em;margin-right:0.05em;"><span
+                                                            class="pstrut" style="height:2.7em;"></span><span
+                                                            class="sizing reset-size6 size3 mtight"><span
+                                                                class="mord mathdefault mtight">b</span></span></span></span><span
+                                                    class="vlist-s">​</span></span><span class="vlist-r"><span
+                                                    class="vlist"
+                                                    style="height:0.24414em;"><span></span></span></span></span></span></span><span
+                                    class="mspace" style="margin-right:0.16666666666666666em;"></span><span
+                                    class="mord"><span class="mord mathdefault">a</span></span><span class="mspace"
+                                    style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
+                                    class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span
+                                class="base"><span class="strut"
+                                    style="height:0.69444em;vertical-align:0em;"></span><span
+                                    class="mord mathdefault">d</span></span></span></span> and hence we're dealing with
+                    <a href="https://en.wikipedia.org/wiki/Master_theorem_(analysis_of_algorithms)#Case_2_example">case
+                        2</a>
+                    that results in <span class="katex"><span class="katex-mathml"><math>
+                                <semantics>
+                                    <mrow>
+                                        <mi mathvariant="script">O</mi>
+                                        <mo>(</mo>
+                                        <msup>
+                                            <mi>n</mi>
+                                            <mrow>
+                                                <msub>
+                                                    <mi>log</mi>
+                                                    <mo>⁡</mo>
+                                                    <mi>b</mi>
+                                                </msub>
+                                                <mi>a</mi>
+                                            </mrow>
+                                        </msup>
+                                        <msup>
+                                            <mi>log</mi>
+                                            <mo>⁡</mo>
+                                            <mrow>
+                                                <mi>d</mi>
+                                                <mo>+</mo>
+                                                <mn>1</mn>
+                                            </mrow>
+                                        </msup>
+                                        <mi>N</mi>
+                                        <mo>)</mo>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">\mathcal{O}(n^{\log_b{a}} \log^{d + 1} N)
+                                    </annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut"
+                                    style="height:1.1834479999999998em;vertical-align:-0.25em;"></span><span
+                                    class="mord"><span class="mord mathcal"
+                                        style="margin-right:0.02778em;">O</span></span><span class="mopen">(</span><span
+                                    class="mord"><span class="mord mathdefault">n</span><span class="msupsub"><span
+                                            class="vlist-t"><span class="vlist-r"><span class="vlist"
+                                                    style="height:0.849108em;"><span
+                                                        style="top:-3.063em;margin-right:0.05em;"><span class="pstrut"
+                                                            style="height:2.7em;"></span><span
+                                                            class="sizing reset-size6 size3 mtight"><span
+                                                                class="mord mtight"><span class="mop mtight"><span
+                                                                        class="mop mtight">lo<span
+                                                                            style="margin-right:0.01389em;">g</span></span><span
+                                                                        class="msupsub"><span
+                                                                            class="vlist-t vlist-t2"><span
+                                                                                class="vlist-r"><span class="vlist"
+                                                                                    style="height:0.23015999999999992em;"><span
+                                                                                        style="top:-2.2341314285714287em;margin-right:0.07142857142857144em;"><span
+                                                                                            class="pstrut"
+                                                                                            style="height:2.5em;"></span><span
+                                                                                            class="sizing reset-size3 size1 mtight"><span
+                                                                                                class="mord mathdefault mtight">b</span></span></span></span><span
+                                                                                    class="vlist-s">​</span></span><span
+                                                                                class="vlist-r"><span class="vlist"
+                                                                                    style="height:0.26586857142857145em;"><span></span></span></span></span></span></span><span
+                                                                    class="mspace mtight"
+                                                                    style="margin-right:0.19516666666666668em;"></span><span
+                                                                    class="mord mtight"><span
+                                                                        class="mord mathdefault mtight">a</span></span></span></span></span></span></span></span></span></span><span
+                                    class="mspace" style="margin-right:0.16666666666666666em;"></span><span
+                                    class="mop"><span class="mop">lo<span
+                                            style="margin-right:0.01389em;">g</span></span><span class="msupsub"><span
+                                            class="vlist-t"><span class="vlist-r"><span class="vlist"
+                                                    style="height:0.9334479999999998em;"><span
+                                                        style="top:-3.14734em;margin-right:0.05em;"><span class="pstrut"
+                                                            style="height:2.7em;"></span><span
+                                                            class="sizing reset-size6 size3 mtight"><span
+                                                                class="mord mtight"><span
+                                                                    class="mord mathdefault mtight">d</span><span
+                                                                    class="mbin mtight">+</span><span
+                                                                    class="mord mtight">1</span></span></span></span></span></span></span></span></span><span
+                                    class="mspace" style="margin-right:0.16666666666666666em;"></span><span
+                                    class="mord mathdefault" style="margin-right:0.10903em;">N</span><span
+                                    class="mclose">)</span></span></span></span>
+                    = <span class="katex"><span class="katex-mathml"><math>
+                                <semantics>
+                                    <mrow>
+                                        <mi mathvariant="script">O</mi>
+                                        <mo>(</mo>
+                                        <mi>log</mi>
+                                        <mo>⁡</mo>
+                                        <mi>N</mi>
+                                        <mo>)</mo>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">\mathcal{O}(\log N)</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                                    class="mord"><span class="mord mathcal"
+                                        style="margin-right:0.02778em;">O</span></span><span class="mopen">(</span><span
+                                    class="mop">lo<span style="margin-right:0.01389em;">g</span></span><span
+                                    class="mspace" style="margin-right:0.16666666666666666em;"></span><span
+                                    class="mord mathdefault" style="margin-right:0.10903em;">N</span><span
+                                    class="mclose">)</span></span></span></span> time complexity.
+                </p>
+            </li>
+            <li>
+                <p>Space complexity : <span class="katex"><span class="katex-mathml"><math>
+                                <semantics>
+                                    <mrow>
+                                        <mi mathvariant="script">O</mi>
+                                        <mo>(</mo>
+                                        <mn>1</mn>
+                                        <mo>)</mo>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">\mathcal{O}(1)</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                                    class="mord"><span class="mord mathcal"
+                                        style="margin-right:0.02778em;">O</span></span><span class="mopen">(</span><span
+                                    class="mord">1</span><span class="mclose">)</span></span></span></span> since it's a
+                    constant space
+                    solution.</p>
+            </li>
+        </ul>
+    </div>
+</div>
+<link rel="stylesheet" href="../../../boilerplate/simple.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css"
+    integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
