@@ -2,4 +2,5 @@
 0500,Keyboard Row
 0509,Fibonacci Number
 0520,Detect Capital
+0705,Design HashSet
 1089,Duplicate Zeros
