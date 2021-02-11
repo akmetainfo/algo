@@ -19,16 +19,25 @@ public class MyHashMap
 
     public void Put(int key, int value)
     {
+        if (key < 0 || key > CAPACITY)
+            throw new ArgumentOutOfRangeException("Key out of range");
+
         hasharray[key] = value;
     }
 
     public int Get(int key)
     {
+        if (key < 0 || key > CAPACITY)
+            throw new ArgumentOutOfRangeException("Key out of range");
+
         return hasharray[key] == null ? -1 : (int)hasharray[key];
     }
 
     public void Remove(int key)
     {
+        if (key < 0 || key > CAPACITY)
+            throw new ArgumentOutOfRangeException("Key out of range");
+
         hasharray[key] = null;
     }
 }
