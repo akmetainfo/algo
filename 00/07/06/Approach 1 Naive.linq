@@ -9,28 +9,27 @@
 
 public class MyHashMap
 {
-    /** Initialize your data structure here. */
+    private const int CAPACITY = 1000000;
+    private int?[] hasharray;
+
     public MyHashMap()
     {
-        throw new NotImplementedException();
+        hasharray = new int?[CAPACITY];
     }
 
-    /** value will always be non-negative. */
     public void Put(int key, int value)
     {
-        throw new NotImplementedException();
+        hasharray[key] = value;
     }
 
-    /** Returns the value to which the specified key is mapped, or -1 if this map contains no mapping for the key */
     public int Get(int key)
     {
-        throw new NotImplementedException();
+        return hasharray[key] == null ? -1 : (int)hasharray[key];
     }
 
-    /** Removes the mapping of the specified value key if this map contains a mapping for the key */
     public void Remove(int key)
     {
-        throw new NotImplementedException();
+        hasharray[key] = null;
     }
 }
 
