@@ -1,0 +1,705 @@
+<div class="content__QRGW">
+    <div>
+        <h2>Solution</h2>
+        <hr>
+        <h4 id="approach-1-list-operation">Approach 1: List operation</h4>
+        <p><strong>Algorithm</strong></p>
+        <ol>
+            <li>Iterate over all the elements in <span class="katex"><span class="katex-mathml"><math>
+                            <semantics>
+                                <mrow>
+                                    <mtext>nums</mtext>
+                                </mrow>
+                                <annotation encoding="application/x-tex">\text{nums}</annotation>
+                            </semantics>
+                        </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                                style="height:0.43056em;vertical-align:0em;"></span><span class="mord text"><span
+                                    class="mord">nums</span></span></span></span></span></li>
+            <li>If some number in <span class="katex"><span class="katex-mathml"><math>
+                            <semantics>
+                                <mrow>
+                                    <mtext>nums</mtext>
+                                </mrow>
+                                <annotation encoding="application/x-tex">\text{nums}</annotation>
+                            </semantics>
+                        </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                                style="height:0.43056em;vertical-align:0em;"></span><span class="mord text"><span
+                                    class="mord">nums</span></span></span></span></span> is new to array, append it</li>
+            <li>If some number is already in the array, remove it</li>
+        </ol>
+        <iframe src="https://leetcode.com/playground/7avfRKL7/shared" name="7avfRKL7" width="100%" height="293"
+            frameborder="0"></iframe>
+        <p><strong>Complexity Analysis</strong></p>
+        <ul>
+            <li>
+                <p>Time complexity : <span class="katex"><span class="katex-mathml"><math>
+                                <semantics>
+                                    <mrow>
+                                        <mi>O</mi>
+                                        <mo>(</mo>
+                                        <msup>
+                                            <mi>n</mi>
+                                            <mn>2</mn>
+                                        </msup>
+                                        <mo>)</mo>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">O(n^2)</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut" style="height:1.064108em;vertical-align:-0.25em;"></span><span
+                                    class="mord mathdefault" style="margin-right:0.02778em;">O</span><span
+                                    class="mopen">(</span><span class="mord"><span
+                                        class="mord mathdefault">n</span><span class="msupsub"><span
+                                            class="vlist-t"><span class="vlist-r"><span class="vlist"
+                                                    style="height:0.8141079999999999em;"><span
+                                                        style="top:-3.063em;margin-right:0.05em;"><span class="pstrut"
+                                                            style="height:2.7em;"></span><span
+                                                            class="sizing reset-size6 size3 mtight"><span
+                                                                class="mord mtight">2</span></span></span></span></span></span></span></span><span
+                                    class="mclose">)</span></span></span></span>. We iterate through <span
+                        class="katex"><span class="katex-mathml"><math>
+                                <semantics>
+                                    <mrow>
+                                        <mtext>nums</mtext>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">\text{nums}</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut" style="height:0.43056em;vertical-align:0em;"></span><span
+                                    class="mord text"><span class="mord">nums</span></span></span></span></span>, taking
+                    <span class="katex"><span class="katex-mathml"><math>
+                                <semantics>
+                                    <mrow>
+                                        <mi>O</mi>
+                                        <mo>(</mo>
+                                        <mi>n</mi>
+                                        <mo>)</mo>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">O(n)</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                                    class="mord mathdefault" style="margin-right:0.02778em;">O</span><span
+                                    class="mopen">(</span><span class="mord mathdefault">n</span><span
+                                    class="mclose">)</span></span></span></span> time. We search the whole list to find
+                    whether there is duplicate number, taking <span class="katex"><span class="katex-mathml"><math>
+                                <semantics>
+                                    <mrow>
+                                        <mi>O</mi>
+                                        <mo>(</mo>
+                                        <mi>n</mi>
+                                        <mo>)</mo>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">O(n)</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                                    class="mord mathdefault" style="margin-right:0.02778em;">O</span><span
+                                    class="mopen">(</span><span class="mord mathdefault">n</span><span
+                                    class="mclose">)</span></span></span></span> time. Because search is in the
+                    <code>for</code> loop, so we have to multiply both time complexities which is <span
+                        class="katex"><span class="katex-mathml"><math>
+                                <semantics>
+                                    <mrow>
+                                        <mi>O</mi>
+                                        <mo>(</mo>
+                                        <msup>
+                                            <mi>n</mi>
+                                            <mn>2</mn>
+                                        </msup>
+                                        <mo>)</mo>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">O(n^2)</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut" style="height:1.064108em;vertical-align:-0.25em;"></span><span
+                                    class="mord mathdefault" style="margin-right:0.02778em;">O</span><span
+                                    class="mopen">(</span><span class="mord"><span
+                                        class="mord mathdefault">n</span><span class="msupsub"><span
+                                            class="vlist-t"><span class="vlist-r"><span class="vlist"
+                                                    style="height:0.8141079999999999em;"><span
+                                                        style="top:-3.063em;margin-right:0.05em;"><span class="pstrut"
+                                                            style="height:2.7em;"></span><span
+                                                            class="sizing reset-size6 size3 mtight"><span
+                                                                class="mord mtight">2</span></span></span></span></span></span></span></span><span
+                                    class="mclose">)</span></span></span></span>.
+                </p>
+            </li>
+            <li>
+                <p>Space complexity : <span class="katex"><span class="katex-mathml"><math>
+                                <semantics>
+                                    <mrow>
+                                        <mi>O</mi>
+                                        <mo>(</mo>
+                                        <mi>n</mi>
+                                        <mo>)</mo>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">O(n)</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                                    class="mord mathdefault" style="margin-right:0.02778em;">O</span><span
+                                    class="mopen">(</span><span class="mord mathdefault">n</span><span
+                                    class="mclose">)</span></span></span></span>. We need a list of size <span
+                        class="katex"><span class="katex-mathml"><math>
+                                <semantics>
+                                    <mrow>
+                                        <mi>n</mi>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">n</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut" style="height:0.43056em;vertical-align:0em;"></span><span
+                                    class="mord mathdefault">n</span></span></span></span> to contain elements in <span
+                        class="katex"><span class="katex-mathml"><math>
+                                <semantics>
+                                    <mrow>
+                                        <mtext>nums</mtext>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">\text{nums}</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut" style="height:0.43056em;vertical-align:0em;"></span><span
+                                    class="mord text"><span class="mord">nums</span></span></span></span></span>.
+                    <br>
+                    <br>
+                </p>
+            </li>
+        </ul>
+        <hr>
+        <h4 id="approach-2-hash-table">Approach 2: Hash Table</h4>
+        <p><strong>Algorithm</strong></p>
+        <p>We use hash table to avoid the <span class="katex"><span class="katex-mathml"><math>
+                        <semantics>
+                            <mrow>
+                                <mi>O</mi>
+                                <mo>(</mo>
+                                <mi>n</mi>
+                                <mo>)</mo>
+                            </mrow>
+                            <annotation encoding="application/x-tex">O(n)</annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault"
+                            style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span
+                            class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span> time
+            required for searching the elements.</p>
+        <ol>
+            <li>Iterate through all elements in <code>nums</code> and set up key/value pair.</li>
+            <li>Return the element which appeared only once.</li>
+        </ol>
+        <iframe src="https://leetcode.com/playground/kFCNodJN/shared" name="kFCNodJN" width="100%" height="310"
+            frameborder="0"></iframe>
+        <p><strong>Complexity Analysis</strong></p>
+        <ul>
+            <li>
+                <p>Time complexity : <span class="katex"><span class="katex-mathml"><math>
+                                <semantics>
+                                    <mrow>
+                                        <mi>O</mi>
+                                        <mo>(</mo>
+                                        <mi>n</mi>
+                                        <mo>⋅</mo>
+                                        <mn>1</mn>
+                                        <mo>)</mo>
+                                        <mo>=</mo>
+                                        <mi>O</mi>
+                                        <mo>(</mo>
+                                        <mi>n</mi>
+                                        <mo>)</mo>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">O(n \cdot 1) = O(n)</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                                    class="mord mathdefault" style="margin-right:0.02778em;">O</span><span
+                                    class="mopen">(</span><span class="mord mathdefault">n</span><span class="mspace"
+                                    style="margin-right:0.2222222222222222em;"></span><span class="mbin">⋅</span><span
+                                    class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span
+                                class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                                    class="mord">1</span><span class="mclose">)</span><span class="mspace"
+                                    style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
+                                    class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span
+                                class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                                    class="mord mathdefault" style="margin-right:0.02778em;">O</span><span
+                                    class="mopen">(</span><span class="mord mathdefault">n</span><span
+                                    class="mclose">)</span></span></span></span>. Time complexity of <code>for</code>
+                    loop is <span class="katex"><span class="katex-mathml"><math>
+                                <semantics>
+                                    <mrow>
+                                        <mi>O</mi>
+                                        <mo>(</mo>
+                                        <mi>n</mi>
+                                        <mo>)</mo>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">O(n)</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                                    class="mord mathdefault" style="margin-right:0.02778em;">O</span><span
+                                    class="mopen">(</span><span class="mord mathdefault">n</span><span
+                                    class="mclose">)</span></span></span></span>. Time complexity of hash
+                    table(dictionary in python) operation <code>pop</code> is <span class="katex"><span
+                            class="katex-mathml"><math>
+                                <semantics>
+                                    <mrow>
+                                        <mi>O</mi>
+                                        <mo>(</mo>
+                                        <mn>1</mn>
+                                        <mo>)</mo>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">O(1)</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                                    class="mord mathdefault" style="margin-right:0.02778em;">O</span><span
+                                    class="mopen">(</span><span class="mord">1</span><span
+                                    class="mclose">)</span></span></span></span>.</p>
+            </li>
+            <li>
+                <p>Space complexity : <span class="katex"><span class="katex-mathml"><math>
+                                <semantics>
+                                    <mrow>
+                                        <mi>O</mi>
+                                        <mo>(</mo>
+                                        <mi>n</mi>
+                                        <mo>)</mo>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">O(n)</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                                    class="mord mathdefault" style="margin-right:0.02778em;">O</span><span
+                                    class="mopen">(</span><span class="mord mathdefault">n</span><span
+                                    class="mclose">)</span></span></span></span>. The space required by <span
+                        class="katex"><span class="katex-mathml"><math>
+                                <semantics>
+                                    <mrow>
+                                        <mi>h</mi>
+                                        <mi>a</mi>
+                                        <mi>s</mi>
+                                        <mi>h</mi>
+                                        <mi mathvariant="normal">_</mi>
+                                        <mi>t</mi>
+                                        <mi>a</mi>
+                                        <mi>b</mi>
+                                        <mi>l</mi>
+                                        <mi>e</mi>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">hash\_table</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut" style="height:1.00444em;vertical-align:-0.31em;"></span><span
+                                    class="mord mathdefault">h</span><span class="mord mathdefault">a</span><span
+                                    class="mord mathdefault">s</span><span class="mord mathdefault">h</span><span
+                                    class="mord" style="margin-right:0.02778em;">_</span><span
+                                    class="mord mathdefault">t</span><span class="mord mathdefault">a</span><span
+                                    class="mord mathdefault">b</span><span class="mord mathdefault"
+                                    style="margin-right:0.01968em;">l</span><span
+                                    class="mord mathdefault">e</span></span></span></span> is equal to the number of
+                    elements in <span class="katex"><span class="katex-mathml"><math>
+                                <semantics>
+                                    <mrow>
+                                        <mtext>nums</mtext>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">\text{nums}</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut" style="height:0.43056em;vertical-align:0em;"></span><span
+                                    class="mord text"><span class="mord">nums</span></span></span></span></span>.
+                    <br>
+                    <br>
+                </p>
+            </li>
+        </ul>
+        <hr>
+        <h4 id="approach-3-math">Approach 3: Math</h4>
+        <p><strong>Concept</strong></p>
+        <p><span class="katex"><span class="katex-mathml"><math>
+                        <semantics>
+                            <mrow>
+                                <mn>2</mn>
+                                <mo>∗</mo>
+                                <mo>(</mo>
+                                <mi>a</mi>
+                                <mo>+</mo>
+                                <mi>b</mi>
+                                <mo>+</mo>
+                                <mi>c</mi>
+                                <mo>)</mo>
+                                <mo>−</mo>
+                                <mo>(</mo>
+                                <mi>a</mi>
+                                <mo>+</mo>
+                                <mi>a</mi>
+                                <mo>+</mo>
+                                <mi>b</mi>
+                                <mo>+</mo>
+                                <mi>b</mi>
+                                <mo>+</mo>
+                                <mi>c</mi>
+                                <mo>)</mo>
+                                <mo>=</mo>
+                                <mi>c</mi>
+                            </mrow>
+                            <annotation encoding="application/x-tex">2 * (a + b + c) - (a + a + b + b + c) = c
+                            </annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:0.64444em;vertical-align:0em;"></span><span class="mord">2</span><span
+                            class="mspace" style="margin-right:0.2222222222222222em;"></span><span
+                            class="mbin">∗</span><span class="mspace"
+                            style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span
+                            class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                            class="mopen">(</span><span class="mord mathdefault">a</span><span class="mspace"
+                            style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span
+                            class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span
+                        class="base"><span class="strut"
+                            style="height:0.77777em;vertical-align:-0.08333em;"></span><span
+                            class="mord mathdefault">b</span><span class="mspace"
+                            style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span
+                            class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span
+                        class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                            class="mord mathdefault">c</span><span class="mclose">)</span><span class="mspace"
+                            style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span
+                            class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span
+                        class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                            class="mopen">(</span><span class="mord mathdefault">a</span><span class="mspace"
+                            style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span
+                            class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span
+                        class="base"><span class="strut"
+                            style="height:0.66666em;vertical-align:-0.08333em;"></span><span
+                            class="mord mathdefault">a</span><span class="mspace"
+                            style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span
+                            class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span
+                        class="base"><span class="strut"
+                            style="height:0.77777em;vertical-align:-0.08333em;"></span><span
+                            class="mord mathdefault">b</span><span class="mspace"
+                            style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span
+                            class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span
+                        class="base"><span class="strut"
+                            style="height:0.77777em;vertical-align:-0.08333em;"></span><span
+                            class="mord mathdefault">b</span><span class="mspace"
+                            style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span
+                            class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span
+                        class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                            class="mord mathdefault">c</span><span class="mclose">)</span><span class="mspace"
+                            style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
+                            class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span
+                        class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span
+                            class="mord mathdefault">c</span></span></span></span></p>
+        <iframe src="https://leetcode.com/playground/4UnTgakr/shared" name="4UnTgakr" width="100%" height="310"
+            frameborder="0"></iframe>
+        <p><strong>Complexity Analysis</strong></p>
+        <ul>
+            <li>
+                <p>Time complexity : <span class="katex"><span class="katex-mathml"><math>
+                                <semantics>
+                                    <mrow>
+                                        <mi>O</mi>
+                                        <mo>(</mo>
+                                        <mi>n</mi>
+                                        <mo>+</mo>
+                                        <mi>n</mi>
+                                        <mo>)</mo>
+                                        <mo>=</mo>
+                                        <mi>O</mi>
+                                        <mo>(</mo>
+                                        <mi>n</mi>
+                                        <mo>)</mo>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">O(n + n) = O(n)</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                                    class="mord mathdefault" style="margin-right:0.02778em;">O</span><span
+                                    class="mopen">(</span><span class="mord mathdefault">n</span><span class="mspace"
+                                    style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span
+                                    class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span
+                                class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                                    class="mord mathdefault">n</span><span class="mclose">)</span><span class="mspace"
+                                    style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
+                                    class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span
+                                class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                                    class="mord mathdefault" style="margin-right:0.02778em;">O</span><span
+                                    class="mopen">(</span><span class="mord mathdefault">n</span><span
+                                    class="mclose">)</span></span></span></span>. <code>sum</code> will call
+                    <code>next</code> to iterate through <span class="katex"><span class="katex-mathml"><math>
+                                <semantics>
+                                    <mrow>
+                                        <mtext>nums</mtext>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">\text{nums}</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut" style="height:0.43056em;vertical-align:0em;"></span><span
+                                    class="mord text"><span class="mord">nums</span></span></span></span></span>.
+                    We can see it as <code>sum(list(i, for i in nums))</code> which means the time complexity is <span
+                        class="katex"><span class="katex-mathml"><math>
+                                <semantics>
+                                    <mrow>
+                                        <mi>O</mi>
+                                        <mo>(</mo>
+                                        <mi>n</mi>
+                                        <mo>)</mo>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">O(n)</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                                    class="mord mathdefault" style="margin-right:0.02778em;">O</span><span
+                                    class="mopen">(</span><span class="mord mathdefault">n</span><span
+                                    class="mclose">)</span></span></span></span> because of the number of elements(<span
+                        class="katex"><span class="katex-mathml"><math>
+                                <semantics>
+                                    <mrow>
+                                        <mi>n</mi>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">n</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut" style="height:0.43056em;vertical-align:0em;"></span><span
+                                    class="mord mathdefault">n</span></span></span></span>) in <span class="katex"><span
+                            class="katex-mathml"><math>
+                                <semantics>
+                                    <mrow>
+                                        <mtext>nums</mtext>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">\text{nums}</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut" style="height:0.43056em;vertical-align:0em;"></span><span
+                                    class="mord text"><span class="mord">nums</span></span></span></span></span>.
+                </p>
+            </li>
+            <li>
+                <p>Space complexity : <span class="katex"><span class="katex-mathml"><math>
+                                <semantics>
+                                    <mrow>
+                                        <mi>O</mi>
+                                        <mo>(</mo>
+                                        <mi>n</mi>
+                                        <mo>+</mo>
+                                        <mi>n</mi>
+                                        <mo>)</mo>
+                                        <mo>=</mo>
+                                        <mi>O</mi>
+                                        <mo>(</mo>
+                                        <mi>n</mi>
+                                        <mo>)</mo>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">O(n + n) = O(n)</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                                    class="mord mathdefault" style="margin-right:0.02778em;">O</span><span
+                                    class="mopen">(</span><span class="mord mathdefault">n</span><span class="mspace"
+                                    style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span
+                                    class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span
+                                class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                                    class="mord mathdefault">n</span><span class="mclose">)</span><span class="mspace"
+                                    style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
+                                    class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span
+                                class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                                    class="mord mathdefault" style="margin-right:0.02778em;">O</span><span
+                                    class="mopen">(</span><span class="mord mathdefault">n</span><span
+                                    class="mclose">)</span></span></span></span>. <code>set</code> needs space for the
+                    elements in <code>nums</code>
+                    <br>
+                    <br>
+                </p>
+            </li>
+        </ul>
+        <hr>
+        <h4 id="approach-4-bit-manipulation">Approach 4: Bit Manipulation</h4>
+        <p><strong>Concept</strong></p>
+        <ul>
+            <li>If we take XOR of zero and some bit, it will return that bit
+                <ul>
+                    <li><span class="katex"><span class="katex-mathml"><math>
+                                    <semantics>
+                                        <mrow>
+                                            <mi>a</mi>
+                                            <mo>⊕</mo>
+                                            <mn>0</mn>
+                                            <mo>=</mo>
+                                            <mi>a</mi>
+                                        </mrow>
+                                        <annotation encoding="application/x-tex">a \oplus 0 = a</annotation>
+                                    </semantics>
+                                </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                        class="strut" style="height:0.66666em;vertical-align:-0.08333em;"></span><span
+                                        class="mord mathdefault">a</span><span class="mspace"
+                                        style="margin-right:0.2222222222222222em;"></span><span
+                                        class="mbin">⊕</span><span class="mspace"
+                                        style="margin-right:0.2222222222222222em;"></span></span><span
+                                    class="base"><span class="strut"
+                                        style="height:0.64444em;vertical-align:0em;"></span><span
+                                        class="mord">0</span><span class="mspace"
+                                        style="margin-right:0.2777777777777778em;"></span><span
+                                        class="mrel">=</span><span class="mspace"
+                                        style="margin-right:0.2777777777777778em;"></span></span><span
+                                    class="base"><span class="strut"
+                                        style="height:0.43056em;vertical-align:0em;"></span><span
+                                        class="mord mathdefault">a</span></span></span></span></li>
+                </ul>
+            </li>
+            <li>If we take XOR of two same bits, it will return 0
+                <ul>
+                    <li><span class="katex"><span class="katex-mathml"><math>
+                                    <semantics>
+                                        <mrow>
+                                            <mi>a</mi>
+                                            <mo>⊕</mo>
+                                            <mi>a</mi>
+                                            <mo>=</mo>
+                                            <mn>0</mn>
+                                        </mrow>
+                                        <annotation encoding="application/x-tex">a \oplus a = 0</annotation>
+                                    </semantics>
+                                </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                        class="strut" style="height:0.66666em;vertical-align:-0.08333em;"></span><span
+                                        class="mord mathdefault">a</span><span class="mspace"
+                                        style="margin-right:0.2222222222222222em;"></span><span
+                                        class="mbin">⊕</span><span class="mspace"
+                                        style="margin-right:0.2222222222222222em;"></span></span><span
+                                    class="base"><span class="strut"
+                                        style="height:0.43056em;vertical-align:0em;"></span><span
+                                        class="mord mathdefault">a</span><span class="mspace"
+                                        style="margin-right:0.2777777777777778em;"></span><span
+                                        class="mrel">=</span><span class="mspace"
+                                        style="margin-right:0.2777777777777778em;"></span></span><span
+                                    class="base"><span class="strut"
+                                        style="height:0.64444em;vertical-align:0em;"></span><span
+                                        class="mord">0</span></span></span></span></li>
+                </ul>
+            </li>
+            <li><span class="katex"><span class="katex-mathml"><math>
+                            <semantics>
+                                <mrow>
+                                    <mi>a</mi>
+                                    <mo>⊕</mo>
+                                    <mi>b</mi>
+                                    <mo>⊕</mo>
+                                    <mi>a</mi>
+                                    <mo>=</mo>
+                                    <mo>(</mo>
+                                    <mi>a</mi>
+                                    <mo>⊕</mo>
+                                    <mi>a</mi>
+                                    <mo>)</mo>
+                                    <mo>⊕</mo>
+                                    <mi>b</mi>
+                                    <mo>=</mo>
+                                    <mn>0</mn>
+                                    <mo>⊕</mo>
+                                    <mi>b</mi>
+                                    <mo>=</mo>
+                                    <mi>b</mi>
+                                </mrow>
+                                <annotation encoding="application/x-tex">a \oplus b \oplus a = (a \oplus a) \oplus b = 0
+                                    \oplus b = b</annotation>
+                            </semantics>
+                        </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                                style="height:0.66666em;vertical-align:-0.08333em;"></span><span
+                                class="mord mathdefault">a</span><span class="mspace"
+                                style="margin-right:0.2222222222222222em;"></span><span class="mbin">⊕</span><span
+                                class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span
+                            class="base"><span class="strut"
+                                style="height:0.77777em;vertical-align:-0.08333em;"></span><span
+                                class="mord mathdefault">b</span><span class="mspace"
+                                style="margin-right:0.2222222222222222em;"></span><span class="mbin">⊕</span><span
+                                class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span
+                            class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span
+                                class="mord mathdefault">a</span><span class="mspace"
+                                style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
+                                class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span
+                            class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                                class="mopen">(</span><span class="mord mathdefault">a</span><span class="mspace"
+                                style="margin-right:0.2222222222222222em;"></span><span class="mbin">⊕</span><span
+                                class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span
+                            class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                                class="mord mathdefault">a</span><span class="mclose">)</span><span class="mspace"
+                                style="margin-right:0.2222222222222222em;"></span><span class="mbin">⊕</span><span
+                                class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span
+                            class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span
+                                class="mord mathdefault">b</span><span class="mspace"
+                                style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
+                                class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span
+                            class="base"><span class="strut"
+                                style="height:0.72777em;vertical-align:-0.08333em;"></span><span
+                                class="mord">0</span><span class="mspace"
+                                style="margin-right:0.2222222222222222em;"></span><span class="mbin">⊕</span><span
+                                class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span
+                            class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span
+                                class="mord mathdefault">b</span><span class="mspace"
+                                style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
+                                class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span
+                            class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span
+                                class="mord mathdefault">b</span></span></span></span></li>
+        </ul>
+        <p>So we can XOR all bits together to find the unique number.</p>
+        <iframe src="https://leetcode.com/playground/3d3aMiFy/shared" name="3d3aMiFy" width="100%" height="225"
+            frameborder="0"></iframe>
+        <p><strong>Complexity Analysis</strong></p>
+        <ul>
+            <li>
+                <p>Time complexity : <span class="katex"><span class="katex-mathml"><math>
+                                <semantics>
+                                    <mrow>
+                                        <mi>O</mi>
+                                        <mo>(</mo>
+                                        <mi>n</mi>
+                                        <mo>)</mo>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">O(n)</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                                    class="mord mathdefault" style="margin-right:0.02778em;">O</span><span
+                                    class="mopen">(</span><span class="mord mathdefault">n</span><span
+                                    class="mclose">)</span></span></span></span>. We only iterate through <span
+                        class="katex"><span class="katex-mathml"><math>
+                                <semantics>
+                                    <mrow>
+                                        <mtext>nums</mtext>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">\text{nums}</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut" style="height:0.43056em;vertical-align:0em;"></span><span
+                                    class="mord text"><span class="mord">nums</span></span></span></span></span>, so the
+                    time complexity is the number of elements in <span class="katex"><span class="katex-mathml"><math>
+                                <semantics>
+                                    <mrow>
+                                        <mtext>nums</mtext>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">\text{nums}</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut" style="height:0.43056em;vertical-align:0em;"></span><span
+                                    class="mord text"><span class="mord">nums</span></span></span></span></span>.</p>
+            </li>
+            <li>
+                <p>Space complexity : <span class="katex"><span class="katex-mathml"><math>
+                                <semantics>
+                                    <mrow>
+                                        <mi>O</mi>
+                                        <mo>(</mo>
+                                        <mn>1</mn>
+                                        <mo>)</mo>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">O(1)</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                                    class="mord mathdefault" style="margin-right:0.02778em;">O</span><span
+                                    class="mopen">(</span><span class="mord">1</span><span
+                                    class="mclose">)</span></span></span></span>.</p>
+            </li>
+        </ul>
+    </div>
+</div>
+<link rel="stylesheet" href="../../../boilerplate/simple.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css"
+    integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
