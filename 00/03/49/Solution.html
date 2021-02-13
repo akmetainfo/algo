@@ -1,0 +1,342 @@
+<div class="content__QRGW">
+    <div>
+        <h2>Solution</h2>
+        <hr>
+        <h4 id="approach-1-two-sets">Approach 1: Two Sets</h4>
+        <p><strong>Intuition</strong></p>
+        <p>The naive approach would be to iterate along the first array <code>nums1</code>
+            and to check for each value if this value in <code>nums2</code> or not.
+            If yes - add the value to output. Such an approach would result
+            in a pretty bad
+            <span class="katex"><span class="katex-mathml"><math>
+                        <semantics>
+                            <mrow>
+                                <mi mathvariant="script">O</mi>
+                                <mo>(</mo>
+                                <mi>n</mi>
+                                <mo>×</mo>
+                                <mi>m</mi>
+                                <mo>)</mo>
+                            </mrow>
+                            <annotation encoding="application/x-tex">\mathcal{O}(n \times m)</annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span
+                                class="mord mathcal" style="margin-right:0.02778em;">O</span></span><span
+                            class="mopen">(</span><span class="mord mathdefault">n</span><span class="mspace"
+                            style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span
+                            class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span
+                        class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                            class="mord mathdefault">m</span><span class="mclose">)</span></span></span></span> time
+            complexity, where <code>n</code> and <code>m</code> are
+            arrays' lengths.
+        </p>
+        <blockquote>
+            <p>To solve the problem in linear time, let's use the structure <code>set</code>,
+                which provides <code>in/contains</code> operation in <span class="katex"><span
+                        class="katex-mathml"><math>
+                            <semantics>
+                                <mrow>
+                                    <mi mathvariant="script">O</mi>
+                                    <mo>(</mo>
+                                    <mn>1</mn>
+                                    <mo>)</mo>
+                                </mrow>
+                                <annotation encoding="application/x-tex">\mathcal{O}(1)</annotation>
+                            </semantics>
+                        </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                                style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span
+                                    class="mord mathcal" style="margin-right:0.02778em;">O</span></span><span
+                                class="mopen">(</span><span class="mord">1</span><span
+                                class="mclose">)</span></span></span></span> time in
+                average case.</p>
+        </blockquote>
+        <p>The idea is to convert both arrays into sets, and then iterate over
+            the smallest set checking the presence of each element in the larger set.
+            Time complexity of this approach is <span class="katex"><span class="katex-mathml"><math>
+                        <semantics>
+                            <mrow>
+                                <mi mathvariant="script">O</mi>
+                                <mo>(</mo>
+                                <mi>n</mi>
+                                <mo>+</mo>
+                                <mi>m</mi>
+                                <mo>)</mo>
+                            </mrow>
+                            <annotation encoding="application/x-tex">\mathcal{O}(n + m)</annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span
+                                class="mord mathcal" style="margin-right:0.02778em;">O</span></span><span
+                            class="mopen">(</span><span class="mord mathdefault">n</span><span class="mspace"
+                            style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span
+                            class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span
+                        class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                            class="mord mathdefault">m</span><span class="mclose">)</span></span></span></span> in the
+            average case.</p>
+        <div>
+            <div>
+                <div class="dia-container__T7JA" style="width: 789px; height: 278px;">
+                    <div class="diaporama__1x84"><img maxwidth="100%" maxheight="100%" alt="Current"
+                            class="dia-img__3-yE" src="blob:https://leetcode.com/151e6470-7941-443e-ab24-57052f94bfa5">
+                    </div>
+                    <div class="initial-play-wrapper__1tcs">
+                        <div class="initial-play__3FKu play-container__1ZB9">
+                            <div class="fa fa-play"></div>
+                        </div>
+                    </div>
+                    <div class="control-panel__zPwY">
+                        <div class="controls__1q0X">
+                            <div class="control-group__16z9 fa fa-step-backward"></div>
+                            <div class="fa fa-play toggle-play__3DqW control-group__16z9"></div>
+                            <div class="fa fa-step-forward control-group__16z9"></div>
+                        </div>
+                        <div class="frame-counter__1YA2">1 / 6</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <p><strong>Implementation</strong></p>
+        <iframe src="https://leetcode.com/playground/QbhdgTQp/shared" name="QbhdgTQp" width="100%" height="395"
+            frameborder="0"></iframe>
+        <p><strong>Complexity Analysis</strong></p>
+        <ul>
+            <li>
+                <p>Time complexity : <span class="katex"><span class="katex-mathml"><math>
+                                <semantics>
+                                    <mrow>
+                                        <mi mathvariant="script">O</mi>
+                                        <mo>(</mo>
+                                        <mi>n</mi>
+                                        <mo>+</mo>
+                                        <mi>m</mi>
+                                        <mo>)</mo>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">\mathcal{O}(n + m)</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                                    class="mord"><span class="mord mathcal"
+                                        style="margin-right:0.02778em;">O</span></span><span class="mopen">(</span><span
+                                    class="mord mathdefault">n</span><span class="mspace"
+                                    style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span
+                                    class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span
+                                class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                                    class="mord mathdefault">m</span><span class="mclose">)</span></span></span></span>,
+                    where <code>n</code> and <code>m</code> are
+                    arrays' lengths. <span class="katex"><span class="katex-mathml"><math>
+                                <semantics>
+                                    <mrow>
+                                        <mi mathvariant="script">O</mi>
+                                        <mo>(</mo>
+                                        <mi>n</mi>
+                                        <mo>)</mo>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">\mathcal{O}(n)</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                                    class="mord"><span class="mord mathcal"
+                                        style="margin-right:0.02778em;">O</span></span><span class="mopen">(</span><span
+                                    class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span>
+                    time is used to convert <code>nums1</code>
+                    into set, <span class="katex"><span class="katex-mathml"><math>
+                                <semantics>
+                                    <mrow>
+                                        <mi mathvariant="script">O</mi>
+                                        <mo>(</mo>
+                                        <mi>m</mi>
+                                        <mo>)</mo>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">\mathcal{O}(m)</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                                    class="mord"><span class="mord mathcal"
+                                        style="margin-right:0.02778em;">O</span></span><span class="mopen">(</span><span
+                                    class="mord mathdefault">m</span><span class="mclose">)</span></span></span></span>
+                    time is used to convert <code>nums2</code>, and
+                    <code>contains/in</code> operations are <span class="katex"><span class="katex-mathml"><math>
+                                <semantics>
+                                    <mrow>
+                                        <mi mathvariant="script">O</mi>
+                                        <mo>(</mo>
+                                        <mn>1</mn>
+                                        <mo>)</mo>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">\mathcal{O}(1)</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                                    class="mord"><span class="mord mathcal"
+                                        style="margin-right:0.02778em;">O</span></span><span class="mopen">(</span><span
+                                    class="mord">1</span><span class="mclose">)</span></span></span></span> in the
+                    average case.
+                </p>
+            </li>
+            <li>
+                <p>Space complexity : <span class="katex"><span class="katex-mathml"><math>
+                                <semantics>
+                                    <mrow>
+                                        <mi mathvariant="script">O</mi>
+                                        <mo>(</mo>
+                                        <mi>m</mi>
+                                        <mo>+</mo>
+                                        <mi>n</mi>
+                                        <mo>)</mo>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">\mathcal{O}(m + n)</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                                    class="mord"><span class="mord mathcal"
+                                        style="margin-right:0.02778em;">O</span></span><span class="mopen">(</span><span
+                                    class="mord mathdefault">m</span><span class="mspace"
+                                    style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span
+                                    class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span
+                                class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                                    class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span>
+                    in the worst case when
+                    all elements in the arrays are different.
+                    <br>
+                    <br>
+                </p>
+            </li>
+        </ul>
+        <hr>
+        <h4 id="approach-2-builtin-set-intersection">Approach 2: Built-in Set Intersection</h4>
+        <p><strong>Intuition</strong></p>
+        <p>There are built-in intersection facilities,
+            which provide <span class="katex"><span class="katex-mathml"><math>
+                        <semantics>
+                            <mrow>
+                                <mi mathvariant="script">O</mi>
+                                <mo>(</mo>
+                                <mi>n</mi>
+                                <mo>+</mo>
+                                <mi>m</mi>
+                                <mo>)</mo>
+                            </mrow>
+                            <annotation encoding="application/x-tex">\mathcal{O}(n + m)</annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span
+                                class="mord mathcal" style="margin-right:0.02778em;">O</span></span><span
+                            class="mopen">(</span><span class="mord mathdefault">n</span><span class="mspace"
+                            style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span
+                            class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span
+                        class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                            class="mord mathdefault">m</span><span class="mclose">)</span></span></span></span> time
+            complexity in the
+            average case and <span class="katex"><span class="katex-mathml"><math>
+                        <semantics>
+                            <mrow>
+                                <mi mathvariant="script">O</mi>
+                                <mo>(</mo>
+                                <mi>n</mi>
+                                <mo>×</mo>
+                                <mi>m</mi>
+                                <mo>)</mo>
+                            </mrow>
+                            <annotation encoding="application/x-tex">\mathcal{O}(n \times m)</annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span
+                                class="mord mathcal" style="margin-right:0.02778em;">O</span></span><span
+                            class="mopen">(</span><span class="mord mathdefault">n</span><span class="mspace"
+                            style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span
+                            class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span
+                        class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                            class="mord mathdefault">m</span><span class="mclose">)</span></span></span></span> time
+            complexity in the
+            worst case.</p>
+        <blockquote>
+            <p>In Python it's <a href="https://wiki.python.org/moin/TimeComplexity#set">intersection operator</a>,
+                in Java - <a
+                    href="https://docs.oracle.com/javase/8/docs/api/java/util/AbstractCollection.html#retainAll-java.util.Collection-">retainAll()
+                    function</a>.</p>
+        </blockquote>
+        <p><strong>Implementation</strong></p>
+        <iframe src="https://leetcode.com/playground/ukbkHM7f/shared" name="ukbkHM7f" width="100%" height="310"
+            frameborder="0"></iframe>
+        <p><strong>Complexity Analysis</strong></p>
+        <ul>
+            <li>
+                <p>Time complexity : <span class="katex"><span class="katex-mathml"><math>
+                                <semantics>
+                                    <mrow>
+                                        <mi mathvariant="script">O</mi>
+                                        <mo>(</mo>
+                                        <mi>n</mi>
+                                        <mo>+</mo>
+                                        <mi>m</mi>
+                                        <mo>)</mo>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">\mathcal{O}(n + m)</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                                    class="mord"><span class="mord mathcal"
+                                        style="margin-right:0.02778em;">O</span></span><span class="mopen">(</span><span
+                                    class="mord mathdefault">n</span><span class="mspace"
+                                    style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span
+                                    class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span
+                                class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                                    class="mord mathdefault">m</span><span class="mclose">)</span></span></span></span>
+                    in the average case
+                    and <span class="katex"><span class="katex-mathml"><math>
+                                <semantics>
+                                    <mrow>
+                                        <mi mathvariant="script">O</mi>
+                                        <mo>(</mo>
+                                        <mi>n</mi>
+                                        <mo>×</mo>
+                                        <mi>m</mi>
+                                        <mo>)</mo>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">\mathcal{O}(n \times m)</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                                    class="mord"><span class="mord mathcal"
+                                        style="margin-right:0.02778em;">O</span></span><span class="mopen">(</span><span
+                                    class="mord mathdefault">n</span><span class="mspace"
+                                    style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span
+                                    class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span
+                                class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                                    class="mord mathdefault">m</span><span class="mclose">)</span></span></span></span>
+                    <a href="https://wiki.python.org/moin/TimeComplexity#set">in the worst case
+                        when load factor is high enough</a>.
+                </p>
+            </li>
+            <li>
+                <p>Space complexity : <span class="katex"><span class="katex-mathml"><math>
+                                <semantics>
+                                    <mrow>
+                                        <mi mathvariant="script">O</mi>
+                                        <mo>(</mo>
+                                        <mi>n</mi>
+                                        <mo>+</mo>
+                                        <mi>m</mi>
+                                        <mo>)</mo>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">\mathcal{O}(n + m)</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                                    class="mord"><span class="mord mathcal"
+                                        style="margin-right:0.02778em;">O</span></span><span class="mopen">(</span><span
+                                    class="mord mathdefault">n</span><span class="mspace"
+                                    style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span
+                                    class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span
+                                class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                                    class="mord mathdefault">m</span><span class="mclose">)</span></span></span></span>
+                    in the worst case when
+                    all elements in the arrays are different.</p>
+            </li>
+        </ul>
+    </div>
+</div>
+<link rel="stylesheet" href="../../../boilerplate/simple.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css"
+    integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
