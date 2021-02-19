@@ -4,58 +4,29 @@
   <Namespace>NUnitLite</Namespace>
 </Query>
 
-// 20. Valid Parentheses
-// https://leetcode.com/problems/valid-parentheses/
+// 167. Two Sum II - Input array is sorted
+// https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/
 
 /*
-    Time: O(n)
-    Space: O(n)
+    Time: O()
+    Space: O()
 */
 public class Solution
 {
-    public bool IsValid(string s)
+    public int[] TwoSum(int[] numbers, int target)
     {
-        var stack = new Stack<char>();
-
-        var mappings = new Dictionary<char, char>()
-        {
-            {')', '('},
-            {'}', '{'},
-            {']', '['},
-        };
-
-        foreach (char c in s)
-        {
-            if (mappings.ContainsKey(c))
-            {
-                // If the stack is empty, set a dummy value of '#'
-                var topElement = stack.Count == 0 ? '#' : stack.Pop();
-
-                if (topElement != mappings[c])
-                    return false;
-            }
-            else
-            {
-                stack.Push(c);
-            }
-        }
-
-        return stack.Count == 0;
+        throw new NotImplementedException();
     }
 }
 
 [Test]
-[TestCase("()", true)]
-[TestCase("()[]{}", true)]
-[TestCase("(]", false)]
-[TestCase("([)]", false)]
-[TestCase("{[]}", true)]
-[TestCase("(", false)]
-[TestCase("]", false)]
-public void SolutionTests(string s, bool expected)
+[TestCase(new int[] { 2, 7, 11, 15 }, 9, new int[] { 1, 2 })]
+[TestCase(new int[] { 2, 3, 4 }, 6, new int[] { 1, 3 })]
+[TestCase(new int[] { -1, 0 }, -1, new int[] { 1, 2 })]
+public void SolutionTests(int[] nums, int target, int[] expected)
 {
-    var actual = new Solution().IsValid(s);
-    Assert.That(actual, Is.EqualTo(expected));
+    var actual = new Solution().TwoSum(nums, target);
+    Assert.That(actual, Is.EquivalentTo(expected));
 }
 
 #region unit tests runner
