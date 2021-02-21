@@ -1,0 +1,142 @@
+<div class="content__QRGW">
+    <div>
+        <h2>Solution</h2>
+        <hr>
+        <h4 id="approach-1-linear-time-solution">Approach 1: Linear time solution</h4>
+        <p>The best possible solution here could be of a linear time
+            because to ensure
+            that the character is unique
+            you have to check the whole string anyway.</p>
+        <p>The idea is to go through the string and
+            save in a hash map the number of times
+            each character appears in the string.
+            That would take <span class="katex"><span class="katex-mathml"><math>
+                        <semantics>
+                            <mrow>
+                                <mi mathvariant="script">O</mi>
+                                <mo>(</mo>
+                                <mi>N</mi>
+                                <mo>)</mo>
+                            </mrow>
+                            <annotation encoding="application/x-tex">\mathcal{O}(N)</annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span
+                                class="mord mathcal" style="margin-right:0.02778em;">O</span></span><span
+                            class="mopen">(</span><span class="mord mathdefault"
+                            style="margin-right:0.10903em;">N</span><span class="mclose">)</span></span></span></span>
+            time,
+            where <code>N</code> is a number of characters in the string.</p>
+        <p>And then we go through the string the second time, this time
+            we use the hash map as a reference to check if a character
+            is unique or not.<br>
+            If the character is unique, one could just return its index.
+            The complexity of the second iteration is <span class="katex"><span class="katex-mathml"><math>
+                        <semantics>
+                            <mrow>
+                                <mi mathvariant="script">O</mi>
+                                <mo>(</mo>
+                                <mi>N</mi>
+                                <mo>)</mo>
+                            </mrow>
+                            <annotation encoding="application/x-tex">\mathcal{O}(N)</annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span
+                                class="mord mathcal" style="margin-right:0.02778em;">O</span></span><span
+                            class="mopen">(</span><span class="mord mathdefault"
+                            style="margin-right:0.10903em;">N</span><span class="mclose">)</span></span></span></span>
+            as well.</p>
+        <div>
+            <div>
+                <div class="dia-container__3nrr" style="width: 789px; height: 490px;">
+                    <div class="diaporama__3Ilz"><img maxwidth="100%" maxheight="100%" alt="Current"
+                            class="dia-img__FK6S" src="blob:https://leetcode.com/ac1bd8a5-b3cc-45b9-8c2b-c1f5cf40b85c">
+                    </div>
+                    <div class="initial-play-wrapper__3bKU">
+                        <div class="initial-play__3hOF play-container__1na6"><svg viewBox="0 0 24 24" width="1em"
+                                height="1em" class="icon__3Su4">
+                                <defs>
+                                    <path id="play-arrow_svg__a" d="M8 5v14l11-7z"></path>
+                                    <mask id="play-arrow_svg__b">
+                                        <use fill-rule="evenodd" xlink:href="#play-arrow_svg__a"></use>
+                                    </mask>
+                                </defs>
+                                <g fill-rule="evenodd">
+                                    <use xlink:href="#play-arrow_svg__a"></use>
+                                    <g fill-rule="nonzero" mask="url(#play-arrow_svg__b)">
+                                        <path d="M0 0h24v24H0z"></path>
+                                    </g>
+                                </g>
+                            </svg></div>
+                    </div>
+                    <div class="control-panel__1Hwy">
+                        <div class="controls__12gf"><svg viewBox="0 0 24 24" width="1em" height="1em"
+                                class="icon__3Su4 control-group__259V">
+                                <path fill-rule="evenodd" d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"></path>
+                            </svg><svg viewBox="0 0 24 24" width="1em" height="1em"
+                                class="icon__3Su4 toggle-play__atjs control-group__259V">
+                                <defs>
+                                    <path id="play-arrow_svg__a" d="M8 5v14l11-7z"></path>
+                                    <mask id="play-arrow_svg__b">
+                                        <use fill-rule="evenodd" xlink:href="#play-arrow_svg__a"></use>
+                                    </mask>
+                                </defs>
+                                <g fill-rule="evenodd">
+                                    <use xlink:href="#play-arrow_svg__a"></use>
+                                    <g fill-rule="nonzero" mask="url(#play-arrow_svg__b)">
+                                        <path d="M0 0h24v24H0z"></path>
+                                    </g>
+                                </g>
+                            </svg><svg viewBox="0 0 24 24" width="1em" height="1em"
+                                class="icon__3Su4 control-group__259V">
+                                <path fill-rule="evenodd" d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"></path>
+                            </svg></div>
+                        <div class="frame-counter__2wBY">1 / 15</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <iframe src="https://leetcode.com/playground/B3jVCyWZ/shared" name="B3jVCyWZ" width="100%" height="361"
+            frameborder="0"></iframe>
+        <p><strong>Complexity Analysis</strong></p>
+        <ul>
+            <li>Time complexity : <span class="katex"><span class="katex-mathml"><math>
+                            <semantics>
+                                <mrow>
+                                    <mi mathvariant="script">O</mi>
+                                    <mo>(</mo>
+                                    <mi>N</mi>
+                                    <mo>)</mo>
+                                </mrow>
+                                <annotation encoding="application/x-tex">\mathcal{O}(N)</annotation>
+                            </semantics>
+                        </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                                style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span
+                                    class="mord mathcal" style="margin-right:0.02778em;">O</span></span><span
+                                class="mopen">(</span><span class="mord mathdefault"
+                                style="margin-right:0.10903em;">N</span><span
+                                class="mclose">)</span></span></span></span> since we go
+                through the string of length <code>N</code> two times.</li>
+            <li>Space complexity : <span class="katex"><span class="katex-mathml"><math>
+                            <semantics>
+                                <mrow>
+                                    <mi mathvariant="script">O</mi>
+                                    <mo>(</mo>
+                                    <mn>1</mn>
+                                    <mo>)</mo>
+                                </mrow>
+                                <annotation encoding="application/x-tex">\mathcal{O}(1)</annotation>
+                            </semantics>
+                        </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                                style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span
+                                    class="mord mathcal" style="margin-right:0.02778em;">O</span></span><span
+                                class="mopen">(</span><span class="mord">1</span><span
+                                class="mclose">)</span></span></span></span> because English alphabet contains
+                26 letters.</li>
+        </ul>
+    </div>
+</div>
+<link rel="stylesheet" href="../../../boilerplate/simple.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css"
+    integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">

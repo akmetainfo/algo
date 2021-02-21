@@ -16,6 +16,7 @@ Practical Application - Hash Map
 
 + 07 Two Sum - 0001 https://leetcode.com/explore/learn/card/hash-table/184/comparison-with-other-data-structures/1115/
 - 08 Isomorphic Strings - 0205 https://leetcode.com/explore/learn/card/hash-table/184/comparison-with-other-data-structures/1117/
++ 09 First Unique Character in a String - 0387 https://leetcode.com/explore/learn/card/hash-table/184/comparison-with-other-data-structures/1120/
 
 Practical Application - Design the Key
 
