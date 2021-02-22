@@ -19,10 +19,13 @@ public class Solution
 
         for (int i = 0; i < nums.Length; i++)
         {
-            if (dict.ContainsKey(target - nums[i]))
-                return new int[] { i, dict[target - nums[i]] };
+            var complement = target - nums[i];
             
-            dict.TryAdd(nums[i], i);
+            if (dict.ContainsKey(complement))
+                return new int[] { i, dict[complement] };
+            
+            if(!dict.ContainsKey(nums[i]))
+                dict.Add(nums[i], i);
         }
 
         throw new ArgumentException("no solution");
