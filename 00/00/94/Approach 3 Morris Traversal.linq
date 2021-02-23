@@ -4,51 +4,43 @@
   <Namespace>NUnitLite</Namespace>
 </Query>
 
-// 144. Binary Tree Preorder Traversal
-// https://leetcode.com/problems/binary-tree-preorder-traversal/
+// 94. Binary Tree Inorder Traversal
+// https://leetcode.com/problems/binary-tree-inorder-traversal/
 
 /*
-    Time: O()
-    Space: O()
+    Time: O(n)
+    Space: O(n) Arraylist of size n is used.
 */
 public class Solution
 {
-    public IList<int> PreorderTraversal(TreeNode root)
+    public IList<int> InorderTraversal(TreeNode root)
     {
         var result = new List<int>();
-
-        if (root == null)
-            return result;
-
-        result.Add(root.val);
-
-        if (root.left != null)
-            result.AddRange(PreorderTraversal(root.left));
-            
-        if (root.right != null)
-            result.AddRange(PreorderTraversal(root.right));
-
+        TreeNode curr = root;
+        TreeNode pre;
+        while (curr != null)
+        {
+            if (curr.left == null)
+            {
+                result.Add(curr.val);
+                curr = curr.right; // move to next right node
+            }
+            else
+            {
+                // has a left subtree
+                pre = curr.left;
+                while (pre.right != null)
+                {
+                    // find rightmost
+                    pre = pre.right;
+                }
+                pre.right = curr; // put cur after the pre node
+                TreeNode temp = curr; // store cur node
+                curr = curr.left; // move cur to the top of the new tree
+                temp.left = null; // original cur left be null, avoid infinite loops
+            }
+        }
         return result;
-    }
-}
-
-public class Solution1
-{
-    public IList<int> PreorderTraversal(TreeNode root)
-    {
-        var result = new List<int>();
-        PreorderTraversal(root, result);
-        return result;
-    }
-
-    private void PreorderTraversal(TreeNode node, List<int> result)
-    {
-        if (node == null)
-            return;
-
-        result.Add(node.val);
-        PreorderTraversal(node.left, result);
-        PreorderTraversal(node.right, result);
     }
 }
 
@@ -57,7 +49,7 @@ public class Solution1
 public void SolutionTests(object[] data, int[] expected)
 {
     var root = CreateRoot(data);
-    var actual = new Solution().PreorderTraversal(root);
+    var actual = new Solution().InorderTraversal(root);
     Assert.That(actual, Is.EqualTo(expected));
 }
 

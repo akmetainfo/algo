@@ -4,8 +4,8 @@
   <Namespace>NUnitLite</Namespace>
 </Query>
 
-// 144. Binary Tree Preorder Traversal
-// https://leetcode.com/problems/binary-tree-preorder-traversal/
+// 145. Binary Tree Postorder Traversal
+// https://leetcode.com/problems/binary-tree-postorder-traversal/
 
 /*
     Time: O()
@@ -13,42 +13,28 @@
 */
 public class Solution
 {
-    public IList<int> PreorderTraversal(TreeNode root)
+    public IList<int> PostorderTraversal(TreeNode root)
     {
+        var stack = new Stack<TreeNode>();
         var result = new List<int>();
-
-        if (root == null)
-            return result;
-
-        result.Add(root.val);
-
-        if (root.left != null)
-            result.AddRange(PreorderTraversal(root.left));
-            
-        if (root.right != null)
-            result.AddRange(PreorderTraversal(root.right));
-
+        TreeNode lastNode = null;
+        TreeNode peek = null;
+        while (stack.Count != 0 || root != null)
+        {
+            if (root != null)
+            {
+                stack.Push(root);
+                root = root.left;
+            }
+            else if ((peek = stack.Peek()).right != null && lastNode != peek.right)
+                root = peek.right;
+            else
+            {
+                result.Add(peek.val);
+                lastNode = stack.Pop();
+            }
+        }
         return result;
-    }
-}
-
-public class Solution1
-{
-    public IList<int> PreorderTraversal(TreeNode root)
-    {
-        var result = new List<int>();
-        PreorderTraversal(root, result);
-        return result;
-    }
-
-    private void PreorderTraversal(TreeNode node, List<int> result)
-    {
-        if (node == null)
-            return;
-
-        result.Add(node.val);
-        PreorderTraversal(node.left, result);
-        PreorderTraversal(node.right, result);
     }
 }
 
@@ -57,15 +43,17 @@ public class Solution1
 public void SolutionTests(object[] data, int[] expected)
 {
     var root = CreateRoot(data);
-    var actual = new Solution().PreorderTraversal(root);
+    var actual = new Solution().PostorderTraversal(root);
     Assert.That(actual, Is.EqualTo(expected));
 }
 
-public class TreeNode {
+public class TreeNode
+{
     public int val;
     public TreeNode left;
     public TreeNode right;
-    public TreeNode(int val=0, TreeNode left=null, TreeNode right=null) {
+    public TreeNode(int val = 0, TreeNode left = null, TreeNode right = null)
+    {
         this.val = val;
         this.left = left;
         this.right = right;

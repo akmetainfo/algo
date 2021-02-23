@@ -4,34 +4,51 @@
   <Namespace>NUnitLite</Namespace>
 </Query>
 
-// 144. Binary Tree Preorder Traversal
-// https://leetcode.com/problems/binary-tree-preorder-traversal/
+// 94. Binary Tree Inorder Traversal
+// https://leetcode.com/problems/binary-tree-inorder-traversal/
 
 /*
-    Time: O()
-    Space: O()
+    Time: O(n) The time complexity is O(n) because the recursive function is T(n) = 2⋅T(n/2)+1.s
+    Space: O(n) The worst case space required is O(n), and in the average case it's O(log n) where n is number of nodes.
 */
 public class Solution
 {
-    public IList<int> PreorderTraversal(TreeNode root)
+    public IList<int> InorderTraversal(TreeNode root)
     {
         var result = new List<int>();
-        
+
         if (root == null)
             return result;
 
-        var stack = new Stack<TreeNode>();
-        stack.Push(root);
-        while (stack.Count > 0)
-        {
-            var node = stack.Pop();
-            result.Add(node.val);
-            if (node.right != null)
-                stack.Push(node.right);
-            if (node.left != null)
-                stack.Push(node.left);
-        }
+        if (root.left != null)
+            result.AddRange(InorderTraversal(root.left));
+            
+        result.Add(root.val);
+        
+        if (root.right != null)
+            result.AddRange(InorderTraversal(root.right));
+
         return result;
+    }
+}
+
+public class Solution1
+{
+    public IList<int> InorderTraversal(TreeNode root)
+    {
+        var result = new List<int>();
+        InorderTraversal(root, result);
+        return result;
+    }
+
+    private void InorderTraversal(TreeNode node, List<int> result)
+    {
+        if (node == null)
+            return;
+
+        InorderTraversal(node.left, result);
+        result.Add(node.val);
+        InorderTraversal(node.right, result);
     }
 }
 
@@ -40,7 +57,7 @@ public class Solution
 public void SolutionTests(object[] data, int[] expected)
 {
     var root = CreateRoot(data);
-    var actual = new Solution().PreorderTraversal(root);
+    var actual = new Solution().InorderTraversal(root);
     Assert.That(actual, Is.EqualTo(expected));
 }
 
@@ -85,7 +102,6 @@ private TreeNode CreateRoot(object[] data)
 //}
 
 #endregion
-
 
 #region unit tests runner
 

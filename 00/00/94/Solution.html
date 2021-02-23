@@ -1,0 +1,455 @@
+<div class="content__QRGW">
+    <div>
+        <h2>Solution</h2>
+        <hr>
+        <h4 id="approach-1-recursive-approach">Approach 1: Recursive Approach</h4>
+        <p>The first method to solve this problem is using recursion.
+            This is the classical method and is straightforward. We can define a helper function to implement recursion.
+        </p>
+        <iframe src="https://leetcode.com/playground/stzQZusR/shared" name="stzQZusR" width="100%" height="378"
+            frameborder="0"></iframe>
+        <p><strong>Complexity Analysis</strong></p>
+        <ul>
+            <li>
+                <p>Time complexity : <span class="katex"><span class="katex-mathml"><math>
+                                <semantics>
+                                    <mrow>
+                                        <mi>O</mi>
+                                        <mo>(</mo>
+                                        <mi>n</mi>
+                                        <mo>)</mo>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">O(n)</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                                    class="mord mathdefault" style="margin-right:0.02778em;">O</span><span
+                                    class="mopen">(</span><span class="mord mathdefault">n</span><span
+                                    class="mclose">)</span></span></span></span>. The time complexity is <span
+                        class="katex"><span class="katex-mathml"><math>
+                                <semantics>
+                                    <mrow>
+                                        <mi>O</mi>
+                                        <mo>(</mo>
+                                        <mi>n</mi>
+                                        <mo>)</mo>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">O(n)</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                                    class="mord mathdefault" style="margin-right:0.02778em;">O</span><span
+                                    class="mopen">(</span><span class="mord mathdefault">n</span><span
+                                    class="mclose">)</span></span></span></span> because the recursive function is <span
+                        class="katex"><span class="katex-mathml"><math>
+                                <semantics>
+                                    <mrow>
+                                        <mi>T</mi>
+                                        <mo>(</mo>
+                                        <mi>n</mi>
+                                        <mo>)</mo>
+                                        <mo>=</mo>
+                                        <mn>2</mn>
+                                        <mo>⋅</mo>
+                                        <mi>T</mi>
+                                        <mo>(</mo>
+                                        <mi>n</mi>
+                                        <mi mathvariant="normal">/</mi>
+                                        <mn>2</mn>
+                                        <mo>)</mo>
+                                        <mo>+</mo>
+                                        <mn>1</mn>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">T(n) = 2 \cdot T(n/2)+1</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                                    class="mord mathdefault" style="margin-right:0.13889em;">T</span><span
+                                    class="mopen">(</span><span class="mord mathdefault">n</span><span
+                                    class="mclose">)</span><span class="mspace"
+                                    style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
+                                    class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span
+                                class="base"><span class="strut"
+                                    style="height:0.64444em;vertical-align:0em;"></span><span class="mord">2</span><span
+                                    class="mspace" style="margin-right:0.2222222222222222em;"></span><span
+                                    class="mbin">⋅</span><span class="mspace"
+                                    style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span
+                                    class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                                    class="mord mathdefault" style="margin-right:0.13889em;">T</span><span
+                                    class="mopen">(</span><span class="mord mathdefault">n</span><span
+                                    class="mord">/</span><span class="mord">2</span><span class="mclose">)</span><span
+                                    class="mspace" style="margin-right:0.2222222222222222em;"></span><span
+                                    class="mbin">+</span><span class="mspace"
+                                    style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span
+                                    class="strut" style="height:0.64444em;vertical-align:0em;"></span><span
+                                    class="mord">1</span></span></span></span>.</p>
+            </li>
+            <li>
+                <p>Space complexity : The worst case space required is <span class="katex"><span
+                            class="katex-mathml"><math>
+                                <semantics>
+                                    <mrow>
+                                        <mi>O</mi>
+                                        <mo>(</mo>
+                                        <mi>n</mi>
+                                        <mo>)</mo>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">O(n)</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                                    class="mord mathdefault" style="margin-right:0.02778em;">O</span><span
+                                    class="mopen">(</span><span class="mord mathdefault">n</span><span
+                                    class="mclose">)</span></span></span></span>, and in the average case it's <span
+                        class="katex"><span class="katex-mathml"><math>
+                                <semantics>
+                                    <mrow>
+                                        <mi>O</mi>
+                                        <mo>(</mo>
+                                        <mi>log</mi>
+                                        <mo>⁡</mo>
+                                        <mi>n</mi>
+                                        <mo>)</mo>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">O(\log n)</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                                    class="mord mathdefault" style="margin-right:0.02778em;">O</span><span
+                                    class="mopen">(</span><span class="mop">lo<span
+                                        style="margin-right:0.01389em;">g</span></span><span class="mspace"
+                                    style="margin-right:0.16666666666666666em;"></span><span
+                                    class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span>
+                    where <span class="katex"><span class="katex-mathml"><math>
+                                <semantics>
+                                    <mrow>
+                                        <mi>n</mi>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex"> n</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut" style="height:0.43056em;vertical-align:0em;"></span><span
+                                    class="mord mathdefault">n</span></span></span></span> is number of nodes.
+                    <br>
+                    <br>
+                </p>
+            </li>
+        </ul>
+        <hr>
+        <h4 id="approach-2-iterating-method-using-stack">Approach 2: Iterating method using Stack</h4>
+        <p>The strategy is very similiar to the first method, the different is using stack.</p>
+        <p>Here is an illustration:</p>
+        <div>
+            <div>
+                <div class="dia-container__3nrr" style="width: 789px; height: 444px;">
+                    <div class="diaporama__3Ilz"><img maxwidth="100%" maxheight="100%" alt="Current"
+                            class="dia-img__FK6S" src="blob:https://leetcode.com/bb32c28c-9d65-46c1-9f89-da35d878cce9">
+                    </div>
+                    <div class="initial-play-wrapper__3bKU">
+                        <div class="initial-play__3hOF play-container__1na6"><svg viewBox="0 0 24 24" width="1em"
+                                height="1em" class="icon__3Su4">
+                                <defs>
+                                    <path id="play-arrow_svg__a" d="M8 5v14l11-7z"></path>
+                                    <mask id="play-arrow_svg__b">
+                                        <use fill-rule="evenodd" xlink:href="#play-arrow_svg__a"></use>
+                                    </mask>
+                                </defs>
+                                <g fill-rule="evenodd">
+                                    <use xlink:href="#play-arrow_svg__a"></use>
+                                    <g fill-rule="nonzero" mask="url(#play-arrow_svg__b)">
+                                        <path d="M0 0h24v24H0z"></path>
+                                    </g>
+                                </g>
+                            </svg></div>
+                    </div>
+                    <div class="control-panel__1Hwy">
+                        <div class="controls__12gf"><svg viewBox="0 0 24 24" width="1em" height="1em"
+                                class="icon__3Su4 control-group__259V">
+                                <path fill-rule="evenodd" d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"></path>
+                            </svg><svg viewBox="0 0 24 24" width="1em" height="1em"
+                                class="icon__3Su4 toggle-play__atjs control-group__259V">
+                                <defs>
+                                    <path id="play-arrow_svg__a" d="M8 5v14l11-7z"></path>
+                                    <mask id="play-arrow_svg__b">
+                                        <use fill-rule="evenodd" xlink:href="#play-arrow_svg__a"></use>
+                                    </mask>
+                                </defs>
+                                <g fill-rule="evenodd">
+                                    <use xlink:href="#play-arrow_svg__a"></use>
+                                    <g fill-rule="nonzero" mask="url(#play-arrow_svg__b)">
+                                        <path d="M0 0h24v24H0z"></path>
+                                    </g>
+                                </g>
+                            </svg><svg viewBox="0 0 24 24" width="1em" height="1em"
+                                class="icon__3Su4 control-group__259V">
+                                <path fill-rule="evenodd" d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"></path>
+                            </svg></div>
+                        <div class="frame-counter__2wBY">1 / 14</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <iframe src="https://leetcode.com/playground/C9344qJ6/shared" name="C9344qJ6" width="100%" height="344"
+            frameborder="0"></iframe>
+        <p><strong>Complexity Analysis</strong></p>
+        <ul>
+            <li>
+                <p>Time complexity : <span class="katex"><span class="katex-mathml"><math>
+                                <semantics>
+                                    <mrow>
+                                        <mi>O</mi>
+                                        <mo>(</mo>
+                                        <mi>n</mi>
+                                        <mo>)</mo>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">O(n)</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                                    class="mord mathdefault" style="margin-right:0.02778em;">O</span><span
+                                    class="mopen">(</span><span class="mord mathdefault">n</span><span
+                                    class="mclose">)</span></span></span></span>.</p>
+            </li>
+            <li>
+                <p>Space complexity : <span class="katex"><span class="katex-mathml"><math>
+                                <semantics>
+                                    <mrow>
+                                        <mi>O</mi>
+                                        <mo>(</mo>
+                                        <mi>n</mi>
+                                        <mo>)</mo>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">O(n)</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                                    class="mord mathdefault" style="margin-right:0.02778em;">O</span><span
+                                    class="mopen">(</span><span class="mord mathdefault">n</span><span
+                                    class="mclose">)</span></span></span></span>.
+                    <br>
+                    <br>
+                </p>
+            </li>
+        </ul>
+        <hr>
+        <h4 id="approach-3-morris-traversal">Approach 3: Morris Traversal</h4>
+        <p>In this method, we have to use a new data structure-Threaded Binary Tree, and the strategy is as follows:</p>
+        <blockquote>
+            <p>Step 1: Initialize current as root</p>
+            <p>Step 2: While current is not NULL,</p>
+            <pre><code><span class="hljs-type">If</span> current does not have <span class="hljs-keyword">left</span> child
+    
+        a. <span class="hljs-type">Add</span> current’s value
+    
+        b. <span class="hljs-type">Go</span> to the <span class="hljs-keyword">right</span>, i.e., current = current.<span class="hljs-keyword">right</span>
+    
+    <span class="hljs-type">Else</span>
+    
+        a. <span class="hljs-type">In</span> current's <span class="hljs-keyword">left</span> subtree, make current the <span class="hljs-keyword">right</span> child of the rightmost node
+    
+        b. <span class="hljs-type">Go</span> to this <span class="hljs-keyword">left</span> child, i.e., current = current.<span class="hljs-keyword">left</span>
+    </code></pre>
+        </blockquote>
+        <p>For example:</p>
+        <pre><code>
+              1
+            /   \
+           2     3
+          / \   /
+         4   5 6
+    
+    </code></pre>
+        <p>First, 1 is the root, so initialize 1 as current, 1 has left child which is 2, the current's left subtree is
+        </p>
+        <pre><code>         2
+            / \
+           4   5
+    </code></pre>
+        <p>So in this subtree, the rightmost node is 5, then make the current(1) as the right child of 5. Set current =
+            cuurent.left (current = 2).
+            The tree now looks like:</p>
+        <pre><code>         2
+            / \
+           4   5
+                \
+                 1
+                  \
+                   3
+                  /
+                 6
+    </code></pre>
+        <p>For current 2, which has left child 4, we can continue with thesame process as we did above</p>
+        <pre><code>        4
+             \
+              2
+               \
+                5
+                 \
+                  1
+                   \
+                    3
+                   /
+                  6
+    </code></pre>
+        <p>then add 4 because it has no left child, then add 2, 5, 1, 3 one by one, for node 3 which has left child 6,
+            do the same as above.
+            Finally, the inorder taversal is [4,2,5,1,6,3].</p>
+        <p>For more details, please check
+            <a href="https://en.wikipedia.org/wiki/Threaded_binary_tree">Threaded binary tree</a> and
+            <a
+                href="https://stackoverflow.com/questions/5502916/explain-morris-inorder-tree-traversal-without-using-stacks-or-recursion">Explaination
+                of Morris Method</a>
+        </p>
+        <iframe src="https://leetcode.com/playground/osLqwuNN/shared" name="osLqwuNN" width="100%" height="446"
+            frameborder="0"></iframe>
+        <p><strong>Complexity Analysis</strong></p>
+        <ul>
+            <li>
+                <p>Time complexity : <span class="katex"><span class="katex-mathml"><math>
+                                <semantics>
+                                    <mrow>
+                                        <mi>O</mi>
+                                        <mo>(</mo>
+                                        <mi>n</mi>
+                                        <mo>)</mo>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">O(n)</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                                    class="mord mathdefault" style="margin-right:0.02778em;">O</span><span
+                                    class="mopen">(</span><span class="mord mathdefault">n</span><span
+                                    class="mclose">)</span></span></span></span>. To prove that the time complexity is
+                    <span class="katex"><span class="katex-mathml"><math>
+                                <semantics>
+                                    <mrow>
+                                        <mi>O</mi>
+                                        <mo>(</mo>
+                                        <mi>n</mi>
+                                        <mo>)</mo>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">O(n)</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                                    class="mord mathdefault" style="margin-right:0.02778em;">O</span><span
+                                    class="mopen">(</span><span class="mord mathdefault">n</span><span
+                                    class="mclose">)</span></span></span></span>,
+                    the biggest problem lies in finding the time complexity of finding the predecessor nodes of all the
+                    nodes in the binary tree.
+                    Intuitively, the complexity is <span class="katex"><span class="katex-mathml"><math>
+                                <semantics>
+                                    <mrow>
+                                        <mi>O</mi>
+                                        <mo>(</mo>
+                                        <mi>n</mi>
+                                        <mi>log</mi>
+                                        <mo>⁡</mo>
+                                        <mi>n</mi>
+                                        <mo>)</mo>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">O(n\log n)</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                                    class="mord mathdefault" style="margin-right:0.02778em;">O</span><span
+                                    class="mopen">(</span><span class="mord mathdefault">n</span><span class="mspace"
+                                    style="margin-right:0.16666666666666666em;"></span><span class="mop">lo<span
+                                        style="margin-right:0.01389em;">g</span></span><span class="mspace"
+                                    style="margin-right:0.16666666666666666em;"></span><span
+                                    class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span>,
+                    because to find the predecessor node for a single node related to the height of the tree.
+                    But in fact, finding the predecessor nodes for all nodes only needs <span class="katex"><span
+                            class="katex-mathml"><math>
+                                <semantics>
+                                    <mrow>
+                                        <mi>O</mi>
+                                        <mo>(</mo>
+                                        <mi>n</mi>
+                                        <mo>)</mo>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">O(n)</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                                    class="mord mathdefault" style="margin-right:0.02778em;">O</span><span
+                                    class="mopen">(</span><span class="mord mathdefault">n</span><span
+                                    class="mclose">)</span></span></span></span> time. Because a binary Tree with <span
+                        class="katex"><span class="katex-mathml"><math>
+                                <semantics>
+                                    <mrow>
+                                        <mi>n</mi>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">n</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut" style="height:0.43056em;vertical-align:0em;"></span><span
+                                    class="mord mathdefault">n</span></span></span></span> nodes has <span
+                        class="katex"><span class="katex-mathml"><math>
+                                <semantics>
+                                    <mrow>
+                                        <mi>n</mi>
+                                        <mo>−</mo>
+                                        <mn>1</mn>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">n-1</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut" style="height:0.66666em;vertical-align:-0.08333em;"></span><span
+                                    class="mord mathdefault">n</span><span class="mspace"
+                                    style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span
+                                    class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span
+                                class="base"><span class="strut"
+                                    style="height:0.64444em;vertical-align:0em;"></span><span
+                                    class="mord">1</span></span></span></span> edges, the whole processing for each
+                    edges up to 2 times, one is to locate a node, and the other is to find the predecessor node.
+                    So the complexity is <span class="katex"><span class="katex-mathml"><math>
+                                <semantics>
+                                    <mrow>
+                                        <mi>O</mi>
+                                        <mo>(</mo>
+                                        <mi>n</mi>
+                                        <mo>)</mo>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">O(n)</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                                    class="mord mathdefault" style="margin-right:0.02778em;">O</span><span
+                                    class="mopen">(</span><span class="mord mathdefault">n</span><span
+                                    class="mclose">)</span></span></span></span>.
+                </p>
+            </li>
+            <li>
+                <p>Space complexity : <span class="katex"><span class="katex-mathml"><math>
+                                <semantics>
+                                    <mrow>
+                                        <mi>O</mi>
+                                        <mo>(</mo>
+                                        <mi>n</mi>
+                                        <mo>)</mo>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">O(n)</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                                    class="mord mathdefault" style="margin-right:0.02778em;">O</span><span
+                                    class="mopen">(</span><span class="mord mathdefault">n</span><span
+                                    class="mclose">)</span></span></span></span>. Arraylist of size <span
+                        class="katex"><span class="katex-mathml"><math>
+                                <semantics>
+                                    <mrow>
+                                        <mi>n</mi>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">n</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut" style="height:0.43056em;vertical-align:0em;"></span><span
+                                    class="mord mathdefault">n</span></span></span></span> is used.</p>
+            </li>
+        </ul>
+    </div>
+</div>
+<link rel="stylesheet" href="../../../boilerplate/simple.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css"
+    integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">

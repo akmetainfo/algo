@@ -70,7 +70,6 @@ private TreeNode CreateRoot(object[] data)
 
 #endregion
 
-
 #region unit tests runner
 
 void Main()

@@ -4,51 +4,40 @@
   <Namespace>NUnitLite</Namespace>
 </Query>
 
-// 144. Binary Tree Preorder Traversal
-// https://leetcode.com/problems/binary-tree-preorder-traversal/
+// 94. Binary Tree Inorder Traversal
+// https://leetcode.com/problems/binary-tree-inorder-traversal/
 
 /*
-    Time: O()
-    Space: O()
+    Time: O(n)
+    Space: O(n)
 */
 public class Solution
 {
-    public IList<int> PreorderTraversal(TreeNode root)
+    public IList<int> InorderTraversal(TreeNode root)
     {
         var result = new List<int>();
-
         if (root == null)
             return result;
 
-        result.Add(root.val);
+        var stack = new Stack<TreeNode>();
+        var node = root;
 
-        if (root.left != null)
-            result.AddRange(PreorderTraversal(root.left));
-            
-        if (root.right != null)
-            result.AddRange(PreorderTraversal(root.right));
+        while (stack.Count > 0 || node != null)
+        {
+            if (node != null)
+            {
+                stack.Push(node);
+                node = node.left;
+            }
+            else
+            {
+                node = stack.Pop();
+                result.Add(node.val);
+                node = node.right;
+            }
+        }
 
         return result;
-    }
-}
-
-public class Solution1
-{
-    public IList<int> PreorderTraversal(TreeNode root)
-    {
-        var result = new List<int>();
-        PreorderTraversal(root, result);
-        return result;
-    }
-
-    private void PreorderTraversal(TreeNode node, List<int> result)
-    {
-        if (node == null)
-            return;
-
-        result.Add(node.val);
-        PreorderTraversal(node.left, result);
-        PreorderTraversal(node.right, result);
     }
 }
 
@@ -57,7 +46,7 @@ public class Solution1
 public void SolutionTests(object[] data, int[] expected)
 {
     var root = CreateRoot(data);
-    var actual = new Solution().PreorderTraversal(root);
+    var actual = new Solution().InorderTraversal(root);
     Assert.That(actual, Is.EqualTo(expected));
 }
 

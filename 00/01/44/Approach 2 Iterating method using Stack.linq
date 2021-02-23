@@ -16,39 +16,22 @@ public class Solution
     public IList<int> PreorderTraversal(TreeNode root)
     {
         var result = new List<int>();
-
+        
         if (root == null)
             return result;
 
-        result.Add(root.val);
-
-        if (root.left != null)
-            result.AddRange(PreorderTraversal(root.left));
-            
-        if (root.right != null)
-            result.AddRange(PreorderTraversal(root.right));
-
+        var stack = new Stack<TreeNode>();
+        stack.Push(root);
+        while (stack.Count > 0)
+        {
+            var node = stack.Pop();
+            result.Add(node.val);
+            if (node.right != null)
+                stack.Push(node.right);
+            if (node.left != null)
+                stack.Push(node.left);
+        }
         return result;
-    }
-}
-
-public class Solution1
-{
-    public IList<int> PreorderTraversal(TreeNode root)
-    {
-        var result = new List<int>();
-        PreorderTraversal(root, result);
-        return result;
-    }
-
-    private void PreorderTraversal(TreeNode node, List<int> result)
-    {
-        if (node == null)
-            return;
-
-        result.Add(node.val);
-        PreorderTraversal(node.left, result);
-        PreorderTraversal(node.right, result);
     }
 }
 
