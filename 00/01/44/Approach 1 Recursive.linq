@@ -47,8 +47,38 @@ public class Solution1
             return;
 
         result.Add(node.val);
-        PreorderTraversal(node.left, result);
-        PreorderTraversal(node.right, result);
+        
+        if (node.left != null)
+            PreorderTraversal(node.left, result);
+            
+        if (node.right != null)
+            PreorderTraversal(node.right, result);
+    }
+}
+
+public class Solution2
+{
+    public IList<int> PreorderTraversal(TreeNode root)
+    {
+        var result = new List<int>();
+        
+        if(root != null)
+            result = PreorderTraversalHelper(root).ToList();
+            
+        return result;
+    }
+
+    private static IEnumerable<int> PreorderTraversalHelper(TreeNode node)
+    {
+        yield return node.val;
+        
+        if (node.left != null)
+            foreach (var nod in PreorderTraversalHelper(node.left))
+                yield return nod;
+                
+        if (node.right != null)
+            foreach (var nod in PreorderTraversalHelper(node.right))
+                yield return nod;
     }
 }
 

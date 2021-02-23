@@ -46,12 +46,41 @@ public class Solution1
         if (node == null)
             return;
 
-        PostorderTraversal(node.left, result);
-        PostorderTraversal(node.right, result);
+        if (node.left != null)
+            PostorderTraversal(node.left, result);
+
+        if (node.right != null)
+            PostorderTraversal(node.right, result);
+        
         result.Add(node.val);
     }
 }
 
+public class Solution2
+{
+    public IList<int> PostorderTraversal(TreeNode root)
+    {
+        var result = new List<int>();
+
+        if (root != null)
+            result = PostorderTraversalHelper(root).ToList();
+
+        return result;
+    }
+
+    private static IEnumerable<int> PostorderTraversalHelper(TreeNode node)
+    {
+        if (node.left != null)
+            foreach (var nod in PostorderTraversalHelper(node.left))
+                yield return nod;
+
+        if (node.right != null)
+            foreach (var nod in PostorderTraversalHelper(node.right))
+                yield return nod;
+
+        yield return node.val;
+    }
+}
 
 [Test]
 [TestCase(new object[] { 1, null, 2, 3 }, new int[] { 3, 2, 1 })]
