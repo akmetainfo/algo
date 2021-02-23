@@ -25,9 +25,12 @@ public class Solution
         while (stack.Count > 0)
         {
             var node = stack.Pop();
+            
             result.Add(node.val);
+            
             if (node.right != null)
                 stack.Push(node.right);
+                
             if (node.left != null)
                 stack.Push(node.left);
         }
