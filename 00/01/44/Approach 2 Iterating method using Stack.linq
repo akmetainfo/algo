@@ -38,6 +38,34 @@ public class Solution
     }
 }
 
+// Looks similar as InorderTraversal Iterative
+public class Solution1
+{
+    public IList<int> PreorderTraversal(TreeNode root)
+    {
+        var result = new List<int>();
+
+        var stack = new Stack<TreeNode>();
+        var node = root;
+
+        while (stack.Count != 0 || node != null)
+        {
+            if (node != null)
+            {
+                result.Add(node.val);
+                stack.Push(node);
+                node = node.left;
+            }
+            else
+            {
+                node = stack.Pop();
+                node = node.right;
+            }
+        }
+        return result;
+    }
+}
+
 [Test]
 [TestCase(new object[] { 1, null, 2, 3 }, new int[] { 1, 2, 3 })]
 [TestCase(new object[] { }, new int[] { })]
