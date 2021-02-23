@@ -28,6 +28,24 @@ public class Solution
     }
 }
 
+public class Solution1
+{
+    public int[] Intersection(int[] nums1, int[] nums2)
+    {
+        var set1 = new HashSet<int>(nums1);
+
+        var result = new HashSet<int>();
+
+        foreach (var item in nums2)
+        {
+            if (set1.Contains(item))
+                result.Add(item);
+        }
+
+        return result.ToArray();
+    }
+}
+
 [Test]
 [TestCase(new[] { 1, 2, 2, 1 }, new[] { 2, 2 }, new[] { 2 })]
 [TestCase(new[] { 4, 9, 5 }, new[] { 9, 4, 9, 8, 4 }, new[] { 9, 4 })]
