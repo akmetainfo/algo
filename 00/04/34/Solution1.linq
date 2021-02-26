@@ -17,8 +17,8 @@ public class Solution
     {
         var trimmed = s.Trim();
         
-        if (trimmed.Equals(""))
-            return 0;
+        //if (trimmed.Equals(""))
+        //    return 0;
 
         return trimmed.Split(new char[] { ' '}, StringSplitOptions.RemoveEmptyEntries).Length;
     }
