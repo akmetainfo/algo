@@ -20,9 +20,11 @@ public class Solution
 }
 
 [Test]
-[TestCase(5, 2)]
 [TestCase(1, 0)]
 [TestCase(2, 1)]
+[TestCase(3, 0)]
+[TestCase(4, 3)]
+[TestCase(2147483647, 0)]
 public void SolutionTests(int num, int expected)
 {
     var actual = new Solution().FindComplement(num);

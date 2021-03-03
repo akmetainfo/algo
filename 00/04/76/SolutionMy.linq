@@ -13,33 +13,6 @@
 */
 public class Solution
 {
-    // This works also, but still slowly - Time Limit Exceeded
-    public int FindComplement(int num)
-    {
-        return NearestTwo(num) - num - 1;
-    }
-
-    private int NearestTwo(int num)
-    {
-        if (num < 2)
-            return 2;
-
-        int nearestTwo = 0;
-
-        for (int i = 0; i < 32; i++)
-        {
-            nearestTwo = 1 << i;
-            if (nearestTwo >= num)
-                break;
-        }
-
-        return nearestTwo;
-    }
-}
-
-public class Solution2
-{
-    // This works also, but still slowly - Time Limit Exceeded
     public int FindComplement(int num)
     {
         return NearestTwo(num) - num - 1;
@@ -47,9 +20,6 @@ public class Solution2
 
     private int NearestTwo(int target)
     {
-        if (target == 0)
-            return 2;
-
         var left = 0;
         var right = 32;
 
@@ -76,7 +46,7 @@ public class Solution2
 
 public class Solution1
 {
-    // This works, but very slowly - Time Limit Exceeded
+    // This works, but very slowly for case 2147483647 - Time Limit Exceeded
     public int FindComplement(int num)
     {
         var nearestTwo = 2;
@@ -89,9 +59,12 @@ public class Solution1
 }
 
 [Test]
-[TestCase(5, 2)]
 [TestCase(1, 0)]
 [TestCase(2, 1)]
+[TestCase(3, 0)]
+[TestCase(4, 3)]
+[TestCase(5, 2)]
+[TestCase(2147483647, 0)]
 public void SolutionTests(int num, int expected)
 {
     var actual = new Solution().FindComplement(num);
