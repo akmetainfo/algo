@@ -23,6 +23,7 @@ public class Solution
 [TestCase(new object[] { 1, null, 2, 3 }, new int[] { 1, 2, 3 })]
 [TestCase(new object[] { }, new int[] { })]
 [TestCase(new object[] { 1 }, new int[] { 1 })]
+[TestCase(new object[] { 1, 2, 3 }, new int[] { 1, 2, 3 })]
 public void SolutionTests(object[] data, int[] expected)
 {
     var root = CreateTree(data);
