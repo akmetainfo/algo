@@ -1,5 +1,6 @@
 0482,License Key Formatting
 0500,Keyboard Row
+0507,Perfect Number
 0509,Fibonacci Number
 0520,Detect Capital
 0705,Design HashSet

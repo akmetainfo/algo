@@ -1,0 +1,1179 @@
+<div class="content__QRGW">
+    <div>
+        <h2>Solution</h2>
+        <hr>
+        <h4 id="approach-1-brute-force-time-limit-exceeded">Approach #1 Brute Force [Time Limit Exceeded]</h4>
+        <p><strong>Algorithm</strong></p>
+        <p>In brute force approach, we consider every possible number to be a divisor of the given number <span
+                class="katex"><span class="katex-mathml"><math>
+                        <semantics>
+                            <mrow>
+                                <mi>n</mi>
+                                <mi>u</mi>
+                                <mi>m</mi>
+                            </mrow>
+                            <annotation encoding="application/x-tex">num</annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:0.43056em;vertical-align:0em;"></span><span
+                            class="mord mathdefault">n</span><span class="mord mathdefault">u</span><span
+                            class="mord mathdefault">m</span></span></span></span>, by iterating over all the numbers
+            lesser than <span class="katex"><span class="katex-mathml"><math>
+                        <semantics>
+                            <mrow>
+                                <mi>n</mi>
+                                <mi>u</mi>
+                                <mi>m</mi>
+                            </mrow>
+                            <annotation encoding="application/x-tex">num</annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:0.43056em;vertical-align:0em;"></span><span
+                            class="mord mathdefault">n</span><span class="mord mathdefault">u</span><span
+                            class="mord mathdefault">m</span></span></span></span>. Then, we add up all the factors to
+            check if the given number satisfies the Perfect Number property. This approach obviously fails if the number
+            <span class="katex"><span class="katex-mathml"><math>
+                        <semantics>
+                            <mrow>
+                                <mi>n</mi>
+                                <mi>u</mi>
+                                <mi>m</mi>
+                            </mrow>
+                            <annotation encoding="application/x-tex">num</annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:0.43056em;vertical-align:0em;"></span><span
+                            class="mord mathdefault">n</span><span class="mord mathdefault">u</span><span
+                            class="mord mathdefault">m</span></span></span></span> is very large.
+        </p>
+        <iframe src="https://leetcode.com/playground/6Nzf7w9h/shared" name="6Nzf7w9h" width="100%" height="343"
+            frameborder="0"></iframe>
+        <p><strong>Complexity Analysis</strong></p>
+        <ul>
+            <li>
+                <p>Time complexity : <span class="katex"><span class="katex-mathml"><math>
+                                <semantics>
+                                    <mrow>
+                                        <mi>O</mi>
+                                        <mo>(</mo>
+                                        <mi>n</mi>
+                                        <mo>)</mo>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">O(n)</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                                    class="mord mathdefault" style="margin-right:0.02778em;">O</span><span
+                                    class="mopen">(</span><span class="mord mathdefault">n</span><span
+                                    class="mclose">)</span></span></span></span>. We iterate over all the numbers lesser
+                    than <span class="katex"><span class="katex-mathml"><math>
+                                <semantics>
+                                    <mrow>
+                                        <mi>n</mi>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">n</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut" style="height:0.43056em;vertical-align:0em;"></span><span
+                                    class="mord mathdefault">n</span></span></span></span>.</p>
+            </li>
+            <li>
+                <p>Space complexity : <span class="katex"><span class="katex-mathml"><math>
+                                <semantics>
+                                    <mrow>
+                                        <mi>O</mi>
+                                        <mo>(</mo>
+                                        <mn>1</mn>
+                                        <mo>)</mo>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">O(1)</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                                    class="mord mathdefault" style="margin-right:0.02778em;">O</span><span
+                                    class="mopen">(</span><span class="mord">1</span><span
+                                    class="mclose">)</span></span></span></span>. Constant extra space is used.</p>
+            </li>
+        </ul>
+        <hr>
+        <h4 id="approach-2-better-brute-force-time-limit-exceeded">Approach #2 Better Brute Force [Time Limit Exceeded]
+        </h4>
+        <p><strong>Algorithm</strong></p>
+        <p>We can little optimize the brute force by breaking the loop when the value of <span class="katex"><span
+                    class="katex-mathml"><math>
+                        <semantics>
+                            <mrow>
+                                <mi>s</mi>
+                                <mi>u</mi>
+                                <mi>m</mi>
+                            </mrow>
+                            <annotation encoding="application/x-tex">sum</annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:0.43056em;vertical-align:0em;"></span><span
+                            class="mord mathdefault">s</span><span class="mord mathdefault">u</span><span
+                            class="mord mathdefault">m</span></span></span></span> increase the value of <span
+                class="katex"><span class="katex-mathml"><math>
+                        <semantics>
+                            <mrow>
+                                <mi>n</mi>
+                                <mi>u</mi>
+                                <mi>m</mi>
+                            </mrow>
+                            <annotation encoding="application/x-tex">num</annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:0.43056em;vertical-align:0em;"></span><span
+                            class="mord mathdefault">n</span><span class="mord mathdefault">u</span><span
+                            class="mord mathdefault">m</span></span></span></span>. In that case, we can directly return
+            <span class="katex"><span class="katex-mathml"><math>
+                        <semantics>
+                            <mrow>
+                                <mi>f</mi>
+                                <mi>a</mi>
+                                <mi>l</mi>
+                                <mi>s</mi>
+                                <mi>e</mi>
+                            </mrow>
+                            <annotation encoding="application/x-tex">false</annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span
+                            class="mord mathdefault" style="margin-right:0.10764em;">f</span><span
+                            class="mord mathdefault">a</span><span class="mord mathdefault"
+                            style="margin-right:0.01968em;">l</span><span class="mord mathdefault">s</span><span
+                            class="mord mathdefault">e</span></span></span></span>.
+        </p>
+        <iframe src="https://leetcode.com/playground/bGGFxpmt/shared" name="bGGFxpmt" width="100%" height="377"
+            frameborder="0"></iframe>
+        <p><strong>Complexity Analysis</strong></p>
+        <ul>
+            <li>
+                <p>Time complexity : <span class="katex"><span class="katex-mathml"><math>
+                                <semantics>
+                                    <mrow>
+                                        <mi>O</mi>
+                                        <mo>(</mo>
+                                        <mi>n</mi>
+                                        <mo>)</mo>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">O(n)</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                                    class="mord mathdefault" style="margin-right:0.02778em;">O</span><span
+                                    class="mopen">(</span><span class="mord mathdefault">n</span><span
+                                    class="mclose">)</span></span></span></span>. In worst case, we iterate over all the
+                    numbers lesser than <span class="katex"><span class="katex-mathml"><math>
+                                <semantics>
+                                    <mrow>
+                                        <mi>n</mi>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">n</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut" style="height:0.43056em;vertical-align:0em;"></span><span
+                                    class="mord mathdefault">n</span></span></span></span>.</p>
+            </li>
+            <li>
+                <p>Space complexity : <span class="katex"><span class="katex-mathml"><math>
+                                <semantics>
+                                    <mrow>
+                                        <mi>O</mi>
+                                        <mo>(</mo>
+                                        <mn>1</mn>
+                                        <mo>)</mo>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">O(1)</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                                    class="mord mathdefault" style="margin-right:0.02778em;">O</span><span
+                                    class="mopen">(</span><span class="mord">1</span><span
+                                    class="mclose">)</span></span></span></span>. Constant extra space is used.</p>
+            </li>
+        </ul>
+        <hr>
+        <h4 id="approach-3-optimal-solution-accepted">Approach #3 Optimal Solution [Accepted]</h4>
+        <p><strong>Algorithm</strong></p>
+        <p>In this method, instead of iterating over all the integers to find the factors of <span class="katex"><span
+                    class="katex-mathml"><math>
+                        <semantics>
+                            <mrow>
+                                <mi>n</mi>
+                                <mi>u</mi>
+                                <mi>m</mi>
+                            </mrow>
+                            <annotation encoding="application/x-tex">num</annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:0.43056em;vertical-align:0em;"></span><span
+                            class="mord mathdefault">n</span><span class="mord mathdefault">u</span><span
+                            class="mord mathdefault">m</span></span></span></span>, we only iterate upto the <span
+                class="katex"><span class="katex-mathml"><math>
+                        <semantics>
+                            <mrow>
+                                <msqrt>
+                                    <mi>n</mi>
+                                </msqrt>
+                            </mrow>
+                            <annotation encoding="application/x-tex">\sqrt{n}</annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:1.04em;vertical-align:-0.23972em;"></span><span class="mord sqrt"><span
+                                class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                        style="height:0.8002800000000001em;"><span class="svg-align"
+                                            style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span
+                                                class="mord" style="padding-left:0.833em;"><span
+                                                    class="mord mathdefault">n</span></span></span><span
+                                            style="top:-2.76028em;"><span class="pstrut"
+                                                style="height:3em;"></span><span class="hide-tail"
+                                                style="min-width:0.853em;height:1.08em;"><svg width="400em"
+                                                    height="1.08em" viewBox="0 0 400000 1080"
+                                                    preserveAspectRatio="xMinYMin slice">
+                                                    <path d="M95,702c-2.7,0,-7.17,-2.7,-13.5,-8c-5.8,-5.3,-9.5,
+    -10,-9.5,-14c0,-2,0.3,-3.3,1,-4c1.3,-2.7,23.83,-20.7,67.5,-54c44.2,-33.3,65.8,
+    -50.3,66.5,-51c1.3,-1.3,3,-2,5,-2c4.7,0,8.7,3.3,12,10s173,378,173,378c0.7,0,
+    35.3,-71,104,-213c68.7,-142,137.5,-285,206.5,-429c69,-144,104.5,-217.7,106.5,
+    -221c5.3,-9.3,12,-14,20,-14H400000v40H845.2724s-225.272,467,-225.272,467
+    s-235,486,-235,486c-2.7,4.7,-9,7,-19,7c-6,0,-10,-1,-12,-3s-194,-422,-194,-422
+    s-65,47,-65,47z M834 80H400000v40H845z"></path>
+                                                </svg></span></span></span><span class="vlist-s">​</span></span><span
+                                    class="vlist-r"><span class="vlist"
+                                        style="height:0.23972em;"><span></span></span></span></span></span></span></span></span>.
+            The reasoning behind this can be understood as follows.</p>
+        <p>Consider the given number <span class="katex"><span class="katex-mathml"><math>
+                        <semantics>
+                            <mrow>
+                                <mi>n</mi>
+                                <mi>u</mi>
+                                <mi>m</mi>
+                            </mrow>
+                            <annotation encoding="application/x-tex">num</annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:0.43056em;vertical-align:0em;"></span><span
+                            class="mord mathdefault">n</span><span class="mord mathdefault">u</span><span
+                            class="mord mathdefault">m</span></span></span></span> which can have <span
+                class="katex"><span class="katex-mathml"><math>
+                        <semantics>
+                            <mrow>
+                                <mi>m</mi>
+                            </mrow>
+                            <annotation encoding="application/x-tex">m</annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:0.43056em;vertical-align:0em;"></span><span
+                            class="mord mathdefault">m</span></span></span></span> distinct factors, namely <span
+                class="katex"><span class="katex-mathml"><math>
+                        <semantics>
+                            <mrow>
+                                <msub>
+                                    <mi>n</mi>
+                                    <mn>1</mn>
+                                </msub>
+                                <mo separator="true">,</mo>
+                                <msub>
+                                    <mi>n</mi>
+                                    <mn>2</mn>
+                                </msub>
+                                <mo separator="true">,</mo>
+                                <mi mathvariant="normal">.</mi>
+                                <mi mathvariant="normal">.</mi>
+                                <mi mathvariant="normal">.</mi>
+                                <mo separator="true">,</mo>
+                                <msub>
+                                    <mi>n</mi>
+                                    <mi>m</mi>
+                                </msub>
+                            </mrow>
+                            <annotation encoding="application/x-tex">n_1, n_2,..., n_m</annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord"><span
+                                class="mord mathdefault">n</span><span class="msupsub"><span
+                                    class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                            style="height:0.30110799999999993em;"><span
+                                                style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span
+                                                    class="pstrut" style="height:2.7em;"></span><span
+                                                    class="sizing reset-size6 size3 mtight"><span
+                                                        class="mord mtight">1</span></span></span></span><span
+                                            class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                            style="height:0.15em;"><span></span></span></span></span></span></span><span
+                            class="mpunct">,</span><span class="mspace"
+                            style="margin-right:0.16666666666666666em;"></span><span class="mord"><span
+                                class="mord mathdefault">n</span><span class="msupsub"><span
+                                    class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                            style="height:0.30110799999999993em;"><span
+                                                style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span
+                                                    class="pstrut" style="height:2.7em;"></span><span
+                                                    class="sizing reset-size6 size3 mtight"><span
+                                                        class="mord mtight">2</span></span></span></span><span
+                                            class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                            style="height:0.15em;"><span></span></span></span></span></span></span><span
+                            class="mpunct">,</span><span class="mspace"
+                            style="margin-right:0.16666666666666666em;"></span><span class="mord">.</span><span
+                            class="mord">.</span><span class="mord">.</span><span class="mpunct">,</span><span
+                            class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span
+                                class="mord mathdefault">n</span><span class="msupsub"><span
+                                    class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                            style="height:0.151392em;"><span
+                                                style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span
+                                                    class="pstrut" style="height:2.7em;"></span><span
+                                                    class="sizing reset-size6 size3 mtight"><span
+                                                        class="mord mathdefault mtight">m</span></span></span></span><span
+                                            class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                            style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>.
+            Now, since the number <span class="katex"><span class="katex-mathml"><math>
+                        <semantics>
+                            <mrow>
+                                <mi>n</mi>
+                                <mi>u</mi>
+                                <mi>m</mi>
+                            </mrow>
+                            <annotation encoding="application/x-tex">num</annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:0.43056em;vertical-align:0em;"></span><span
+                            class="mord mathdefault">n</span><span class="mord mathdefault">u</span><span
+                            class="mord mathdefault">m</span></span></span></span> is divisible by <span
+                class="katex"><span class="katex-mathml"><math>
+                        <semantics>
+                            <mrow>
+                                <msub>
+                                    <mi>n</mi>
+                                    <mi>i</mi>
+                                </msub>
+                            </mrow>
+                            <annotation encoding="application/x-tex">n_i</annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:0.58056em;vertical-align:-0.15em;"></span><span class="mord"><span
+                                class="mord mathdefault">n</span><span class="msupsub"><span
+                                    class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                            style="height:0.31166399999999994em;"><span
+                                                style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span
+                                                    class="pstrut" style="height:2.7em;"></span><span
+                                                    class="sizing reset-size6 size3 mtight"><span
+                                                        class="mord mathdefault mtight">i</span></span></span></span><span
+                                            class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                            style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>,
+            it is also divisible by <span class="katex"><span class="katex-mathml"><math>
+                        <semantics>
+                            <mrow>
+                                <msub>
+                                    <mi>n</mi>
+                                    <mi>j</mi>
+                                </msub>
+                                <mo>=</mo>
+                                <mi>n</mi>
+                                <mi>u</mi>
+                                <mi>m</mi>
+                                <mi mathvariant="normal">/</mi>
+                                <msub>
+                                    <mi>n</mi>
+                                    <mn>1</mn>
+                                </msub>
+                            </mrow>
+                            <annotation encoding="application/x-tex">n_j=num/n_1</annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:0.716668em;vertical-align:-0.286108em;"></span><span class="mord"><span
+                                class="mord mathdefault">n</span><span class="msupsub"><span
+                                    class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                            style="height:0.311664em;"><span
+                                                style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span
+                                                    class="pstrut" style="height:2.7em;"></span><span
+                                                    class="sizing reset-size6 size3 mtight"><span
+                                                        class="mord mathdefault mtight"
+                                                        style="margin-right:0.05724em;">j</span></span></span></span><span
+                                            class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                            style="height:0.286108em;"><span></span></span></span></span></span></span><span
+                            class="mspace" style="margin-right:0.2777777777777778em;"></span><span
+                            class="mrel">=</span><span class="mspace"
+                            style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span
+                            class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                            class="mord mathdefault">n</span><span class="mord mathdefault">u</span><span
+                            class="mord mathdefault">m</span><span class="mord">/</span><span class="mord"><span
+                                class="mord mathdefault">n</span><span class="msupsub"><span
+                                    class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                            style="height:0.30110799999999993em;"><span
+                                                style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span
+                                                    class="pstrut" style="height:2.7em;"></span><span
+                                                    class="sizing reset-size6 size3 mtight"><span
+                                                        class="mord mtight">1</span></span></span></span><span
+                                            class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                            style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>
+            i.e. <span class="katex"><span class="katex-mathml"><math>
+                        <semantics>
+                            <mrow>
+                                <msub>
+                                    <mi>n</mi>
+                                    <mi>i</mi>
+                                </msub>
+                                <mo>∗</mo>
+                                <msub>
+                                    <mi>n</mi>
+                                    <mi>j</mi>
+                                </msub>
+                                <mo>=</mo>
+                                <mi>n</mi>
+                                <mi>u</mi>
+                                <mi>m</mi>
+                            </mrow>
+                            <annotation encoding="application/x-tex">n_i*n_j=num</annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:0.61528em;vertical-align:-0.15em;"></span><span class="mord"><span
+                                class="mord mathdefault">n</span><span class="msupsub"><span
+                                    class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                            style="height:0.31166399999999994em;"><span
+                                                style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span
+                                                    class="pstrut" style="height:2.7em;"></span><span
+                                                    class="sizing reset-size6 size3 mtight"><span
+                                                        class="mord mathdefault mtight">i</span></span></span></span><span
+                                            class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                            style="height:0.15em;"><span></span></span></span></span></span></span><span
+                            class="mspace" style="margin-right:0.2222222222222222em;"></span><span
+                            class="mbin">∗</span><span class="mspace"
+                            style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span
+                            class="strut" style="height:0.716668em;vertical-align:-0.286108em;"></span><span
+                            class="mord"><span class="mord mathdefault">n</span><span class="msupsub"><span
+                                    class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                            style="height:0.311664em;"><span
+                                                style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span
+                                                    class="pstrut" style="height:2.7em;"></span><span
+                                                    class="sizing reset-size6 size3 mtight"><span
+                                                        class="mord mathdefault mtight"
+                                                        style="margin-right:0.05724em;">j</span></span></span></span><span
+                                            class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                            style="height:0.286108em;"><span></span></span></span></span></span></span><span
+                            class="mspace" style="margin-right:0.2777777777777778em;"></span><span
+                            class="mrel">=</span><span class="mspace"
+                            style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span
+                            class="strut" style="height:0.43056em;vertical-align:0em;"></span><span
+                            class="mord mathdefault">n</span><span class="mord mathdefault">u</span><span
+                            class="mord mathdefault">m</span></span></span></span>. Also, the largest number in such a
+            pair can only be up to <span class="katex"><span class="katex-mathml"><math>
+                        <semantics>
+                            <mrow>
+                                <msqrt>
+                                    <mrow>
+                                        <mi>n</mi>
+                                        <mi>u</mi>
+                                        <mi>m</mi>
+                                    </mrow>
+                                </msqrt>
+                            </mrow>
+                            <annotation encoding="application/x-tex">\sqrt{num}</annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:1.04em;vertical-align:-0.23972em;"></span><span class="mord sqrt"><span
+                                class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                        style="height:0.8002800000000001em;"><span class="svg-align"
+                                            style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span
+                                                class="mord" style="padding-left:0.833em;"><span
+                                                    class="mord mathdefault">n</span><span
+                                                    class="mord mathdefault">u</span><span
+                                                    class="mord mathdefault">m</span></span></span><span
+                                            style="top:-2.76028em;"><span class="pstrut"
+                                                style="height:3em;"></span><span class="hide-tail"
+                                                style="min-width:0.853em;height:1.08em;"><svg width="400em"
+                                                    height="1.08em" viewBox="0 0 400000 1080"
+                                                    preserveAspectRatio="xMinYMin slice">
+                                                    <path d="M95,702c-2.7,0,-7.17,-2.7,-13.5,-8c-5.8,-5.3,-9.5,
+    -10,-9.5,-14c0,-2,0.3,-3.3,1,-4c1.3,-2.7,23.83,-20.7,67.5,-54c44.2,-33.3,65.8,
+    -50.3,66.5,-51c1.3,-1.3,3,-2,5,-2c4.7,0,8.7,3.3,12,10s173,378,173,378c0.7,0,
+    35.3,-71,104,-213c68.7,-142,137.5,-285,206.5,-429c69,-144,104.5,-217.7,106.5,
+    -221c5.3,-9.3,12,-14,20,-14H400000v40H845.2724s-225.272,467,-225.272,467
+    s-235,486,-235,486c-2.7,4.7,-9,7,-19,7c-6,0,-10,-1,-12,-3s-194,-422,-194,-422
+    s-65,47,-65,47z M834 80H400000v40H845z"></path>
+                                                </svg></span></span></span><span class="vlist-s">​</span></span><span
+                                    class="vlist-r"><span class="vlist"
+                                        style="height:0.23972em;"><span></span></span></span></span></span></span></span></span>
+            (because <span class="katex"><span class="katex-mathml"><math>
+                        <semantics>
+                            <mrow>
+                                <msqrt>
+                                    <mrow>
+                                        <mi>n</mi>
+                                        <mi>u</mi>
+                                        <mi>m</mi>
+                                    </mrow>
+                                </msqrt>
+                                <mo>×</mo>
+                                <msqrt>
+                                    <mrow>
+                                        <mi>n</mi>
+                                        <mi>u</mi>
+                                        <mi>m</mi>
+                                    </mrow>
+                                </msqrt>
+                                <mo>=</mo>
+                                <mi>n</mi>
+                                <mi>u</mi>
+                                <mi>m</mi>
+                            </mrow>
+                            <annotation encoding="application/x-tex">\sqrt{num} \times \sqrt{num}=num</annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:1.04em;vertical-align:-0.23972em;"></span><span class="mord sqrt"><span
+                                class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                        style="height:0.8002800000000001em;"><span class="svg-align"
+                                            style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span
+                                                class="mord" style="padding-left:0.833em;"><span
+                                                    class="mord mathdefault">n</span><span
+                                                    class="mord mathdefault">u</span><span
+                                                    class="mord mathdefault">m</span></span></span><span
+                                            style="top:-2.76028em;"><span class="pstrut"
+                                                style="height:3em;"></span><span class="hide-tail"
+                                                style="min-width:0.853em;height:1.08em;"><svg width="400em"
+                                                    height="1.08em" viewBox="0 0 400000 1080"
+                                                    preserveAspectRatio="xMinYMin slice">
+                                                    <path d="M95,702c-2.7,0,-7.17,-2.7,-13.5,-8c-5.8,-5.3,-9.5,
+    -10,-9.5,-14c0,-2,0.3,-3.3,1,-4c1.3,-2.7,23.83,-20.7,67.5,-54c44.2,-33.3,65.8,
+    -50.3,66.5,-51c1.3,-1.3,3,-2,5,-2c4.7,0,8.7,3.3,12,10s173,378,173,378c0.7,0,
+    35.3,-71,104,-213c68.7,-142,137.5,-285,206.5,-429c69,-144,104.5,-217.7,106.5,
+    -221c5.3,-9.3,12,-14,20,-14H400000v40H845.2724s-225.272,467,-225.272,467
+    s-235,486,-235,486c-2.7,4.7,-9,7,-19,7c-6,0,-10,-1,-12,-3s-194,-422,-194,-422
+    s-65,47,-65,47z M834 80H400000v40H845z"></path>
+                                                </svg></span></span></span><span class="vlist-s">​</span></span><span
+                                    class="vlist-r"><span class="vlist"
+                                        style="height:0.23972em;"><span></span></span></span></span></span><span
+                            class="mspace" style="margin-right:0.2222222222222222em;"></span><span
+                            class="mbin">×</span><span class="mspace"
+                            style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span
+                            class="strut" style="height:1.04em;vertical-align:-0.23972em;"></span><span
+                            class="mord sqrt"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                        style="height:0.8002800000000001em;"><span class="svg-align"
+                                            style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span
+                                                class="mord" style="padding-left:0.833em;"><span
+                                                    class="mord mathdefault">n</span><span
+                                                    class="mord mathdefault">u</span><span
+                                                    class="mord mathdefault">m</span></span></span><span
+                                            style="top:-2.76028em;"><span class="pstrut"
+                                                style="height:3em;"></span><span class="hide-tail"
+                                                style="min-width:0.853em;height:1.08em;"><svg width="400em"
+                                                    height="1.08em" viewBox="0 0 400000 1080"
+                                                    preserveAspectRatio="xMinYMin slice">
+                                                    <path d="M95,702c-2.7,0,-7.17,-2.7,-13.5,-8c-5.8,-5.3,-9.5,
+    -10,-9.5,-14c0,-2,0.3,-3.3,1,-4c1.3,-2.7,23.83,-20.7,67.5,-54c44.2,-33.3,65.8,
+    -50.3,66.5,-51c1.3,-1.3,3,-2,5,-2c4.7,0,8.7,3.3,12,10s173,378,173,378c0.7,0,
+    35.3,-71,104,-213c68.7,-142,137.5,-285,206.5,-429c69,-144,104.5,-217.7,106.5,
+    -221c5.3,-9.3,12,-14,20,-14H400000v40H845.2724s-225.272,467,-225.272,467
+    s-235,486,-235,486c-2.7,4.7,-9,7,-19,7c-6,0,-10,-1,-12,-3s-194,-422,-194,-422
+    s-65,47,-65,47z M834 80H400000v40H845z"></path>
+                                                </svg></span></span></span><span class="vlist-s">​</span></span><span
+                                    class="vlist-r"><span class="vlist"
+                                        style="height:0.23972em;"><span></span></span></span></span></span><span
+                            class="mspace" style="margin-right:0.2777777777777778em;"></span><span
+                            class="mrel">=</span><span class="mspace"
+                            style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span
+                            class="strut" style="height:0.43056em;vertical-align:0em;"></span><span
+                            class="mord mathdefault">n</span><span class="mord mathdefault">u</span><span
+                            class="mord mathdefault">m</span></span></span></span>). Thus, we can get a significant
+            reduction in the run-time by iterating only upto <span class="katex"><span class="katex-mathml"><math>
+                        <semantics>
+                            <mrow>
+                                <msqrt>
+                                    <mrow>
+                                        <mi>n</mi>
+                                        <mi>u</mi>
+                                        <mi>m</mi>
+                                    </mrow>
+                                </msqrt>
+                            </mrow>
+                            <annotation encoding="application/x-tex">\sqrt{num}</annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:1.04em;vertical-align:-0.23972em;"></span><span class="mord sqrt"><span
+                                class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                        style="height:0.8002800000000001em;"><span class="svg-align"
+                                            style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span
+                                                class="mord" style="padding-left:0.833em;"><span
+                                                    class="mord mathdefault">n</span><span
+                                                    class="mord mathdefault">u</span><span
+                                                    class="mord mathdefault">m</span></span></span><span
+                                            style="top:-2.76028em;"><span class="pstrut"
+                                                style="height:3em;"></span><span class="hide-tail"
+                                                style="min-width:0.853em;height:1.08em;"><svg width="400em"
+                                                    height="1.08em" viewBox="0 0 400000 1080"
+                                                    preserveAspectRatio="xMinYMin slice">
+                                                    <path d="M95,702c-2.7,0,-7.17,-2.7,-13.5,-8c-5.8,-5.3,-9.5,
+    -10,-9.5,-14c0,-2,0.3,-3.3,1,-4c1.3,-2.7,23.83,-20.7,67.5,-54c44.2,-33.3,65.8,
+    -50.3,66.5,-51c1.3,-1.3,3,-2,5,-2c4.7,0,8.7,3.3,12,10s173,378,173,378c0.7,0,
+    35.3,-71,104,-213c68.7,-142,137.5,-285,206.5,-429c69,-144,104.5,-217.7,106.5,
+    -221c5.3,-9.3,12,-14,20,-14H400000v40H845.2724s-225.272,467,-225.272,467
+    s-235,486,-235,486c-2.7,4.7,-9,7,-19,7c-6,0,-10,-1,-12,-3s-194,-422,-194,-422
+    s-65,47,-65,47z M834 80H400000v40H845z"></path>
+                                                </svg></span></span></span><span class="vlist-s">​</span></span><span
+                                    class="vlist-r"><span class="vlist"
+                                        style="height:0.23972em;"><span></span></span></span></span></span></span></span></span>
+            and considering such <span class="katex"><span class="katex-mathml"><math>
+                        <semantics>
+                            <mrow>
+                                <msub>
+                                    <mi>n</mi>
+                                    <mi>i</mi>
+                                </msub>
+                            </mrow>
+                            <annotation encoding="application/x-tex">n_i</annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:0.58056em;vertical-align:-0.15em;"></span><span class="mord"><span
+                                class="mord mathdefault">n</span><span class="msupsub"><span
+                                    class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                            style="height:0.31166399999999994em;"><span
+                                                style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span
+                                                    class="pstrut" style="height:2.7em;"></span><span
+                                                    class="sizing reset-size6 size3 mtight"><span
+                                                        class="mord mathdefault mtight">i</span></span></span></span><span
+                                            class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                            style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>'s
+            and <span class="katex"><span class="katex-mathml"><math>
+                        <semantics>
+                            <mrow>
+                                <msub>
+                                    <mi>n</mi>
+                                    <mi>j</mi>
+                                </msub>
+                            </mrow>
+                            <annotation encoding="application/x-tex">n_j</annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:0.716668em;vertical-align:-0.286108em;"></span><span class="mord"><span
+                                class="mord mathdefault">n</span><span class="msupsub"><span
+                                    class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                            style="height:0.311664em;"><span
+                                                style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span
+                                                    class="pstrut" style="height:2.7em;"></span><span
+                                                    class="sizing reset-size6 size3 mtight"><span
+                                                        class="mord mathdefault mtight"
+                                                        style="margin-right:0.05724em;">j</span></span></span></span><span
+                                            class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                            style="height:0.286108em;"><span></span></span></span></span></span></span></span></span></span>'s
+            in a single pass directly.</p>
+        <p>Further, if <span class="katex"><span class="katex-mathml"><math>
+                        <semantics>
+                            <mrow>
+                                <msqrt>
+                                    <mrow>
+                                        <mi>n</mi>
+                                        <mi>u</mi>
+                                        <mi>m</mi>
+                                    </mrow>
+                                </msqrt>
+                            </mrow>
+                            <annotation encoding="application/x-tex">\sqrt{num}</annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:1.04em;vertical-align:-0.23972em;"></span><span class="mord sqrt"><span
+                                class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                        style="height:0.8002800000000001em;"><span class="svg-align"
+                                            style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span
+                                                class="mord" style="padding-left:0.833em;"><span
+                                                    class="mord mathdefault">n</span><span
+                                                    class="mord mathdefault">u</span><span
+                                                    class="mord mathdefault">m</span></span></span><span
+                                            style="top:-2.76028em;"><span class="pstrut"
+                                                style="height:3em;"></span><span class="hide-tail"
+                                                style="min-width:0.853em;height:1.08em;"><svg width="400em"
+                                                    height="1.08em" viewBox="0 0 400000 1080"
+                                                    preserveAspectRatio="xMinYMin slice">
+                                                    <path d="M95,702c-2.7,0,-7.17,-2.7,-13.5,-8c-5.8,-5.3,-9.5,
+    -10,-9.5,-14c0,-2,0.3,-3.3,1,-4c1.3,-2.7,23.83,-20.7,67.5,-54c44.2,-33.3,65.8,
+    -50.3,66.5,-51c1.3,-1.3,3,-2,5,-2c4.7,0,8.7,3.3,12,10s173,378,173,378c0.7,0,
+    35.3,-71,104,-213c68.7,-142,137.5,-285,206.5,-429c69,-144,104.5,-217.7,106.5,
+    -221c5.3,-9.3,12,-14,20,-14H400000v40H845.2724s-225.272,467,-225.272,467
+    s-235,486,-235,486c-2.7,4.7,-9,7,-19,7c-6,0,-10,-1,-12,-3s-194,-422,-194,-422
+    s-65,47,-65,47z M834 80H400000v40H845z"></path>
+                                                </svg></span></span></span><span class="vlist-s">​</span></span><span
+                                    class="vlist-r"><span class="vlist"
+                                        style="height:0.23972em;"><span></span></span></span></span></span></span></span></span>
+            is also a factor, we have to consider the factor only once while checking for the perfect number property.
+        </p>
+        <p>We sum up all such factors and check if the given number is a Perfect Number or not. Another point to be
+            observed is that while considering 1 as such a factor, <span class="katex"><span class="katex-mathml"><math>
+                        <semantics>
+                            <mrow>
+                                <mi>n</mi>
+                                <mi>u</mi>
+                                <mi>m</mi>
+                            </mrow>
+                            <annotation encoding="application/x-tex">num</annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:0.43056em;vertical-align:0em;"></span><span
+                            class="mord mathdefault">n</span><span class="mord mathdefault">u</span><span
+                            class="mord mathdefault">m</span></span></span></span> will also be considered as the other
+            factor. Thus, we need to subtract <span class="katex"><span class="katex-mathml"><math>
+                        <semantics>
+                            <mrow>
+                                <mi>n</mi>
+                                <mi>u</mi>
+                                <mi>m</mi>
+                            </mrow>
+                            <annotation encoding="application/x-tex">num</annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:0.43056em;vertical-align:0em;"></span><span
+                            class="mord mathdefault">n</span><span class="mord mathdefault">u</span><span
+                            class="mord mathdefault">m</span></span></span></span> from the <span class="katex"><span
+                    class="katex-mathml"><math>
+                        <semantics>
+                            <mrow>
+                                <mi>s</mi>
+                                <mi>u</mi>
+                                <mi>m</mi>
+                            </mrow>
+                            <annotation encoding="application/x-tex">sum</annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:0.43056em;vertical-align:0em;"></span><span
+                            class="mord mathdefault">s</span><span class="mord mathdefault">u</span><span
+                            class="mord mathdefault">m</span></span></span></span>.</p>
+        <iframe src="https://leetcode.com/playground/ZpHuGfHj/shared" name="ZpHuGfHj" width="100%" height="377"
+            frameborder="0"></iframe>
+        <p><strong>Complexity Analysis</strong></p>
+        <ul>
+            <li>Time complexity : <span class="katex"><span class="katex-mathml"><math>
+                            <semantics>
+                                <mrow>
+                                    <mi>O</mi>
+                                    <mo>(</mo>
+                                    <msqrt>
+                                        <mi>n</mi>
+                                    </msqrt>
+                                    <mo>)</mo>
+                                </mrow>
+                                <annotation encoding="application/x-tex">O(\sqrt{n})</annotation>
+                            </semantics>
+                        </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                                style="height:1.05028em;vertical-align:-0.25em;"></span><span class="mord mathdefault"
+                                style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span
+                                class="mord sqrt"><span class="vlist-t vlist-t2"><span class="vlist-r"><span
+                                            class="vlist" style="height:0.8002800000000001em;"><span class="svg-align"
+                                                style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span
+                                                    class="mord" style="padding-left:0.833em;"><span
+                                                        class="mord mathdefault">n</span></span></span><span
+                                                style="top:-2.76028em;"><span class="pstrut"
+                                                    style="height:3em;"></span><span class="hide-tail"
+                                                    style="min-width:0.853em;height:1.08em;"><svg width="400em"
+                                                        height="1.08em" viewBox="0 0 400000 1080"
+                                                        preserveAspectRatio="xMinYMin slice">
+                                                        <path d="M95,702c-2.7,0,-7.17,-2.7,-13.5,-8c-5.8,-5.3,-9.5,
+    -10,-9.5,-14c0,-2,0.3,-3.3,1,-4c1.3,-2.7,23.83,-20.7,67.5,-54c44.2,-33.3,65.8,
+    -50.3,66.5,-51c1.3,-1.3,3,-2,5,-2c4.7,0,8.7,3.3,12,10s173,378,173,378c0.7,0,
+    35.3,-71,104,-213c68.7,-142,137.5,-285,206.5,-429c69,-144,104.5,-217.7,106.5,
+    -221c5.3,-9.3,12,-14,20,-14H400000v40H845.2724s-225.272,467,-225.272,467
+    s-235,486,-235,486c-2.7,4.7,-9,7,-19,7c-6,0,-10,-1,-12,-3s-194,-422,-194,-422
+    s-65,47,-65,47z M834 80H400000v40H845z"></path>
+                                                    </svg></span></span></span><span
+                                            class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                            style="height:0.23972em;"><span></span></span></span></span></span><span
+                                class="mclose">)</span></span></span></span>. We iterate only over the range 1 &lt; i ≤
+                \sqrt{num}.</li>
+            <li>Space complexity : <span class="katex"><span class="katex-mathml"><math>
+                            <semantics>
+                                <mrow>
+                                    <mi>O</mi>
+                                    <mo>(</mo>
+                                    <mn>1</mn>
+                                    <mo>)</mo>
+                                </mrow>
+                                <annotation encoding="application/x-tex">O(1)</annotation>
+                            </semantics>
+                        </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                                style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault"
+                                style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span
+                                class="mord">1</span><span class="mclose">)</span></span></span></span>. Constant extra
+                space is used.</li>
+        </ul>
+        <hr>
+        <h4 id="approach-4-euclideuler-theorem-accepted">Approach #4 Euclid-Euler Theorem [Accepted]</h4>
+        <p><strong>Algorithm</strong></p>
+        <p>Euclid proved that <span class="katex"><span class="katex-mathml"><math>
+                        <semantics>
+                            <mrow>
+                                <msup>
+                                    <mn>2</mn>
+                                    <mrow>
+                                        <mi>p</mi>
+                                        <mi mathvariant="normal">−</mi>
+                                        <mn>1</mn>
+                                    </mrow>
+                                </msup>
+                                <mo>(</mo>
+                                <msup>
+                                    <mn>2</mn>
+                                    <mi>p</mi>
+                                </msup>
+                                <mi mathvariant="normal">−</mi>
+                                <mn>1</mn>
+                                <mo>)</mo>
+                            </mrow>
+                            <annotation encoding="application/x-tex">2^{p−1}(2^p − 1)</annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:1.064108em;vertical-align:-0.25em;"></span><span class="mord"><span
+                                class="mord">2</span><span class="msupsub"><span class="vlist-t"><span
+                                        class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span
+                                                style="top:-3.063em;margin-right:0.05em;"><span class="pstrut"
+                                                    style="height:2.7em;"></span><span
+                                                    class="sizing reset-size6 size3 mtight"><span
+                                                        class="mord mtight"><span
+                                                            class="mord mathdefault mtight">p</span><span
+                                                            class="mord mtight">−</span><span
+                                                            class="mord mtight">1</span></span></span></span></span></span></span></span></span><span
+                            class="mopen">(</span><span class="mord"><span class="mord">2</span><span
+                                class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist"
+                                            style="height:0.664392em;"><span
+                                                style="top:-3.063em;margin-right:0.05em;"><span class="pstrut"
+                                                    style="height:2.7em;"></span><span
+                                                    class="sizing reset-size6 size3 mtight"><span
+                                                        class="mord mathdefault mtight">p</span></span></span></span></span></span></span></span><span
+                            class="mord">−</span><span class="mord">1</span><span
+                            class="mclose">)</span></span></span></span> is an even perfect number whenever <span
+                class="katex"><span class="katex-mathml"><math>
+                        <semantics>
+                            <mrow>
+                                <msup>
+                                    <mn>2</mn>
+                                    <mi>p</mi>
+                                </msup>
+                                <mi mathvariant="normal">−</mi>
+                                <mn>1</mn>
+                            </mrow>
+                            <annotation encoding="application/x-tex">2^p − 1</annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:0.747722em;vertical-align:-0.08333em;"></span><span class="mord"><span
+                                class="mord">2</span><span class="msupsub"><span class="vlist-t"><span
+                                        class="vlist-r"><span class="vlist" style="height:0.664392em;"><span
+                                                style="top:-3.063em;margin-right:0.05em;"><span class="pstrut"
+                                                    style="height:2.7em;"></span><span
+                                                    class="sizing reset-size6 size3 mtight"><span
+                                                        class="mord mathdefault mtight">p</span></span></span></span></span></span></span></span><span
+                            class="mord">−</span><span class="mord">1</span></span></span></span> is prime, where <span
+                class="katex"><span class="katex-mathml"><math>
+                        <semantics>
+                            <mrow>
+                                <mi>p</mi>
+                            </mrow>
+                            <annotation encoding="application/x-tex">p</annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:0.625em;vertical-align:-0.19444em;"></span><span
+                            class="mord mathdefault">p</span></span></span></span> is prime.</p>
+        <p>For example, the first four perfect numbers are generated by the formula <span class="katex"><span
+                    class="katex-mathml"><math>
+                        <semantics>
+                            <mrow>
+                                <msup>
+                                    <mn>2</mn>
+                                    <mrow>
+                                        <mi>p</mi>
+                                        <mi mathvariant="normal">−</mi>
+                                        <mn>1</mn>
+                                    </mrow>
+                                </msup>
+                                <mo>(</mo>
+                                <msup>
+                                    <mn>2</mn>
+                                    <mi>p</mi>
+                                </msup>
+                                <mi mathvariant="normal">−</mi>
+                                <mn>1</mn>
+                                <mo>)</mo>
+                            </mrow>
+                            <annotation encoding="application/x-tex">2^{p−1}(2^p − 1)</annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:1.064108em;vertical-align:-0.25em;"></span><span class="mord"><span
+                                class="mord">2</span><span class="msupsub"><span class="vlist-t"><span
+                                        class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span
+                                                style="top:-3.063em;margin-right:0.05em;"><span class="pstrut"
+                                                    style="height:2.7em;"></span><span
+                                                    class="sizing reset-size6 size3 mtight"><span
+                                                        class="mord mtight"><span
+                                                            class="mord mathdefault mtight">p</span><span
+                                                            class="mord mtight">−</span><span
+                                                            class="mord mtight">1</span></span></span></span></span></span></span></span></span><span
+                            class="mopen">(</span><span class="mord"><span class="mord">2</span><span
+                                class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist"
+                                            style="height:0.664392em;"><span
+                                                style="top:-3.063em;margin-right:0.05em;"><span class="pstrut"
+                                                    style="height:2.7em;"></span><span
+                                                    class="sizing reset-size6 size3 mtight"><span
+                                                        class="mord mathdefault mtight">p</span></span></span></span></span></span></span></span><span
+                            class="mord">−</span><span class="mord">1</span><span
+                            class="mclose">)</span></span></span></span>, with <span class="katex"><span
+                    class="katex-mathml"><math>
+                        <semantics>
+                            <mrow>
+                                <mi>p</mi>
+                            </mrow>
+                            <annotation encoding="application/x-tex">p</annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:0.625em;vertical-align:-0.19444em;"></span><span
+                            class="mord mathdefault">p</span></span></span></span> a prime number, as follows:</p>
+        <pre><code><span class="hljs-keyword">for</span> p = <span class="hljs-number">2</span>:   <span class="hljs-number">21</span>(<span class="hljs-number">22</span> − <span class="hljs-number">1</span>) = <span class="hljs-number">6</span>
+    <span class="hljs-keyword">for</span> p = <span class="hljs-number">3</span>:   <span class="hljs-number">22</span>(<span class="hljs-number">23</span> − <span class="hljs-number">1</span>) = <span class="hljs-number">28</span>
+    <span class="hljs-keyword">for</span> p = <span class="hljs-number">5</span>:   <span class="hljs-number">24</span>(<span class="hljs-number">25</span> − <span class="hljs-number">1</span>) = <span class="hljs-number">496</span>
+    <span class="hljs-keyword">for</span> p = <span class="hljs-number">7</span>:   <span class="hljs-number">26</span>(<span class="hljs-number">27</span> − <span class="hljs-number">1</span>) = <span class="hljs-number">8128.</span>
+    </code></pre>
+        <p>Prime numbers of the form <span class="katex"><span class="katex-mathml"><math>
+                        <semantics>
+                            <mrow>
+                                <msup>
+                                    <mn>2</mn>
+                                    <mi>p</mi>
+                                </msup>
+                                <mi mathvariant="normal">−</mi>
+                                <mn>1</mn>
+                            </mrow>
+                            <annotation encoding="application/x-tex">2^p − 1</annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:0.747722em;vertical-align:-0.08333em;"></span><span class="mord"><span
+                                class="mord">2</span><span class="msupsub"><span class="vlist-t"><span
+                                        class="vlist-r"><span class="vlist" style="height:0.664392em;"><span
+                                                style="top:-3.063em;margin-right:0.05em;"><span class="pstrut"
+                                                    style="height:2.7em;"></span><span
+                                                    class="sizing reset-size6 size3 mtight"><span
+                                                        class="mord mathdefault mtight">p</span></span></span></span></span></span></span></span><span
+                            class="mord">−</span><span class="mord">1</span></span></span></span> are known as Mersenne
+            primes. For <span class="katex"><span class="katex-mathml"><math>
+                        <semantics>
+                            <mrow>
+                                <msup>
+                                    <mn>2</mn>
+                                    <mi>p</mi>
+                                </msup>
+                                <mi mathvariant="normal">−</mi>
+                                <mn>1</mn>
+                            </mrow>
+                            <annotation encoding="application/x-tex">2^p − 1</annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:0.747722em;vertical-align:-0.08333em;"></span><span class="mord"><span
+                                class="mord">2</span><span class="msupsub"><span class="vlist-t"><span
+                                        class="vlist-r"><span class="vlist" style="height:0.664392em;"><span
+                                                style="top:-3.063em;margin-right:0.05em;"><span class="pstrut"
+                                                    style="height:2.7em;"></span><span
+                                                    class="sizing reset-size6 size3 mtight"><span
+                                                        class="mord mathdefault mtight">p</span></span></span></span></span></span></span></span><span
+                            class="mord">−</span><span class="mord">1</span></span></span></span> to be prime, it is
+            necessary that <span class="katex"><span class="katex-mathml"><math>
+                        <semantics>
+                            <mrow>
+                                <mi>p</mi>
+                            </mrow>
+                            <annotation encoding="application/x-tex">p</annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:0.625em;vertical-align:-0.19444em;"></span><span
+                            class="mord mathdefault">p</span></span></span></span> itself be prime. However, not all
+            numbers of the form <span class="katex"><span class="katex-mathml"><math>
+                        <semantics>
+                            <mrow>
+                                <msup>
+                                    <mn>2</mn>
+                                    <mi>p</mi>
+                                </msup>
+                                <mi mathvariant="normal">−</mi>
+                                <mn>1</mn>
+                            </mrow>
+                            <annotation encoding="application/x-tex">2^p − 1</annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:0.747722em;vertical-align:-0.08333em;"></span><span class="mord"><span
+                                class="mord">2</span><span class="msupsub"><span class="vlist-t"><span
+                                        class="vlist-r"><span class="vlist" style="height:0.664392em;"><span
+                                                style="top:-3.063em;margin-right:0.05em;"><span class="pstrut"
+                                                    style="height:2.7em;"></span><span
+                                                    class="sizing reset-size6 size3 mtight"><span
+                                                        class="mord mathdefault mtight">p</span></span></span></span></span></span></span></span><span
+                            class="mord">−</span><span class="mord">1</span></span></span></span> with a prime <span
+                class="katex"><span class="katex-mathml"><math>
+                        <semantics>
+                            <mrow>
+                                <mi>p</mi>
+                            </mrow>
+                            <annotation encoding="application/x-tex">p</annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:0.625em;vertical-align:-0.19444em;"></span><span
+                            class="mord mathdefault">p</span></span></span></span> are prime; for example, <span
+                class="katex"><span class="katex-mathml"><math>
+                        <semantics>
+                            <mrow>
+                                <msup>
+                                    <mn>2</mn>
+                                    <mn>11</mn>
+                                </msup>
+                                <mi mathvariant="normal">−</mi>
+                                <mn>1</mn>
+                                <mo>=</mo>
+                                <mn>2047</mn>
+                                <mo>=</mo>
+                                <mn>23</mn>
+                                <mo>×</mo>
+                                <mn>89</mn>
+                            </mrow>
+                            <annotation encoding="application/x-tex">2^{11} − 1 = 2047 = 23 × 89</annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:0.897438em;vertical-align:-0.08333em;"></span><span class="mord"><span
+                                class="mord">2</span><span class="msupsub"><span class="vlist-t"><span
+                                        class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span
+                                                style="top:-3.063em;margin-right:0.05em;"><span class="pstrut"
+                                                    style="height:2.7em;"></span><span
+                                                    class="sizing reset-size6 size3 mtight"><span
+                                                        class="mord mtight"><span class="mord mtight">1</span><span
+                                                            class="mord mtight">1</span></span></span></span></span></span></span></span></span><span
+                            class="mord">−</span><span class="mord">1</span><span class="mspace"
+                            style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
+                            class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span
+                        class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span
+                            class="mord">2</span><span class="mord">0</span><span class="mord">4</span><span
+                            class="mord">7</span><span class="mspace"
+                            style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
+                            class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span
+                        class="base"><span class="strut"
+                            style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">2</span><span
+                            class="mord">3</span><span class="mspace"
+                            style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span
+                            class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span
+                        class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span
+                            class="mord">8</span><span class="mord">9</span></span></span></span> is not a prime number.
+        </p>
+        <p>You can see that for small value of <span class="katex"><span class="katex-mathml"><math>
+                        <semantics>
+                            <mrow>
+                                <mi>p</mi>
+                            </mrow>
+                            <annotation encoding="application/x-tex">p</annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:0.625em;vertical-align:-0.19444em;"></span><span
+                            class="mord mathdefault">p</span></span></span></span>, its related perfect number goes very
+            high. So, we need to evaluate perfect numbers for some primes <span class="katex"><span
+                    class="katex-mathml"><math>
+                        <semantics>
+                            <mrow>
+                                <mo>(</mo>
+                                <mn>2</mn>
+                                <mo separator="true">,</mo>
+                                <mn>3</mn>
+                                <mo separator="true">,</mo>
+                                <mn>5</mn>
+                                <mo separator="true">,</mo>
+                                <mn>7</mn>
+                                <mo separator="true">,</mo>
+                                <mn>13</mn>
+                                <mo separator="true">,</mo>
+                                <mn>17</mn>
+                                <mo separator="true">,</mo>
+                                <mn>19</mn>
+                                <mo separator="true">,</mo>
+                                <mn>31</mn>
+                                <mo>)</mo>
+                            </mrow>
+                            <annotation encoding="application/x-tex">(2, 3, 5, 7, 13, 17, 19, 31)</annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span
+                            class="mord">2</span><span class="mpunct">,</span><span class="mspace"
+                            style="margin-right:0.16666666666666666em;"></span><span class="mord">3</span><span
+                            class="mpunct">,</span><span class="mspace"
+                            style="margin-right:0.16666666666666666em;"></span><span class="mord">5</span><span
+                            class="mpunct">,</span><span class="mspace"
+                            style="margin-right:0.16666666666666666em;"></span><span class="mord">7</span><span
+                            class="mpunct">,</span><span class="mspace"
+                            style="margin-right:0.16666666666666666em;"></span><span class="mord">1</span><span
+                            class="mord">3</span><span class="mpunct">,</span><span class="mspace"
+                            style="margin-right:0.16666666666666666em;"></span><span class="mord">1</span><span
+                            class="mord">7</span><span class="mpunct">,</span><span class="mspace"
+                            style="margin-right:0.16666666666666666em;"></span><span class="mord">1</span><span
+                            class="mord">9</span><span class="mpunct">,</span><span class="mspace"
+                            style="margin-right:0.16666666666666666em;"></span><span class="mord">3</span><span
+                            class="mord">1</span><span class="mclose">)</span></span></span></span> only, as for bigger
+            prime its perfect number will not fit in 64 bits.</p>
+        <iframe src="https://leetcode.com/playground/kBfJ6TtU/shared" name="kBfJ6TtU" width="100%" height="292"
+            frameborder="0"></iframe>
+        <p><strong>Complexity Analysis</strong></p>
+        <ul>
+            <li>
+                <p>Time complexity : <span class="katex"><span class="katex-mathml"><math>
+                                <semantics>
+                                    <mrow>
+                                        <mi>O</mi>
+                                        <mo>(</mo>
+                                        <mi>log</mi>
+                                        <mo>⁡</mo>
+                                        <mi>n</mi>
+                                        <mo>)</mo>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">O(\log{n})</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                                    class="mord mathdefault" style="margin-right:0.02778em;">O</span><span
+                                    class="mopen">(</span><span class="mop">lo<span
+                                        style="margin-right:0.01389em;">g</span></span><span class="mspace"
+                                    style="margin-right:0.16666666666666666em;"></span><span class="mord"><span
+                                        class="mord mathdefault">n</span></span><span
+                                    class="mclose">)</span></span></span></span>. Number of primes will be in order
+                    <span class="katex"><span class="katex-mathml"><math>
+                                <semantics>
+                                    <mrow>
+                                        <mi>log</mi>
+                                        <mo>⁡</mo>
+                                        <mrow>
+                                            <mi>n</mi>
+                                            <mi>u</mi>
+                                            <mi>m</mi>
+                                        </mrow>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">\log{num}</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut"
+                                    style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span
+                                    class="mop">lo<span style="margin-right:0.01389em;">g</span></span><span
+                                    class="mspace" style="margin-right:0.16666666666666666em;"></span><span
+                                    class="mord"><span class="mord mathdefault">n</span><span
+                                        class="mord mathdefault">u</span><span
+                                        class="mord mathdefault">m</span></span></span></span></span>.
+                </p>
+            </li>
+            <li>
+                <p>Space complexity : <span class="katex"><span class="katex-mathml"><math>
+                                <semantics>
+                                    <mrow>
+                                        <mi>O</mi>
+                                        <mo>(</mo>
+                                        <mi>log</mi>
+                                        <mo>⁡</mo>
+                                        <mi>n</mi>
+                                        <mo>)</mo>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">O(\log{n})</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                                    class="mord mathdefault" style="margin-right:0.02778em;">O</span><span
+                                    class="mopen">(</span><span class="mop">lo<span
+                                        style="margin-right:0.01389em;">g</span></span><span class="mspace"
+                                    style="margin-right:0.16666666666666666em;"></span><span class="mord"><span
+                                        class="mord mathdefault">n</span></span><span
+                                    class="mclose">)</span></span></span></span>. Space used to store primes.</p>
+            </li>
+        </ul>
+    </div>
+</div>
+<link rel="stylesheet" href="../../../boilerplate/simple.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css"
+    integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
