@@ -1,0 +1,162 @@
+<div class="content__QRGW">
+    <div>
+        <h4 id="approach-1-increment-pointer-accepted">Approach #1: Increment Pointer [Accepted]</h4>
+        <p><strong>Intuition and Algorithm</strong></p>
+        <p>When reading from the <code>i</code>-th position, if <code>bits[i] == 0</code>, the next character must have
+            1 bit; else if <code>bits[i] == 1</code>, the next character must have 2 bits. We increment our read-pointer
+            <code>i</code> to the start of the next character appropriately. At the end, if our pointer is at
+            <code>bits.length - 1</code>, then the last character must have a size of 1 bit.
+        </p>
+        <p><strong>Python</strong></p>
+        <pre><code class="language-python"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span>(<span class="hljs-params"><span class="hljs-built_in">object</span></span>):</span>
+        <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">isOneBitCharacter</span>(<span class="hljs-params">self, bits</span>):</span>
+            i = <span class="hljs-number">0</span>
+            <span class="hljs-keyword">while</span> i &lt; <span class="hljs-built_in">len</span>(bits) - <span class="hljs-number">1</span>:
+                i += bits[i] + <span class="hljs-number">1</span>
+            <span class="hljs-keyword">return</span> i == <span class="hljs-built_in">len</span>(bits) - <span class="hljs-number">1</span>
+    </code></pre>
+        <p><strong>Java</strong></p>
+        <pre><code class="language-java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>{
+        <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">isOneBitCharacter</span><span class="hljs-params">(<span class="hljs-keyword">int</span>[] bits)</span> </span>{
+            <span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>;
+            <span class="hljs-keyword">while</span> (i &lt; bits.length - <span class="hljs-number">1</span>) {
+                i += bits[i] + <span class="hljs-number">1</span>;
+            }
+            <span class="hljs-keyword">return</span> i == bits.length - <span class="hljs-number">1</span>;
+        }
+    }
+    </code></pre>
+        <p><strong>Complexity Analysis</strong></p>
+        <ul>
+            <li>
+                <p>Time Complexity: <span class="katex"><span class="katex-mathml"><math>
+                                <semantics>
+                                    <mrow>
+                                        <mi>O</mi>
+                                        <mo>(</mo>
+                                        <mi>N</mi>
+                                        <mo>)</mo>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">O(N)</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                                    class="mord mathdefault" style="margin-right:0.02778em;">O</span><span
+                                    class="mopen">(</span><span class="mord mathdefault"
+                                    style="margin-right:0.10903em;">N</span><span
+                                    class="mclose">)</span></span></span></span>, where <span class="katex"><span
+                            class="katex-mathml"><math>
+                                <semantics>
+                                    <mrow>
+                                        <mi>N</mi>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">N</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut" style="height:0.68333em;vertical-align:0em;"></span><span
+                                    class="mord mathdefault"
+                                    style="margin-right:0.10903em;">N</span></span></span></span> is the length of
+                    <code>bits</code>.
+                </p>
+            </li>
+            <li>
+                <p>Space Complexity: <span class="katex"><span class="katex-mathml"><math>
+                                <semantics>
+                                    <mrow>
+                                        <mi>O</mi>
+                                        <mo>(</mo>
+                                        <mn>1</mn>
+                                        <mo>)</mo>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">O(1)</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                                    class="mord mathdefault" style="margin-right:0.02778em;">O</span><span
+                                    class="mopen">(</span><span class="mord">1</span><span
+                                    class="mclose">)</span></span></span></span>, the space used by <code>i</code>.</p>
+            </li>
+        </ul>
+        <hr>
+        <h4 id="approach-2-greedy-accepted">Approach #2: Greedy [Accepted]</h4>
+        <p><strong>Intuition and Algorithm</strong></p>
+        <p>The second-last <code>0</code> must be the end of a character (or, the beginning of the array if it doesn't
+            exist). Looking from that position forward, the array <code>bits</code> takes the form
+            <code>[1, 1, ..., 1, 0]</code> where there are zero or more <code>1</code>'s present in total. It is easy to
+            show that the answer is <code>true</code> if and only if there are an even number of ones present.
+        </p>
+        <p>In our algorithm, we will find the second last zero by performing a linear scan from the right. We present
+            two slightly different approaches below.</p>
+        <p><strong>Python</strong></p>
+        <pre><code class="language-python"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span>(<span class="hljs-params"><span class="hljs-built_in">object</span></span>):</span>
+        <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">isOneBitCharacter</span>(<span class="hljs-params">self, bits</span>):</span>
+            parity = bits.pop()
+            <span class="hljs-keyword">while</span> bits <span class="hljs-keyword">and</span> bits.pop(): parity ^= <span class="hljs-number">1</span>
+            <span class="hljs-keyword">return</span> parity == <span class="hljs-number">0</span>
+    </code></pre>
+        <p><strong>Java</strong></p>
+        <pre><code class="language-java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>{
+        <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">isOneBitCharacter</span><span class="hljs-params">(<span class="hljs-keyword">int</span>[] bits)</span> </span>{
+            <span class="hljs-keyword">int</span> i = bits.length - <span class="hljs-number">2</span>;
+            <span class="hljs-keyword">while</span> (i &gt;= <span class="hljs-number">0</span> &amp;&amp; bits[i] &gt; <span class="hljs-number">0</span>) i--;
+            <span class="hljs-keyword">return</span> (bits.length - i) % <span class="hljs-number">2</span> == <span class="hljs-number">0</span>;
+        }
+    }
+    </code></pre>
+        <p><strong>Complexity Analysis</strong></p>
+        <ul>
+            <li>
+                <p>Time Complexity: <span class="katex"><span class="katex-mathml"><math>
+                                <semantics>
+                                    <mrow>
+                                        <mi>O</mi>
+                                        <mo>(</mo>
+                                        <mi>N</mi>
+                                        <mo>)</mo>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">O(N)</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                                    class="mord mathdefault" style="margin-right:0.02778em;">O</span><span
+                                    class="mopen">(</span><span class="mord mathdefault"
+                                    style="margin-right:0.10903em;">N</span><span
+                                    class="mclose">)</span></span></span></span>, where <span class="katex"><span
+                            class="katex-mathml"><math>
+                                <semantics>
+                                    <mrow>
+                                        <mi>N</mi>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">N</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut" style="height:0.68333em;vertical-align:0em;"></span><span
+                                    class="mord mathdefault"
+                                    style="margin-right:0.10903em;">N</span></span></span></span> is the length of
+                    <code>bits</code>.
+                </p>
+            </li>
+            <li>
+                <p>Space Complexity: <span class="katex"><span class="katex-mathml"><math>
+                                <semantics>
+                                    <mrow>
+                                        <mi>O</mi>
+                                        <mo>(</mo>
+                                        <mn>1</mn>
+                                        <mo>)</mo>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">O(1)</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                                    class="mord mathdefault" style="margin-right:0.02778em;">O</span><span
+                                    class="mopen">(</span><span class="mord">1</span><span
+                                    class="mclose">)</span></span></span></span>, the space used by <code>parity</code>
+                    (or <code>i</code>).</p>
+            </li>
+        </ul>
+    </div>
+</div>
+<link rel="stylesheet" href="../../../boilerplate/simple.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css"
+    integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
