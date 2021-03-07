@@ -4,5 +4,6 @@
 0520,Detect Capital
 0705,Design HashSet
 0717,1-bit and 2-bit Characters
+0771,Jewels and Stones
 0706,Design HashMap
 1089,Duplicate Zeros
