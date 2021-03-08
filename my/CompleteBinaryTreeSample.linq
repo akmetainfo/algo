@@ -29,9 +29,9 @@ void Main()
 {
     var i = 3;
     var arr = Enumerable.Range(1, (2 << i) - 1).ToArray();
-    var root = CreateTree(arr);
+    var root = arr.FromArray();
     root.Display();
-    ToArray(root).Dump();
+    root.ToArray().Dump();
 }
 
 public static class TreeOrderHelper
@@ -43,25 +43,45 @@ public static class TreeOrderHelper
         if(root == null)
             return;
             
-        LevelOrderTraversal(root, canvas);
+        //LevelOrderTraversal(root, canvas);
+        
+        var arr = root.ToArray();
+        Display(arr, canvas);
+    }
+    
+    private static void Display(int[] arr, Canvas canvas)
+    {
+        var total = TreeNodeExtension.LevesTotal(arr.Length).Dump();
+        for (int i = 0; i < arr.Length; i++)
+        {
+            $"{i.ToString("00")} {arr[i]} ==> {TreeNodeExtension.CurrentLevel(i)}".Dump();
+            DrawNode(arr[i].ToString(), canvas, 200 + 50 * (i - 2*  TreeNodeExtension.CurrentLevel(i)) + 0, 50 * TreeNodeExtension.CurrentLevel(i));
+        }
+        
     }
     
     private static void LevelOrderTraversal(TreeNode root, Canvas canvas)
     {
         var levelOrder = 1;
+        var totalLevels = 5;
         var queue = new Queue<TreeNode>();
         if (root != null) queue.Enqueue(root);
         while (queue.Count != 0)
         {
             var levelSize = queue.Count;
             var levelNums = new List<int>();
+            var nodeAtLevelNum = 0;
+            var totalNodesAtLevel = (int)Math.Pow(2, levelOrder) - 1;
             for (int i = 0; i < levelSize; i++)
             {
                 var dequeued = queue.Dequeue();
 
                 levelNums.Add(dequeued.val);
+                
+                var padder = 100 * (totalLevels - levelOrder) * (nodeAtLevelNum +1);
 
-                DrawNode(dequeued, canvas, 20 + 50 * i,  50 * levelOrder);
+                DrawNode(dequeued.val.ToString(), canvas, 20 + 50 * i + padder, 50 * levelOrder);
+                nodeAtLevelNum++;
 
                 if (dequeued.left != null)
                     queue.Enqueue(dequeued.left);
@@ -73,7 +93,7 @@ public static class TreeOrderHelper
         }
     }
 
-    private static void DrawNode(TreeNode root, Canvas canvas, int x, int y)
+    private static void DrawNode(string val, Canvas canvas, int x, int y)
     {
         const double PT_DM = 10;
         var e = new Ellipse
@@ -88,7 +108,7 @@ public static class TreeOrderHelper
 
         var t = new TextBlock()
         {
-            Text = root.val.ToString(),
+            Text = val,
             Margin = new Thickness(x + PT_DM / 2, y + PT_DM / 2, 0, 0),
             Foreground = Brushes.Gray,
         };
@@ -112,71 +132,108 @@ public class TreeNode
     }
 }
 
-public bool ValidateLength(int length)
+public static class TreeNodeExtension
 {
-    var total = 0;
-    for (int i = 0; i < 32; i++)
+    public static TreeNode FromArray(this int[] arr)
     {
-        total = (1 << i) - 1;
-        if(length <= total)
-            break;
+        if (!ValidateLength(arr.Length))
+            throw new ArgumentOutOfRangeException(nameof(arr.Length));
+
+        return CreateTree(arr);
     }
-    return length == total;
-}
 
-public TreeNode FromArray(int[] arr)
-{
-    if(!ValidateLength(arr.Length))
-        throw new ArgumentOutOfRangeException(nameof(arr.Length));
-    
-    return CreateTree(arr);
-}
-
-public int[] ToArray(TreeNode root)
-{
-    var result = new List<int>();
-    var queue = new Queue<TreeNode>();
-    if (root != null) queue.Enqueue(root);
-    while (queue.Count != 0)
+    public static int[] ToArray(this TreeNode root)
     {
-        var levelSize = queue.Count;
-        var levelNums = new List<int>();
-        for (int i = 0; i < levelSize; i++)
+        var result = new List<int>();
+        var queue = new Queue<TreeNode>();
+        if (root != null) queue.Enqueue(root);
+        while (queue.Count != 0)
         {
-            var dequeued = queue.Dequeue();
+            var levelSize = queue.Count;
+            for (int i = 0; i < levelSize; i++)
+            {
+                var dequeued = queue.Dequeue();
 
-            levelNums.Add(dequeued.val);
+                result.Add(dequeued.val);
 
-            if (dequeued.left != null)
-                queue.Enqueue(dequeued.left);
+                if (dequeued.left != null)
+                    queue.Enqueue(dequeued.left);
 
-            if (dequeued.right != null)
-                queue.Enqueue(dequeued.right);
+                if (dequeued.right != null)
+                    queue.Enqueue(dequeued.right);
+            }
         }
-        levelOrder.Add(levelNums);
+        return result.ToArray();
     }
-    return levelOrder;
-}
 
-
-// Vesion 2
-private TreeNode CreateTree(int[] data)
-{
-    var nodes = new Dictionary<int, TreeNode>();
-
-    for (int i = data.Length - 1; i >= 0; i--)
+    // Vesion 2
+    private static TreeNode CreateTree(int[] data)
     {
-        object val = data[i];
-        if (val == null) continue;
-        int index = i + 1;
+        var nodes = new Dictionary<int, TreeNode>();
 
-        nodes.TryGetValue(index * 2, out TreeNode left);
-        nodes.TryGetValue(index * 2 + 1, out TreeNode right);
+        for (int i = data.Length - 1; i >= 0; i--)
+        {
+            object val = data[i];
+            if (val == null) continue;
+            int index = i + 1;
 
-        var node = new TreeNode((int)val, left, right);
-        nodes[index] = node;
+            nodes.TryGetValue(index * 2, out TreeNode left);
+            nodes.TryGetValue(index * 2 + 1, out TreeNode right);
+
+            var node = new TreeNode((int)val, left, right);
+            nodes[index] = node;
+        }
+
+        nodes.TryGetValue(1, out TreeNode root);
+        return root;
     }
 
-    nodes.TryGetValue(1, out TreeNode root);
-    return root;
+    public static bool ValidateLength(int length)
+    {
+        var total = 0;
+        for (int i = 0; i < 32; i++)
+        {
+            total = (1 << i) - 1;
+            if (length <= total)
+                break;
+        }
+        return length == total;
+    }
+    public static int LevesTotal(int length)
+    {
+        var total = 0;
+        var i = 0;
+        while(i < 32)
+        {
+            total = (1 << i) - 1;
+            if (length <= total)
+                break;
+            i++;
+        }
+        if(length != total)
+            throw new Exception();
+            
+        return i;
+    }
+
+    public static int CurrentLevel(int length)
+    {
+        var i = 1;
+        var sum = 0;
+        while (i < 32)
+        {
+            sum += 1 << (i -1);
+            if (length + 1 <= sum)
+                break;
+            i++;
+        }
+
+        return i;
+    }
 }
+
+
+
+
+
+
