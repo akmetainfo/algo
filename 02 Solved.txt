@@ -7,4 +7,5 @@
 0717,1-bit and 2-bit Characters
 0771,Jewels and Stones
 0706,Design HashMap
+0896,Monotonic Array
 1089,Duplicate Zeros
