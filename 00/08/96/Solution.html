@@ -1,3 +1,261 @@
+<div class="content__QRGW">
+    <div>
+        <h2>Solution</h2>
+        <hr>
+        <h4 id="approach-1-two-pass">Approach 1: Two Pass</h4>
+        <p><strong>Intuition</strong></p>
+        <p>An array is <em>monotonic</em> if it is monotone increasing, or monotone decreasing. Since
+            <code>a &lt;= b</code> and <code>b &lt;= c</code> implies <code>a &lt;= c</code>, we only need to check
+            adjacent elements to determine if the array is monotone increasing (or decreasing, respectively). We can
+            check each of these properties in one pass.
+        </p>
+        <p><strong>Algorithm</strong></p>
+        <p>To check whether an array <code>A</code> is monotone increasing, we'll check <code>A[i] &lt;= A[i+1]</code>
+            for all <code>i</code>. The check for monotone decreasing is similar.</p>
+        <iframe src="https://leetcode.com/playground/7a5nAben/shared" name="7a5nAben" width="100%" height="344"
+            frameborder="0"></iframe>
+        <p><strong>Complexity Analysis</strong></p>
+        <ul>
+            <li>
+                <p>Time Complexity: <span class="katex"><span class="katex-mathml"><math>
+                                <semantics>
+                                    <mrow>
+                                        <mi>O</mi>
+                                        <mo>(</mo>
+                                        <mi>N</mi>
+                                        <mo>)</mo>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">O(N)</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                                    class="mord mathdefault" style="margin-right:0.02778em;">O</span><span
+                                    class="mopen">(</span><span class="mord mathdefault"
+                                    style="margin-right:0.10903em;">N</span><span
+                                    class="mclose">)</span></span></span></span>, where <span class="katex"><span
+                            class="katex-mathml"><math>
+                                <semantics>
+                                    <mrow>
+                                        <mi>N</mi>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">N</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut" style="height:0.68333em;vertical-align:0em;"></span><span
+                                    class="mord mathdefault"
+                                    style="margin-right:0.10903em;">N</span></span></span></span> is the length of
+                    <code>A</code>.
+                </p>
+            </li>
+            <li>
+                <p>Space Complexity: <span class="katex"><span class="katex-mathml"><math>
+                                <semantics>
+                                    <mrow>
+                                        <mi>O</mi>
+                                        <mo>(</mo>
+                                        <mn>1</mn>
+                                        <mo>)</mo>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">O(1)</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                                    class="mord mathdefault" style="margin-right:0.02778em;">O</span><span
+                                    class="mopen">(</span><span class="mord">1</span><span
+                                    class="mclose">)</span></span></span></span>.
+                    <br>
+                    <br>
+                </p>
+            </li>
+        </ul>
+        <hr>
+        <h4 id="approach-2-one-pass">Approach 2: One Pass</h4>
+        <p><strong>Intuition</strong></p>
+        <p>To perform this check in one pass, we want to handle a stream of comparisons from <span class="katex"><span
+                    class="katex-mathml"><math>
+                        <semantics>
+                            <mrow>
+                                <mo>{</mo>
+                                <mo>−</mo>
+                                <mn>1</mn>
+                                <mo separator="true">,</mo>
+                                <mn>0</mn>
+                                <mo separator="true">,</mo>
+                                <mn>1</mn>
+                                <mo>}</mo>
+                            </mrow>
+                            <annotation encoding="application/x-tex">\{-1, 0, 1\}</annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">{</span><span
+                            class="mord">−</span><span class="mord">1</span><span class="mpunct">,</span><span
+                            class="mspace" style="margin-right:0.16666666666666666em;"></span><span
+                            class="mord">0</span><span class="mpunct">,</span><span class="mspace"
+                            style="margin-right:0.16666666666666666em;"></span><span class="mord">1</span><span
+                            class="mclose">}</span></span></span></span>, corresponding to <code>&lt;</code>,
+            <code>==</code>, or <code>&gt;</code>. For example, with the array <code>[1, 2, 2, 3, 0]</code>, we will see
+            the stream <code>(-1, 0, -1, 1)</code>.
+        </p>
+        <p><strong>Algorithm</strong></p>
+        <p>Keep track of <code>store</code>, equal to the first non-zero comparison seen (if it exists.) If we see the
+            opposite comparison, the answer is <code>False</code>.</p>
+        <p>Otherwise, every comparison was (necessarily) in the set <span class="katex"><span
+                    class="katex-mathml"><math>
+                        <semantics>
+                            <mrow>
+                                <mo>{</mo>
+                                <mo>−</mo>
+                                <mn>1</mn>
+                                <mo separator="true">,</mo>
+                                <mn>0</mn>
+                                <mo>}</mo>
+                            </mrow>
+                            <annotation encoding="application/x-tex">\{-1, 0\}</annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">{</span><span
+                            class="mord">−</span><span class="mord">1</span><span class="mpunct">,</span><span
+                            class="mspace" style="margin-right:0.16666666666666666em;"></span><span
+                            class="mord">0</span><span class="mclose">}</span></span></span></span>, or every comparison
+            was in the set <span class="katex"><span class="katex-mathml"><math>
+                        <semantics>
+                            <mrow>
+                                <mo>{</mo>
+                                <mn>0</mn>
+                                <mo separator="true">,</mo>
+                                <mn>1</mn>
+                                <mo>}</mo>
+                            </mrow>
+                            <annotation encoding="application/x-tex">\{0, 1\}</annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">{</span><span
+                            class="mord">0</span><span class="mpunct">,</span><span class="mspace"
+                            style="margin-right:0.16666666666666666em;"></span><span class="mord">1</span><span
+                            class="mclose">}</span></span></span></span>, and therefore the array is monotonic.</p>
+        <iframe src="https://leetcode.com/playground/Mp3RXdJy/shared" name="Mp3RXdJy" width="100%" height="310"
+            frameborder="0"></iframe>
+        <p><strong>Complexity Analysis</strong></p>
+        <ul>
+            <li>
+                <p>Time Complexity: <span class="katex"><span class="katex-mathml"><math>
+                                <semantics>
+                                    <mrow>
+                                        <mi>O</mi>
+                                        <mo>(</mo>
+                                        <mi>N</mi>
+                                        <mo>)</mo>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">O(N)</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                                    class="mord mathdefault" style="margin-right:0.02778em;">O</span><span
+                                    class="mopen">(</span><span class="mord mathdefault"
+                                    style="margin-right:0.10903em;">N</span><span
+                                    class="mclose">)</span></span></span></span>, where <span class="katex"><span
+                            class="katex-mathml"><math>
+                                <semantics>
+                                    <mrow>
+                                        <mi>N</mi>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">N</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut" style="height:0.68333em;vertical-align:0em;"></span><span
+                                    class="mord mathdefault"
+                                    style="margin-right:0.10903em;">N</span></span></span></span> is the length of
+                    <code>A</code>.
+                </p>
+            </li>
+            <li>
+                <p>Space Complexity: <span class="katex"><span class="katex-mathml"><math>
+                                <semantics>
+                                    <mrow>
+                                        <mi>O</mi>
+                                        <mo>(</mo>
+                                        <mn>1</mn>
+                                        <mo>)</mo>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">O(1)</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                                    class="mord mathdefault" style="margin-right:0.02778em;">O</span><span
+                                    class="mopen">(</span><span class="mord">1</span><span
+                                    class="mclose">)</span></span></span></span>.
+                    <br>
+                    <br>
+                </p>
+            </li>
+        </ul>
+        <hr>
+        <h4 id="approach-3-one-pass-simple-variant">Approach 3: One Pass (Simple Variant)</h4>
+        <p><strong>Intuition and Algorithm</strong></p>
+        <p>To perform this check in one pass, we want to remember if it is monotone increasing or monotone decreasing.
+        </p>
+        <p>It's monotone increasing if there aren't some adjacent values <code>A[i], A[i+1]</code> with
+            <code>A[i] &gt; A[i+1]</code>, and similarly for monotone decreasing.
+        </p>
+        <p>If it is either monotone increasing or monotone decreasing, then <code>A</code> is monotonic.</p>
+        <iframe src="https://leetcode.com/playground/Gqh6PaBh/shared" name="Gqh6PaBh" width="100%" height="293"
+            frameborder="0"></iframe>
+        <p><strong>Complexity Analysis</strong></p>
+        <ul>
+            <li>
+                <p>Time Complexity: <span class="katex"><span class="katex-mathml"><math>
+                                <semantics>
+                                    <mrow>
+                                        <mi>O</mi>
+                                        <mo>(</mo>
+                                        <mi>N</mi>
+                                        <mo>)</mo>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">O(N)</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                                    class="mord mathdefault" style="margin-right:0.02778em;">O</span><span
+                                    class="mopen">(</span><span class="mord mathdefault"
+                                    style="margin-right:0.10903em;">N</span><span
+                                    class="mclose">)</span></span></span></span>, where <span class="katex"><span
+                            class="katex-mathml"><math>
+                                <semantics>
+                                    <mrow>
+                                        <mi>N</mi>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">N</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut" style="height:0.68333em;vertical-align:0em;"></span><span
+                                    class="mord mathdefault"
+                                    style="margin-right:0.10903em;">N</span></span></span></span> is the length of
+                    <code>A</code>.
+                </p>
+            </li>
+            <li>
+                <p>Space Complexity: <span class="katex"><span class="katex-mathml"><math>
+                                <semantics>
+                                    <mrow>
+                                        <mi>O</mi>
+                                        <mo>(</mo>
+                                        <mn>1</mn>
+                                        <mo>)</mo>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">O(1)</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                                    class="mord mathdefault" style="margin-right:0.02778em;">O</span><span
+                                    class="mopen">(</span><span class="mord">1</span><span
+                                    class="mclose">)</span></span></span></span>.
+                    <br>
+                    <br>
+                </p>
+            </li>
+        </ul>
+    </div>
+</div>
 <link rel="stylesheet" href="../../../boilerplate/simple.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css"
     integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
