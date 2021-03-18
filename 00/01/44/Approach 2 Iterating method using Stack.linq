@@ -71,6 +71,7 @@ public class Solution1
 [TestCase(new object[] { }, new int[] { })]
 [TestCase(new object[] { 1 }, new int[] { 1 })]
 [TestCase(new object[] { 1, 2, 3 }, new int[] { 1, 2, 3 })]
+[TestCase(new object[] { 1, 2, 3, 4, 5, 6, 7 }, new int[] { 1, 2, 4, 5, 3, 6, 7 })]
 public void SolutionTests(object[] data, int[] expected)
 {
     var root = CreateTree(data);
