@@ -4,26 +4,17 @@
   <Namespace>NUnitLite</Namespace>
 </Query>
 
-// Travers all nodes
+// add new node at tail
 
 /*
-    Time: O(N)
-    Space: O(N)
+    Time: O()
+    Space: O()
 */
 public class Solution
 {
-    public int[] Traverse(SinglyListNode head)
+    public SinglyListNode AddAtTail(SinglyListNode head, int val)
     {
-        var result = new List<int>();
-        
-        while (head != null)
-        {
-            result.Add(head.Data);
-
-            head = head.Next;
-        }
-        
-        return result.ToArray();
+        throw new NotImplementedException();
     }
 }
 
@@ -44,6 +35,20 @@ public SinglyListNode ToSinglyList(int[] arr)
     return head;
 }
 
+public int[] FromSinglyList(SinglyListNode head)
+{
+    var result = new List<int>();
+
+    while (head != null)
+    {
+        result.Add(head.Data);
+
+        head = head.Next;
+    }
+
+    return result.ToArray();
+}
+
 public class SinglyListNode
 {
     public SinglyListNode(int data)
@@ -55,16 +60,14 @@ public class SinglyListNode
 }
 
 [Test]
-[TestCase(new int[] { })]
-[TestCase(new int[] { 42 })]
-[TestCase(new int[] { 5, 6 })]
-[TestCase(new int[] { 5, 6, 7 })]
-[TestCase(new int[] { 5, 6, 7, 8 })]
-public void SolutionTests(int[] nums)
+[TestCase(new int[] { }, 42, new int[] { 42 })]
+[TestCase(new int[] { 5 }, 6, new int[] { 5, 6 })]
+[TestCase(new int[] { 5, 6 }, 7, new int[] { 5, 6, 7 })]
+public void SolutionTests(int[] nums, int val, int[] expected)
 {
     var head = ToSinglyList(nums);
-    var actual = new Solution().Traverse(head);
-    Assert.That(actual, Is.EqualTo(nums));
+    var actual = new Solution().AddAtTail(head, val);
+    Assert.That(FromSinglyList(actual), Is.EqualTo(expected));
 }
 
 #region unit tests runner

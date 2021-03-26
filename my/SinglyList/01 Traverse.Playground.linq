@@ -18,7 +18,7 @@ public class Solution
     }
 }
 
-public SinglyListNode SampleList(int[] arr)
+public SinglyListNode ToSinglyList(int[] arr)
 {
     if (arr == null || arr.Length == 0)
         return null;
@@ -53,7 +53,7 @@ public class SinglyListNode
 [TestCase(new int[] { 5, 6, 7, 8 })]
 public void SolutionTests(int[] nums)
 {
-    var head = SampleList(nums);
+    var head = ToSinglyList(nums);
     var actual = new Solution().Traverse(head);
     Assert.That(actual, Is.EqualTo(nums));
 }
