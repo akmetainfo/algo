@@ -14,9 +14,6 @@ public class Solution
 {
     public int GetLenght(SinglyListNode head)
     {
-        if(head == null)
-            return 0;
-            
         var result = 0;
 
         while (head != null)
