@@ -15,9 +15,6 @@ public class Solution
 {
     public ListNode RemoveElements(ListNode head, int val)
     {
-        if (head == null)
-            return null;
-
         var dummy = new ListNode(-1);
         dummy.next = head;
         var curr = dummy;

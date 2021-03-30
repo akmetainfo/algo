@@ -15,23 +15,17 @@ public class Solution
 {
     public ListNode RemoveElements(ListNode head, int val)
     {
-        if (head == null)
-            return null;
+        while (head != null && head.val == val)
+            head = head.next;
 
-        var curr = head;
+        var node = head;
 
-        while (curr != null && curr.val == val)
+        while (node != null && node.next != null)
         {
-            curr = curr.next;
-            head = curr;
-        }
-
-        while (curr != null && curr.next != null)
-        {
-            if (curr.next.val == val)
-                curr.next = curr.next.next;
+            if (node.next.val == val)
+                node.next = node.next.next;
             else
-                curr = curr.next;
+                node = node.next;
         }
 
         return head;
