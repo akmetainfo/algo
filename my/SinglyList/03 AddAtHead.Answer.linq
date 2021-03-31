@@ -15,6 +15,14 @@ public class Solution
     public SinglyListNode AddAtHead(SinglyListNode head, int val)
     {
         var newNode = new SinglyListNode(val);
+        newNode.Next = head;
+        return newNode;
+    }
+    
+    /* verbose version:
+    public SinglyListNode AddAtHead(SinglyListNode head, int val)
+    {
+        var newNode = new SinglyListNode(val);
 
         if (head == null)
             return newNode;
@@ -23,6 +31,7 @@ public class Solution
 
         return newNode;
     }
+    */
 }
 
 public SinglyListNode ToSinglyList(int[] arr)
