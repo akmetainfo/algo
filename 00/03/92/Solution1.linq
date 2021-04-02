@@ -8,7 +8,7 @@
 // https://leetcode.com/problems/is-subsequence/
 
 /*
-    Time: O(n), where n = t.Length
+    Time: O(n), where n = max from s.Length and t.Length
     Space: O(m), where m = s.Length (for store queue)
 */
 public class Solution
@@ -32,6 +32,30 @@ public class Solution
         return queue.Count == 0;
     }
 }
+
+/*
+    Time: O(n), where n = max from s.Length and t.Length
+    Space: O(m), where m = t.Length (for store queue)
+*/
+public class Solution1
+{
+    public bool IsSubsequence(string s, string t)
+    {
+        var queue = new Queue<char>(t);
+
+        var i = 0;
+        while (i < s.Length)
+        {
+            if (queue.Count() == 0)
+                return false;
+
+            if (s[i] == queue.Dequeue())
+                i++;
+        }
+        return i == s.Length;
+    }
+}
+
 
 [Test]
 [TestCase("abc", "ahbgdc", true)]
