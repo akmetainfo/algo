@@ -15,12 +15,7 @@ public class Solution
 {
     public int CountSegments(string s)
     {
-        var trimmed = s.Trim();
-        
-        //if (trimmed.Equals(""))
-        //    return 0;
-
-        return trimmed.Split(new char[] { ' '}, StringSplitOptions.RemoveEmptyEntries).Length;
+        return s.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries).Count();
     }
 }
 
