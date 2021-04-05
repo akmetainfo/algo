@@ -58,7 +58,7 @@ public void SolutionTests(int[] values, int val, int[] expectedResult)
 
     var actualResult = ToArray(actual);
 
-    Assert.That(expectedResult, Is.EqualTo(actualResult));
+    Assert.That(actualResult, Is.EqualTo(expectedResult));
 }
 
 #region unit-tests helpers

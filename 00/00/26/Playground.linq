@@ -20,6 +20,7 @@ public class Solution
 }
 
 [Test]
+[TestCase(new int[] { }, new int[] { }, 0)]
 [TestCase(new int[] { 10 }, new int[] { 10 }, 1)]
 [TestCase(new int[] { 1, 2 }, new int[] { 1, 2 }, 2)]
 [TestCase(new int[] { 1, 1 }, new int[] { 1 }, 1)]
