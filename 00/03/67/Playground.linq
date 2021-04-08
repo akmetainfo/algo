@@ -32,6 +32,7 @@ public class Solution
 [TestCase(9, true)]
 [TestCase(14, false)]
 [TestCase(16, true)]
+[TestCase(808201, true)]
 public void SolutionTests(int nums, bool expected)
 {
     var actual = new Solution().IsPerfectSquare(nums);
