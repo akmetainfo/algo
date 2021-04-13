@@ -8,14 +8,26 @@
 // https://leetcode.com/problems/linked-list-cycle/
 
 /*
-    Time: O()
-    Space: O()
+    Time: O(n) We visit each of the n elements in the list at most once. Adding a node to the hash table costs only O(1) time.
+    Space: O(n) The space depends on the number of elements added to the hash table, which contains at most n elements.
 */
 public class Solution
 {
     public bool HasCycle(ListNode head)
     {
-        throw new NotImplementedException();
+        var nodesSeen = new HashSet<ListNode>();
+        
+        while (head != null)
+        {
+            if (nodesSeen.Contains(head))
+                return true;
+
+            nodesSeen.Add(head);
+
+            head = head.next;
+        }
+
+        return false;
     }
 }
 

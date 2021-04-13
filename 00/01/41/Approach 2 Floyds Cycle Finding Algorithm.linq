@@ -8,14 +8,29 @@
 // https://leetcode.com/problems/linked-list-cycle/
 
 /*
-    Time: O()
-    Space: O()
+    Time: O(n)
+    Space: O(1). We only use two nodes (slow and fast) so the space complexity is O(1).
 */
 public class Solution
 {
     public bool HasCycle(ListNode head)
     {
-        throw new NotImplementedException();
+        if (head == null)
+            return false;
+            
+        var fast = head.next;
+        var slow = head;
+
+        while (slow != fast)
+        {
+            if (fast == null || fast.next == null)
+                return false;
+            
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+
+        return true;
     }
 }
 
