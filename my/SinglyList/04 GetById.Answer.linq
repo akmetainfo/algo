@@ -14,9 +14,6 @@ public class Solution
 {
     public int GetById(SinglyListNode head, int index)
     {
-        if (index < 0)
-            return -1;
-
         var i = 0;
 
         while (head != null && i != index)
@@ -25,10 +22,10 @@ public class Solution
             i++;
         }
 
-        if (i == index && head != null)
-            return head.Data;
+        if (head == null)
+            return -1;
 
-        return -1;
+        return head.Data;
     }
 }
 
