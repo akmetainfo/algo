@@ -1,0 +1,504 @@
+<div class="content__QRGW">
+    <div>
+        <h2>Solution</h2>
+        <hr>
+        <h4 id="approach-1-sorting-accepted">Approach #1 (Sorting) [Accepted]</h4>
+        <p><strong>Algorithm</strong></p>
+        <p>An anagram is produced by rearranging the letters of <span class="katex"><span class="katex-mathml"><math>
+                        <semantics>
+                            <mrow>
+                                <mi>s</mi>
+                            </mrow>
+                            <annotation encoding="application/x-tex">s</annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:0.43056em;vertical-align:0em;"></span><span
+                            class="mord mathdefault">s</span></span></span></span> into <span class="katex"><span
+                    class="katex-mathml"><math>
+                        <semantics>
+                            <mrow>
+                                <mi>t</mi>
+                            </mrow>
+                            <annotation encoding="application/x-tex">t</annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:0.61508em;vertical-align:0em;"></span><span
+                            class="mord mathdefault">t</span></span></span></span>. Therefore, if <span
+                class="katex"><span class="katex-mathml"><math>
+                        <semantics>
+                            <mrow>
+                                <mi>t</mi>
+                            </mrow>
+                            <annotation encoding="application/x-tex">t</annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:0.61508em;vertical-align:0em;"></span><span
+                            class="mord mathdefault">t</span></span></span></span> is an anagram of <span
+                class="katex"><span class="katex-mathml"><math>
+                        <semantics>
+                            <mrow>
+                                <mi>s</mi>
+                            </mrow>
+                            <annotation encoding="application/x-tex">s</annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:0.43056em;vertical-align:0em;"></span><span
+                            class="mord mathdefault">s</span></span></span></span>, sorting both strings will result in
+            two identical strings. Furthermore, if <span class="katex"><span class="katex-mathml"><math>
+                        <semantics>
+                            <mrow>
+                                <mi>s</mi>
+                            </mrow>
+                            <annotation encoding="application/x-tex">s</annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:0.43056em;vertical-align:0em;"></span><span
+                            class="mord mathdefault">s</span></span></span></span> and <span class="katex"><span
+                    class="katex-mathml"><math>
+                        <semantics>
+                            <mrow>
+                                <mi>t</mi>
+                            </mrow>
+                            <annotation encoding="application/x-tex">t</annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:0.61508em;vertical-align:0em;"></span><span
+                            class="mord mathdefault">t</span></span></span></span> have different lengths, <span
+                class="katex"><span class="katex-mathml"><math>
+                        <semantics>
+                            <mrow>
+                                <mi>t</mi>
+                            </mrow>
+                            <annotation encoding="application/x-tex">t</annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:0.61508em;vertical-align:0em;"></span><span
+                            class="mord mathdefault">t</span></span></span></span> must not be an anagram of <span
+                class="katex"><span class="katex-mathml"><math>
+                        <semantics>
+                            <mrow>
+                                <mi>s</mi>
+                            </mrow>
+                            <annotation encoding="application/x-tex">s</annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:0.43056em;vertical-align:0em;"></span><span
+                            class="mord mathdefault">s</span></span></span></span> and we can return early.</p>
+        <pre><code class="language-java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">isAnagram</span><span class="hljs-params">(String s, String t)</span> </span>{
+        <span class="hljs-keyword">if</span> (s.length() != t.length()) {
+            <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;
+        }
+        <span class="hljs-keyword">char</span>[] str1 = s.toCharArray();
+        <span class="hljs-keyword">char</span>[] str2 = t.toCharArray();
+        Arrays.sort(str1);
+        Arrays.sort(str2);
+        <span class="hljs-keyword">return</span> Arrays.equals(str1, str2);
+    }
+    </code></pre>
+        <p><strong>Complexity analysis</strong></p>
+        <ul>
+            <li>
+                <p>Time complexity : <span class="katex"><span class="katex-mathml"><math>
+                                <semantics>
+                                    <mrow>
+                                        <mi>O</mi>
+                                        <mo>(</mo>
+                                        <mi>n</mi>
+                                        <mi>log</mi>
+                                        <mo>⁡</mo>
+                                        <mi>n</mi>
+                                        <mo>)</mo>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">O(n \log n)</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                                    class="mord mathdefault" style="margin-right:0.02778em;">O</span><span
+                                    class="mopen">(</span><span class="mord mathdefault">n</span><span class="mspace"
+                                    style="margin-right:0.16666666666666666em;"></span><span class="mop">lo<span
+                                        style="margin-right:0.01389em;">g</span></span><span class="mspace"
+                                    style="margin-right:0.16666666666666666em;"></span><span
+                                    class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span>.
+                    Assume that <span class="katex"><span class="katex-mathml"><math>
+                                <semantics>
+                                    <mrow>
+                                        <mi>n</mi>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">n</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut" style="height:0.43056em;vertical-align:0em;"></span><span
+                                    class="mord mathdefault">n</span></span></span></span> is the length of <span
+                        class="katex"><span class="katex-mathml"><math>
+                                <semantics>
+                                    <mrow>
+                                        <mi>s</mi>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">s</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut" style="height:0.43056em;vertical-align:0em;"></span><span
+                                    class="mord mathdefault">s</span></span></span></span>, sorting costs <span
+                        class="katex"><span class="katex-mathml"><math>
+                                <semantics>
+                                    <mrow>
+                                        <mi>O</mi>
+                                        <mo>(</mo>
+                                        <mi>n</mi>
+                                        <mi>log</mi>
+                                        <mo>⁡</mo>
+                                        <mi>n</mi>
+                                        <mo>)</mo>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">O(n \log n)</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                                    class="mord mathdefault" style="margin-right:0.02778em;">O</span><span
+                                    class="mopen">(</span><span class="mord mathdefault">n</span><span class="mspace"
+                                    style="margin-right:0.16666666666666666em;"></span><span class="mop">lo<span
+                                        style="margin-right:0.01389em;">g</span></span><span class="mspace"
+                                    style="margin-right:0.16666666666666666em;"></span><span
+                                    class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span>
+                    and comparing two strings costs <span class="katex"><span class="katex-mathml"><math>
+                                <semantics>
+                                    <mrow>
+                                        <mi>O</mi>
+                                        <mo>(</mo>
+                                        <mi>n</mi>
+                                        <mo>)</mo>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">O(n)</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                                    class="mord mathdefault" style="margin-right:0.02778em;">O</span><span
+                                    class="mopen">(</span><span class="mord mathdefault">n</span><span
+                                    class="mclose">)</span></span></span></span>. Sorting time dominates and the overall
+                    time complexity is <span class="katex"><span class="katex-mathml"><math>
+                                <semantics>
+                                    <mrow>
+                                        <mi>O</mi>
+                                        <mo>(</mo>
+                                        <mi>n</mi>
+                                        <mi>log</mi>
+                                        <mo>⁡</mo>
+                                        <mi>n</mi>
+                                        <mo>)</mo>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">O(n \log n)</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                                    class="mord mathdefault" style="margin-right:0.02778em;">O</span><span
+                                    class="mopen">(</span><span class="mord mathdefault">n</span><span class="mspace"
+                                    style="margin-right:0.16666666666666666em;"></span><span class="mop">lo<span
+                                        style="margin-right:0.01389em;">g</span></span><span class="mspace"
+                                    style="margin-right:0.16666666666666666em;"></span><span
+                                    class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span>.
+                </p>
+            </li>
+            <li>
+                <p>Space complexity : <span class="katex"><span class="katex-mathml"><math>
+                                <semantics>
+                                    <mrow>
+                                        <mi>O</mi>
+                                        <mo>(</mo>
+                                        <mn>1</mn>
+                                        <mo>)</mo>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">O(1)</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                                    class="mord mathdefault" style="margin-right:0.02778em;">O</span><span
+                                    class="mopen">(</span><span class="mord">1</span><span
+                                    class="mclose">)</span></span></span></span>.
+                    Space depends on the sorting implementation which, usually, costs <span class="katex"><span
+                            class="katex-mathml"><math>
+                                <semantics>
+                                    <mrow>
+                                        <mi>O</mi>
+                                        <mo>(</mo>
+                                        <mn>1</mn>
+                                        <mo>)</mo>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">O(1)</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                                    class="mord mathdefault" style="margin-right:0.02778em;">O</span><span
+                                    class="mopen">(</span><span class="mord">1</span><span
+                                    class="mclose">)</span></span></span></span> auxiliary space if
+                    <code>heapsort</code> is used. Note that in Java, <code>toCharArray()</code> makes a copy of the
+                    string so it costs <span class="katex"><span class="katex-mathml"><math>
+                                <semantics>
+                                    <mrow>
+                                        <mi>O</mi>
+                                        <mo>(</mo>
+                                        <mi>n</mi>
+                                        <mo>)</mo>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">O(n)</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                                    class="mord mathdefault" style="margin-right:0.02778em;">O</span><span
+                                    class="mopen">(</span><span class="mord mathdefault">n</span><span
+                                    class="mclose">)</span></span></span></span> extra space, but we ignore this for
+                    complexity analysis because:
+                </p>
+                <ul>
+                    <li>It is a language dependent detail.</li>
+                    <li>It depends on how the function is designed. For example, the function parameter types can be
+                        changed to <code>char[]</code>.</li>
+                </ul>
+            </li>
+        </ul>
+        <hr>
+        <h4 id="approach-2-hash-table-accepted">Approach #2 (Hash Table) [Accepted]</h4>
+        <p><strong>Algorithm</strong></p>
+        <p>To examine if <span class="katex"><span class="katex-mathml"><math>
+                        <semantics>
+                            <mrow>
+                                <mi>t</mi>
+                            </mrow>
+                            <annotation encoding="application/x-tex">t</annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:0.61508em;vertical-align:0em;"></span><span
+                            class="mord mathdefault">t</span></span></span></span> is a rearrangement of <span
+                class="katex"><span class="katex-mathml"><math>
+                        <semantics>
+                            <mrow>
+                                <mi>s</mi>
+                            </mrow>
+                            <annotation encoding="application/x-tex">s</annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:0.43056em;vertical-align:0em;"></span><span
+                            class="mord mathdefault">s</span></span></span></span>, we can count occurrences of each
+            letter in the two strings and compare them. Since both <span class="katex"><span class="katex-mathml"><math>
+                        <semantics>
+                            <mrow>
+                                <mi>s</mi>
+                            </mrow>
+                            <annotation encoding="application/x-tex">s</annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:0.43056em;vertical-align:0em;"></span><span
+                            class="mord mathdefault">s</span></span></span></span> and <span class="katex"><span
+                    class="katex-mathml"><math>
+                        <semantics>
+                            <mrow>
+                                <mi>t</mi>
+                            </mrow>
+                            <annotation encoding="application/x-tex">t</annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:0.61508em;vertical-align:0em;"></span><span
+                            class="mord mathdefault">t</span></span></span></span> contain only letters from <span
+                class="katex"><span class="katex-mathml"><math>
+                        <semantics>
+                            <mrow>
+                                <mi>a</mi>
+                                <mo>−</mo>
+                                <mi>z</mi>
+                            </mrow>
+                            <annotation encoding="application/x-tex">a-z</annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:0.66666em;vertical-align:-0.08333em;"></span><span
+                            class="mord mathdefault">a</span><span class="mspace"
+                            style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span
+                            class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span
+                        class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span
+                            class="mord mathdefault" style="margin-right:0.04398em;">z</span></span></span></span>, a
+            simple counter table of size 26 is suffice.</p>
+        <p>Do we need <em>two</em> counter tables for comparison? Actually no, because we could increment the counter
+            for each letter in <span class="katex"><span class="katex-mathml"><math>
+                        <semantics>
+                            <mrow>
+                                <mi>s</mi>
+                            </mrow>
+                            <annotation encoding="application/x-tex">s</annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:0.43056em;vertical-align:0em;"></span><span
+                            class="mord mathdefault">s</span></span></span></span> and decrement the counter for each
+            letter in <span class="katex"><span class="katex-mathml"><math>
+                        <semantics>
+                            <mrow>
+                                <mi>t</mi>
+                            </mrow>
+                            <annotation encoding="application/x-tex">t</annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:0.61508em;vertical-align:0em;"></span><span
+                            class="mord mathdefault">t</span></span></span></span>, then check if the counter reaches
+            back to zero.</p>
+        <pre><code class="language-java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">isAnagram</span><span class="hljs-params">(String s, String t)</span> </span>{
+        <span class="hljs-keyword">if</span> (s.length() != t.length()) {
+            <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;
+        }
+        <span class="hljs-keyword">int</span>[] counter = <span class="hljs-keyword">new</span> <span class="hljs-keyword">int</span>[<span class="hljs-number">26</span>];
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; s.length(); i++) {
+            counter[s.charAt(i) - <span class="hljs-string">'a'</span>]++;
+            counter[t.charAt(i) - <span class="hljs-string">'a'</span>]--;
+        }
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> count : counter) {
+            <span class="hljs-keyword">if</span> (count != <span class="hljs-number">0</span>) {
+                <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;
+            }
+        }
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;
+    }
+    </code></pre>
+        <p>Or we could first increment the counter for <span class="katex"><span class="katex-mathml"><math>
+                        <semantics>
+                            <mrow>
+                                <mi>s</mi>
+                            </mrow>
+                            <annotation encoding="application/x-tex">s</annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:0.43056em;vertical-align:0em;"></span><span
+                            class="mord mathdefault">s</span></span></span></span>, then decrement the counter for <span
+                class="katex"><span class="katex-mathml"><math>
+                        <semantics>
+                            <mrow>
+                                <mi>t</mi>
+                            </mrow>
+                            <annotation encoding="application/x-tex">t</annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:0.61508em;vertical-align:0em;"></span><span
+                            class="mord mathdefault">t</span></span></span></span>. If at any point the counter drops
+            below zero, we know that <span class="katex"><span class="katex-mathml"><math>
+                        <semantics>
+                            <mrow>
+                                <mi>t</mi>
+                            </mrow>
+                            <annotation encoding="application/x-tex">t</annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:0.61508em;vertical-align:0em;"></span><span
+                            class="mord mathdefault">t</span></span></span></span> contains an extra letter not in <span
+                class="katex"><span class="katex-mathml"><math>
+                        <semantics>
+                            <mrow>
+                                <mi>s</mi>
+                            </mrow>
+                            <annotation encoding="application/x-tex">s</annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:0.43056em;vertical-align:0em;"></span><span
+                            class="mord mathdefault">s</span></span></span></span> and return false immediately.</p>
+        <pre><code class="language-java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">isAnagram</span><span class="hljs-params">(String s, String t)</span> </span>{
+        <span class="hljs-keyword">if</span> (s.length() != t.length()) {
+            <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;
+        }
+        <span class="hljs-keyword">int</span>[] table = <span class="hljs-keyword">new</span> <span class="hljs-keyword">int</span>[<span class="hljs-number">26</span>];
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; s.length(); i++) {
+            table[s.charAt(i) - <span class="hljs-string">'a'</span>]++;
+        }
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; t.length(); i++) {
+            table[t.charAt(i) - <span class="hljs-string">'a'</span>]--;
+            <span class="hljs-keyword">if</span> (table[t.charAt(i) - <span class="hljs-string">'a'</span>] &lt; <span class="hljs-number">0</span>) {
+                <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;
+            }
+        }
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;
+    }
+    </code></pre>
+        <p><strong>Complexity analysis</strong></p>
+        <ul>
+            <li>
+                <p>Time complexity : <span class="katex"><span class="katex-mathml"><math>
+                                <semantics>
+                                    <mrow>
+                                        <mi>O</mi>
+                                        <mo>(</mo>
+                                        <mi>n</mi>
+                                        <mo>)</mo>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">O(n)</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                                    class="mord mathdefault" style="margin-right:0.02778em;">O</span><span
+                                    class="mopen">(</span><span class="mord mathdefault">n</span><span
+                                    class="mclose">)</span></span></span></span>.
+                    Time complexity is <span class="katex"><span class="katex-mathml"><math>
+                                <semantics>
+                                    <mrow>
+                                        <mi>O</mi>
+                                        <mo>(</mo>
+                                        <mi>n</mi>
+                                        <mo>)</mo>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">O(n)</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                                    class="mord mathdefault" style="margin-right:0.02778em;">O</span><span
+                                    class="mopen">(</span><span class="mord mathdefault">n</span><span
+                                    class="mclose">)</span></span></span></span> because accessing the counter table is
+                    a constant time operation.</p>
+            </li>
+            <li>
+                <p>Space complexity : <span class="katex"><span class="katex-mathml"><math>
+                                <semantics>
+                                    <mrow>
+                                        <mi>O</mi>
+                                        <mo>(</mo>
+                                        <mn>1</mn>
+                                        <mo>)</mo>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">O(1)</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                                    class="mord mathdefault" style="margin-right:0.02778em;">O</span><span
+                                    class="mopen">(</span><span class="mord">1</span><span
+                                    class="mclose">)</span></span></span></span>.
+                    Although we do use extra space, the space complexity is <span class="katex"><span
+                            class="katex-mathml"><math>
+                                <semantics>
+                                    <mrow>
+                                        <mi>O</mi>
+                                        <mo>(</mo>
+                                        <mn>1</mn>
+                                        <mo>)</mo>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">O(1)</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                                    class="mord mathdefault" style="margin-right:0.02778em;">O</span><span
+                                    class="mopen">(</span><span class="mord">1</span><span
+                                    class="mclose">)</span></span></span></span> because the table's size stays constant
+                    no matter how large <span class="katex"><span class="katex-mathml"><math>
+                                <semantics>
+                                    <mrow>
+                                        <mi>n</mi>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">n</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut" style="height:0.43056em;vertical-align:0em;"></span><span
+                                    class="mord mathdefault">n</span></span></span></span> is.</p>
+            </li>
+        </ul>
+        <p><strong>Follow up</strong></p>
+        <p>What if the inputs contain unicode characters? How would you adapt your solution to such case?</p>
+        <p><strong>Answer</strong></p>
+        <p>Use a hash table instead of a fixed size counter. Imagine allocating a large size array to fit the entire
+            range of unicode characters, which could go up to <a href="http://stackoverflow.com/a/5928054/490463">more
+                than 1 million</a>. A hash table is a more generic solution and could adapt to any range of characters.
+        </p>
+    </div>
+</div>
+<link rel="stylesheet" href="../../../boilerplate/simple.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css"
+    integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
