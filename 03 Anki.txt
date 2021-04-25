@@ -9,6 +9,7 @@
 0206,Reverse Linked List
 0217,Contains Duplicate
 0242,Valid Anagram
+0278,First Bad Version
 0367,Valid Perfect Square
 0383,Ransom Note
 0387,First Unique Character in a String
