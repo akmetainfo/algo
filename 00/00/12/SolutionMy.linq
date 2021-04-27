@@ -16,9 +16,7 @@ public class Solution
     // Idea from https://habr.com/en/company/jugru/blog/553028/
     public string IntToRoman(int num)
     {
-        var nums = Enumerable.Repeat('I', num);
-
-        string result = new string(nums.ToArray());
+        string result = new string('I', num);
         
         result = result.Replace("IIIII", "V");
         result = result.Replace("VV", "X");
