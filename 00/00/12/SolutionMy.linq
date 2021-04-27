@@ -27,15 +27,13 @@ public class Solution
         result = result.Replace("CCCCC", "D");
         result = result.Replace("DD", "M");
 
-        result = result.Replace("IIII", "IV");
-        result = result.Replace("VIV", "IX");
-        result = result.Replace("XXXX", "XL");
-        result = result.Replace("LXXXX", "XC");
-        result = result.Replace("LXL", "XC");
-        result = result.Replace("CCCC", "CD");
-        result = result.Replace("DCD", "CM");
-        result = result.Replace("DCCCC", "CM");
-
+        result = result.Replace("VIIII", "IX"); // 9
+        result = result.Replace("IIII", "IV"); // 4
+        result = result.Replace("LXXXX", "XC");  // 90
+        result = result.Replace("XXXX", "XL"); // 40
+        result = result.Replace("DCCCC", "CM");  // 900
+        result = result.Replace("CCCC", "CD");  // 400
+        
         return result;
     }
 }
