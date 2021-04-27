@@ -38,6 +38,7 @@ public class Solution
 [TestCase("", "y", 'y')]
 [TestCase("a", "aa", 'a')]
 [TestCase("ae", "aea", 'a')]
+[TestCase("aab", "aabc", 'c')]
 public void SolutionTests(string s, string t, char expected)
 {
     var actual = new Solution().FindTheDifference(s, t);
