@@ -1,0 +1,1 @@
+-- Ask name and write greeting at console
