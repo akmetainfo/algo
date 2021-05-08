@@ -14,6 +14,43 @@
 public class Solution
 {
     // Idea from https://habr.com/en/company/jugru/blog/553028/
+    // With pipelines
+    public string IntToRoman(int num)
+    {
+        Func<string, string> replace(string oldValue, string newValue) => input => input.Replace(oldValue, newValue);
+
+        return new string('I', num)
+            .Pipe(replace("IIIII", "V"))
+            .Pipe(replace("VV", "X"))
+            .Pipe(replace("XXXXX", "L"))
+            .Pipe(replace("LL", "C"))
+            .Pipe(replace("CCCCC", "D"))
+            .Pipe(replace("DD", "M"))
+            .Pipe(replace("VIIII", "IX")) // 9
+            .Pipe(replace("IIII", "IV")) // 4
+            .Pipe(replace("LXXXX", "XC")) // 90
+            .Pipe(replace("XXXX", "XL")) // 40
+            .Pipe(replace("DCCCC", "CM")) // 900
+            .Pipe(replace("CCCC", "CD")); // 400
+    }
+}
+
+public static class PipeExtension
+{
+    public static T Pipe<T>(this T obj, Func<T, T> f)
+    {
+        return f(obj);
+    }
+}
+
+/*
+    Time: O()
+    Space: O()
+*/
+public class Solution1
+{
+    // Idea from https://habr.com/en/company/jugru/blog/553028/
+    // Without pipelines
     public string IntToRoman(int num)
     {
         string result = new string('I', num);
