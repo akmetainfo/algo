@@ -1,5 +1,4 @@
 0066,Plus One
-0119,Pascal's Triangle II
 0482,License Key Formatting
 0500,Keyboard Row
 0507,Perfect Number
