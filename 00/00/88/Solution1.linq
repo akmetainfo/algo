@@ -51,12 +51,8 @@ public class Solution
 [TestCase(new int[] { 1, 101, 0 }, 2, new int[] { }, 0, new int[] { 1, 101, 0 })]
 [TestCase(new int[] { 101, 102, 103, 0 }, 3, new int[] { 1 }, 1, new int[] { 1, 101, 102, 103 })]
 [TestCase(new int[] { 1, 101, 102, 103, 0 }, 4, new int[] { 1 }, 1, new int[] { 1, 1, 101, 102, 103 })]
-[TestCase(new int[] { 1, 2, 3, 5, 6, 0, 0 }, 5, new int[] { 4 }, 1, new int[] { 1, 2, 3, 4, 5, 6, 0 })]
-[TestCase(new int[] { 1, 2, 3, 0, 0 }, 3, new int[] { 4 }, 1, new int[] { 1, 2, 3, 4, 0 })]
 [TestCase(new int[] { 101, 102, 103, 0, 0, 0 }, 3, new int[] { 2, 5, 6 }, 3, new int[] { 2, 5, 6, 101, 102, 103 })]
 [TestCase(new int[] { 1, 2, 3, 0, 0, 0 }, 3, new int[] { 102, 105, 106 }, 3, new int[] { 1, 2, 3, 102, 105, 106 })]
-[TestCase(new int[] { 1, 2, 3, 0, 0, 0, 0 }, 3, new int[] { 2, 5, 6 }, 3, new int[] { 1, 2, 2, 3, 5, 6, 0 })]
-[TestCase(new int[] { 10, 20, 30, 0, 0, 0, 0 }, 3, new int[] { 11, 22, 33 }, 3, new int[] { 10, 11, 20, 22, 30, 33, 0 })]
 [TestCase(new int[] { 1, 2, 3, 0, 0, 0 }, 3, new int[] { 2, 5, 6 }, 3, new int[] { 1, 2, 2, 3, 5, 6 })]
 public void SolutionTests(int[] nums1, int m, int[] nums2, int n, int[] expected)
 {
