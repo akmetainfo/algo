@@ -39,6 +39,7 @@ public class Solution
 [TestCase(new int[] { 1, 3, 2 }, false)]
 [TestCase(new int[] { 1, 2, 4, 5 }, true)]
 [TestCase(new int[] { 1, 1, 1 }, true)]
+[TestCase(new int[] { 1, 3, 2 }, false)]
 public void SolutionTests(int[] nums, bool expected)
 {
     var actual = new Solution().IsMonotonic(nums);
