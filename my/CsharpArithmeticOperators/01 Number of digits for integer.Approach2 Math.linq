@@ -14,20 +14,21 @@ public class Solution
 {
     public int Digits(int num)
     {
-        var result = 0;
+        if (num == 0)
+            return 1;
+    
+        // https://ru.stackoverflow.com/q/1285651
+        if(num == int.MinValue)
+            return 10;
         
-        while(num > 0)
-        {
-            num = num / 10;
-            result++;
-        }
+        var result = Math.Log10(Math.Abs(num)) + 1; 
         
-        return result;
+        return (int) result;
     }
 }
 
 [Test]
-[TestCase(0, 0)]
+[TestCase(0, 1)]
 [TestCase(1, 1)]
 [TestCase(2, 1)]
 [TestCase(3, 1)]
@@ -38,6 +39,8 @@ public class Solution
 [TestCase(100, 3)]
 [TestCase(123, 3)]
 [TestCase(1979, 4)]
+[TestCase(-2147483648, 10)]
+[TestCase(2147483647, 10)]
 public void SolutionTests(int num, int expected)
 {
     var actual = new Solution().Digits(num);

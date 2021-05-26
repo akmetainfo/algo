@@ -14,7 +14,21 @@ public class Solution
 {
     public int Digits(int num)
     {
-        throw new NotImplementedException();
+        if(num == 0)
+            return 1;
+    
+        if(num == int.MinValue)
+            return 10;
+    
+        var result = 0;
+        
+        while(num > 0)
+        {
+            num = num / 10;
+            result++;
+        }
+        
+        return result;
     }
 }
 
