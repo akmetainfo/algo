@@ -46,6 +46,7 @@ public class Solution
 [TestCase("a", "b", false)]
 [TestCase("aa", "ab", false)]
 [TestCase("aa", "aab", true)]
+[TestCase("bg", "efjbdfbdgfjhhaiigfhbaejahgfbbgbjagbddfgdiaigdadhcfcj", true)]
 public void SolutionTests(string ransomNote, string magazine, bool expected)
 {
     var actual = new Solution().CanConstruct(ransomNote, magazine);

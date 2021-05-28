@@ -8,14 +8,32 @@
 // https://leetcode.com/problems/ransom-note/
 
 /*
-    Time: O()
-    Space: O()
+    Time: O(N * M)
+    Space: O(1)
+    
+    N - length of ransomNote, M - length of magazine
 */
 public class Solution
 {
     public bool CanConstruct(string ransomNote, string magazine)
     {
-        throw new NotImplementedException();
+        if (ransomNote.Length > magazine.Length)
+            return false;
+    
+        var list = new List<char>();
+        
+        foreach(var c in magazine)
+            list.Add(c);
+        
+        foreach(var c in ransomNote)
+        {
+            if(!list.Contains(c))
+                return false;
+                
+            list.Remove(c);
+        }
+        
+        return true;
     }
 }
 
