@@ -4,68 +4,45 @@
   <Namespace>NUnitLite</Namespace>
 </Query>
 
-// 9. Palindrome Number
-// https://leetcode.com/problems/palindrome-number/
+// 02. Reversing Number
 
 /*
-    Time: O(log n)
-    Space: O(log n)
+    Time: O()
+    Space: O()
 */
 public class Solution
 {
-	public bool IsPalindrome(int x)
-	{
-		if (x < 0)
-			return false;
-
-		if (x == 0)
-			return true;
-
-		var size = DigitsCount(x);
-        var s = new int[size];
-        
-        for(var i = size - 1; i >= 0; i--)
-        {
-            s[i] = x % 10;
-            x = x / 10;
-        }  
-        
-		var left = 0;
-		var right = s.Length - 1;
-		while (left < right)
-		{
-			if (s[left] != s[right])
-				return false;
-
-			left++;
-			right--;
-		}
-		return true;
-	}
-    
-    private static int DigitsCount(int x)
+    public int ReverseInt(int num)
     {
         var result = 0;
         
-        while(x > 0)
+        while(num > 0)
         {
-            result++;
-            x = x / 10;
+            result = result * 10 + (num % 10);
+            num /= 10;
         }
         
-        return result;    
+        return result;
     }
 }
 
 [Test]
-[TestCase(121, true)]
-[TestCase(-121, false)]
-[TestCase(10, false)]
-[TestCase(-101, false)]
-[TestCase(1234321, true)]
-public void SolutionTests(int x, bool expected)
+[TestCase(0, 0)]
+[TestCase(1, 1)]
+[TestCase(2, 2)]
+[TestCase(3, 3)]
+[TestCase(9, 9)]
+[TestCase(10, 1)]
+[TestCase(42, 24)]
+[TestCase(99, 99)]
+[TestCase(100, 1)]
+[TestCase(123, 321)]
+[TestCase(1979, 9791)]
+//[TestCase(-2147483648, 10)]
+//[TestCase(2147483647, 10)]
+public void SolutionTests(int num, int expected)
 {
-    var actual = new Solution().IsPalindrome(x);
+    var actual = new Solution().ReverseInt(num);
     Assert.That(actual, Is.EqualTo(expected));
 }
 
