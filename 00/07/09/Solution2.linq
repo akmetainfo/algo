@@ -21,7 +21,10 @@ public class Solution
         var result = new StringBuilder();
         foreach (char c in str)
         {
-            result.Append((char)(c | 32));
+            if ('A' <= c && c <= 'Z')
+                result.Append((char)(c | 32));
+            else
+                result.Append(c);
         }
         return result.ToString();
     }
@@ -31,6 +34,7 @@ public class Solution
 [TestCase("Hello", "hello")]
 [TestCase("here", "here")]
 [TestCase("LOVELY", "lovely")]
+[TestCase("Hello@[]", "hello@[]")]
 public void SolutionTests(string str, string expected)
 {
     var result = new Solution().ToLowerCase(str);

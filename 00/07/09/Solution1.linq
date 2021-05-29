@@ -35,6 +35,7 @@ public class Solution
 [TestCase("Hello", "hello")]
 [TestCase("here", "here")]
 [TestCase("LOVELY", "lovely")]
+[TestCase("Hello@[]", "hello@[]")]
 public void SolutionTests(string str, string expected)
 {
     var result = new Solution().ToLowerCase(str);
