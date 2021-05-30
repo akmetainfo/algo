@@ -1,0 +1,158 @@
+<div class="content__QRGW">
+    <div>
+        <h2>Solution</h2>
+        <hr>
+        <h4 id="approach-1-revert-half-of-the-number">Approach 1: Revert half of the number</h4>
+        <p><strong>Intuition</strong></p>
+        <p>The first idea that comes to mind is to convert the number into string, and check if the string is a
+            palindrome, but
+            this would require extra non-constant space for creating the string which is not allowed by the problem
+            description.</p>
+        <p>Second idea would be reverting the number itself, and then compare the number with original number,
+            if they are the same, then the number is a palindrome. However, if the reversed number is larger than <span
+                class="katex"><span class="katex-mathml"><math>
+                        <semantics>
+                            <mrow>
+                                <mtext>int.MAX</mtext>
+                            </mrow>
+                            <annotation encoding="application/x-tex">\text{int.MAX}</annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:0.68333em;vertical-align:0em;"></span><span class="mord text"><span
+                                class="mord">int.MAX</span></span></span></span></span>,
+            we will hit integer overflow problem.</p>
+        <p>Following the thoughts based on the second idea, to avoid the overflow issue of the reverted number, what if
+            we only
+            revert half of the <span class="katex"><span class="katex-mathml"><math>
+                        <semantics>
+                            <mrow>
+                                <mtext>int</mtext>
+                            </mrow>
+                            <annotation encoding="application/x-tex">\text{int}</annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:0.66786em;vertical-align:0em;"></span><span class="mord text"><span
+                                class="mord">int</span></span></span></span></span> number? After all, the reverse of
+            the last half of the palindrome should be the same as the
+            first half of the number, if the number is a palindrome.</p>
+        <p>For example, if the input is <code>1221</code>, if we can revert the last part of the number
+            "12<strong>21</strong>" from "<strong>21</strong>" to "<strong>12</strong>",
+            and compare it with the first half of the number "12", since 12 is the same as 12, we know that the number
+            is a palindrome.</p>
+        <p>Let's see how we could translate this idea into an algorithm.</p>
+        <p><strong>Algorithm</strong></p>
+        <p>First of all we should take care of some edge cases. All negative numbers are not palindrome, for example:
+            -123 is
+            not a palindrome since the '-' does not equal to '3'. So we can return false for all negative numbers.</p>
+        <p>Now let's think about how to revert the last half of the number. For number <code>1221</code>, if we do
+            <code>1221 % 10</code>, we get the
+            last digit <code>1</code>, to get the second to the last digit, we need to remove the last digit from
+            <code>1221</code>, we could do so by
+            dividing it by 10, <code>1221 / 10 = 122</code>. Then we can get the last digit again by doing a modulus by
+            10, <code>122 % 10 = 2</code>, and if we multiply the last digit by 10 and add the second last digit,
+            <code>1 * 10 + 2 = 12</code>, it gives us the reverted number we want. Continuing this process would give us
+            the reverted number with more digits.</p>
+        <p>Now the question is, how do we know that we've reached the half of the number?</p>
+        <p>Since we divided the number by 10, and multiplied the reversed number by 10, when the original number is less
+            than the
+            reversed number, it means we've processed half of the number digits.</p>
+        <iframe src="https://leetcode.com/playground/A2cW8TnM/shared" name="A2cW8TnM" width="100%" height="446"
+            frameborder="0"></iframe>
+        <p><strong>Complexity Analysis</strong></p>
+        <ul>
+            <li>
+                <p>Time complexity : <span class="katex"><span class="katex-mathml"><math>
+                                <semantics>
+                                    <mrow>
+                                        <mi>O</mi>
+                                        <mo>(</mo>
+                                        <msub>
+                                            <mi>log</mi>
+                                            <mo>⁡</mo>
+                                            <mn>10</mn>
+                                        </msub>
+                                        <mo>(</mo>
+                                        <mi>n</mi>
+                                        <mo>)</mo>
+                                        <mo>)</mo>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">O(\log_{10}(n))</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                                    class="mord mathdefault" style="margin-right:0.02778em;">O</span><span
+                                    class="mopen">(</span><span class="mop"><span class="mop">lo<span
+                                            style="margin-right:0.01389em;">g</span></span><span class="msupsub"><span
+                                            class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                                    style="height:0.20696799999999996em;"><span
+                                                        style="top:-2.4558600000000004em;margin-right:0.05em;"><span
+                                                            class="pstrut" style="height:2.7em;"></span><span
+                                                            class="sizing reset-size6 size3 mtight"><span
+                                                                class="mord mtight"><span
+                                                                    class="mord mtight">1</span><span
+                                                                    class="mord mtight">0</span></span></span></span></span><span
+                                                    class="vlist-s">​</span></span><span class="vlist-r"><span
+                                                    class="vlist"
+                                                    style="height:0.24414em;"><span></span></span></span></span></span></span><span
+                                    class="mopen">(</span><span class="mord mathdefault">n</span><span
+                                    class="mclose">)</span><span class="mclose">)</span></span></span></span>.
+                    We divided the input by 10 for every iteration, so the time complexity is <span class="katex"><span
+                            class="katex-mathml"><math>
+                                <semantics>
+                                    <mrow>
+                                        <mi>O</mi>
+                                        <mo>(</mo>
+                                        <msub>
+                                            <mi>log</mi>
+                                            <mo>⁡</mo>
+                                            <mn>10</mn>
+                                        </msub>
+                                        <mo>(</mo>
+                                        <mi>n</mi>
+                                        <mo>)</mo>
+                                        <mo>)</mo>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">O(\log_{10}(n))</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                                    class="mord mathdefault" style="margin-right:0.02778em;">O</span><span
+                                    class="mopen">(</span><span class="mop"><span class="mop">lo<span
+                                            style="margin-right:0.01389em;">g</span></span><span class="msupsub"><span
+                                            class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                                    style="height:0.20696799999999996em;"><span
+                                                        style="top:-2.4558600000000004em;margin-right:0.05em;"><span
+                                                            class="pstrut" style="height:2.7em;"></span><span
+                                                            class="sizing reset-size6 size3 mtight"><span
+                                                                class="mord mtight"><span
+                                                                    class="mord mtight">1</span><span
+                                                                    class="mord mtight">0</span></span></span></span></span><span
+                                                    class="vlist-s">​</span></span><span class="vlist-r"><span
+                                                    class="vlist"
+                                                    style="height:0.24414em;"><span></span></span></span></span></span></span><span
+                                    class="mopen">(</span><span class="mord mathdefault">n</span><span
+                                    class="mclose">)</span><span class="mclose">)</span></span></span></span></p>
+            </li>
+            <li>
+                <p>Space complexity : <span class="katex"><span class="katex-mathml"><math>
+                                <semantics>
+                                    <mrow>
+                                        <mi>O</mi>
+                                        <mo>(</mo>
+                                        <mn>1</mn>
+                                        <mo>)</mo>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">O(1)</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                                    class="mord mathdefault" style="margin-right:0.02778em;">O</span><span
+                                    class="mopen">(</span><span class="mord">1</span><span
+                                    class="mclose">)</span></span></span></span>.</p>
+            </li>
+        </ul>
+    </div>
+</div>
+<link rel="stylesheet" href="../../../boilerplate/simple.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css"
+    integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
