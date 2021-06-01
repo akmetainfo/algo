@@ -25,6 +25,26 @@ public class Solution
         else
             return head;
     }
+    /*
+    // The same as above, but more verbously
+    public ListNode RemoveElements(ListNode head, int val)
+    {
+        if(head == null)
+            return head;
+        
+        var n = RemoveElements(head.next, val);
+        
+        if(head.val == val)
+        {
+            return n;
+        }
+        else
+        {
+            head.next = n;
+            return head;
+        }
+    }
+    */
 }
 
 public class ListNode
