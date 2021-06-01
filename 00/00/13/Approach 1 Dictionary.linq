@@ -28,7 +28,7 @@ public class Solution
 
         var result = 0;
 
-        for (int i = 0; i <= s.Length - 1; i++)
+        for (int i = 0; i < s.Length; i++)
         {
             if (i == s.Length - 1 || (dic[s[i]] >= dic[s[i + 1]]))
                 result += dic[s[i]];
