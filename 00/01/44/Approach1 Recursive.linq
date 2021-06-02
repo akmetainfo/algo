@@ -8,8 +8,8 @@
 // https://leetcode.com/problems/binary-tree-preorder-traversal/
 
 /*
-    Time: O()
-    Space: O()
+    Time: O(N) where N is the number of treenode in the tree. Every node will be visited exactly once.
+    Space: O(N) for the call stack in worst case where the tree is a complete unbalanced tree.
 */
 public class Solution
 {
@@ -79,6 +79,30 @@ public class Solution2
         if (node.right != null)
             foreach (var nod in PreorderTraversalHelper(node.right))
                 yield return nod;
+    }
+}
+
+public class Solution3
+{
+    public IList<int> PreorderTraversal(TreeNode root)
+    {
+        var result = new List<int>();
+        var rightNodes = new Stack<TreeNode>();
+
+        while (root != null)
+        {
+            result.Add(root.val);
+
+            if (root.right != null)
+                rightNodes.Push(root.right);
+
+            root = root.left;
+
+            if (root == null && rightNodes.Count > 0)
+                root = rightNodes.Pop();
+        }
+
+        return result;
     }
 }
 

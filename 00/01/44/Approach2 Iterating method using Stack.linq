@@ -8,8 +8,8 @@
 // https://leetcode.com/problems/binary-tree-preorder-traversal/
 
 /*
-    Time: O()
-    Space: O()
+    Time: O(N) where N is the number of treenode in the tree. Every node will be visited exactly once.
+    Space: O(N) in worst case if the tree is a complete unbalanced tree.
 */
 public class Solution
 {
@@ -61,6 +61,85 @@ public class Solution1
                 root = root.right;
             }
         }
+        return result;
+    }
+}
+
+public class Solution2
+{
+    public IList<int> PreorderTraversal(TreeNode root)
+    {
+    	var result = new List<int>();
+        
+    	if(root == null)
+    		return result;
+
+    	var stack = new Stack<TreeNode>();
+
+    	while(root != null)
+    	{                            
+    		while(root != null)
+    		{
+    			result.Add(root.val);
+    			if(root.right != null)
+    				stack.Push(root.right);
+    			root = root.left;
+    		}
+
+    	   if(stack.Count != 0)
+    		   root = stack.Pop();
+    	}
+
+    	return result;
+    }
+}
+
+public class Solution3
+{
+    public IList<int> PreorderTraversal(TreeNode root)
+    {
+        var result = new List<int>();
+        var stack = new Stack<TreeNode>();
+        while(root!=null)
+        {
+            result.Add(root.val);
+            if(root.right != null)
+                stack.Push(root.right);
+            root = root.left;
+            if(root == null && stack.Count != 0 )
+                root = stack.Pop();
+        }
+        return result;
+    }
+}
+
+public class Solution4
+{
+    public IList<int> PreorderTraversal(TreeNode root) 
+    {
+        var result = new List<int>();
+        
+        var stack = new Stack<TreeNode>();
+        
+        TreeNode curr = root;
+        
+        while(curr != null || stack.Count > 0)
+        {
+            if (curr!=null)
+            {
+                result.Add(curr.val);
+                
+                if(curr.right!=null)
+                    stack.Push(curr.right);
+                
+                curr = curr.left;
+            }
+            else
+            {
+                curr = stack.Pop();
+            }
+        }
+
         return result;
     }
 }
