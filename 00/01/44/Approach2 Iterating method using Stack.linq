@@ -46,20 +46,19 @@ public class Solution1
         var result = new List<int>();
 
         var stack = new Stack<TreeNode>();
-        var node = root;
 
-        while (stack.Count != 0 || node != null)
+        while (stack.Count != 0 || root != null)
         {
-            if (node != null)
+            if (root != null)
             {
-                result.Add(node.val);
-                stack.Push(node);
-                node = node.left;
+                result.Add(root.val);
+                stack.Push(root);
+                root = root.left;
             }
             else
             {
-                node = stack.Pop();
-                node = node.right;
+                root = stack.Pop();
+                root = root.right;
             }
         }
         return result;

@@ -20,20 +20,19 @@ public class Solution
             return result;
 
         var stack = new Stack<TreeNode>();
-        var node = root;
 
-        while (stack.Count > 0 || node != null)
+        while (stack.Count > 0 || root != null)
         {
-            if (node != null)
+            if (root != null)
             {
-                stack.Push(node);
-                node = node.left;
+                stack.Push(root);
+                root = root.left;
             }
             else
             {
-                node = stack.Pop();
-                result.Add(node.val);
-                node = node.right;
+                root = stack.Pop();
+                result.Add(root.val);
+                root = root.right;
             }
         }
 
