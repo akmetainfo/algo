@@ -7,8 +7,8 @@
 // 02. Reversing Number
 
 /*
-    Time: O()
-    Space: O()
+    Time: O(log n)
+    Space: O(1)
 */
 public class Solution
 {
