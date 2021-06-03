@@ -1,0 +1,46 @@
+<div class="content__QRGW">
+    <div>
+        <h2>Solution</h2>
+        <hr>
+        <h4 id="approach-i-using-group-by-and-a-temporary-table-accepted">Approach I: Using <code>GROUP BY</code> and a
+            temporary table [Accepted]</h4>
+        <p><strong>Algorithm</strong></p>
+        <p>Duplicated emails existed more than one time. To count the times each email exists, we can use the following
+            code.</p>
+        <pre><code class="language-sql"><span class="hljs-keyword">select</span> Email, <span class="hljs-keyword">count</span>(Email) <span class="hljs-keyword">as</span> <span class="hljs-keyword">num</span>
+    <span class="hljs-keyword">from</span> Person
+    <span class="hljs-keyword">group</span> <span class="hljs-keyword">by</span> Email;
+    </code></pre>
+        <pre><code>| Email   | num |
+|---------|-----|
+| a<span class="hljs-meta">@b</span>.com | <span class="hljs-number">2</span>   |
+| c<span class="hljs-meta">@d</span>.com | <span class="hljs-number">1</span>   |
+</code></pre>
+        <p>Taking this as a temporary table, we can get a solution as below.</p>
+        <pre><code class="language-sql"><span class="hljs-keyword">select</span> Email <span class="hljs-keyword">from</span>
+    (
+      <span class="hljs-keyword">select</span> Email, <span class="hljs-keyword">count</span>(Email) <span class="hljs-keyword">as</span> <span class="hljs-keyword">num</span>
+      <span class="hljs-keyword">from</span> Person
+      <span class="hljs-keyword">group</span> <span class="hljs-keyword">by</span> Email
+    ) <span class="hljs-keyword">as</span> statistic
+    <span class="hljs-keyword">where</span> <span class="hljs-keyword">num</span> &gt; <span class="hljs-number">1</span>
+    ;
+    </code></pre>
+        <h4 id="approach-ii-using-group-by-and-having-condition-accepted">Approach II: Using <code>GROUP BY</code> and
+            <code>HAVING</code> condition [Accepted]
+        </h4>
+        <p>A more common used way to add a condition to a <code>GROUP BY</code> is to use the <code>HAVING</code>
+            clause, which is much simpler and more efficient.</p>
+        <p>So we can rewrite the above solution to this one.</p>
+        <p><strong>MySQL</strong></p>
+        <pre><code class="language-sql"><span class="hljs-keyword">select</span> Email
+    <span class="hljs-keyword">from</span> Person
+    <span class="hljs-keyword">group</span> <span class="hljs-keyword">by</span> Email
+    <span class="hljs-keyword">having</span> <span class="hljs-keyword">count</span>(Email) &gt; <span class="hljs-number">1</span>;
+    </code></pre>
+    </div>
+</div>
+
+<link rel="stylesheet" href="../../../boilerplate/simple.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css"
+    integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">

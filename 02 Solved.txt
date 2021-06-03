@@ -1,4 +1,5 @@
 0066,Plus One
+0182,Duplicate Emails
 0482,License Key Formatting
 0500,Keyboard Row
 0507,Perfect Number
