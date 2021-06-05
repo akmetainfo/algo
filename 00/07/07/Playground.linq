@@ -57,6 +57,7 @@ public class MyLinkedList
  */
 
 [Test]
+// leetcode unit-tests below:
 [TestCase(
    new string[] { "MyLinkedList", "addAtHead", "addAtTail", "addAtIndex", "get", "deleteAtIndex", "get" },
    new object[] { null, 1, 3, new int[] { 1, 2 }, 1, 1, 1 },
@@ -72,7 +73,106 @@ public class MyLinkedList
    new object[] { null, 2, 1, 2, 7, 3, 2, 5, 5, 5, 6, 4 },
    new object[] { null, null, null, null, null, null, null, null, null, 2, null, null, }
 )]
-// my samples:
+// my own unit tests below:
+// step 1: unit tests for ctor
+[TestCase(
+   new string[] { "MyLinkedList" },
+   new object[] { null, },
+   new object[] { null, }
+)]
+// step 2: unit tests for Get
+[TestCase(
+   new string[] { "MyLinkedList", "get", "get", "get", "get" },
+   new object[] { null, -1, 0, 1, 1000 },
+   new object[] { null, -1, -1, -1, -1 }
+)]
+// step 3: unit tests for Get and AddAtHead
+[TestCase(
+   new string[] { "MyLinkedList", "get", "get", "get", "get", "addAtHead", "get", "get", "get", "get" },
+   new object[] { null, -1, 0, 1, 1000, 42, -1, 0, 1, 1000 },
+   new object[] { null, -1, -1, -1, -1, null, -1, 42, -1, -1 }
+)]
+[TestCase(
+   new string[] { "MyLinkedList", "get", "get", "get", "get", "addAtHead", "get", "get", "get", "get", "addAtHead", "get", "get", "get", "get" },
+   new object[] { null, -1, 0, 1, 1000, 42, -1, 0, 1, 1000, 5, -1, 0, 1, 2 },
+   new object[] { null, -1, -1, -1, -1, null, -1, 42, -1, -1, null, -1, 5, 42, -1 }
+)]
+//step 4: unit tests for Get and AddAtTail
+[TestCase(
+   new string[] { "MyLinkedList", "get", "get", "get", "get", "addAtTail", "get", "get", "get", "get" },
+   new object[] { null, -1, 0, 1, 1000, 42, -1, 0, 1, 1000 },
+   new object[] { null, -1, -1, -1, -1, null, -1, 42, -1, -1 }
+)]
+[TestCase(
+   new string[] { "MyLinkedList", "get", "get", "get", "get", "addAtTail", "get", "get", "get", "get", "addAtTail", "get", "get", "get", "get" },
+   new object[] { null, -1, 0, 1, 1000, 42, -1, 0, 1, 1000, 5, -1, 0, 1, 2 },
+   new object[] { null, -1, -1, -1, -1, null, -1, 42, -1, -1, null, -1, 42, 5, -1 }
+)]
+//step 5: unit tests for Get, AddAtHead, AddAtTail and DeleteAtIndex
+[TestCase(
+   new string[] { "MyLinkedList", "deleteatindex", "get", "get", "get" },
+   new object[] { null, -1, -1, 0, 1 },
+   new object[] { null, null, -1, -1, -1, }
+)]
+[TestCase(
+   new string[] { "MyLinkedList", "deleteatindex", "get", "get", "get" },
+   new object[] { null, 0, -1, 0, 1 },
+   new object[] { null, null, -1, -1, -1, }
+)]
+[TestCase(
+   new string[] { "MyLinkedList", "deleteatindex", "get", "get", "get" },
+   new object[] { null, 1, -1, 0, 1 },
+   new object[] { null, null, -1, -1, -1, }
+)]
+[TestCase(
+   new string[] { "MyLinkedList", "addAtHead","deleteatindex", "get", "get", "get" },
+   new object[] { null, 42, -1, -1, 0, 1},
+   new object[] { null, null, null, -1, 42, -1 }
+)]
+[TestCase(
+   new string[] { "MyLinkedList", "addAtHead","deleteatindex", "get", "get", "get" },
+   new object[] { null, 42, 0, -1, 0, 1},
+   new object[] { null, null, null, -1, -1, -1 }
+)]
+[TestCase(
+   new string[] { "MyLinkedList", "addAtHead","deleteatindex", "get", "get", "get" },
+   new object[] { null, 42, 1, -1, 0, 1},
+   new object[] { null, null, null, -1, 42, -1 }
+)]
+// deleting at head, index = 0
+[TestCase(
+   new string[] { "MyLinkedList", "addAtHead", "addAtHead", "addAtHead", "get", "get", "get", "get", "get", "deleteatindex", "get", "get", "get", "get", "get" },
+   new object[] { null, 3, 2, 1, -1, 0, 1, 2, 3, 0, -1, 0, 1, 2, 3},
+   new object[] { null, null, null, null, -1, 1, 2, 3, -1, null, -1, 2, 3, -1, -1 }
+)]
+
+// deleting in the middle, index = 1
+[TestCase(
+   new string[] { "MyLinkedList", "addAtHead", "addAtHead", "addAtHead", "get", "get", "get", "get", "get", "deleteatindex", "get", "get", "get", "get", "get" },
+   new object[] { null, 3, 2, 1, -1, 0, 1, 2, 3, 1, -1, 0, 1, 2, 3},
+   new object[] { null, null, null, null, -1, 1, 2, 3, -1, null, -1, 1, 3, -1, -1 }
+)]
+// deleting at tail, index = 2
+[TestCase(
+   new string[] { "MyLinkedList", "addAtHead", "addAtHead", "addAtHead", "get", "get", "get", "get", "get", "deleteatindex", "get", "get", "get", "get", "get" },
+   new object[] { null, 3, 2, 1, -1, 0, 1, 2, 3, 2, -1, 0, 1, 2, 3},
+   new object[] { null, null, null, null, -1, 1, 2, 3, -1, null, -1, 1, 2, -1, -1 }
+)]
+// deleting 3, then 2, then 1
+[TestCase(
+   new string[] { "MyLinkedList", "addAtHead", "addAtHead", "addAtHead", "get", "get", "get", "get", "get", "deleteatindex", "get", "get", "get", "get", "get", "deleteatindex", "get", "get", "get", "get", "get", "deleteatindex", "get", "get", "get", "get", "get" },
+   new object[] { null, 3, 2, 1, -1, 0, 1, 2, 3, 2, -1, 0, 1, 2, 3, 1, -1, 0, 1, 2, 3, 0, -1, 0, 1, 2, 3 },
+   new object[] { null, null, null, null, -1, 1, 2, 3, -1, null, -1, 1, 2, -1, -1, null, -1, 1, -1, -1, -1, null, -1, -1, -1, -1, -1, }
+)]
+// deleting 3, then 1, then 2
+[TestCase(
+   new string[] { "MyLinkedList", "addAtHead", "addAtHead", "addAtHead", "get", "get", "get", "get", "get", "deleteatindex", "get", "get", "get", "get", "get", "deleteatindex", "get", "get", "get", "get", "get", "deleteatindex", "get", "get", "get", "get", "get" },
+   new object[] { null, 3, 2, 1, -1, 0, 1, 2, 3, 2, -1, 0, 1, 2, 3, 0, -1, 0, 1, 2, 3, 0, -1, 0, 1, 2, 3 },
+   new object[] { null, null, null, null, -1, 1, 2, 3, -1, null, -1, 1, 2, -1, -1, null, -1, 2, -1, -1, -1, null, -1, -1, -1, -1, -1, }
+)]
+
+
+// yet another test
 [TestCase(
    new string[] { "MyLinkedList", "addAtHead", "deleteAtIndex", "get" },
    new object[] { null, 2, 1, 2 },

@@ -7,184 +7,103 @@
 // 707. Design Linked List
 // https://leetcode.com/problems/design-linked-list/
 
-public class SinglyListNode
+public class Node
 {
-    public SinglyListNode(int data)
+    public Node (int data)
     {
-        Data = data;
+        this.Data = data;
     }
+    
+    public Node Next { get; set; }
     public int Data { get; set; }
-    public SinglyListNode Next { get; set; }
 }
 
 public class MyLinkedList
 {
-    private SinglyListNode head;
-    private SinglyListNode tail;
-    private int size;
-
+    private Node head;
+    private Node tail;
+    private int count;
+    
     /** Initialize your data structure here. */
     public MyLinkedList()
     {
-        this.head = null;
-        this.tail = null;
-        this.size = 0;
     }
 
     /** Get the value of the index-th node in the linked list. If the index is invalid, return -1. */
     public int Get(int index)
     {
-        if (IsIndexInvalid(index))
+        if(index < 0 || index > count - 1)
             return -1;
-
-        if (index == 0)
-            return this.head.Data;
-
-        if (index == this.size)
-            return this.tail.Data;
-
-        var pointer = 0;
-        var current = this.head;
-
-        while (pointer != index)
+            
+        var i = 0;
+        var node = head;
+        while(i != index)
         {
-            current = current.Next;
-            pointer++;
+            node = node.Next;
+            i++;
         }
-
-        return current.Data;
+        
+        return node.Data;
     }
 
     /** Add a node of value val before the first element of the linked list. After the insertion, the new node will be the first node of the linked list. */
     public void AddAtHead(int val)
     {
-        var inserted = new SinglyListNode(val);
-
-        if (this.size == 0)
-        {
-            // empty linked list, let's init
-            this.head = inserted;
-            this.tail = inserted;
-            this.size++;
-        }
-        else
-        {
-            // initialized list
-            inserted.Next = this.head;
-            this.head = inserted;
-            this.size++;
-        }
+        var newHead = new Node(val);
+        newHead.Next = head;
+        head = newHead;
+        
+        count++;
     }
 
     /** Append a node of value val to the last element of the linked list. */
     public void AddAtTail(int val)
     {
-        if (this.size == 0)
+        var newTail = new Node(val);
+        
+        if(count == 0)
         {
-            this.AddAtHead(val);
-            return;
+            head = newTail;
+            tail = newTail;
         }
-
-        var inserted = new SinglyListNode(val);
-        this.tail.Next = inserted;
-        this.tail = inserted;
-        this.size++;
+        else
+        {
+            tail.Next = newTail;
+            tail = newTail;
+        }
+        count++;
     }
 
     /** Add a node of value val before the index-th node in the linked list. If index equals to the length of linked list, the node will be appended to the end of linked list. If index is greater than the length, the node will not be inserted. */
     public void AddAtIndex(int index, int val)
     {
-        if (index == this.size)
-        {
-            this.AddAtTail(val);
-            return;
-        }
-
-        if (index > this.size)
-        {
-            return;
-        }
-
-        if (index == 0)
-        {
-            this.AddAtHead(val);
-            return;
-        }
-
-        // Note: val must be inserted BEFORE index'th!!
-
-        var pointer = 0;
-        var current = this.head;
-
-        while (pointer < index - 1)
-        {
-            current = current.Next;
-            pointer++;
-        }
-
-        var inserted = new SinglyListNode(val);
-        inserted.Next = current.Next;
-        current.Next = inserted;
-
-        this.size++;
+        throw new NotImplementedException();
     }
 
     /** Delete the index-th node in the linked list, if the index is valid. */
     public void DeleteAtIndex(int index)
     {
-        if (IsIndexInvalid(index))
+        if(index < 0 || index > count - 1)
             return;
-
-        if (index == 0)
+            
+        // Deleting head, head exist
+        if(index == 0)
         {
-            // Delete head
-            this.head = this.head.Next;
-            this.size--;
+            head = head.Next;
+            count--;
             return;
         }
-
-        // delete somewhere in middle (or maybe at tail - no difference)
-        var pointer = 0;
-        var current = this.head;
-
-        while (pointer < index - 1)
+        
+        var i = 0;
+        var node = head;
+        while(i != index - 1)
         {
-            current = current.Next;
-            pointer++;
+            node = node.Next;
+            i++;
         }
-
-        // N.B. current is element before 'element we want to delete'
-        if (current.Next == this.tail)
-        {
-            this.tail = current;
-            this.size--;
-        }
-        else
-        {
-            var deleted = current.Next;
-            var nextAfterDeleted = deleted.Next;
-            current.Next = nextAfterDeleted;
-            deleted.Next = null;
-            this.size--;
-        }
-    }
-
-    public override string ToString()
-    {
-        var strBuilder = new StringBuilder();
-        var current = this.head;
-        while (current != null)
-        {
-            strBuilder.Append(current.Data + " ");
-            current = current.Next;
-        }
-
-        return strBuilder.ToString().TrimEnd();
-    }
-
-    private bool IsIndexInvalid(int index)
-    {
-        return index < 0 || index > this.size - 1;
+        
+        node.Next = node.Next.Next;
+        count--;
     }
 }
 
@@ -199,22 +118,6 @@ public class MyLinkedList
  */
 
 [Test]
-// leetcode unit-tests below:
-[TestCase(
-   new string[] { "MyLinkedList", "addAtHead", "addAtTail", "addAtIndex", "get", "deleteAtIndex", "get" },
-   new object[] { null, 1, 3, new int[] { 1, 2 }, 1, 1, 1 },
-   new object[] { null, null, null, null, 2, null, 3 }
-)]
-[TestCase(
-   new string[] { "MyLinkedList", "addAtIndex", "addAtIndex", "addAtIndex", "get" },
-   new object[] { null, new int[] { 0, 10 }, new int[] { 0, 20 }, new int[] { 1, 30 }, 0 },
-   new object[] { null, null, null, null, 20 }
-)]
-[TestCase(
-   new string[] { "MyLinkedList", "addAtHead", "deleteAtIndex", "addAtHead", "addAtHead", "addAtHead", "addAtHead", "addAtHead", "addAtTail", "get", "deleteAtIndex", "deleteAtIndex" },
-   new object[] { null, 2, 1, 2, 7, 3, 2, 5, 5, 5, 6, 4 },
-   new object[] { null, null, null, null, null, null, null, null, null, 2, null, null, }
-)]
 // my own unit tests below:
 // step 1: unit tests for ctor
 [TestCase(
@@ -295,6 +198,7 @@ public class MyLinkedList
    new object[] { null, null, null, null, -1, 1, 2, 3, -1, null, -1, 1, 3, -1, -1 }
 )]
 // deleting at tail, index = 2
+// deleting at tail, index = 2
 [TestCase(
    new string[] { "MyLinkedList", "addAtHead", "addAtHead", "addAtHead", "get", "get", "get", "get", "get", "deleteatindex", "get", "get", "get", "get", "get" },
    new object[] { null, 3, 2, 1, -1, 0, 1, 2, 3, 2, -1, 0, 1, 2, 3},
@@ -313,13 +217,6 @@ public class MyLinkedList
    new object[] { null, null, null, null, -1, 1, 2, 3, -1, null, -1, 1, 2, -1, -1, null, -1, 2, -1, -1, -1, null, -1, -1, -1, -1, -1, }
 )]
 
-
-// yet another test
-[TestCase(
-   new string[] { "MyLinkedList", "addAtHead", "deleteAtIndex", "get" },
-   new object[] { null, 2, 1, 2 },
-   new object[] { null, null, null, -1 }
-)]
 public void SolutionTests(string[] actionsNames, object[] actionsParams, object[] expectedOutput)
 {
     AssertInputIsCorrect(actionsNames, actionsParams, expectedOutput);
