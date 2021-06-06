@@ -8,12 +8,42 @@
 // https://leetcode.com/problems/valid-perfect-square/
 
 /*
-    Time: O(logn)
+    Time: O(log n)
     Space: O(1)
 */
 public class Solution
 {
+    // classic binary search, simplest form
     public bool IsPerfectSquare(int num)
+    {
+        var left = 1;
+        var right = num / 2;
+
+        while (left <= right)
+        {
+            var mid = left + (right - left) / 2;
+
+            ulong sq = (ulong)mid * (ulong)mid;
+
+            if (sq == (ulong)num)
+                return true;
+
+            if (sq < (ulong)num)
+            {
+                left = mid + 1;
+            }
+            else
+            {
+                right = mid - 1;
+            }
+        }
+
+        return false;
+    }
+    
+    // we reduces the upper border from num to num/2
+    // but we need to check edge case (for 1)
+    public bool IsPerfectSquare2(int num)
     {
         if (num == 1)
             return true;
@@ -41,7 +71,7 @@ public class Solution
         }
 
         return false;
-    }
+    }    
 }
 
 [Test]

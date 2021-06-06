@@ -7,22 +7,21 @@
 // 03 C# Binary search in sorted array
 
 /*
-    Time: O()
-    Space: O()
+    Time: O(log n)
+    Space: O(1)
 */
+// This algoritm is not supported specific position for left/rightmost searches when dups
+// There's why no unit tests for duplicates
 public class Solution
 {
     public int Search(int[] nums, int target)
     {
-        if (nums == null || nums.Length == 0)
-            return -1;
-
         var left = 0;
         var right = nums.Length - 1;
         
         while (left <= right)
         {
-            var mid = left + (right - left)/2;
+            var mid = left + (right - left) / 2;
             
             if(nums[mid] == target)
                 return mid;
@@ -39,16 +38,13 @@ public class Solution
 
 [Test]
 [TestCase(new int[] { }, 42, -1)]
-
 [TestCase(new int[] { 7 }, 1, -1)]
 [TestCase(new int[] { 7 }, 7, 0)]
 [TestCase(new int[] { 7 }, 9, -1)]
-
-[TestCase(new int[] { 1, 2, 3, 3, 4 }, 0, -1)]
-[TestCase(new int[] { 1, 2, 3, 3, 4 }, 2, 1)]
-//[TestCase(new int[] { 1, 2, 3, 3, 4 }, 3, 3)] // What expected here? Rightmost element
-[TestCase(new int[] { 1, 2, 3, 3, 4 }, 4, 4)]
-[TestCase(new int[] { 1, 2, 3, 3, 4 }, 5, -1)]
+[TestCase(new int[] { 7, 8 }, 6, -1)]
+[TestCase(new int[] { 7, 8 }, 7, 0)]
+[TestCase(new int[] { 7, 8 }, 8, 1)]
+[TestCase(new int[] { 7, 8 }, 9, -1)]
 public void SolutionTests(int[] nums, int target, int expected)
 {
     var actual = new Solution().Search(nums, target);
