@@ -36,6 +36,40 @@ public class Solution
     }
 }
 
+/*
+    Time: O(log n)
+    Space: O(1)
+*/
+// This algoritm is an alternative form
+// No `if == `, but the while will executed more than at prev algoritm - see wikipedia
+// Also it returns the rightmost element ALWAYS, if array contains duplicate
+public class Solution1
+{
+    public int Search(int[] nums, int target)
+    {
+        if(nums.Length == 0)
+            return -1;
+            
+        var left = 0;
+        var right = nums.Length - 1;
+        
+        while (left != right)
+        {
+            var mid = (int)Math.Ceiling(left + (right - left) / 2.0d);
+            
+            if(nums[mid] > target)
+                right = mid - 1;
+            else
+                left = mid;
+        }
+        
+        if(nums[left] == target)
+            return left;
+
+        return -1;
+    }
+}
+
 [Test]
 [TestCase(new int[] { }, 42, -1)]
 [TestCase(new int[] { 7 }, 1, -1)]
@@ -47,7 +81,7 @@ public class Solution
 [TestCase(new int[] { 7, 8 }, 9, -1)]
 public void SolutionTests(int[] nums, int target, int expected)
 {
-    var actual = new Solution().Search(nums, target);
+    var actual = new Solution1().Search(nums, target);
     Assert.That(actual, Is.EqualTo(expected));
 }
 
