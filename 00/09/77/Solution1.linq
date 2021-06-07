@@ -9,16 +9,34 @@
 
 /*
     Time: O(n * log n), so one-time pass with two-pointer is better.
-    Space: O(n) due to the output array or O(1) for in-place approach.
-    
-    In-place solution is available also!
+    Space: O(1)
 */
 public class Solution
 {
+    // In-place technique
+    public int[] SortedSquares2(int[] nums)
+    {
+        for (var i = 0; i < nums.Length; i++)
+        {
+            nums[i] = nums[i] * nums[i];
+        }
+
+        Array.Sort(nums);
+        return nums;
+    }
+}
+
+/*
+    Time: O(n * log n), so one-time pass with two-pointer is better.
+    Space: O(n) due to the output array
+*/
+public class Solution1
+{
+    // creating a new array
     public int[] SortedSquares(int[] nums)
     {
         var result = new int[nums.Length];
-        
+
         for (var i = 0; i < nums.Length; i++)
         {
             result[i] = nums[i] * nums[i];

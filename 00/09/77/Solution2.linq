@@ -20,10 +20,44 @@ public class Solution
         var result = new int[nums.Length];
         var left = 0;
         var right = nums.Length - 1;
-        
+        var i = nums.Length - 1;
+
+        while (left <= right)
+        {
+            if (Math.Abs(nums[left]) >= Math.Abs(nums[right]))
+            {
+                result[i] = nums[left] * nums[left];
+                left++;
+            }
+            else
+            {
+                result[i] = nums[right] * nums[right];
+                right--;
+            }
+            i--;
+        }
+
+        return result;
+    }
+}
+
+/*
+    Time: O(n) where n is the size of input array
+    Space: O(n) due to the output array
+    
+    No in-place solution is available!
+*/
+public class Solution1
+{
+    public int[] SortedSquares(int[] nums)
+    {
+        var result = new int[nums.Length];
+        var left = 0;
+        var right = nums.Length - 1;
+
         for (int i = nums.Length - 1; i >= 0; i--)
         {
-            if(Math.Abs(nums[left]) >= Math.Abs(nums[right]))
+            if (Math.Abs(nums[left]) >= Math.Abs(nums[right]))
             {
                 result[i] = nums[left] * nums[left];
                 left++;
@@ -34,10 +68,11 @@ public class Solution
                 right--;
             }
         }
-        
+
         return result;
     }
 }
+
 
 [Test]
 [TestCase(new int[] { -4, -1, 0, 3, 10 }, new int[] { 0, 1, 9, 16, 100 })]
