@@ -40,6 +40,40 @@ public class Solution
     Time: O(log n)
     Space: O(1)
 */
+public class Solution2
+{
+    public int Search(int[] nums, int target)
+    {
+        if(nums.Length == 0)
+            return -1;
+
+        var left = 0;
+        var right = nums.Length - 1;
+        
+        while (left < right)
+        {
+            var mid = left + (right - left) / 2;
+            
+            if(nums[mid] == target)
+                return mid;
+            
+            if(nums[mid] < target)
+                left = mid + 1;
+            else
+                right = mid - 1;
+        }
+        
+        if(nums[left] == target)
+            return left;
+
+        return -1;
+    }
+}
+
+/*
+    Time: O(log n)
+    Space: O(1)
+*/
 // This algoritm is an alternative form
 // No `if == `, but the while will executed more than at prev algoritm - see wikipedia
 // Also it returns the rightmost element ALWAYS, if array contains duplicate
@@ -81,7 +115,7 @@ public class Solution1
 [TestCase(new int[] { 7, 8 }, 9, -1)]
 public void SolutionTests(int[] nums, int target, int expected)
 {
-    var actual = new Solution1().Search(nums, target);
+    var actual = new Solution2().Search(nums, target);
     Assert.That(actual, Is.EqualTo(expected));
 }
 
