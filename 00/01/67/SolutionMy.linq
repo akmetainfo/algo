@@ -8,14 +8,35 @@
 // https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/
 
 /*
-    Time: O()
-    Space: O()
+    Time: O(N)
+    Space: O(1)
 */
 public class Solution
 {
+    /*
+    create two pointer, left and right, pointing to first and last element of array
+    in the cycle while left is not equals to right
+        check if the sum of elements (pointing by left and right) is equals to target.
+            if so, exit returning left + 1 and right + 1 position
+        else if the sum is greater than target so decrease right pointer
+        else if the sum is less than target so increase left pointer
+    if we exit from the cycle throw new exception.
+    */
     public int[] TwoSum(int[] numbers, int target)
     {
-        throw new NotImplementedException();
+        var left = 0;
+        var right = numbers.Length - 1;
+        while(left != right)
+        {
+            var sum = numbers[left] + numbers[right];
+            if(sum == target)
+                return new int[] { left + 1, right + 1 };
+            if(sum > target)
+                right--;
+            if(sum < target)
+                left++;
+        }
+        throw new ArgumentOutOfRangeException("check the inputs! no solution available!");
     }
 }
 

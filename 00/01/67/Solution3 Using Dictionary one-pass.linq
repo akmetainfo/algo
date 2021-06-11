@@ -8,14 +8,26 @@
 // https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/
 
 /*
-    Time: O()
-    Space: O()
+    Time: O(N), one-pass algoritm
+    Space: O(N)
 */
 public class Solution
 {
     public int[] TwoSum(int[] numbers, int target)
     {
-        throw new NotImplementedException();
+        var dict = new Dictionary<int, int>();
+        
+        for(var i = 0; i < numbers.Length; i++)
+        {
+            if(!dict.ContainsKey(numbers[i])) 
+                dict.Add(numbers[i], i);
+                
+            var complement = target - numbers[i];
+            if(dict.ContainsKey(complement) && i != dict[complement])
+                return new int [] {dict[complement] + 1, i + 1 };
+        }
+    
+        throw new ArgumentOutOfRangeException("check the inputs! no solution available!");
     }
 }
 

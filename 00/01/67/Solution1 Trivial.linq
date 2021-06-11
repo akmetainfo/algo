@@ -8,14 +8,22 @@
 // https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/
 
 /*
-    Time: O()
-    Space: O()
+    Time: O(N^2)
+    Space: O(1)
 */
 public class Solution
 {
     public int[] TwoSum(int[] numbers, int target)
     {
-        throw new NotImplementedException();
+        for(var i = 0; i < numbers.Length; i++)
+        {
+            for(var j = i + 1; j < numbers.Length; j++)
+            {
+                if(numbers[i] + numbers[j] == target)
+                    return new int[] { i + 1, j + 1 };
+            }
+        }
+        throw new ArgumentOutOfRangeException("check the inputs! no solution available!");
     }
 }
 
