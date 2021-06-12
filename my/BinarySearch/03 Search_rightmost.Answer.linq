@@ -14,32 +14,26 @@ public class Solution
 {
     public int Search_rightmost(int[] nums, int target)
     {
-        if (nums.Length == 0)
+        if(nums.Length == 0)
             return -1;
-
+            
         var left = 0;
         var right = nums.Length - 1;
-
-        while (left < right)
+        
+        while (left != right)
         {
-            var mid = left + (right - left) / 2;
-
-            if (nums[mid] <= target)
-                left = mid + 1;
+            var mid = (int)Math.Ceiling(left + (right - left) / 2.0d);
+            
+            if(nums[mid] > target)
+                right = mid - 1;
             else
-                right = mid;
+                left = mid;
         }
         
-        if(nums[right] == target && 0 == right)
-            return right;
-        
-        if(nums[right] == target && nums.Length - 1 == right)
-            return right;
+        if(nums[left] == target)
+            return left;
 
-        if(nums[right] != target)
-            return -1;
-
-        return right;
+        return -1;
     }
 }
 
