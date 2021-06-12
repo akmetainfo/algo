@@ -20,16 +20,22 @@ public class Solution
 
 [Test]
 [TestCase(new int[] { }, 42, -1)]
-
 [TestCase(new int[] { 7 }, 1, -1)]
 [TestCase(new int[] { 7 }, 7, 0)]
-//[TestCase(new int[] { 7 }, 9, -1)] // Failed!!!
-
+[TestCase(new int[] { 7 }, 9, -1)]
+[TestCase(new int[] { 5, 7 }, 1, -1)]
+[TestCase(new int[] { 5, 7 }, 5, 0)]
+[TestCase(new int[] { 5, 7 }, 7, 1)]
+[TestCase(new int[] { 5, 7 }, 9, -1)]
 [TestCase(new int[] { 1, 2, 3, 3, 4 }, 0, -1)]
 [TestCase(new int[] { 1, 2, 3, 3, 4 }, 2, 1)]
 [TestCase(new int[] { 1, 2, 3, 3, 4 }, 3, 3)]
 [TestCase(new int[] { 1, 2, 3, 3, 4 }, 4, 4)]
-//[TestCase(new int[] { 1, 2, 3, 3, 4 }, 5, -1)] // Failed!!!
+[TestCase(new int[] { 1, 2, 3, 3, 4 }, 5, -1)]
+[TestCase(new int[] { 2, 5, 7, 9, 11 }, 1, -1)]
+[TestCase(new int[] { 2, 5, 7, 9, 11 }, 5, 1)]
+[TestCase(new int[] { 2, 5, 7, 9, 11 }, 12, -1)]
+[TestCase(new int[] { 7, 11, 42 }, 50, -1)]
 public void SolutionTests(int[] nums, int target, int expected)
 {
     var actual = new Solution().Search_rightmost(nums, target);
