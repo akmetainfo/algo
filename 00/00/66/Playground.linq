@@ -24,6 +24,8 @@ public class Solution
 [TestCase(new int[] { 4, 3, 2, 1 }, new int[] { 4, 3, 2, 2 })]
 [TestCase(new int[] { 0 }, new int[] { 1 })]
 [TestCase(new int[] { 9 }, new int[] { 1, 0 })]
+[TestCase(new int[] { 9, 9}, new int[] { 1, 0, 0 })]
+[TestCase(new int[] { 9, 9, 9}, new int[] { 1, 0, 0, 0 })]
 public void SolutionTests(int[] nums, int[] expectedArr)
 {
     var actual = new Solution().PlusOne(nums);

@@ -15,6 +15,27 @@ public class Solution
 {
     public int[] PlusOne(int[] digits)
     {
+        for(int i = digits.Length-1; i >= 0; i--)
+            if(++digits[i] < 10)
+                return digits;
+            else
+                digits[i] -= 10;
+        
+        var result = new int[digits.Length+1];      
+        result[0] = 1;
+   
+        return result;
+    }
+}
+
+/*
+    Time: O(n) where n is the length of digits
+    Space: O(1) in best base, O(n) in worst (i.e. 99999 + 1)
+*/
+public class Solution1
+{
+    public int[] PlusOne(int[] digits)
+    {
         for (int i = digits.Length - 1; i >= 0; i--)
         {
             if (digits[i] < 9)

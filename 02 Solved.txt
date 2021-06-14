@@ -1,5 +1,4 @@
 0034,Find First and Last Position of Element in Sorted Array
-0066,Plus One
 0182,Duplicate Emails
 0482,License Key Formatting
 0500,Keyboard Row
