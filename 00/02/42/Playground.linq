@@ -20,6 +20,7 @@ public class Solution
 }
 
 [Test]
+[TestCase("a", "ab", false)]
 [TestCase("anagram", "nagaram", true)]
 [TestCase("rat", "car", false)]
 public void SolutionTests(string s, string t, bool expected)

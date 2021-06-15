@@ -9,7 +9,7 @@
 
 /*
     Time: O(n log n)Assume that n is the length of s, sorting costs O(nlogn) and comparing two strings costs O(n). Sorting time dominates and the overall time complexity is O(nlogn).
-    Space: O(1)  Space depends on the sorting implementation which, usually, costs O(1) auxiliary space if heapsort is used.
+    Space: O(n + m), n = s.Length, m = t.Length (We also assume that space for sorting is constant, but it may depends on the sorting implementation).
 */
 public class Solution
 {
@@ -27,6 +27,7 @@ public class Solution
 }
 
 [Test]
+[TestCase("a", "ab", false)]
 [TestCase("anagram", "nagaram", true)]
 [TestCase("rat", "car", false)]
 public void SolutionTests(string s, string t, bool expected)
