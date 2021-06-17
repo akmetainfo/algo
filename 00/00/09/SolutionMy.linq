@@ -58,6 +58,8 @@ public class Solution
 }
 
 [Test]
+[TestCase(0, true)]
+[TestCase(11, true)]
 [TestCase(121, true)]
 [TestCase(-121, false)]
 [TestCase(10, false)]
