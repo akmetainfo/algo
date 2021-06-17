@@ -27,7 +27,7 @@ public class Solution
 public void SolutionTests(int[] nums, int target, int[] expected)
 {
     var actual = new Solution().TwoSum(nums, target);
-    Assert.That(actual, Is.EquivalentTo(expected));
+    Assert.That(actual, Is.EqualTo(expected));
 }
 
 #region unit tests runner
