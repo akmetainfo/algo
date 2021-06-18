@@ -13,29 +13,29 @@
 */
 public class Solution
 {
+    // Maybe its not the full equivalent for java style solution because
+    // C# Dictionaries and Java Hashmaps behave differently:
+    // C# doesn't allow for attempt to add duplicate keys, whereas Java does
+    // https://leetcode.com/problems/two-sum/discuss/578502/C-O(n)-solution
+    // https://docs.oracle.com/javase/8/docs/api/java/util/HashMap.html
     public int[] TwoSum(int[] nums, int target)
     {
-        // This approach for java only:
-        // C# Dictionaries and Java Hashmaps behave differently: C# doesn't allow for attempt to add duplicate keys, whereas Java does
-        // https://leetcode.com/problems/two-sum/discuss/578502/C-O(n)-solution
-        // https://docs.oracle.com/javase/8/docs/api/java/util/HashMap.html
-
-        throw new NotImplementedException("Cannot be implemented in c#");
-
-        //Map<Integer, Integer> map = new HashMap<>();
-        //for (int i = 0; i < nums.length; i++)
-        //{
-        //    map.put(nums[i], i);
-        //}
-        //for (int i = 0; i < nums.length; i++)
-        //{
-        //    int complement = target - nums[i];
-        //    if (map.containsKey(complement) && map.get(complement) != i)
-        //    {
-        //        return new int[] { i, map.get(complement) };
-        //    }
-        //}
-        //throw new IllegalArgumentException("No two sum solution");
+        var dict = new Dictionary<int, int>();
+        
+        for(var i = 0; i < nums.Length; i++)
+        {
+            if(!dict.ContainsKey(nums[i]))
+                dict.Add(nums[i], i);
+        }
+        
+        for(var i = 0; i < nums.Length; i++)
+        {
+            var complement = target - nums[i];
+            if(dict.ContainsKey(complement) && i != dict[complement])
+                return new int[] { dict[complement], i };
+        }
+        
+        throw new Exception();
     }
 }
 
