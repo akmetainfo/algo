@@ -17,7 +17,6 @@
 10.01.2021 0196
 10.01.2021 0009
 
-0009 Palindrome Number.linq
 0011 Container With Most Water.linq
 0017 Letter Combinations of a Phone Number.linq
 0034 Find First and Last Position of Element in Sorted Array.linq
