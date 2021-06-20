@@ -21,8 +21,8 @@ public class Solution
 
 [Test]
 [TestCase("egg", "add", true)]
+[TestCase("foo", "bar", false)]
 [TestCase("paper", "title", true)]
-[TestCase("badc", "baba", false)]
 [TestCase("bd", "bb", false)]
 public void SolutionTests(string s, string t, bool expected)
 {
