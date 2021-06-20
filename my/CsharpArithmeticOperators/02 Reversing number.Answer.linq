@@ -12,9 +12,15 @@
 */
 public class Solution
 {
-    public int ReverseInt(int num)
+    public long ReverseInt(int num)
     {
-        var result = 0;
+        if(num == int.MinValue)
+            throw new ArgumentOutOfRangeException("You can't pass int.MinValue");
+            
+        if(num < 0)
+            return -ReverseInt(-num);
+            
+        long result = 0;
         
         while(num > 0)
         {
@@ -38,9 +44,19 @@ public class Solution
 [TestCase(100, 1)]
 [TestCase(123, 321)]
 [TestCase(1979, 9791)]
-//[TestCase(-2147483648, 10)]
-//[TestCase(2147483647, 10)]
-public void SolutionTests(int num, int expected)
+[TestCase(int.MaxValue, 7463847412 )]
+[TestCase(-1, -1)]
+[TestCase(-2, -2)]
+[TestCase(-3, -3)]
+[TestCase(-9, -9)]
+[TestCase(-10, -1)]
+[TestCase(-42, -24)]
+[TestCase(-99, -99)]
+[TestCase(-100, -1)]
+[TestCase(-123, -321)]
+[TestCase(-1979, -9791)]
+//[TestCase(int.MinValue, -8463847412)] // can works only when num is long, not int OR hardcoded answer
+public void SolutionTests(int num, long expected)
 {
     var actual = new Solution().ReverseInt(num);
     Assert.That(actual, Is.EqualTo(expected));
