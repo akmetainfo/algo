@@ -27,7 +27,6 @@
 0181 Employees Earning More Than Their Managers.sql
 0183 Customers Who Never Order.sql
 0196 delete-duplicate-emails.sql
-0205 Isomorphic Strings.linq
 0219 Contains Duplicate II.linq
 0237 Delete Node in a Linked List.linq
 0349 Intersection of Two Arrays.linq
