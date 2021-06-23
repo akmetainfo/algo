@@ -1,4 +1,6 @@
 0034,Find First and Last Position of Element in Sorted Array
+0069,Sqrt(x)
+0141,Linked List Cycle
 0182,Duplicate Emails
 0482,License Key Formatting
 0500,Keyboard Row
@@ -6,6 +8,7 @@
 0509,Fibonacci Number
 0520,Detect Capital
 0705,Design HashSet
+0707,Design Linked List
 0717,1-bit and 2-bit Characters
 0771,Jewels and Stones
 0706,Design HashMap

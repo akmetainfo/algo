@@ -8,8 +8,8 @@
 // https://leetcode.com/problems/pascals-triangle-ii/
 
 /*
-    Time: O()
-    Space: O()
+    Time: O(n^2), where n is rowIndex
+    Space: O(n)
 */
 public class Solution
 {
