@@ -1,16 +1,29 @@
 0034,Find First and Last Position of Element in Sorted Array
 0069,Sqrt(x)
 0141,Linked List Cycle
+0168 Excel Sheet Column Title.linq
+0171 Excel Sheet Column Number.linq
+0175 Combine Two Tables.sql
+0176 Second Highest Salary.sql
+0181 Employees Earning More Than Their Managers.sql
 0182,Duplicate Emails
+0183 Customers Who Never Order.sql
+0196 delete-duplicate-emails.sql
+0219 Contains Duplicate II.linq
+0237 Delete Node in a Linked List.linq
+0349 Intersection of Two Arrays.linq
+0476 Number Complement
 0482,License Key Formatting
 0500,Keyboard Row
 0507,Perfect Number
 0509,Fibonacci Number
 0520,Detect Capital
 0705,Design HashSet
+0706,Design HashMap
 0707,Design Linked List
 0717,1-bit and 2-bit Characters
 0771,Jewels and Stones
 0706,Design HashMap
 0989,Add to Array-Form of Integer
 1089,Duplicate Zeros
+
