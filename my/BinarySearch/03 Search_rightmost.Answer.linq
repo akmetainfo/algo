@@ -69,6 +69,37 @@ public class Solution1
     }
 }
 
+/*
+    Time: O()
+    Space: O()
+*/
+public class Solution2
+{
+    public int Search_rightmost(int[] nums, int target)
+    {
+        if(nums.Length == 0)
+            return -1;
+            
+        var left = 0;
+        var right = nums.Length - 1;
+        
+        while (left < right)
+        {
+            var mid = 1 + left + (right - left) / 2;
+            
+            if(nums[mid] > target)
+                right = mid - 1;
+            else
+                left = mid;
+        }
+        
+        if(nums[left] == target)
+            return left;
+
+        return -1;
+    }
+}
+
 [Test]
 [TestCase(new int[] { }, 42, -1)]
 [TestCase(new int[] { 7 }, 1, -1)]

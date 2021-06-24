@@ -1,4 +1,3 @@
-0034,Find First and Last Position of Element in Sorted Array
 0069,Sqrt(x)
 0141,Linked List Cycle
 0168 Excel Sheet Column Title.linq
