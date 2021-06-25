@@ -11,36 +11,65 @@
     Time: O(log n)
     Space: O(1)
 */
+// classic binary search
 public class Solution
 {
     public int MySqrt(int x)
     {
-        if (x == 0 || x == 1)
-            return x;
-
-        int left = 0;
-        int right = x / 2;
-        int mid = 0;
-
+        var left = 0;
+        var right = x;
+        
         while (left <= right)
         {
-            mid = left + (right - left) / 2;
-            ulong squareMid = (ulong)mid * (ulong)mid;
-
-            if (squareMid == (ulong)x)
+            var mid = left + (right - left) / 2;
+            
+            if((ulong) mid * (ulong)mid == (ulong)x)
                 return mid;
-
-            if ((ulong)x > squareMid)
+            
+            if((ulong) mid * (ulong)mid < (ulong)x)
                 left = mid + 1;
             else
                 right = mid - 1;
         }
+        
+        if((ulong)left * (ulong)left >(ulong)x)
+            return left - 1;
 
-        return (mid * mid) > x ? mid - 1 : mid;
+        return left;
+    }
+}
+
+/*
+    Time: O(log n)
+    Space: O(1)
+*/
+// classic leftmost search with exit checks
+public class Solution1
+{
+    public int MySqrt(int x)
+    {
+        int left = 0;
+        int right = x;
+
+        while (left < right)
+        {
+            var mid = left + (right - left) / 2;
+
+            if ((ulong)x > (ulong)mid * (ulong)mid)
+                left = mid + 1;
+            else
+                right = mid;
+        }
+
+        if((ulong)left * (ulong)left == (ulong)x)
+            return left;
+            
+        return left-1;
     }
 }
 
 [Test]
+[TestCase(2, 1)]
 [TestCase(4, 2)]
 [TestCase(8, 2)]
 [TestCase(2147302921, 46339)]

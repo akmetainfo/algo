@@ -20,6 +20,7 @@ public class Solution
 }
 
 [Test]
+[TestCase(2, 1)]
 [TestCase(4, 2)]
 [TestCase(8, 2)]
 [TestCase(2147302921, 46339)]

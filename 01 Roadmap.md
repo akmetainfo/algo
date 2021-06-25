@@ -35,6 +35,7 @@
 * 0012,Integer to Roman
 * 0013,Roman to Integer
 * 0066,Plus One
+* 0069,Sqrt(x)
 * 0118,Pascal's Triangle
 * 0119,Pascal's Triangle II
 * 0136,Single Number
@@ -87,6 +88,7 @@
 # Binary search
 
 * 0034,Find First and Last Position of Element in Sorted Array
+* 0069,Sqrt(x)
 * 0278,First Bad Version
 * 0367,Valid Perfect Square
 * 0704,Binary Search

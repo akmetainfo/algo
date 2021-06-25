@@ -8,7 +8,7 @@
 // https://leetcode.com/problems/sqrtx/
 
 /*
-    Time: O()
+    Time: O(?)
     Space: O(1)
 */
 public class Solution
@@ -36,6 +36,7 @@ public class Solution
 }
 
 [Test]
+[TestCase(2, 1)]
 [TestCase(4, 2)]
 [TestCase(8, 2)]
 [TestCase(2147302921, 46339)]

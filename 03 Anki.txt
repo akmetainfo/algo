@@ -7,6 +7,7 @@
 0027,Remove Element
 0034,Find First and Last Position of Element in Sorted Array
 0066,Plus One
+0069,Sqrt(x)
 0088,Merge Sorted Array
 0094,Binary Tree Inorder Traversal
 0118,Pascal's Triangle
