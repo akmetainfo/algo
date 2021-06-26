@@ -20,6 +20,7 @@ public class Solution
 }
 
 [Test]
+[TestCase(0, 0)]
 [TestCase(2, 1)]
 [TestCase(4, 2)]
 [TestCase(8, 2)]
