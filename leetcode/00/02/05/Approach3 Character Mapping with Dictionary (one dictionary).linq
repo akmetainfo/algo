@@ -8,7 +8,7 @@
 // https://leetcode.com/problems/isomorphic-strings/
 
 /*
-    Time: O(n)
+    Time: O(n^2) because ContainsValue is O(n)
     Space: O(n)
 */
 public class Solution
@@ -35,7 +35,7 @@ public class Solution
 }
 
 /*
-    Time: O(n)
+    Time: O(n^2) because ContainsValue is O(n)
     Space: O(n)
 */
 public class Solution1
@@ -69,7 +69,7 @@ public class Solution1
 
 
 /*
-    Time: O(n)
+    Time: O(n^2) because ContainsValue is O(n)
     Space: O(n)
 */
 public class Solution2
@@ -93,7 +93,7 @@ public class Solution2
 }
 
 /*
-    Time: O(n)
+    Time: O(n^2) because ContainsValue is O(n)
     Space: O(n)
 */
 public class Solution3
