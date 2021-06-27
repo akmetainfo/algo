@@ -8,7 +8,7 @@
 // https://leetcode.com/problems/find-the-difference/
 
 /*
-    Time: O(n log n), where n = s.Length + t.Length. (sorting has a O(N Log N) cost)
+    Time: O(n log n), where n = t.Length. (sorting has a O(N Log N) cost)
     Space: O(m + n), where m = s.Length, n = t.Length
 */
 public class Solution

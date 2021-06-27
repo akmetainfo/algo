@@ -8,7 +8,7 @@
 // https://leetcode.com/problems/find-the-difference/
 
 /*
-    Time: O(m + n), where m = s.Length, n = t.Length
+    Time: O(m * n), where m = s.Length, n = t.Length
     Space: O(n), where n = s.Length
 */
 public class Solution
