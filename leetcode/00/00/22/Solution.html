@@ -1,0 +1,563 @@
+<div class="content__QRGW">
+    <div>
+        <h4 id="approach-1-brute-force">Approach 1: Brute Force</h4>
+        <p><strong>Intuition</strong></p>
+        <p>We can generate all <span class="katex"><span class="katex-mathml"><math>
+                        <semantics>
+                            <mrow>
+                                <msup>
+                                    <mn>2</mn>
+                                    <mrow>
+                                        <mn>2</mn>
+                                        <mi>n</mi>
+                                    </mrow>
+                                </msup>
+                            </mrow>
+                            <annotation encoding="application/x-tex">2^{2n}</annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="mord"><span
+                                class="mord">2</span><span class="msupsub"><span class="vlist-t"><span
+                                        class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span
+                                                style="top:-3.063em;margin-right:0.05em;"><span class="pstrut"
+                                                    style="height:2.7em;"></span><span
+                                                    class="sizing reset-size6 size3 mtight"><span
+                                                        class="mord mtight"><span class="mord mtight">2</span><span
+                                                            class="mord mathdefault mtight">n</span></span></span></span></span></span></span></span></span></span></span></span>
+            sequences of <code>'('</code> and <code>')'</code> characters. Then, we will check if each one is valid.</p>
+        <p><strong>Algorithm</strong></p>
+        <p>To generate all sequences, we use a recursion. All sequences of length <code>n</code> is just
+            <code>'('</code> plus all sequences of length <code>n-1</code>, and then <code>')'</code> plus all sequences
+            of length <code>n-1</code>.</p>
+        <p>To check whether a sequence is valid, we keep track of <code>balance</code>, the net number of opening
+            brackets minus closing brackets. If it falls below zero at any time, or doesn't end in zero, the sequence is
+            invalid - otherwise it is valid.</p>
+        <iframe src="https://leetcode.com/playground/LUZJwjxj/shared" name="LUZJwjxj" width="100%" height="500"
+            frameborder="0"></iframe>
+        <p><strong>Complexity Analysis</strong></p>
+        <ul>
+            <li>
+                <p>Time Complexity : <span class="katex"><span class="katex-mathml"><math>
+                                <semantics>
+                                    <mrow>
+                                        <mi>O</mi>
+                                        <mo>(</mo>
+                                        <msup>
+                                            <mn>2</mn>
+                                            <mrow>
+                                                <mn>2</mn>
+                                                <mi>n</mi>
+                                            </mrow>
+                                        </msup>
+                                        <mi>n</mi>
+                                        <mo>)</mo>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">O(2^{2n}n)</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut" style="height:1.064108em;vertical-align:-0.25em;"></span><span
+                                    class="mord mathdefault" style="margin-right:0.02778em;">O</span><span
+                                    class="mopen">(</span><span class="mord"><span class="mord">2</span><span
+                                        class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist"
+                                                    style="height:0.8141079999999999em;"><span
+                                                        style="top:-3.063em;margin-right:0.05em;"><span class="pstrut"
+                                                            style="height:2.7em;"></span><span
+                                                            class="sizing reset-size6 size3 mtight"><span
+                                                                class="mord mtight"><span
+                                                                    class="mord mtight">2</span><span
+                                                                    class="mord mathdefault mtight">n</span></span></span></span></span></span></span></span></span><span
+                                    class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span>.
+                    For each of <span class="katex"><span class="katex-mathml"><math>
+                                <semantics>
+                                    <mrow>
+                                        <msup>
+                                            <mn>2</mn>
+                                            <mrow>
+                                                <mn>2</mn>
+                                                <mi>n</mi>
+                                            </mrow>
+                                        </msup>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">2^{2n}</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut" style="height:0.8141079999999999em;vertical-align:0em;"></span><span
+                                    class="mord"><span class="mord">2</span><span class="msupsub"><span
+                                            class="vlist-t"><span class="vlist-r"><span class="vlist"
+                                                    style="height:0.8141079999999999em;"><span
+                                                        style="top:-3.063em;margin-right:0.05em;"><span class="pstrut"
+                                                            style="height:2.7em;"></span><span
+                                                            class="sizing reset-size6 size3 mtight"><span
+                                                                class="mord mtight"><span
+                                                                    class="mord mtight">2</span><span
+                                                                    class="mord mathdefault mtight">n</span></span></span></span></span></span></span></span></span></span></span></span>
+                    sequences, we need to create and validate the sequence, which takes <span class="katex"><span
+                            class="katex-mathml"><math>
+                                <semantics>
+                                    <mrow>
+                                        <mi>O</mi>
+                                        <mo>(</mo>
+                                        <mi>n</mi>
+                                        <mo>)</mo>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">O(n)</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                                    class="mord mathdefault" style="margin-right:0.02778em;">O</span><span
+                                    class="mopen">(</span><span class="mord mathdefault">n</span><span
+                                    class="mclose">)</span></span></span></span> work.</p>
+            </li>
+            <li>
+                <p>Space Complexity : <span class="katex"><span class="katex-mathml"><math>
+                                <semantics>
+                                    <mrow>
+                                        <mi>O</mi>
+                                        <mo>(</mo>
+                                        <msup>
+                                            <mn>2</mn>
+                                            <mrow>
+                                                <mn>2</mn>
+                                                <mi>n</mi>
+                                            </mrow>
+                                        </msup>
+                                        <mi>n</mi>
+                                        <mo>)</mo>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">O(2^{2n}n)</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut" style="height:1.064108em;vertical-align:-0.25em;"></span><span
+                                    class="mord mathdefault" style="margin-right:0.02778em;">O</span><span
+                                    class="mopen">(</span><span class="mord"><span class="mord">2</span><span
+                                        class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist"
+                                                    style="height:0.8141079999999999em;"><span
+                                                        style="top:-3.063em;margin-right:0.05em;"><span class="pstrut"
+                                                            style="height:2.7em;"></span><span
+                                                            class="sizing reset-size6 size3 mtight"><span
+                                                                class="mord mtight"><span
+                                                                    class="mord mtight">2</span><span
+                                                                    class="mord mathdefault mtight">n</span></span></span></span></span></span></span></span></span><span
+                                    class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span>.
+                    Naively, every sequence could be valid. See <a href="#approach-3-closure-number" rel="ugc">Approach
+                        3</a> for development of a tighter asymptotic bound.
+                    <br>
+                    <br>
+                </p>
+            </li>
+        </ul>
+        <hr>
+        <h4 id="approach-2-backtracking">Approach 2: Backtracking</h4>
+        <p><strong>Intuition and Algorithm</strong></p>
+        <p>Instead of adding <code>'('</code> or <code>')'</code> every time as in <a href="#approach-1-brute-force"
+                rel="ugc">Approach 1</a>, let's only add them when we know it will remain a valid sequence. We can do
+            this by keeping track of the number of opening and closing brackets we have placed so far.</p>
+        <p>We can start an opening bracket if we still have one (of <code>n</code>) left to place. And we can start a
+            closing bracket if it would not exceed the number of opening brackets.</p>
+        <iframe src="https://leetcode.com/playground/VMCun4GN/shared" name="VMCun4GN" width="100%" height="480"
+            frameborder="0"></iframe>
+        <p><strong>Complexity Analysis</strong></p>
+        <p>Our complexity analysis rests on understanding how many elements there are in
+            <code>generateParenthesis(n)</code>. This analysis is outside the scope of this article, but it turns out
+            this is the <code>n</code>-th Catalan number <span class="katex"><span class="katex-mathml"><math>
+                        <semantics>
+                            <mrow>
+                                <mfrac>
+                                    <mn>1</mn>
+                                    <mrow>
+                                        <mi>n</mi>
+                                        <mo>+</mo>
+                                        <mn>1</mn>
+                                    </mrow>
+                                </mfrac>
+                                <mrow>
+                                    <mo fence="true">(</mo>
+                                    <mfrac linethickness="0px">
+                                        <mrow>
+                                            <mn>2</mn>
+                                            <mi>n</mi>
+                                        </mrow>
+                                        <mi>n</mi>
+                                    </mfrac>
+                                    <mo fence="true">)</mo>
+                                </mrow>
+                            </mrow>
+                            <annotation encoding="application/x-tex">\dfrac{1}{n+1}\binom{2n}{n}</annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:2.09077em;vertical-align:-0.7693300000000001em;"></span><span
+                            class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span
+                                    class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                            style="height:1.32144em;"><span style="top:-2.314em;"><span class="pstrut"
+                                                    style="height:3em;"></span><span class="mord"><span
+                                                        class="mord mathdefault">n</span><span class="mspace"
+                                                        style="margin-right:0.2222222222222222em;"></span><span
+                                                        class="mbin">+</span><span class="mspace"
+                                                        style="margin-right:0.2222222222222222em;"></span><span
+                                                        class="mord">1</span></span></span><span
+                                                style="top:-3.23em;"><span class="pstrut"
+                                                    style="height:3em;"></span><span class="frac-line"
+                                                    style="border-bottom-width:0.04em;"></span></span><span
+                                                style="top:-3.677em;"><span class="pstrut"
+                                                    style="height:3em;"></span><span class="mord"><span
+                                                        class="mord">1</span></span></span></span><span
+                                            class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                            style="height:0.7693300000000001em;"><span></span></span></span></span></span><span
+                                class="mclose nulldelimiter"></span></span><span class="mord"><span
+                                class="mopen delimcenter" style="top:0em;"><span
+                                    class="delimsizing size1">(</span></span><span class="mfrac"><span
+                                    class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                            style="height:0.8951079999999999em;"><span
+                                                style="top:-2.3550000000000004em;"><span class="pstrut"
+                                                    style="height:2.7em;"></span><span
+                                                    class="sizing reset-size6 size3 mtight"><span
+                                                        class="mord mtight"><span
+                                                            class="mord mathdefault mtight">n</span></span></span></span><span
+                                                style="top:-3.144em;"><span class="pstrut"
+                                                    style="height:2.7em;"></span><span
+                                                    class="sizing reset-size6 size3 mtight"><span
+                                                        class="mord mtight"><span class="mord mtight">2</span><span
+                                                            class="mord mathdefault mtight">n</span></span></span></span></span><span
+                                            class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                            style="height:0.345em;"><span></span></span></span></span></span><span
+                                class="mclose delimcenter" style="top:0em;"><span
+                                    class="delimsizing size1">)</span></span></span></span></span></span>, which is
+            bounded asymptotically by <span class="katex"><span class="katex-mathml"><math>
+                        <semantics>
+                            <mrow>
+                                <mfrac>
+                                    <msup>
+                                        <mn>4</mn>
+                                        <mi>n</mi>
+                                    </msup>
+                                    <mrow>
+                                        <mi>n</mi>
+                                        <msqrt>
+                                            <mi>n</mi>
+                                        </msqrt>
+                                    </mrow>
+                                </mfrac>
+                            </mrow>
+                            <annotation encoding="application/x-tex">\dfrac{4^n}{n\sqrt{n}}</annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:2.271392em;vertical-align:-0.9300000000000002em;"></span><span
+                            class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span
+                                    class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                            style="height:1.341392em;"><span style="top:-2.30972em;"><span
+                                                    class="pstrut" style="height:3em;"></span><span class="mord"><span
+                                                        class="mord mathdefault">n</span><span class="mord sqrt"><span
+                                                            class="vlist-t vlist-t2"><span class="vlist-r"><span
+                                                                    class="vlist"
+                                                                    style="height:0.8002800000000001em;"><span
+                                                                        class="svg-align" style="top:-3em;"><span
+                                                                            class="pstrut"
+                                                                            style="height:3em;"></span><span
+                                                                            class="mord"
+                                                                            style="padding-left:0.833em;"><span
+                                                                                class="mord mathdefault">n</span></span></span><span
+                                                                        style="top:-2.76028em;"><span class="pstrut"
+                                                                            style="height:3em;"></span><span
+                                                                            class="hide-tail"
+                                                                            style="min-width:0.853em;height:1.08em;"><svg
+                                                                                width="400em" height="1.08em"
+                                                                                viewBox="0 0 400000 1080"
+                                                                                preserveAspectRatio="xMinYMin slice">
+                                                                                <path d="M95,702c-2.7,0,-7.17,-2.7,-13.5,-8c-5.8,-5.3,-9.5,
+    -10,-9.5,-14c0,-2,0.3,-3.3,1,-4c1.3,-2.7,23.83,-20.7,67.5,-54c44.2,-33.3,65.8,
+    -50.3,66.5,-51c1.3,-1.3,3,-2,5,-2c4.7,0,8.7,3.3,12,10s173,378,173,378c0.7,0,
+    35.3,-71,104,-213c68.7,-142,137.5,-285,206.5,-429c69,-144,104.5,-217.7,106.5,
+    -221c5.3,-9.3,12,-14,20,-14H400000v40H845.2724s-225.272,467,-225.272,467
+    s-235,486,-235,486c-2.7,4.7,-9,7,-19,7c-6,0,-10,-1,-12,-3s-194,-422,-194,-422
+    s-65,47,-65,47z M834 80H400000v40H845z"></path>
+                                                                            </svg></span></span></span><span
+                                                                    class="vlist-s">​</span></span><span
+                                                                class="vlist-r"><span class="vlist"
+                                                                    style="height:0.23972em;"><span></span></span></span></span></span></span></span><span
+                                                style="top:-3.23em;"><span class="pstrut"
+                                                    style="height:3em;"></span><span class="frac-line"
+                                                    style="border-bottom-width:0.04em;"></span></span><span
+                                                style="top:-3.677em;"><span class="pstrut"
+                                                    style="height:3em;"></span><span class="mord"><span
+                                                        class="mord"><span class="mord">4</span><span
+                                                            class="msupsub"><span class="vlist-t"><span
+                                                                    class="vlist-r"><span class="vlist"
+                                                                        style="height:0.664392em;"><span
+                                                                            style="top:-3.063em;margin-right:0.05em;"><span
+                                                                                class="pstrut"
+                                                                                style="height:2.7em;"></span><span
+                                                                                class="sizing reset-size6 size3 mtight"><span
+                                                                                    class="mord mathdefault mtight">n</span></span></span></span></span></span></span></span></span></span></span><span
+                                            class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                            style="height:0.9300000000000002em;"><span></span></span></span></span></span><span
+                                class="mclose nulldelimiter"></span></span></span></span></span>.</p>
+        <ul>
+            <li>
+                <p>Time Complexity : <span class="katex"><span class="katex-mathml"><math>
+                                <semantics>
+                                    <mrow>
+                                        <mi>O</mi>
+                                        <mo>(</mo>
+                                        <mfrac>
+                                            <msup>
+                                                <mn>4</mn>
+                                                <mi>n</mi>
+                                            </msup>
+                                            <msqrt>
+                                                <mi>n</mi>
+                                            </msqrt>
+                                        </mfrac>
+                                        <mo>)</mo>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">O(\dfrac{4^n}{\sqrt{n}})</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut"
+                                    style="height:2.271392em;vertical-align:-0.9300000000000002em;"></span><span
+                                    class="mord mathdefault" style="margin-right:0.02778em;">O</span><span
+                                    class="mopen">(</span><span class="mord"><span
+                                        class="mopen nulldelimiter"></span><span class="mfrac"><span
+                                            class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                                    style="height:1.341392em;"><span style="top:-2.30972em;"><span
+                                                            class="pstrut" style="height:3em;"></span><span
+                                                            class="mord"><span class="mord sqrt"><span
+                                                                    class="vlist-t vlist-t2"><span class="vlist-r"><span
+                                                                            class="vlist"
+                                                                            style="height:0.8002800000000001em;"><span
+                                                                                class="svg-align"
+                                                                                style="top:-3em;"><span class="pstrut"
+                                                                                    style="height:3em;"></span><span
+                                                                                    class="mord"
+                                                                                    style="padding-left:0.833em;"><span
+                                                                                        class="mord mathdefault">n</span></span></span><span
+                                                                                style="top:-2.76028em;"><span
+                                                                                    class="pstrut"
+                                                                                    style="height:3em;"></span><span
+                                                                                    class="hide-tail"
+                                                                                    style="min-width:0.853em;height:1.08em;"><svg
+                                                                                        width="400em" height="1.08em"
+                                                                                        viewBox="0 0 400000 1080"
+                                                                                        preserveAspectRatio="xMinYMin slice">
+                                                                                        <path d="M95,702c-2.7,0,-7.17,-2.7,-13.5,-8c-5.8,-5.3,-9.5,
+    -10,-9.5,-14c0,-2,0.3,-3.3,1,-4c1.3,-2.7,23.83,-20.7,67.5,-54c44.2,-33.3,65.8,
+    -50.3,66.5,-51c1.3,-1.3,3,-2,5,-2c4.7,0,8.7,3.3,12,10s173,378,173,378c0.7,0,
+    35.3,-71,104,-213c68.7,-142,137.5,-285,206.5,-429c69,-144,104.5,-217.7,106.5,
+    -221c5.3,-9.3,12,-14,20,-14H400000v40H845.2724s-225.272,467,-225.272,467
+    s-235,486,-235,486c-2.7,4.7,-9,7,-19,7c-6,0,-10,-1,-12,-3s-194,-422,-194,-422
+    s-65,47,-65,47z M834 80H400000v40H845z"></path>
+                                                                                    </svg></span></span></span><span
+                                                                            class="vlist-s">​</span></span><span
+                                                                        class="vlist-r"><span class="vlist"
+                                                                            style="height:0.23972em;"><span></span></span></span></span></span></span></span><span
+                                                        style="top:-3.23em;"><span class="pstrut"
+                                                            style="height:3em;"></span><span class="frac-line"
+                                                            style="border-bottom-width:0.04em;"></span></span><span
+                                                        style="top:-3.677em;"><span class="pstrut"
+                                                            style="height:3em;"></span><span class="mord"><span
+                                                                class="mord"><span class="mord">4</span><span
+                                                                    class="msupsub"><span class="vlist-t"><span
+                                                                            class="vlist-r"><span class="vlist"
+                                                                                style="height:0.664392em;"><span
+                                                                                    style="top:-3.063em;margin-right:0.05em;"><span
+                                                                                        class="pstrut"
+                                                                                        style="height:2.7em;"></span><span
+                                                                                        class="sizing reset-size6 size3 mtight"><span
+                                                                                            class="mord mathdefault mtight">n</span></span></span></span></span></span></span></span></span></span></span><span
+                                                    class="vlist-s">​</span></span><span class="vlist-r"><span
+                                                    class="vlist"
+                                                    style="height:0.9300000000000002em;"><span></span></span></span></span></span><span
+                                        class="mclose nulldelimiter"></span></span><span
+                                    class="mclose">)</span></span></span></span>. Each valid sequence has at most
+                    <code>n</code> steps during the backtracking procedure.</p>
+            </li>
+            <li>
+                <p>Space Complexity : <span class="katex"><span class="katex-mathml"><math>
+                                <semantics>
+                                    <mrow>
+                                        <mi>O</mi>
+                                        <mo>(</mo>
+                                        <mfrac>
+                                            <msup>
+                                                <mn>4</mn>
+                                                <mi>n</mi>
+                                            </msup>
+                                            <msqrt>
+                                                <mi>n</mi>
+                                            </msqrt>
+                                        </mfrac>
+                                        <mo>)</mo>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">O(\dfrac{4^n}{\sqrt{n}})</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut"
+                                    style="height:2.271392em;vertical-align:-0.9300000000000002em;"></span><span
+                                    class="mord mathdefault" style="margin-right:0.02778em;">O</span><span
+                                    class="mopen">(</span><span class="mord"><span
+                                        class="mopen nulldelimiter"></span><span class="mfrac"><span
+                                            class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                                    style="height:1.341392em;"><span style="top:-2.30972em;"><span
+                                                            class="pstrut" style="height:3em;"></span><span
+                                                            class="mord"><span class="mord sqrt"><span
+                                                                    class="vlist-t vlist-t2"><span class="vlist-r"><span
+                                                                            class="vlist"
+                                                                            style="height:0.8002800000000001em;"><span
+                                                                                class="svg-align"
+                                                                                style="top:-3em;"><span class="pstrut"
+                                                                                    style="height:3em;"></span><span
+                                                                                    class="mord"
+                                                                                    style="padding-left:0.833em;"><span
+                                                                                        class="mord mathdefault">n</span></span></span><span
+                                                                                style="top:-2.76028em;"><span
+                                                                                    class="pstrut"
+                                                                                    style="height:3em;"></span><span
+                                                                                    class="hide-tail"
+                                                                                    style="min-width:0.853em;height:1.08em;"><svg
+                                                                                        width="400em" height="1.08em"
+                                                                                        viewBox="0 0 400000 1080"
+                                                                                        preserveAspectRatio="xMinYMin slice">
+                                                                                        <path d="M95,702c-2.7,0,-7.17,-2.7,-13.5,-8c-5.8,-5.3,-9.5,
+    -10,-9.5,-14c0,-2,0.3,-3.3,1,-4c1.3,-2.7,23.83,-20.7,67.5,-54c44.2,-33.3,65.8,
+    -50.3,66.5,-51c1.3,-1.3,3,-2,5,-2c4.7,0,8.7,3.3,12,10s173,378,173,378c0.7,0,
+    35.3,-71,104,-213c68.7,-142,137.5,-285,206.5,-429c69,-144,104.5,-217.7,106.5,
+    -221c5.3,-9.3,12,-14,20,-14H400000v40H845.2724s-225.272,467,-225.272,467
+    s-235,486,-235,486c-2.7,4.7,-9,7,-19,7c-6,0,-10,-1,-12,-3s-194,-422,-194,-422
+    s-65,47,-65,47z M834 80H400000v40H845z"></path>
+                                                                                    </svg></span></span></span><span
+                                                                            class="vlist-s">​</span></span><span
+                                                                        class="vlist-r"><span class="vlist"
+                                                                            style="height:0.23972em;"><span></span></span></span></span></span></span></span><span
+                                                        style="top:-3.23em;"><span class="pstrut"
+                                                            style="height:3em;"></span><span class="frac-line"
+                                                            style="border-bottom-width:0.04em;"></span></span><span
+                                                        style="top:-3.677em;"><span class="pstrut"
+                                                            style="height:3em;"></span><span class="mord"><span
+                                                                class="mord"><span class="mord">4</span><span
+                                                                    class="msupsub"><span class="vlist-t"><span
+                                                                            class="vlist-r"><span class="vlist"
+                                                                                style="height:0.664392em;"><span
+                                                                                    style="top:-3.063em;margin-right:0.05em;"><span
+                                                                                        class="pstrut"
+                                                                                        style="height:2.7em;"></span><span
+                                                                                        class="sizing reset-size6 size3 mtight"><span
+                                                                                            class="mord mathdefault mtight">n</span></span></span></span></span></span></span></span></span></span></span><span
+                                                    class="vlist-s">​</span></span><span class="vlist-r"><span
+                                                    class="vlist"
+                                                    style="height:0.9300000000000002em;"><span></span></span></span></span></span><span
+                                        class="mclose nulldelimiter"></span></span><span
+                                    class="mclose">)</span></span></span></span>, as described above, and using <span
+                        class="katex"><span class="katex-mathml"><math>
+                                <semantics>
+                                    <mrow>
+                                        <mi>O</mi>
+                                        <mo>(</mo>
+                                        <mi>n</mi>
+                                        <mo>)</mo>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">O(n)</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                                    class="mord mathdefault" style="margin-right:0.02778em;">O</span><span
+                                    class="mopen">(</span><span class="mord mathdefault">n</span><span
+                                    class="mclose">)</span></span></span></span> space to store the sequence.
+                    <br>
+                    <br>
+                </p>
+            </li>
+        </ul>
+        <hr>
+        <h4 id="approach-3-closure-number">Approach 3: Closure Number</h4>
+        <p><strong>Intuition</strong></p>
+        <p>To enumerate something, generally we would like to express it as a sum of disjoint subsets that are easier to
+            count.</p>
+        <p>Consider the <em>closure number</em> of a valid parentheses sequence <code>S</code>: the least
+            <code>index &gt;= 0</code> so that <code>S[0], S[1], ..., S[2*index+1]</code> is valid. Clearly, every
+            parentheses sequence has a unique <em>closure number</em>. We can try to enumerate them individually.</p>
+        <p><strong>Algorithm</strong></p>
+        <p>For each closure number <code>c</code>, we know the starting and ending brackets must be at index
+            <code>0</code> and <code>2*c + 1</code>. Then, the <code>2*c</code> elements between must be a valid
+            sequence, plus the rest of the elements must be a valid sequence.</p>
+        <iframe src="https://leetcode.com/playground/Tuj22coD/shared" name="Tuj22coD" width="100%" height="293"
+            frameborder="0"></iframe>
+        <p><strong>Complexity Analysis</strong></p>
+        <ul>
+            <li>Time and Space Complexity : <span class="katex"><span class="katex-mathml"><math>
+                            <semantics>
+                                <mrow>
+                                    <mi>O</mi>
+                                    <mo>(</mo>
+                                    <mfrac>
+                                        <msup>
+                                            <mn>4</mn>
+                                            <mi>n</mi>
+                                        </msup>
+                                        <msqrt>
+                                            <mi>n</mi>
+                                        </msqrt>
+                                    </mfrac>
+                                    <mo>)</mo>
+                                </mrow>
+                                <annotation encoding="application/x-tex">O(\dfrac{4^n}{\sqrt{n}})</annotation>
+                            </semantics>
+                        </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                                style="height:2.271392em;vertical-align:-0.9300000000000002em;"></span><span
+                                class="mord mathdefault" style="margin-right:0.02778em;">O</span><span
+                                class="mopen">(</span><span class="mord"><span class="mopen nulldelimiter"></span><span
+                                    class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span
+                                                class="vlist" style="height:1.341392em;"><span
+                                                    style="top:-2.30972em;"><span class="pstrut"
+                                                        style="height:3em;"></span><span class="mord"><span
+                                                            class="mord sqrt"><span class="vlist-t vlist-t2"><span
+                                                                    class="vlist-r"><span class="vlist"
+                                                                        style="height:0.8002800000000001em;"><span
+                                                                            class="svg-align" style="top:-3em;"><span
+                                                                                class="pstrut"
+                                                                                style="height:3em;"></span><span
+                                                                                class="mord"
+                                                                                style="padding-left:0.833em;"><span
+                                                                                    class="mord mathdefault">n</span></span></span><span
+                                                                            style="top:-2.76028em;"><span class="pstrut"
+                                                                                style="height:3em;"></span><span
+                                                                                class="hide-tail"
+                                                                                style="min-width:0.853em;height:1.08em;"><svg
+                                                                                    width="400em" height="1.08em"
+                                                                                    viewBox="0 0 400000 1080"
+                                                                                    preserveAspectRatio="xMinYMin slice">
+                                                                                    <path d="M95,702c-2.7,0,-7.17,-2.7,-13.5,-8c-5.8,-5.3,-9.5,
+    -10,-9.5,-14c0,-2,0.3,-3.3,1,-4c1.3,-2.7,23.83,-20.7,67.5,-54c44.2,-33.3,65.8,
+    -50.3,66.5,-51c1.3,-1.3,3,-2,5,-2c4.7,0,8.7,3.3,12,10s173,378,173,378c0.7,0,
+    35.3,-71,104,-213c68.7,-142,137.5,-285,206.5,-429c69,-144,104.5,-217.7,106.5,
+    -221c5.3,-9.3,12,-14,20,-14H400000v40H845.2724s-225.272,467,-225.272,467
+    s-235,486,-235,486c-2.7,4.7,-9,7,-19,7c-6,0,-10,-1,-12,-3s-194,-422,-194,-422
+    s-65,47,-65,47z M834 80H400000v40H845z"></path>
+                                                                                </svg></span></span></span><span
+                                                                        class="vlist-s">​</span></span><span
+                                                                    class="vlist-r"><span class="vlist"
+                                                                        style="height:0.23972em;"><span></span></span></span></span></span></span></span><span
+                                                    style="top:-3.23em;"><span class="pstrut"
+                                                        style="height:3em;"></span><span class="frac-line"
+                                                        style="border-bottom-width:0.04em;"></span></span><span
+                                                    style="top:-3.677em;"><span class="pstrut"
+                                                        style="height:3em;"></span><span class="mord"><span
+                                                            class="mord"><span class="mord">4</span><span
+                                                                class="msupsub"><span class="vlist-t"><span
+                                                                        class="vlist-r"><span class="vlist"
+                                                                            style="height:0.664392em;"><span
+                                                                                style="top:-3.063em;margin-right:0.05em;"><span
+                                                                                    class="pstrut"
+                                                                                    style="height:2.7em;"></span><span
+                                                                                    class="sizing reset-size6 size3 mtight"><span
+                                                                                        class="mord mathdefault mtight">n</span></span></span></span></span></span></span></span></span></span></span><span
+                                                class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                                style="height:0.9300000000000002em;"><span></span></span></span></span></span><span
+                                    class="mclose nulldelimiter"></span></span><span
+                                class="mclose">)</span></span></span></span>. The analysis is similar to <a
+                    href="#approach-2-backtracking" rel="ugc">Approach 2</a>.</li>
+        </ul>
+    </div>
+</div>
+
+<link rel="stylesheet" href="../../../boilerplate/simple.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css"
+    integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
