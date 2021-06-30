@@ -39,12 +39,42 @@ public class Solution
     }
 }
 
+
+/*
+    Time: O(log n)
+    Space: O(1)
+*/
+// classic binary search
+public class Solution1
+{
+    public int MySqrt(int x)
+    {
+        var left = 0;
+        var right = x;
+        
+        while (left <= right)
+        {
+            var mid = left + (right - left) / 2;
+            
+            if((ulong) mid * (ulong)mid == (ulong)x)
+                return mid;
+            
+            if((ulong) mid * (ulong)mid < (ulong)x)
+                left = mid + 1;
+            else
+                right = mid - 1;
+        }
+        
+        return left - 1;
+    }
+}
+
 /*
     Time: O(log n)
     Space: O(1)
 */
 // classic leftmost search with exit checks
-public class Solution1
+public class Solution2
 {
     public int MySqrt(int x)
     {
@@ -68,6 +98,33 @@ public class Solution1
     }
 }
 
+
+/*
+    Time: O(log n)
+    Space: O(1)
+*/
+// classic rightmost search with exit checks
+public class Solution3
+{
+    public int MySqrt(int x)
+    {
+        var left = 0;
+        var right = x;
+        
+        while (left < right)
+        {
+            var mid = 1 + left + (right - left) / 2;
+            
+            if((long)mid*(long)mid > (long)x)
+                right = mid - 1;
+            else
+                left = mid;
+        }
+
+        return left;
+    }
+}
+
 [Test]
 [TestCase(0, 0)]
 [TestCase(2, 1)]
@@ -80,7 +137,7 @@ public class Solution1
 [TestCase(100, 10)]
 public void SolutionTests(int x, int expected)
 {
-    var actual = new Solution().MySqrt(x);
+    var actual = new Solution3().MySqrt(x);
     Assert.That(actual, Is.EqualTo(expected));
 }
 
