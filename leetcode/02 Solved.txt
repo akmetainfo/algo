@@ -1,5 +1,4 @@
 0022,Generate Parentheses
-0035,Search Insert Position
 0141,Linked List Cycle
 0168 Excel Sheet Column Title.linq
 0171 Excel Sheet Column Number.linq

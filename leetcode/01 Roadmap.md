@@ -88,6 +88,7 @@
 # Binary search
 
 * 0034,Find First and Last Position of Element in Sorted Array
+* 0035,Search Insert Position
 * 0069,Sqrt(x)
 * 0278,First Bad Version
 * 0367,Valid Perfect Square
