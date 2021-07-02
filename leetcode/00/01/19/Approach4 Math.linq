@@ -8,17 +8,14 @@
 // https://leetcode.com/problems/pascals-triangle-ii/
 
 /*
-    Time: O(n)
-    Space: O()
+    Time: O(n), where n is rowIndex
+    Space: O(n)
 */
 public class Solution
 {
     public IList<int> GetRow(int rowIndex)
     {
         var row = new List<int>(Math.Max(rowIndex + 1, 1));
-
-        if (rowIndex < 0)
-            return row;
 
         row.Add(1);
 
