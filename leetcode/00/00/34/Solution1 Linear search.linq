@@ -92,13 +92,10 @@ public class Solution2
         var j = i;
         while(j < nums.Length)
         {
-            if(nums[j] == target)
-            {
-                j++;
-                continue;
-            }
-                
-            break;
+            if(nums[j] != target)
+                break;
+            
+            j++;
         }
         
         return new int[] {i, j -1 };
