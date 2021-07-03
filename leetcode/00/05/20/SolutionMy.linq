@@ -8,8 +8,8 @@
 // https://leetcode.com/problems/detect-capital/
 
 /*
-    Time: O()
-    Space: O()
+    Time: O(n), where n is the length of the word.
+    Space: O(1)
 */
 public class Solution
 {

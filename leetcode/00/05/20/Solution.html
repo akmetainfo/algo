@@ -1,0 +1,481 @@
+<div class="content__QRGW">
+    <div>
+        <h2>Solution</h2>
+        <hr>
+        <h3>Overview</h3>
+        <p>It's a fairly easy problem because it does not require you to use any special trick, and all you need to do
+            is to implement the solution step by step.</p>
+        <p>However, it would take some time if you want to make your code easily readable, beautiful, and short. Below
+            two approaches are introduced, they are <em>"Character by Character"</em> method and <em>"Regex"</em>
+            method.</p>
+        <hr>
+        <h4 id="approach-1-character-by-character">Approach 1: Character by Character</h4>
+        <p><strong>Intuition</strong></p>
+        <p>Recall (part of) the description of the problem:</p>
+        <blockquote>
+            <p>We define the usage of capitals in a word to be right when one of the following cases holds:</p>
+            <ol>
+                <li>All letters in this word are capitals, like "USA".</li>
+                <li>All letters in this word are not capitals, like "leetcode".</li>
+                <li>Only the first letter in this word is capital, like "Google".</li>
+            </ol>
+        </blockquote>
+        <p>The problem gives us three patterns, and ask if the given <code>word</code> matches any of them. It would be
+            easy to think of checking the cases one by one. In each case, we can just use the most simple method to
+            check if <code>word</code> matches the pattern -- <strong>check the char one by one</strong>.</p>
+        <p><strong>Algorithm</strong></p>
+        <p>We need three bool variables to store if the pattern matches or not. We set the variables to be true at the
+            beginning, and when the pattern doesn't match, we turn the variables into false. You can also do it
+            otherwise, but the code would be a little longer.</p>
+        <p>The code is a little long... <strong>Don't be afraid!</strong> It's fairly easy to understand, and we will
+            shorten it later.</p>
+        <iframe src="https://leetcode.com/playground/ECEPGisf/shared" name="ECEPGisf" width="100%" height="500"
+            frameborder="0"></iframe>
+        <p>There are a few points you should notice from the code above:</p>
+        <ol>
+            <li>
+                <p>We use the built-in function <code>isUpperCase</code> (in <code>Java</code>) and <code>isupper</code>
+                    (in <code>Python</code>) to check whether a char is upper case. You can also use the <a
+                        href="https://en.wikipedia.org/wiki/ASCII" rel="ugc">ASCII</a> to do that. Just use something
+                    like <code>word.charAt(i) &gt;= 'A' &amp;&amp; word.charAt(i) &lt;= 'Z'</code>.</p>
+            </li>
+            <li>
+                <p>We use <code>break</code> after we find matching failed because there is no need to check whether the
+                    further char is valid.</p>
+            </li>
+            <li>
+                <p>You can combine the three <code>match</code> variables into one by reusing it after each case, but I
+                    prefer to separate it into three for better readability.</p>
+            </li>
+        </ol>
+        <p>OK! Now we have solved this problem. The time complexity is <span class="katex"><span
+                    class="katex-mathml"><math>
+                        <semantics>
+                            <mrow>
+                                <mi>O</mi>
+                                <mo>(</mo>
+                                <mi>n</mi>
+                                <mo>)</mo>
+                            </mrow>
+                            <annotation encoding="application/x-tex">O(n)</annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault"
+                            style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span
+                            class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span> (where
+            <span class="katex"><span class="katex-mathml"><math>
+                        <semantics>
+                            <mrow>
+                                <mi>n</mi>
+                            </mrow>
+                            <annotation encoding="application/x-tex">n</annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:0.43056em;vertical-align:0em;"></span><span
+                            class="mord mathdefault">n</span></span></span></span> is word length) because we need to
+            check each char at most three times. This time complexity is great, and there is no too much we can do to
+            improve it.</p>
+        <p>However, we can make the code looks better and shorter, without reducing the readability.</p>
+        <p><strong>Improvement</strong></p>
+        <p>Where to start? The biggest problem of the code above is that there are too many cases. What if we can
+            combine them? Notice that the biggest difference between case 2 and case 3 is the condition of the first
+            char.</p>
+        <p>By combining case 2 and case 3, we get a new pattern: No matter what first char is, the rest should be
+            lowercase.</p>
+        <iframe src="https://leetcode.com/playground/dzWZ3auG/shared" name="dzWZ3auG" width="100%" height="500"
+            frameborder="0"></iframe>
+        <p>Still, there are a few points you should notice from the code above:</p>
+        <ol>
+            <li>
+                <p>We check the length of the word firstly because we need to use the first two char to check if the
+                    word matches case1. Fortunately, a word with 1 length would always match either case2 or case3.</p>
+            </li>
+            <li>
+                <p>You can count the number of uppercase/lowercase letters in the word instead of checking it one by one
+                    and return immediately. That can also work.</p>
+            </li>
+            <li>
+                <p>Some programming languages have built-in methods to check if the word matches certain case, such as
+                    <code>istitle()</code> in <code>Python</code> and <code>word.toUpperCase().equals(word)</code> in
+                    <code>Java</code>. Those methods are doing the same things as our code above. It would be great if
+                    you can know both these APIs and how they implemented.</p>
+            </li>
+        </ol>
+        <p><strong>Complexity Analysis</strong></p>
+        <ul>
+            <li>
+                <p>Time complexity: <span class="katex"><span class="katex-mathml"><math>
+                                <semantics>
+                                    <mrow>
+                                        <mi>O</mi>
+                                        <mo>(</mo>
+                                        <mi>n</mi>
+                                        <mo>)</mo>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">O(n)</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                                    class="mord mathdefault" style="margin-right:0.02778em;">O</span><span
+                                    class="mopen">(</span><span class="mord mathdefault">n</span><span
+                                    class="mclose">)</span></span></span></span>, where n is the length of the word. We
+                    only need to check each char at most constant times.</p>
+            </li>
+            <li>
+                <p>Space complexity : <span class="katex"><span class="katex-mathml"><math>
+                                <semantics>
+                                    <mrow>
+                                        <mi>O</mi>
+                                        <mo>(</mo>
+                                        <mn>1</mn>
+                                        <mo>)</mo>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">O(1)</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                                    class="mord mathdefault" style="margin-right:0.02778em;">O</span><span
+                                    class="mopen">(</span><span class="mord">1</span><span
+                                    class="mclose">)</span></span></span></span>. We only need constant spaces to store
+                    our variables.</p>
+            </li>
+        </ul>
+        <br>
+        <hr>
+        <h4 id="approach-2-regex">Approach 2: Regex</h4>
+        <p><strong>Intuition</strong></p>
+        <p>Hey, if we want to do pattern matching, why don't we use <a
+                href="https://en.wikipedia.org/wiki/Regular_expression" rel="ugc">Regular Expression</a> (Regex)? Regex
+            is a great way to match a given pattern to a string.</p>
+        <p><strong>Algorithm</strong></p>
+        <p>The pattern of case 1 in regex is <span class="katex"><span class="katex-mathml"><math>
+                        <semantics>
+                            <mrow>
+                                <mo>[</mo>
+                                <mi>A</mi>
+                                <mo>−</mo>
+                                <mi>Z</mi>
+                                <mo>]</mo>
+                                <mo>∗</mo>
+                            </mrow>
+                            <annotation encoding="application/x-tex"> [A-Z]* </annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span
+                            class="mord mathdefault">A</span><span class="mspace"
+                            style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span
+                            class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span
+                        class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                            class="mord mathdefault" style="margin-right:0.07153em;">Z</span><span
+                            class="mclose">]</span><span class="mord">∗</span></span></span></span>, where <span
+                class="katex"><span class="katex-mathml"><math>
+                        <semantics>
+                            <mrow>
+                                <mo>[</mo>
+                                <mi>A</mi>
+                                <mo>−</mo>
+                                <mi>Z</mi>
+                                <mo>]</mo>
+                            </mrow>
+                            <annotation encoding="application/x-tex"> [A-Z] </annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span
+                            class="mord mathdefault">A</span><span class="mspace"
+                            style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span
+                            class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span
+                        class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                            class="mord mathdefault" style="margin-right:0.07153em;">Z</span><span
+                            class="mclose">]</span></span></span></span> matches one char from 'A' to 'Z', <span
+                class="katex"><span class="katex-mathml"><math>
+                        <semantics>
+                            <mrow>
+                                <mo>∗</mo>
+                            </mrow>
+                            <annotation encoding="application/x-tex"> * </annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:0.46528em;vertical-align:0em;"></span><span
+                            class="mord">∗</span></span></span></span> represents repeat the pattern before it at least
+            0 times. Therefore, this pattern represents "All capital".</p>
+        <p>The pattern of case 2 in regex is <span class="katex"><span class="katex-mathml"><math>
+                        <semantics>
+                            <mrow>
+                                <mo>[</mo>
+                                <mi>a</mi>
+                                <mo>−</mo>
+                                <mi>z</mi>
+                                <mo>]</mo>
+                                <mo>∗</mo>
+                            </mrow>
+                            <annotation encoding="application/x-tex"> [a-z]* </annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span
+                            class="mord mathdefault">a</span><span class="mspace"
+                            style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span
+                            class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span
+                        class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                            class="mord mathdefault" style="margin-right:0.04398em;">z</span><span
+                            class="mclose">]</span><span class="mord">∗</span></span></span></span>, where similarly,
+            <span class="katex"><span class="katex-mathml"><math>
+                        <semantics>
+                            <mrow>
+                                <mo>[</mo>
+                                <mi>a</mi>
+                                <mo>−</mo>
+                                <mi>z</mi>
+                                <mo>]</mo>
+                            </mrow>
+                            <annotation encoding="application/x-tex"> [a-z] </annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span
+                            class="mord mathdefault">a</span><span class="mspace"
+                            style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span
+                            class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span
+                        class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                            class="mord mathdefault" style="margin-right:0.04398em;">z</span><span
+                            class="mclose">]</span></span></span></span> matches one char from 'a' to 'z'. Therefore,
+            this pattern represents "All not capital".</p>
+        <p>Similarly, the pattern of case 3 in regex is <span class="katex"><span class="katex-mathml"><math>
+                        <semantics>
+                            <mrow>
+                                <mo>[</mo>
+                                <mi>A</mi>
+                                <mo>−</mo>
+                                <mi>Z</mi>
+                                <mo>]</mo>
+                                <mo>[</mo>
+                                <mi>a</mi>
+                                <mo>−</mo>
+                                <mi>z</mi>
+                                <mo>]</mo>
+                                <mo>∗</mo>
+                            </mrow>
+                            <annotation encoding="application/x-tex"> [A-Z][a-z]* </annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span
+                            class="mord mathdefault">A</span><span class="mspace"
+                            style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span
+                            class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span
+                        class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                            class="mord mathdefault" style="margin-right:0.07153em;">Z</span><span
+                            class="mclose">]</span><span class="mopen">[</span><span
+                            class="mord mathdefault">a</span><span class="mspace"
+                            style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span
+                            class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span
+                        class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                            class="mord mathdefault" style="margin-right:0.04398em;">z</span><span
+                            class="mclose">]</span><span class="mord">∗</span></span></span></span>.</p>
+        <p>Take these three pattern together, we have <span class="katex"><span class="katex-mathml"><math>
+                        <semantics>
+                            <mrow>
+                                <mo>[</mo>
+                                <mi>A</mi>
+                                <mo>−</mo>
+                                <mi>Z</mi>
+                                <mo>]</mo>
+                                <mo>∗</mo>
+                                <mi mathvariant="normal">∣</mi>
+                                <mo>[</mo>
+                                <mi>a</mi>
+                                <mo>−</mo>
+                                <mi>z</mi>
+                                <mo>]</mo>
+                                <mo>∗</mo>
+                                <mi mathvariant="normal">∣</mi>
+                                <mo>[</mo>
+                                <mi>A</mi>
+                                <mo>−</mo>
+                                <mi>Z</mi>
+                                <mo>]</mo>
+                                <mo>[</mo>
+                                <mi>a</mi>
+                                <mo>−</mo>
+                                <mi>z</mi>
+                                <mo>]</mo>
+                                <mo>∗</mo>
+                            </mrow>
+                            <annotation encoding="application/x-tex"> [A-Z]*|[a-z]*|[A-Z][a-z]* </annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span
+                            class="mord mathdefault">A</span><span class="mspace"
+                            style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span
+                            class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span
+                        class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                            class="mord mathdefault" style="margin-right:0.07153em;">Z</span><span
+                            class="mclose">]</span><span class="mspace"
+                            style="margin-right:0.2222222222222222em;"></span><span class="mbin">∗</span><span
+                            class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span
+                        class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                            class="mord">∣</span><span class="mopen">[</span><span
+                            class="mord mathdefault">a</span><span class="mspace"
+                            style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span
+                            class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span
+                        class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                            class="mord mathdefault" style="margin-right:0.04398em;">z</span><span
+                            class="mclose">]</span><span class="mspace"
+                            style="margin-right:0.2222222222222222em;"></span><span class="mbin">∗</span><span
+                            class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span
+                        class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                            class="mord">∣</span><span class="mopen">[</span><span
+                            class="mord mathdefault">A</span><span class="mspace"
+                            style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span
+                            class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span
+                        class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                            class="mord mathdefault" style="margin-right:0.07153em;">Z</span><span
+                            class="mclose">]</span><span class="mopen">[</span><span
+                            class="mord mathdefault">a</span><span class="mspace"
+                            style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span
+                            class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span
+                        class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                            class="mord mathdefault" style="margin-right:0.04398em;">z</span><span
+                            class="mclose">]</span><span class="mord">∗</span></span></span></span>, where "|"
+            represents "or".</p>
+        <p>Still, we can combine case 2 and case 3, and we get <span class="katex"><span class="katex-mathml"><math>
+                        <semantics>
+                            <mrow>
+                                <mi mathvariant="normal">.</mi>
+                                <mo>[</mo>
+                                <mi>a</mi>
+                                <mo>−</mo>
+                                <mi>z</mi>
+                                <mo>]</mo>
+                                <mo>∗</mo>
+                            </mrow>
+                            <annotation encoding="application/x-tex"> .[a-z]* </annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:1em;vertical-align:-0.25em;"></span><span class="mord">.</span><span
+                            class="mopen">[</span><span class="mord mathdefault">a</span><span class="mspace"
+                            style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span
+                            class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span
+                        class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                            class="mord mathdefault" style="margin-right:0.04398em;">z</span><span
+                            class="mclose">]</span><span class="mord">∗</span></span></span></span>, where "." can
+            matches any char.</p>
+        <p>Therefore, the final pattern is <span class="katex"><span class="katex-mathml"><math>
+                        <semantics>
+                            <mrow>
+                                <mo>[</mo>
+                                <mi>A</mi>
+                                <mo>−</mo>
+                                <mi>Z</mi>
+                                <mo>]</mo>
+                                <mo>∗</mo>
+                                <mi mathvariant="normal">∣</mi>
+                                <mi mathvariant="normal">.</mi>
+                                <mo>[</mo>
+                                <mi>a</mi>
+                                <mo>−</mo>
+                                <mi>z</mi>
+                                <mo>]</mo>
+                                <mo>∗</mo>
+                            </mrow>
+                            <annotation encoding="application/x-tex"> [A-Z]*|.[a-z]* </annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span
+                            class="mord mathdefault">A</span><span class="mspace"
+                            style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span
+                            class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span
+                        class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                            class="mord mathdefault" style="margin-right:0.07153em;">Z</span><span
+                            class="mclose">]</span><span class="mspace"
+                            style="margin-right:0.2222222222222222em;"></span><span class="mbin">∗</span><span
+                            class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span
+                        class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                            class="mord">∣</span><span class="mord">.</span><span class="mopen">[</span><span
+                            class="mord mathdefault">a</span><span class="mspace"
+                            style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span
+                            class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span
+                        class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                            class="mord mathdefault" style="margin-right:0.04398em;">z</span><span
+                            class="mclose">]</span><span class="mord">∗</span></span></span></span>.</p>
+        <iframe src="https://leetcode.com/playground/YGJBShrj/shared" name="YGJBShrj" width="100%" height="140"
+            frameborder="0"></iframe>
+        <p>However, it is worth pointing out that the speed of regex is highly dependent on its pattern and its
+            implementation, and the time complexity can vary from <span class="katex"><span class="katex-mathml"><math>
+                        <semantics>
+                            <mrow>
+                                <mi>O</mi>
+                                <mo>(</mo>
+                                <mn>1</mn>
+                                <mo>)</mo>
+                            </mrow>
+                            <annotation encoding="application/x-tex">O(1)</annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault"
+                            style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span
+                            class="mord">1</span><span class="mclose">)</span></span></span></span> to <span
+                class="katex"><span class="katex-mathml"><math>
+                        <semantics>
+                            <mrow>
+                                <mi>O</mi>
+                                <mo>(</mo>
+                                <msup>
+                                    <mn>2</mn>
+                                    <mi>n</mi>
+                                </msup>
+                                <mo>)</mo>
+                            </mrow>
+                            <annotation encoding="application/x-tex">O(2^n)</annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault"
+                            style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord"><span
+                                class="mord">2</span><span class="msupsub"><span class="vlist-t"><span
+                                        class="vlist-r"><span class="vlist" style="height:0.664392em;"><span
+                                                style="top:-3.063em;margin-right:0.05em;"><span class="pstrut"
+                                                    style="height:2.7em;"></span><span
+                                                    class="sizing reset-size6 size3 mtight"><span
+                                                        class="mord mathdefault mtight">n</span></span></span></span></span></span></span></span><span
+                            class="mclose">)</span></span></span></span>. If you want to control the speed yourself,
+            using Approach 1 would be better.</p>
+        <p><strong>Complexity Analysis</strong></p>
+        <ul>
+            <li>
+                <p>Time complexity: Basically <span class="katex"><span class="katex-mathml"><math>
+                                <semantics>
+                                    <mrow>
+                                        <mi>O</mi>
+                                        <mo>(</mo>
+                                        <mi>n</mi>
+                                        <mo>)</mo>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">O(n)</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                                    class="mord mathdefault" style="margin-right:0.02778em;">O</span><span
+                                    class="mopen">(</span><span class="mord mathdefault">n</span><span
+                                    class="mclose">)</span></span></span></span>, but depends on implementation.</p>
+            </li>
+            <li>
+                <p>Space complexity : <span class="katex"><span class="katex-mathml"><math>
+                                <semantics>
+                                    <mrow>
+                                        <mi>O</mi>
+                                        <mo>(</mo>
+                                        <mn>1</mn>
+                                        <mo>)</mo>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">O(1)</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                                    class="mord mathdefault" style="margin-right:0.02778em;">O</span><span
+                                    class="mopen">(</span><span class="mord">1</span><span
+                                    class="mclose">)</span></span></span></span>. We only need constant spaces to store
+                    our pattern.</p>
+            </li>
+        </ul>
+    </div>
+</div>
+<link rel="stylesheet" href="../../../boilerplate/simple.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css"
+    integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
