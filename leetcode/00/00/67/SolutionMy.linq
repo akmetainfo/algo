@@ -8,10 +8,11 @@
 // https://leetcode.com/problems/add-binary/
 
 /*
-    Time: O()
-    Space: O()
+    Time: O(Max(n,m)), where n = a.Length and m = b.Length
+    Space: O(Max(n,m))
 */
-public class Solution {
+public class Solution
+{
 	public string AddBinary(string a, string b)
 	{
 		var result = a.Length > b.Length
