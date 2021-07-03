@@ -17,7 +17,7 @@ worth anki
 0035,Search Insert Position
     ?    - 0054,Spiral Matrix
 0066,Plus One
-    ?    - 0067,Add Binary
+0067,Add Binary
 0069,Sqrt(x)
 0088,Merge Sorted Array
 0094,Binary Tree Inorder Traversal
