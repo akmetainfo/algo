@@ -8,59 +8,50 @@
 // https://leetcode.com/problems/first-unique-character-in-a-string/
 
 /*
-    Time: O(n) one pass solution
-    Space: O(1), alphabet array only
-
+    Time: O(n)
+    Space: O(1)
 */
 public class Solution
 {
     public int FirstUniqChar(string s)
     {
-        const int noSuchChar = -3; // must be less zero
-        const int charIsDup = -2; // must be less zero
+        var charAndCount = new int[26];
 
-        const int minDoesntExist = -1; // return value when all chars isn't unique
-
-        var chars = new int[26]; // store first position or noSuchChar or charIsDup
-
-        for (int i = 0; i < chars.Length; i++)
+        foreach (var c in s)
         {
-            chars[i] = noSuchChar;
+            charAndCount[c - 'a']++;
         }
 
         for (int i = 0; i < s.Length; i++)
         {
-            int c = s[i] - 'a';
-
-            switch (chars[c])
+            if (charAndCount[s[i] - 'a'] == 1)
             {
-                case noSuchChar:
-                    chars[c] = i;
-                    break;
-
-                case charIsDup:
-                    break;
-
-                default:
-                    chars[c] = charIsDup;
-                    break;
+                return i;
             }
         }
 
-        var min = minDoesntExist;
+        return -1;
+    }
+    
+    // can be optimized as new int[26]
+    public int FirstUniqCharOld(string s)
+    {
+        var charAndCount = new int[256];
 
-        foreach (var element in chars)
+        foreach (var c in s)
         {
-            if (element == noSuchChar || element == charIsDup)
-                continue;
-
-            if (min != minDoesntExist && element < min || min == minDoesntExist && element >= 0)
-            {
-                min = element;
-            }
+            charAndCount[c]++;
         }
 
-        return min;
+        for (int i = 0; i < s.Length; i++)
+        {
+            if (charAndCount[s[i]] == 1)
+            {
+                return i;
+            }
+        }
+        
+        return -1;
     }
 }
 

@@ -8,59 +8,32 @@
 // https://leetcode.com/problems/first-unique-character-in-a-string/
 
 /*
-    Time: O(n) one pass solution
-    Space: O(1), alphabet array only
-
+    Time: O(n)
+    Space: O(1)
 */
 public class Solution
 {
     public int FirstUniqChar(string s)
     {
-        const int noSuchChar = -3; // must be less zero
-        const int charIsDup = -2; // must be less zero
-
-        const int minDoesntExist = -1; // return value when all chars isn't unique
-
-        var chars = new int[26]; // store first position or noSuchChar or charIsDup
-
-        for (int i = 0; i < chars.Length; i++)
-        {
-            chars[i] = noSuchChar;
-        }
-
+        var dict = new Dictionary<char, int>();
+        
         for (int i = 0; i < s.Length; i++)
         {
-            int c = s[i] - 'a';
-
-            switch (chars[c])
+            if (!dict.ContainsKey(s[i]))
             {
-                case noSuchChar:
-                    chars[c] = i;
-                    break;
-
-                case charIsDup:
-                    break;
-
-                default:
-                    chars[c] = charIsDup;
-                    break;
+                dict.Add(s[i], 0);
             }
+
+            dict[s[i]] += 1;
         }
 
-        var min = minDoesntExist;
-
-        foreach (var element in chars)
+        for (int i = 0; i <s.Length; i++)
         {
-            if (element == noSuchChar || element == charIsDup)
-                continue;
-
-            if (min != minDoesntExist && element < min || min == minDoesntExist && element >= 0)
-            {
-                min = element;
-            }
+            if (dict[s[i]] == 1)
+                return i;
         }
-
-        return min;
+        
+        return -1;
     }
 }
 
