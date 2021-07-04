@@ -1,0 +1,223 @@
+<div class="content__QRGW">
+    <div>
+        <h2>Solution</h2>
+        <hr>
+        <h4 id="overview">Overview</h4>
+        <p><em>Life is short, use Python.</em> (c)</p>
+        <iframe src="https://leetcode.com/playground/AzW3B9hy/shared" name="AzW3B9hy" width="100%" height="106"
+            frameborder="0"></iframe>
+        <p>Speaking seriously, let's use this problem to discuss two things:</p>
+        <ul>
+            <li>
+                <p>Does <em>in-place</em> mean constant space complexity?</p>
+            </li>
+            <li>
+                <p>Two pointers approach.
+                    <br>
+                    <br>
+                </p>
+            </li>
+        </ul>
+        <hr>
+        <h4 id="approach-1-recursion,-inplace,-dollardollar-space">Approach 1: Recursion, In-Place, <span
+                class="katex"><span class="katex-mathml"><math>
+                        <semantics>
+                            <mrow>
+                                <mi mathvariant="script">O</mi>
+                                <mo>(</mo>
+                                <mi>N</mi>
+                                <mo>)</mo>
+                            </mrow>
+                            <annotation encoding="application/x-tex">\mathcal{O}(N)</annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span
+                                class="mord mathcal" style="margin-right:0.02778em;">O</span></span><span
+                            class="mopen">(</span><span class="mord mathdefault"
+                            style="margin-right:0.10903em;">N</span><span class="mclose">)</span></span></span></span>
+            Space</h4>
+        <p><strong>Does <em>in-place</em> mean constant space complexity?</strong></p>
+        <p>No. <a href="https://en.wikipedia.org/wiki/In-place_algorithm" rel="ugc">By definition</a>,
+            an in-place algorithm is an algorithm
+            which transforms input using no auxiliary data structure.</p>
+        <p>The tricky part is that space is used by many actors, not only by
+            data structures. The classical example is to use recursive function without
+            any auxiliary data structures.</p>
+        <p>Is it in-place? Yes.</p>
+        <p>Is it constant space? No, because of recursion stack.</p>
+        <p><img src="../Figures/344/stack2.png" alt="fig"></p>
+        <p><strong>Algorithm</strong></p>
+        <p>Here is an example. Let's implement recursive function <code>helper</code> which
+            receives two pointers, left and right, as arguments.</p>
+        <ul>
+            <li>
+                <p>Base case: if <code>left &gt;= right</code>, do nothing.</p>
+            </li>
+            <li>
+                <p>Otherwise, swap <code>s[left]</code> and <code>s[right]</code> and call
+                    <code>helper(left + 1, right - 1)</code>.</p>
+            </li>
+        </ul>
+        <p>To solve the problem, call helper function passing the head and tail indexes as
+            arguments: <code>return helper(0, len(s) - 1)</code>.</p>
+        <p><strong>Implementation</strong></p>
+        <iframe src="https://leetcode.com/playground/cLDBmvWy/shared" name="cLDBmvWy" width="100%" height="276"
+            frameborder="0"></iframe>
+        <p><strong>Complexity Analysis</strong></p>
+        <ul>
+            <li>
+                <p>Time complexity : <span class="katex"><span class="katex-mathml"><math>
+                                <semantics>
+                                    <mrow>
+                                        <mi mathvariant="script">O</mi>
+                                        <mo>(</mo>
+                                        <mi>N</mi>
+                                        <mo>)</mo>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">\mathcal{O}(N)</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                                    class="mord"><span class="mord mathcal"
+                                        style="margin-right:0.02778em;">O</span></span><span class="mopen">(</span><span
+                                    class="mord mathdefault" style="margin-right:0.10903em;">N</span><span
+                                    class="mclose">)</span></span></span></span> time to perform <span
+                        class="katex"><span class="katex-mathml"><math>
+                                <semantics>
+                                    <mrow>
+                                        <mi>N</mi>
+                                        <mi mathvariant="normal">/</mi>
+                                        <mn>2</mn>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">N/2</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                                    class="mord mathdefault" style="margin-right:0.10903em;">N</span><span
+                                    class="mord">/</span><span class="mord">2</span></span></span></span> swaps.</p>
+            </li>
+            <li>
+                <p>Space complexity : <span class="katex"><span class="katex-mathml"><math>
+                                <semantics>
+                                    <mrow>
+                                        <mi mathvariant="script">O</mi>
+                                        <mo>(</mo>
+                                        <mi>N</mi>
+                                        <mo>)</mo>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">\mathcal{O}(N)</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                                    class="mord"><span class="mord mathcal"
+                                        style="margin-right:0.02778em;">O</span></span><span class="mopen">(</span><span
+                                    class="mord mathdefault" style="margin-right:0.10903em;">N</span><span
+                                    class="mclose">)</span></span></span></span> to keep the recursion stack.
+                    <br>
+                    <br>
+                </p>
+            </li>
+        </ul>
+        <hr>
+        <h4 id="approach-2-two-pointers,-iteration,-dollardollar-space">Approach 2: Two Pointers, Iteration, <span
+                class="katex"><span class="katex-mathml"><math>
+                        <semantics>
+                            <mrow>
+                                <mi mathvariant="script">O</mi>
+                                <mo>(</mo>
+                                <mn>1</mn>
+                                <mo>)</mo>
+                            </mrow>
+                            <annotation encoding="application/x-tex">\mathcal{O}(1)</annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span
+                                class="mord mathcal" style="margin-right:0.02778em;">O</span></span><span
+                            class="mopen">(</span><span class="mord">1</span><span
+                            class="mclose">)</span></span></span></span> Space</h4>
+        <p><strong>Two Pointers Approach</strong></p>
+        <p>In this approach, two pointers are used to process two array elements
+            at the same time. Usual implementation is to set one pointer in the
+            beginning and one at the end and then to move them until they both meet.</p>
+        <p>Sometimes one needs to generalize this approach in order to use three pointers,
+            like for classical <a href="https://leetcode.com/articles/sort-colors/" rel="ugc">Sort Colors problem</a>.
+        </p>
+        <p><strong>Algorithm</strong></p>
+        <ul>
+            <li>
+                <p>Set pointer left at index 0, and pointer right at index <code>n - 1</code>,
+                    where n is a number of elements in the array.</p>
+            </li>
+            <li>
+                <p>While left &lt; right:</p>
+                <ul>
+                    <li>
+                        <p>Swap <code>s[left]</code> and <code>s[right]</code>.</p>
+                    </li>
+                    <li>
+                        <p>Move left pointer one step right, and right pointer one step left.</p>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+        <p><img src="../Figures/344/two.png" alt="fig"></p>
+        <p><strong>Implementation</strong></p>
+        <iframe src="https://leetcode.com/playground/mryJCRru/shared" name="mryJCRru" width="100%" height="225"
+            frameborder="0"></iframe>
+        <p><strong>Complexity Analysis</strong></p>
+        <ul>
+            <li>
+                <p>Time complexity : <span class="katex"><span class="katex-mathml"><math>
+                                <semantics>
+                                    <mrow>
+                                        <mi mathvariant="script">O</mi>
+                                        <mo>(</mo>
+                                        <mi>N</mi>
+                                        <mo>)</mo>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">\mathcal{O}(N)</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                                    class="mord"><span class="mord mathcal"
+                                        style="margin-right:0.02778em;">O</span></span><span class="mopen">(</span><span
+                                    class="mord mathdefault" style="margin-right:0.10903em;">N</span><span
+                                    class="mclose">)</span></span></span></span> to swap <span class="katex"><span
+                            class="katex-mathml"><math>
+                                <semantics>
+                                    <mrow>
+                                        <mi>N</mi>
+                                        <mi mathvariant="normal">/</mi>
+                                        <mn>2</mn>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">N/2</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                                    class="mord mathdefault" style="margin-right:0.10903em;">N</span><span
+                                    class="mord">/</span><span class="mord">2</span></span></span></span> element.</p>
+            </li>
+            <li>
+                <p>Space complexity : <span class="katex"><span class="katex-mathml"><math>
+                                <semantics>
+                                    <mrow>
+                                        <mi mathvariant="script">O</mi>
+                                        <mo>(</mo>
+                                        <mn>1</mn>
+                                        <mo>)</mo>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">\mathcal{O}(1)</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                                    class="mord"><span class="mord mathcal"
+                                        style="margin-right:0.02778em;">O</span></span><span class="mopen">(</span><span
+                                    class="mord">1</span><span class="mclose">)</span></span></span></span>, it's a
+                    constant space solution.</p>
+            </li>
+        </ul>
+    </div>
+</div>
+<link rel="stylesheet" href="../../../boilerplate/simple.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css"
+    integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">

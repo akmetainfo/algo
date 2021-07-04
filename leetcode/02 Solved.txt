@@ -52,7 +52,7 @@
 0242,Valid Anagram
 0278,First Bad Version
 ? 0283,Move Zeroes
-? 0344,Reverse String
+0344,Reverse String
 ? 0349,Intersection of Two Arrays
 0367,Valid Perfect Square
 ? 0374,Guess Number Higher or Lower
