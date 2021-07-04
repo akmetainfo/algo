@@ -21,6 +21,7 @@ public class Solution
 
 [Test]
 [TestCase(3, new string[] { "((()))", "(()())", "(())()", "()(())", "()()()" })]
+[TestCase(2, new string[] { "()()", "(())" })]
 [TestCase(1, new string[] { "()" })]
 public void SolutionTests(int n, string[] expected)
 {
