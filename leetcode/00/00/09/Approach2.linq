@@ -8,8 +8,8 @@
 // https://leetcode.com/problems/palindrome-number/
 
 /*
-    Time: O(n)
-    Space: O(n)
+    Time: O(log x)
+    Space: O(log x) for storing string equivalent
 */
 public class Solution
 {
@@ -34,8 +34,8 @@ public class Solution
 
 
 /*
-    Time: O(n)
-    Space: O(n)
+    Time: O(log x)
+    Space: O(log x) for storing string equivalent
 */
 public class Solution1
 {
