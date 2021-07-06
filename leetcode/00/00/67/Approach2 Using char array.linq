@@ -8,8 +8,8 @@
 // https://leetcode.com/problems/add-binary/
 
 /*
-    Time: Time: O(n) where n = max(a.Length, b.Length)
-    Space: O(n)
+    Time: O(log n) where n is Math.Max(a.Length, b.Length)
+    Space: O(log n)
 */
 public class Solution
 {
