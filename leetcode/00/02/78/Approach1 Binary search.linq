@@ -8,7 +8,7 @@
 // https://leetcode.com/problems/first-bad-version/
 
 /*
-    Time: O(n) Assume that isBadVersion(version) takes constant time to check if a version is bad. It takes at most n - 1 checks, therefore the overall time complexity is O(n).
+    Time: O(log n) The search space is halved each time
     Space: O(1)
 */
 public class Solution : VersionControl
