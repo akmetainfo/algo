@@ -65,7 +65,7 @@ public class Solution1
     }
 }
 
-// Looks like prev
+// Looks like prev, but we remember right subtree instead of remember root
 public class Solution2
 {
     public IList<int> PreorderTraversal(TreeNode root)
