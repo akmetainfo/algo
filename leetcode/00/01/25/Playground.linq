@@ -22,6 +22,7 @@ public class Solution
 [Test]
 [TestCase("A man, a plan, a canal: Panama", true)]
 [TestCase("race a car", false)]
+[TestCase("0P", false)]
 public void SolutionTests(string s, bool expected)
 {
     var actual = new Solution().IsPalindrome(s);
