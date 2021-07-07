@@ -65,7 +65,36 @@ public class Solution1
     }
 }
 
+// Looks like prev
 public class Solution2
+{
+    public IList<int> PreorderTraversal(TreeNode root)
+    {
+        var result = new List<int>();
+
+        var stack = new Stack<TreeNode>();
+
+        while (stack.Count != 0 || root != null)
+        {
+            if (root != null)
+            {
+                result.Add(root.val);
+                
+                if(root.right!=null)
+                    stack.Push(root.right);
+                
+                root = root.left;
+            }
+            else
+            {
+                root = stack.Pop();
+            }
+        }
+        return result;
+    }
+}
+
+public class Solution3
 {
     public IList<int> PreorderTraversal(TreeNode root)
     {
@@ -94,7 +123,8 @@ public class Solution2
     }
 }
 
-public class Solution3
+// same as prev, minor refactoring
+public class Solution4
 {
     public IList<int> PreorderTraversal(TreeNode root)
     {
@@ -113,35 +143,26 @@ public class Solution3
     }
 }
 
-public class Solution4
+public class Solution5
 {
-    public IList<int> PreorderTraversal(TreeNode root) 
+	public IList<int> PreorderTraversal(TreeNode root)
     {
-        var result = new List<int>();
-        
-        var stack = new Stack<TreeNode>();
-        
-        TreeNode curr = root;
-        
-        while(curr != null || stack.Count > 0)
+		var stack = new Stack<TreeNode>();
+		var result = new List<int>();
+		stack.Push(root);
+		while(stack.Count()>0)
         {
-            if (curr!=null)
-            {
-                result.Add(curr.val);
-                
-                if(curr.right!=null)
-                    stack.Push(curr.right);
-                
-                curr = curr.left;
-            }
-            else
-            {
-                curr = stack.Pop();
-            }
-        }
-
-        return result;
-    }
+			var node = stack.Pop();
+			while(node != null)
+			{
+				if (node.right != null)
+					stack.Push(node.right);
+				result.Add(node.val);
+				node = node.left;
+			}
+		}
+		return result;
+	}
 }
 
 [Test]
