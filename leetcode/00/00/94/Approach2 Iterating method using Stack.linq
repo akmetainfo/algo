@@ -40,6 +40,45 @@ public class Solution
     }
 }
 
+public class Solution1
+{
+    public IList<int> InorderTraversal(TreeNode root)
+    {
+        var result = new List<int>();
+
+        if (root == null)
+            return result;
+
+        var stack = new Stack<TreeNode>();
+
+        var node = root;
+
+        while(node != null)
+        {
+            stack.Push(node);
+            node = node.left;
+        }    
+
+        while(stack.Count > 0)
+        {
+            node = stack.Pop();
+            result.Add(node.val);
+
+            if(node.right != null)
+            {
+                node = node.right;
+                while(node != null)
+                {
+                    stack.Push(node);
+                    node = node.left;
+                }
+            }
+        }
+
+        return result;
+    }
+}
+
 [Test]
 [TestCase(new object[] { 1, null, 2, 3 }, new int[] { 1, 3, 2 })]
 [TestCase(new object[] { }, new int[] { })]
