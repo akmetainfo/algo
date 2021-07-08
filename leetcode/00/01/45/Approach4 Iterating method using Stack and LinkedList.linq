@@ -8,73 +8,65 @@
 // https://leetcode.com/problems/binary-tree-postorder-traversal/
 
 /*
-    Time: O()
+    Time: O(N^2) because insert requires linear time (you can use linked list instead of List)
     Space: O()
 */
-// minor changes: https://www.youtube.com/watch?v=JVx83jhzy0U https://www.youtube.com/watch?v=Apgpt-99tI8
+// https://www.youtube.com/watch?v=sMI4RBEZyZ4
 public class Solution
 {
     public IList<int> PostorderTraversal(TreeNode root)
     {
-        var stack = new Stack<TreeNode>();
         var result = new List<int>();
-        TreeNode lastNode = null;
-        TreeNode peek = null;
-        while (stack.Count > 0 || root != null)
+        if(root == null)
+            return result;
+            
+        var stack = new Stack<TreeNode>();
+        stack.Push(root);
+        while (stack.Count > 0)
         {
-            if (root != null)
-            {
-                stack.Push(root);
-                root = root.left;
-            }
-            else
-            {
-                peek = stack.Peek();
-                if(peek.right != null && lastNode != peek.right)
-                {
-                    root = peek.right;
-                }
-                else
-                {
-                    result.Add(peek.val);
-                    lastNode = stack.Pop();
-                }
-            }
+            root = stack.Pop();
+            
+            result.Insert(0, root.val);
+                
+            if (root.left != null)
+                stack.Push(root.left);
+            
+            if (root.right != null)
+                stack.Push(root.right);
         }
         return result;
     }
 }
 
+
+/*
+    Time: O(N), two pass solution, second pass is for converting linked list to list
+    Space: O()
+*/
 public class Solution1
 {
     public IList<int> PostorderTraversal(TreeNode root)
     {
-        var result = new List<int>();
-
-        if (root == null)
-            return result;
-
-        var stack = new Stack<TreeNode>();
+        var result = new LinkedList<int>();
         
+        if(root == null)
+            return result.ToList();
+            
+        var stack = new Stack<TreeNode>();
         stack.Push(root);
-
         while (stack.Count > 0)
         {
             root = stack.Pop();
-            result.Add(root.val);
-
-            if (root.left != null) {
+            
+            result.AddFirst(root.val);
+                
+            if (root.left != null)
                 stack.Push(root.left);
-            }
-
-            if (root.right != null) {
+            
+            if (root.right != null)
                 stack.Push(root.right);
-            }
         }
-
-        result.Reverse();
-
-        return result;
+        return result.ToList();
     }
 }
 
