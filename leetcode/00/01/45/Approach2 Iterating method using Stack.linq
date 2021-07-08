@@ -19,19 +19,25 @@ public class Solution
         var result = new List<int>();
         TreeNode lastNode = null;
         TreeNode peek = null;
-        while (stack.Count != 0 || root != null)
+        while (stack.Count > 0 || root != null)
         {
             if (root != null)
             {
                 stack.Push(root);
                 root = root.left;
             }
-            else if ((peek = stack.Peek()).right != null && lastNode != peek.right)
-                root = peek.right;
             else
             {
-                result.Add(peek.val);
-                lastNode = stack.Pop();
+                peek = stack.Peek();
+                if(peek.right != null && lastNode != peek.right)
+                {
+                    root = peek.right;
+                }
+                else
+                {
+                    result.Add(peek.val);
+                    lastNode = stack.Pop();
+                }
             }
         }
         return result;
