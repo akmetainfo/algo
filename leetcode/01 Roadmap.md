@@ -107,6 +107,25 @@
 * 0144,Binary Tree Preorder Traversal
 * 0145,Binary Tree Postorder Traversal
 
+next challenges:
+
+* 100. Same Tree
+* 101. Symmetric Tree
+* 102. Binary Tree Level Order Traversal
+* 104. Maximum Depth of Binary Tree
+* 110. Balanced Binary Tree
+* 111. Minimum Depth of Binary Tree
+* 112. Path Sum
+* 226. Invert Binary Tree
+* 257. Binary Tree Paths
+* 404. Sum of Left Leaves
+* 543. Diameter of Binary Tree
+* 563. Binary Tree Tilt
+* 872. Leaf-Similar Trees
+* 965. Univalued Binary Tree
+* 993. Cousins in Binary Tree
+* 1022. Sum of Root To Leaf Binary Numbers
+
 # Dynamical programming
 
 * 0118,Pascal's Triangle
