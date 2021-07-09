@@ -8,7 +8,7 @@
 // https://leetcode.com/problems/generate-parentheses/
 
 /*
-    Time: O(4 ^ n / sqrt(n) ) This analysis is hard, but it turns out this is the n-th Catalan number, which is bounded asymptotically by 4 ^ n / sqrt(n)
+    Time: maybe O(2^N) or O(4 ^ n / sqrt(n) ) This analysis is hard, but it turns out this is the n-th Catalan number, which is bounded asymptotically by 4 ^ n / sqrt(n)
     Space: O(4 ^ n / sqrt(n) ) for stack and O(n) for storing result.
 */
 public class Solution
@@ -37,6 +37,8 @@ public class Solution
 }
 
 [Test]
+[TestCase(5, new string[] { "((((()))))","(((()())))","(((())()))","(((()))())","(((())))()","((()(())))","((()()()))","((()())())","((()()))()","((())(()))","((())()())","((())())()","((()))(())","((()))()()","(()((())))","(()(()()))","(()(())())","(()(()))()","(()()(()))","(()()()())","(()()())()","(()())(())","(()())()()","(())((()))","(())(()())","(())(())()","(())()(())","(())()()()","()(((())))","()((()()))","()((())())","()((()))()","()(()(()))","()(()()())","()(()())()","()(())(())","()(())()()","()()((()))","()()(()())","()()(())()","()()()(())","()()()()()" })]
+[TestCase(4, new string[] { "(((())))","((()()))","((())())","((()))()","(()(()))","(()()())","(()())()","(())(())","(())()()","()((()))","()(()())","()(())()","()()(())","()()()()" })]
 [TestCase(3, new string[] { "((()))", "(()())", "(())()", "()(())", "()()()" })]
 [TestCase(2, new string[] { "()()", "(())" })]
 [TestCase(1, new string[] { "()" })]
