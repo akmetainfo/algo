@@ -88,7 +88,7 @@
 0896,Monotonic Array
 ? 0905,Sort Array By Parity
 ? 0941,Valid Mountain Array
-? 0965,Univalued Binary Tree
+0965,Univalued Binary Tree
 0977,Squares of a Sorted Array
 ? 0989,Add to Array-Form of Integer
 ? 1089,Duplicate Zeros

@@ -106,6 +106,7 @@
 * 0094,Binary Tree Inorder Traversal
 * 0144,Binary Tree Preorder Traversal
 * 0145,Binary Tree Postorder Traversal
+* 0965,Univalued Binary Tree
 
 next challenges:
 
@@ -122,7 +123,6 @@ next challenges:
 * 543. Diameter of Binary Tree
 * 563. Binary Tree Tilt
 * 872. Leaf-Similar Trees
-* 965. Univalued Binary Tree
 * 993. Cousins in Binary Tree
 * 1022. Sum of Root To Leaf Binary Numbers
 
