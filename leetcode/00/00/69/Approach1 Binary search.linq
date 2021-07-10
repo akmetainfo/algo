@@ -35,7 +35,7 @@ public class Solution
         if((ulong)left * (ulong)left >(ulong)x)
             return left - 1;
 
-        return left;
+        return left; // or throw an exception - this is not possble
     }
 }
 
@@ -137,7 +137,7 @@ public class Solution3
 [TestCase(100, 10)]
 public void SolutionTests(int x, int expected)
 {
-    var actual = new Solution3().MySqrt(x);
+    var actual = new Solution().MySqrt(x);
     Assert.That(actual, Is.EqualTo(expected));
 }
 
