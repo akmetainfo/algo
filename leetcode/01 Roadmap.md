@@ -107,10 +107,10 @@
 * 0144,Binary Tree Preorder Traversal
 * 0145,Binary Tree Postorder Traversal
 * 0965,Univalued Binary Tree
+* 0100,Same Tree
 
 next challenges:
 
-* 100. Same Tree
 * 101. Symmetric Tree
 * 102. Binary Tree Level Order Traversal
 * 104. Maximum Depth of Binary Tree

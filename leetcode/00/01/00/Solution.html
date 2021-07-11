@@ -1,0 +1,215 @@
+<div class="content__QRGW">
+    <div>
+        <h2>Solution</h2>
+        <hr>
+        <h4 id="approach-1-recursion">Approach 1: Recursion</h4>
+        <p><strong>Intuition</strong></p>
+        <p>The simplest strategy here is to use recursion.
+            Check if <code>p</code> and <code>q</code> nodes are not <code>None</code>, and their values are equal.
+            If all checks are OK, do the same for the child nodes
+            recursively.</p>
+        <p><strong>Implementation</strong></p>
+        <div>
+            <div>
+                <div class="dia-container__jsK9" style="width: 688px; height: 257px;">
+                    <div class="diaporama__1pV2"><img alt="Current" class="dia-img__3g12"
+                            src="blob:https://leetcode.com/285f4e5f-ff9c-4762-9e29-6ee9087903cd"></div>
+                    <div class="initial-play-wrapper__2HUL">
+                        <div class="initial-play__2m2N play-container__2y5J"><svg viewBox="0 0 24 24" width="1em"
+                                height="1em" class="icon__1Md2">
+                                <defs>
+                                    <path id="play-arrow_svg__a" d="M8 5v14l11-7z"></path>
+                                    <mask id="play-arrow_svg__b">
+                                        <use fill-rule="evenodd" xlink:href="#play-arrow_svg__a"></use>
+                                    </mask>
+                                </defs>
+                                <g fill-rule="evenodd">
+                                    <use xlink:href="#play-arrow_svg__a"></use>
+                                    <g fill-rule="nonzero" mask="url(#play-arrow_svg__b)">
+                                        <path d="M0 0h24v24H0z"></path>
+                                    </g>
+                                </g>
+                            </svg></div>
+                    </div>
+                    <div class="control-panel__1ogu">
+                        <div class="controls__3i3n"><svg viewBox="0 0 24 24" width="1em" height="1em"
+                                class="icon__1Md2 control-group__3APN">
+                                <path fill-rule="evenodd" d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"></path>
+                            </svg><svg viewBox="0 0 24 24" width="1em" height="1em"
+                                class="icon__1Md2 toggle-play__3nt0 control-group__3APN">
+                                <defs>
+                                    <path id="play-arrow_svg__a" d="M8 5v14l11-7z"></path>
+                                    <mask id="play-arrow_svg__b">
+                                        <use fill-rule="evenodd" xlink:href="#play-arrow_svg__a"></use>
+                                    </mask>
+                                </defs>
+                                <g fill-rule="evenodd">
+                                    <use xlink:href="#play-arrow_svg__a"></use>
+                                    <g fill-rule="nonzero" mask="url(#play-arrow_svg__b)">
+                                        <path d="M0 0h24v24H0z"></path>
+                                    </g>
+                                </g>
+                            </svg><svg viewBox="0 0 24 24" width="1em" height="1em"
+                                class="icon__1Md2 control-group__3APN">
+                                <path fill-rule="evenodd" d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"></path>
+                            </svg></div>
+                        <div class="frame-counter__mLmP">1 / 6</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <iframe src="https://leetcode.com/playground/nxYY8VVo/shared" name="nxYY8VVo" width="100%" height="395"
+            frameborder="0"></iframe>
+        <p><strong>Complexity Analysis</strong></p>
+        <ul>
+            <li>
+                <p>Time complexity : <span class="katex"><span class="katex-mathml"><math>
+                                <semantics>
+                                    <mrow>
+                                        <mi mathvariant="script">O</mi>
+                                        <mo>(</mo>
+                                        <mi>N</mi>
+                                        <mo>)</mo>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">\mathcal{O}(N)</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                                    class="mord"><span class="mord mathcal"
+                                        style="margin-right:0.02778em;">O</span></span><span class="mopen">(</span><span
+                                    class="mord mathdefault" style="margin-right:0.10903em;">N</span><span
+                                    class="mclose">)</span></span></span></span>,
+                    where N is a number of nodes in the tree, since one visits
+                    each node exactly once.</p>
+            </li>
+            <li>
+                <p>Space complexity : <span class="katex"><span class="katex-mathml"><math>
+                                <semantics>
+                                    <mrow>
+                                        <mi mathvariant="script">O</mi>
+                                        <mo>(</mo>
+                                        <mi>log</mi>
+                                        <mo>⁡</mo>
+                                        <mo>(</mo>
+                                        <mi>N</mi>
+                                        <mo>)</mo>
+                                        <mo>)</mo>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">\mathcal{O}(\log(N))</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                                    class="mord"><span class="mord mathcal"
+                                        style="margin-right:0.02778em;">O</span></span><span class="mopen">(</span><span
+                                    class="mop">lo<span style="margin-right:0.01389em;">g</span></span><span
+                                    class="mopen">(</span><span class="mord mathdefault"
+                                    style="margin-right:0.10903em;">N</span><span class="mclose">)</span><span
+                                    class="mclose">)</span></span></span></span> in the best case of completely
+                    balanced tree and <span class="katex"><span class="katex-mathml"><math>
+                                <semantics>
+                                    <mrow>
+                                        <mi mathvariant="script">O</mi>
+                                        <mo>(</mo>
+                                        <mi>N</mi>
+                                        <mo>)</mo>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">\mathcal{O}(N)</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                                    class="mord"><span class="mord mathcal"
+                                        style="margin-right:0.02778em;">O</span></span><span class="mopen">(</span><span
+                                    class="mord mathdefault" style="margin-right:0.10903em;">N</span><span
+                                    class="mclose">)</span></span></span></span> in the worst case
+                    of completely unbalanced tree, to keep a recursion stack.
+                    <br>
+                    <br>
+                </p>
+            </li>
+        </ul>
+        <hr>
+        <h4 id="approach-2-iteration">Approach 2: Iteration</h4>
+        <p><strong>Intuition</strong></p>
+        <p>Start from the root and then at each iteration
+            pop the current node out of the deque. Then do the same checks as in
+            the approach 1 :</p>
+        <ul>
+            <li>
+                <p><code>p</code> and <code>p</code> are not <code>None</code>,</p>
+            </li>
+            <li>
+                <p><code>p.val</code> is equal to <code>q.val</code>,</p>
+            </li>
+        </ul>
+        <p>and if checks are OK, push the child nodes.</p>
+        <p><strong>Implementation</strong></p>
+        <iframe src="https://leetcode.com/playground/F42oaJNc/shared" name="F42oaJNc" width="100%" height="500"
+            frameborder="0"></iframe>
+        <p><strong>Complexity Analysis</strong></p>
+        <ul>
+            <li>
+                <p>Time complexity : <span class="katex"><span class="katex-mathml"><math>
+                                <semantics>
+                                    <mrow>
+                                        <mi mathvariant="script">O</mi>
+                                        <mo>(</mo>
+                                        <mi>N</mi>
+                                        <mo>)</mo>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">\mathcal{O}(N)</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                                    class="mord"><span class="mord mathcal"
+                                        style="margin-right:0.02778em;">O</span></span><span class="mopen">(</span><span
+                                    class="mord mathdefault" style="margin-right:0.10903em;">N</span><span
+                                    class="mclose">)</span></span></span></span> since each node is visited
+                    exactly once.</p>
+            </li>
+            <li>
+                <p>Space complexity : <span class="katex"><span class="katex-mathml"><math>
+                                <semantics>
+                                    <mrow>
+                                        <mi mathvariant="script">O</mi>
+                                        <mo>(</mo>
+                                        <mi>log</mi>
+                                        <mo>⁡</mo>
+                                        <mo>(</mo>
+                                        <mi>N</mi>
+                                        <mo>)</mo>
+                                        <mo>)</mo>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">\mathcal{O}(\log(N))</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                                    class="mord"><span class="mord mathcal"
+                                        style="margin-right:0.02778em;">O</span></span><span class="mopen">(</span><span
+                                    class="mop">lo<span style="margin-right:0.01389em;">g</span></span><span
+                                    class="mopen">(</span><span class="mord mathdefault"
+                                    style="margin-right:0.10903em;">N</span><span class="mclose">)</span><span
+                                    class="mclose">)</span></span></span></span> in the best case of completely
+                    balanced tree and <span class="katex"><span class="katex-mathml"><math>
+                                <semantics>
+                                    <mrow>
+                                        <mi mathvariant="script">O</mi>
+                                        <mo>(</mo>
+                                        <mi>N</mi>
+                                        <mo>)</mo>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">\mathcal{O}(N)</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                                    class="mord"><span class="mord mathcal"
+                                        style="margin-right:0.02778em;">O</span></span><span class="mopen">(</span><span
+                                    class="mord mathdefault" style="margin-right:0.10903em;">N</span><span
+                                    class="mclose">)</span></span></span></span> in the worst case
+                    of completely unbalanced tree, to keep a deque.</p>
+            </li>
+        </ul>
+    </div>
+</div>
+<link rel="stylesheet" href="../../../boilerplate/simple.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css"
+    integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
