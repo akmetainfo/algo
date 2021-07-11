@@ -8,8 +8,8 @@
 // https://leetcode.com/problems/same-tree/
 
 /*
-    Time: O()
-    Space: O()
+    Time: O(n)
+    Space: O(n) for store arrays and O(h) for saving stack, where h is height of tree: O(log n) is best case (completely balanced tree), O(n) in worst case (completely unbalanced tree)
 */
 public class Solution
 {
@@ -31,7 +31,6 @@ public class Solution
                (pArr[i] != null && qArr[i] != null &&  pArr[i].val != qArr[i].val)
                )
                 return false;
-            
         }
         return true;
     }
