@@ -8,8 +8,8 @@
 // https://leetcode.com/problems/binary-tree-postorder-traversal/
 
 /*
-    Time: O()
-    Space: O()
+    Time: O(N), where n is node's count in the tree
+    Space: O(H), where H - is height of the tree (worst case: O(N) for completely unbalanced tree, best case O(log N) for completely balaced)
 */
 public class Solution
 {
@@ -32,6 +32,10 @@ public class Solution
     }
 }
 
+/*
+    Time: O(N), where n is node's count in the tree
+    Space: O(H), where H - is height of the tree (worst case: O(N) for completely unbalanced tree, best case O(log N) for completely balaced)
+*/
 public class Solution1
 {
     public IList<int> PostorderTraversal(TreeNode root)
