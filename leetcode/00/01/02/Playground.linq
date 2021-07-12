@@ -13,17 +13,40 @@
 */
 public class Solution
 {
-    public IList<int> LevelOrder(TreeNode root)
+    public IList<IList<int>> LevelOrder(TreeNode root)
     {
         throw new NotImplementedException();
     }
 }
 
-[Test]
-[TestCase(new object[] { 1, null, 2 }, new int[] { 1, 2 })]
-public void SolutionTests(object[] data, int[] expected)
+private static IEnumerable<object[]> TestCases()
 {
-    var root = CreateRoot(data);
+    yield return new object[]
+    {
+        new List<IList<int>> {
+            new List<int> { 1 },
+            new List<int> { 2 },
+        },
+        new object[] { 1, null, 2 },
+    };
+
+    yield return new object[]
+    {
+        new List<IList<int>> {
+            new List<int> { 3 },
+            new List<int> { 9, 20 },
+            new List<int> { 15, 17 },
+        },
+        new object[] { 3,9,20,null,null,15,17 },
+    };
+}
+
+[Test]
+[TestCaseSource(nameof(TestCases))]
+// unfortunately, object[] can be only last param
+public void SolutionTests(IList<IList<int>> expected, object[] data)
+{
+    var root = CreateTree(data);
     var actual = new Solution().LevelOrder(root);
     Assert.That(actual, Is.EqualTo(expected));
 }
@@ -41,32 +64,37 @@ public class TreeNode {
 
 #region unit-tests helpers
 
-private TreeNode CreateRoot(object[] data)
+// https://ru.stackoverflow.com/q/1247517/213987
+private TreeNode CreateTree(object[] data)
 {
-    return new TreeNode(1, null, new TreeNode(2, null, null));
-}
+    if (data == null || data.Length == 0)
+        return null;
 
-// TODO: https://www.geeksforgeeks.org/construct-complete-binary-tree-given-array/
-//private TreeNode CreateRoot(object[] data)
-//{
-//    var root = new TreeNode();
-//    root = InsertLevelOrder(data, root, 0);
-//    return root;
-//}
-//
-//public TreeNode InsertLevelOrder(int[] arr, TreeNode root, int i)
-//{
-//    if (i < arr.Length)
-//    {
-//        var temp = new TreeNode(arr[i]);
-//        root = temp;
-//
-//        root.left = InsertLevelOrder(arr, root.left, 2 * i + 1);
-//
-//        root.right = InsertLevelOrder(arr, root.right, 2 * i + 2);
-//    }
-//    return root;
-//}
+    TreeNode[] nodes = data.Select(x => x == null ? null : new TreeNode((int)x, null, null)).ToArray();
+
+    int current = 0;
+    bool left = true;
+
+    for (int i = 1; i < nodes.Length; i++)
+    {
+        if (left)
+        {
+            nodes[current].left = nodes[i];
+            left = false;
+        }
+        else
+        {
+            nodes[current].right = nodes[i];
+            left = true;
+
+            current++;
+            while (current < nodes.Length && nodes[current] == null)
+                current++;
+        }
+    }
+
+    return nodes[0];
+}
 
 #endregion
 
