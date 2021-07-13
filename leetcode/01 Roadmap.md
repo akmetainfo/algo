@@ -105,6 +105,7 @@
 
 * 0094,Binary Tree Inorder Traversal
 * 0100,Same Tree
+* 0101,Symmetric Tree
 * 0102,Binary Tree Level Order Traversal
 * 0144,Binary Tree Preorder Traversal
 * 0145,Binary Tree Postorder Traversal
@@ -112,7 +113,6 @@
 
 next challenges:
 
-* 101. Symmetric Tree
 * 104. Maximum Depth of Binary Tree
 * 110. Balanced Binary Tree
 * 111. Minimum Depth of Binary Tree
