@@ -8,22 +8,15 @@
 // https://leetcode.com/problems/pascals-triangle/
 
 /*
-    Time: O(numRows ^ 2)
-    Space: O(numRows ^ 2)
+    Time: O(N ^ 2) where N is numRows
+    Space: O(N ^ 2)
 */
 public class Solution
 {
     public IList<IList<int>> Generate(int numRows)
     {
         var triangle = new List<IList<int>>();
-
-        // First base case; if user requests zero rows, they get zero rows.
-        if (numRows == 0)
-            return triangle;
-
-        // Second base case; first row is always [1].
-        triangle.Add(new List<int>());
-        triangle[0].Add(1);
+        triangle.Add(new List<int>() { 1 });
 
         for (var rowNum = 1; rowNum < numRows; rowNum++)
         {
@@ -50,6 +43,37 @@ public class Solution
         return triangle;
     }
 }
+
+/*
+    Time: O(N ^ 2) where N is numRows
+    Space: O(N ^ 2)
+*/
+public class Solution1
+{
+    public IList<IList<int>> Generate(int numRows)
+    {
+        var result = new List<IList<int>>();
+        result.Add(new List<int>() { 1 });
+        
+        for(var i = 0; i < numRows - 1; i++)
+        {
+            var row = new List<int>();
+            row.Add(1);
+            
+            for(var j = 0; j < i; j++)
+            {
+                var prevRow = result[i];
+                row.Add(prevRow[j] + prevRow[j+1]);
+            }
+            
+            row.Add(1);
+            result.Add(row);
+        }
+        
+        return result;
+    }
+}
+
 
 [Test]
 [TestCaseSource(nameof(TestCases))]
