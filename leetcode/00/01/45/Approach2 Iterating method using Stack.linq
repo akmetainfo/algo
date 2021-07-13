@@ -8,28 +8,39 @@
 // https://leetcode.com/problems/binary-tree-postorder-traversal/
 
 /*
-    Time: O()
-    Space: O()
+    Time: O(N) where n is nodes's count. Beause we visit all nodes in tree, only once
+    Space: O(H) in worst case (completely unbalanced tree) it's O(N) and in best case O(logN) 'cause total elements in perfect tree is (2 ^ level) - 1
 */
 // minor changes: https://www.youtube.com/watch?v=JVx83jhzy0U https://www.youtube.com/watch?v=Apgpt-99tI8
 public class Solution
 {
+    //
+    //                      1          PostOrder: 5 -> 2 -> 3 -> 1
+    //                    /   \        result =
+    //                   2     3       stack  =
+    //                  / \   / \      root   =
+    //                 x  5  x   x     peek   =
+    //                   / \           last   =
+    //                  x   x
+    //
     public IList<int> PostorderTraversal(TreeNode root)
     {
         var stack = new Stack<TreeNode>();
         var result = new List<int>();
         TreeNode lastNode = null;
-        TreeNode peek = null;
         while (stack.Count > 0 || root != null)
         {
-            if (root != null)
+            if (root != null) // DFS: it's time to go deeper!
             {
                 stack.Push(root);
                 root = root.left;
             }
             else
             {
-                peek = stack.Peek();
+                // at this point two situation are available:
+                // peek node a) has right subtree or b) doesn't have right subtree
+                var peek = stack.Peek();
+                // if right subtree exits so it also two possibilities: if we were at right direction or we weren't
                 if(peek.right != null && lastNode != peek.right)
                 {
                     root = peek.right;

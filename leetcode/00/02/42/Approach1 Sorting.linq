@@ -30,6 +30,7 @@ public class Solution
 [TestCase("a", "ab", false)]
 [TestCase("anagram", "nagaram", true)]
 [TestCase("rat", "car", false)]
+[TestCase("aacc", "ccac", false)]
 public void SolutionTests(string s, string t, bool expected)
 {
     var actual = new Solution().IsAnagram(s, t);
