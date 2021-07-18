@@ -17,6 +17,11 @@ public class Solution
     // if s and t are isomorphic modification's result must be the same
     // An example for string transformation:    
     // For each char in the given string, we replace it with the index of that char's first occurence.
+    //
+    // egg -> a = -1, b = -1, ... g = 1 => 01
+    // add -> a = 0, b = -1, ... d = 1 => 01
+    // 01 = 01 so these strings are isomorphic
+    //    
     public bool IsIsomorphic(string s, string t)
     {
         return TransformString(s).Equals(TransformString(t));
