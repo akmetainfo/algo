@@ -8,8 +8,8 @@
 // https://leetcode.com/problems/find-the-difference/
 
 /*
-    Time: O(m * n), where m = s.Length, n = t.Length
-    Space: O(n), where n = s.Length
+    Time: O(N^2), let m = s.Length, n = t.Length and because m = n + 1 so m approx n, so O(n*m) is O(n^2)
+    Space: O(n)
 */
 public class Solution
 {
@@ -19,13 +19,9 @@ public class Solution
         foreach (var c in t)
         {
             if (hs.Contains(c))
-            {
                 hs.Remove(c);
-            }
             else
-            {
                 return c;
-            }
         }
 
         throw new Exception("Something went wrong. Is input correct?");
