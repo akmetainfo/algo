@@ -138,6 +138,11 @@ next challenges:
 * 0206,Reverse Linked List
 * 0707,Design Linked List
 
+next challenges:
+
+* 876. Middle of the Linked List
+* 234. Palindrome Linked List
+
 # Stack
 
 * 0155,Min Stack
