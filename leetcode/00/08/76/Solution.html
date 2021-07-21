@@ -1,0 +1,133 @@
+<div class="content__QRGW">
+    <div>
+        <h2>Solution</h2>
+        <hr>
+        <h4 id="approach-1-output-to-array">Approach 1: Output to Array</h4>
+        <p><strong>Intuition and Algorithm</strong></p>
+        <p>Put every node into an array <code>A</code> in order. Then the middle node is just
+            <code>A[A.length // 2]</code>, since we can retrieve each node by index.</p>
+        <p>We can initialize the array to be of length <code>100</code>, as we're told in the problem description that
+            the input contains between <code>1</code> and <code>100</code> nodes.</p>
+        <iframe src="https://leetcode.com/playground/NVag8bw8/shared" name="NVag8bw8" width="100%" height="242"
+            frameborder="0"></iframe>
+        <p><strong>Complexity Analysis</strong></p>
+        <ul>
+            <li>
+                <p>Time Complexity: <span class="katex"><span class="katex-mathml"><math>
+                                <semantics>
+                                    <mrow>
+                                        <mi>O</mi>
+                                        <mo>(</mo>
+                                        <mi>N</mi>
+                                        <mo>)</mo>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">O(N)</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                                    class="mord mathdefault" style="margin-right:0.02778em;">O</span><span
+                                    class="mopen">(</span><span class="mord mathdefault"
+                                    style="margin-right:0.10903em;">N</span><span
+                                    class="mclose">)</span></span></span></span>, where <span class="katex"><span
+                            class="katex-mathml"><math>
+                                <semantics>
+                                    <mrow>
+                                        <mi>N</mi>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">N</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut" style="height:0.68333em;vertical-align:0em;"></span><span
+                                    class="mord mathdefault"
+                                    style="margin-right:0.10903em;">N</span></span></span></span> is the number of nodes
+                    in the given list.</p>
+            </li>
+            <li>
+                <p>Space Complexity: <span class="katex"><span class="katex-mathml"><math>
+                                <semantics>
+                                    <mrow>
+                                        <mi>O</mi>
+                                        <mo>(</mo>
+                                        <mi>N</mi>
+                                        <mo>)</mo>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">O(N)</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                                    class="mord mathdefault" style="margin-right:0.02778em;">O</span><span
+                                    class="mopen">(</span><span class="mord mathdefault"
+                                    style="margin-right:0.10903em;">N</span><span
+                                    class="mclose">)</span></span></span></span>, the space used by <code>A</code>.</p>
+            </li>
+        </ul>
+        <br>
+        <hr>
+        <h4 id="approach-2-fast-and-slow-pointer">Approach 2: Fast and Slow Pointer</h4>
+        <p><strong>Intuition and Algorithm</strong></p>
+        <p>When traversing the list with a pointer <code>slow</code>, make another pointer <code>fast</code> that
+            traverses twice as fast. When <code>fast</code> reaches the end of the list, <code>slow</code> must be in
+            the middle.</p>
+        <iframe src="https://leetcode.com/playground/BjojBziN/shared" name="BjojBziN" width="100%" height="259"
+            frameborder="0"></iframe>
+        <p><strong>Complexity Analysis</strong></p>
+        <ul>
+            <li>
+                <p>Time Complexity: <span class="katex"><span class="katex-mathml"><math>
+                                <semantics>
+                                    <mrow>
+                                        <mi>O</mi>
+                                        <mo>(</mo>
+                                        <mi>N</mi>
+                                        <mo>)</mo>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">O(N)</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                                    class="mord mathdefault" style="margin-right:0.02778em;">O</span><span
+                                    class="mopen">(</span><span class="mord mathdefault"
+                                    style="margin-right:0.10903em;">N</span><span
+                                    class="mclose">)</span></span></span></span>, where <span class="katex"><span
+                            class="katex-mathml"><math>
+                                <semantics>
+                                    <mrow>
+                                        <mi>N</mi>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">N</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut" style="height:0.68333em;vertical-align:0em;"></span><span
+                                    class="mord mathdefault"
+                                    style="margin-right:0.10903em;">N</span></span></span></span> is the number of nodes
+                    in the given list.</p>
+            </li>
+            <li>
+                <p>Space Complexity: <span class="katex"><span class="katex-mathml"><math>
+                                <semantics>
+                                    <mrow>
+                                        <mi>O</mi>
+                                        <mo>(</mo>
+                                        <mn>1</mn>
+                                        <mo>)</mo>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">O(1)</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                                    class="mord mathdefault" style="margin-right:0.02778em;">O</span><span
+                                    class="mopen">(</span><span class="mord">1</span><span
+                                    class="mclose">)</span></span></span></span>, the space used by <code>slow</code>
+                    and <code>fast</code>.
+                    <br>
+                    <br>
+                </p>
+            </li>
+        </ul>
+    </div>
+    <p><a class="report-link__1eJM" href="https://github.com/LeetCode-Feedback/LeetCode-Feedback/issues"
+            target="_blank">Report Article Issue</a></p>
+</div>
+<link rel="stylesheet" href="../../../boilerplate/simple.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css"
+    integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
