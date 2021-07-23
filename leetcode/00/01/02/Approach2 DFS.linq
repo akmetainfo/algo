@@ -9,7 +9,7 @@
 
 /*
     Time: O(N) where n - nodes in tree
-    Space: O(H) where h - height of tree
+    Space: O(H) where h - height of tree and O(N) for storing lists
 */
 public class Solution
 {
@@ -47,7 +47,7 @@ public class Solution
 
 /*
     Time: O(N) where n - nodes in tree
-    Space: O(H) where h - height of tree
+    Space: O(H) where h - height of tree and O(N) for storing lists
 */
 public class Solution1
 {
