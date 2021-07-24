@@ -21,7 +21,7 @@ public class Solution
         var node = ReverseList(head.next);
         head.next.next = head;
         head.next = null;
-        return node;
+        return node; // node is always last node of whole(original) list
     }
 }
 
