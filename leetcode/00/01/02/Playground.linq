@@ -24,6 +24,13 @@ private static IEnumerable<object[]> TestCases()
     yield return new object[]
     {
         new List<IList<int>> {
+        },
+        new object[] { },
+    };
+
+    yield return new object[]
+    {
+        new List<IList<int>> {
             new List<int> { 1 },
             new List<int> { 2 },
         },

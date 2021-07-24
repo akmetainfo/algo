@@ -46,7 +46,8 @@ public class Solution1
     public IList<IList<int>> LevelOrder(TreeNode root)
     {        
         var result = new List<IList<int>>();
-        if (root==null) return result;
+        if (root==null)
+            return result;
         var queue = new Queue<TreeNode>();
         queue.Enqueue(root);
         var levelCounter = 0;
@@ -94,10 +95,8 @@ private static IEnumerable<object[]> TestCases()
     yield return new object[]
     {
         new List<IList<int>> {
-            new List<int> { 1 },
-            new List<int> { 2 },
         },
-        new object[] { 1, null, 2 },
+        new object[] { },
     };
 
     yield return new object[]
