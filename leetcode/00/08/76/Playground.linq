@@ -31,6 +31,10 @@ public class ListNode
 }
 
 [Test]
+[TestCase(new int[] { 1 }, new int[] { 1 })]
+[TestCase(new int[] { 1,2 }, new int[] { 2 })]
+[TestCase(new int[] { 1,2,3 }, new int[] { 2,3 })]
+[TestCase(new int[] { 1,2,3,4 }, new int[] { 3,4 })]
 [TestCase(new int[] { 1,2,3,4,5 }, new int[] { 3,4,5 })]
 [TestCase(new int[] { 1,2,3,4,5,6 }, new int[] { 4,5,6 })]
 public void SolutionTests(int[] values, int[] expectedResult)
