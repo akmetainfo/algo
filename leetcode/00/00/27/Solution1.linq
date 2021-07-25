@@ -28,6 +28,30 @@ public class Solution
     }
 }
 
+
+/*
+    Time: O(n) Assume the array has a total of n n n elements, both i i i and j j j traverse at most 2 n 2n 2n steps.
+    Space: O(1)
+*/
+public class Solution1
+{
+    public int RemoveElement(int[] nums, int val)
+    {
+        var slow = 0;
+        var fast = 0;
+        while(fast < nums.Length)
+        {
+            if(nums[fast] != val)
+            {
+                nums[slow] = nums[fast];
+                slow++;
+            }
+            fast++;
+        }
+        return slow;
+    }
+}
+
 [Test]
 [TestCase(new int[] { 3, 2, 2, 3 }, 3, new int[] { 2, 2 }, 2)]
 [TestCase(new int[] { 0, 1, 2, 2, 3, 0, 4, 2 }, 2, new int[] { 0, 1, 4, 0, 3 }, 5)]
