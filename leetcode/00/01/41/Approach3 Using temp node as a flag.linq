@@ -15,18 +15,15 @@ public class Solution
 {
     public bool HasCycle(ListNode head)
     {
-        var temp = new ListNode(0);
+        var flag = new ListNode(0);
         while (head != null)
         {
-            if (head.next == null)
-                return false;
-
-            if (head.next == temp)
+            if (head.next == flag)
                 return true;
 
             var next = head.next;
 
-            head.next = temp;
+            head.next = flag;
 
             head = next;
         }
