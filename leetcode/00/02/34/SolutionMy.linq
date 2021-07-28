@@ -8,11 +8,115 @@
 // https://leetcode.com/problems/palindrome-linked-list/
 
 /*
+    Time: O(N)
+    Space: O(1)
+*/
+public class Solution
+{
+    public bool IsPalindrome(ListNode head)
+    {
+        // part1. Found a middle of list
+        
+        var slow = head;
+        var fast = head;
+        
+        while(fast != null && fast.next != null)
+        {
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        
+        var middle = slow;
+        
+        // part2. Invert second half of list
+        
+        ListNode prev = null;
+        ListNode curr = slow;
+        while(curr != null)
+        {
+            var temp = curr.next;
+            
+            curr.next = prev;
+            prev = curr;
+            curr = temp;
+        } // in that point prev is new head (head of inverted half)
+        
+        // part3. Compare inverted half with second
+        
+        var list1 = head;
+        var list2 = prev;
+        
+        //while(list2 != null) // or (while(list1 != middle)
+        while(list1 != middle) // or (while(list1 != middle)
+        {
+            if(list1.val != list2.val)
+                return false;
+                
+            list1 = list1.next;
+            list2 = list2.next;
+        }
+        
+        return true;
+    }
+}
+/*
+    Time: O(N)
+    Space: O(1)
+*/
+public class Solution5
+{
+    public bool IsPalindrome(ListNode head)
+    {
+        // part1. Found a middle of list
+        
+        var slow = head;
+        var fast = head;
+        
+        while(fast != null && fast.next != null)
+        {
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        
+        var middle = slow;
+        
+        // part2. Invert first half of list
+        
+        ListNode prev = null;
+        ListNode curr = head;
+        while(curr != slow)
+        {
+            var temp = curr.next;
+            
+            curr.next = prev;
+            prev = curr;
+            curr = temp;
+        } // in that point prev is new head (head of inverted half)
+        
+        // part3. Compare inverted half with second
+        
+        var list1 = prev;
+        var list2 = fast == null ? middle : middle.next;
+        
+        while(list1 != null)
+        {
+            if(list1.val != list2.val)
+                return false;
+                
+            list1 = list1.next;
+            list2 = list2.next;
+        }
+        
+        return true;
+    }
+}
+
+/*
     Time: O()
     Space: O()
 */
 // time limit exceed
-public class Solution
+public class Solution4
 {
     public bool IsPalindrome(ListNode head)
     {

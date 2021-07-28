@@ -8,9 +8,12 @@
 // https://leetcode.com/problems/sqrtx/
 
 /*
-    Time: O(?)
+    Time: O() see links below
     Space: O(1)
     Source: https://www.geeksforgeeks.org/find-root-of-a-number-using-newtons-method/
+    
+    https://stackoverflow.com/q/5005753/5752652
+    https://stackoverflow.com/q/55888265/5752652
 */
 public class Solution
 {
