@@ -1,0 +1,25 @@
+using System;
+
+public class Test
+{
+    static void Main()
+    {
+        string[] array = Console.ReadLine().Split(' ');
+        int weight = int.Parse(array[0]);
+        var result = WatermelonEvenParts(weight);
+        Console.WriteLine(ResultWrapper(result));
+    }
+
+    private static string ResultWrapper(bool result)
+    {
+        return result ? "YES" : "NO";
+    }
+
+    private static bool WatermelonEvenParts(int weight)
+    {
+        if(weight < 4)
+            return false;
+            
+        return weight % 2 == 0;
+    }
+}
