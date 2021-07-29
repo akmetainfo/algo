@@ -73,10 +73,6 @@
 * 0203,Remove Linked List Elements
 * 0206,Reverse Linked List
 
-# Stack
-
-* 0020,Valid Parentheses
-
 # Two Pointers
 
 * 0026,Remove Duplicates from Sorted Array
@@ -145,6 +141,7 @@ next challenges:
 
 # Stack
 
+* 0020,Valid Parentheses
 * 0155,Min Stack
 * 0415,Add Strings
 
