@@ -15,7 +15,50 @@ public class Solution
 {
     public bool IsPalindrome(ListNode head)
     {
-        throw new NotImplementedException();
+        var middle = FindMiddle(head);
+
+        var list1 = head;
+        var list2 = ReverseList(middle);
+
+        while (list1 != middle) // or while(list2 != null)
+        {
+            if (list1.val != list2.val)
+                return false;
+
+            list1 = list1.next;
+            list2 = list2.next;
+        }
+
+        return true;
+    }
+
+    private static ListNode FindMiddle(ListNode head)
+    {
+        var slow = head;
+        var fast = head;
+
+        while (fast != null && fast.next != null)
+        {
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+
+        return slow;
+    }
+
+    private static ListNode ReverseList(ListNode head)
+    {
+        ListNode prev = null;
+        ListNode curr = head;
+        while (curr != null)
+        {
+            var next = curr.next;
+
+            curr.next = prev;
+            prev = curr;
+            curr = next;
+        }
+        return prev;
     }
 }
 
