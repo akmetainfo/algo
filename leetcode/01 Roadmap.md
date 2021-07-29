@@ -144,6 +144,7 @@ next challenges:
 * 0020,Valid Parentheses
 * 0155,Min Stack
 * 0415,Add Strings
+* 1544,Make The String Great
 
 # Queue
 

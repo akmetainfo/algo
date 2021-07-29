@@ -14,6 +14,7 @@
 0034,Find First and Last Position of Element in Sorted Array
 0035,Search Insert Position
 ? 0054,Spiral Matrix
+? 62,Unique Paths
 0066,Plus One
 0067,Add Binary
 0069,Sqrt(x)
@@ -98,3 +99,4 @@
 1295,Find Numbers with Even Number of Digits
 ? 1299,Replace Elements with Greatest Element on Right Side
 ? 1346,Check If N and Its Double Exist
+1544,Make The String Great
