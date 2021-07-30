@@ -10,12 +10,27 @@
 /*
     Time: O()
     Space: O()
+    
+    // inspired by athdon at twitch
+    // explanation here: https://leetcode.com/problems/unique-paths/discuss/637666/Python-Math-with-explanation
+    // todo: avoid ulong overflowing in csharp
 */
 public class Solution
 {
     public int UniquePaths(int m, int n)
     {
-        throw new NotImplementedException();
+        ulong a = (ulong)Factorial(n + m - 2);
+        ulong b = (ulong)Factorial(n - 1);
+        ulong c = (ulong)Factorial(m - 1);
+        return  (int) ( (a / (b *  c)));
+    }
+
+    public ulong Factorial(int f)
+    {
+        if(f == 0)
+            return 1;
+        else
+            return (ulong)f * Factorial(f-1); 
     }
 }
 
