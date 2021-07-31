@@ -8,29 +8,70 @@
 // https://leetcode.com/problems/unique-paths/
 
 /*
-    Time: O()
-    Space: O()
+    Time: O(N)
+    Space: O(1)
     
-    // inspired by athdon at twitch
-    // explanation here: https://leetcode.com/problems/unique-paths/discuss/637666/Python-Math-with-explanation
-    // todo: avoid ulong overflowing in csharp
 */
 public class Solution
 {
     public int UniquePaths(int m, int n)
     {
-        ulong a = (ulong)Factorial(n + m - 2);
-        ulong b = (ulong)Factorial(n - 1);
-        ulong c = (ulong)Factorial(m - 1);
-        return  (int) ( (a / (b *  c)));
+        double result = 1;
+        for (int i = n; i <= (m + n - 2); i++)
+        {
+            result *= i;
+            result /= (i - n + 1);
+        }
+        return (int)Math.Round(result);
+    }
+}
+
+
+/*
+    Time: O(N) where N = m + n
+    Space: O(1)
+*/
+public class Solution2
+{
+    public int UniquePaths(int m, int n)
+    {
+        double result = 1;
+        for (int i = 2; i <= (m + n - 2); i++) {
+            result *= i;
+            
+            if(i <= n - 1)
+                result /= i;
+                
+            if(i <= m - 1)
+                result /= i;
+        }
+        return (int)Math.Round(result);
+    }
+}
+
+/*
+    Time: O(log n) because of calculating factorial
+    Space: O(1)
+*/
+public class Solution1
+{
+    // inspired by athdon at twitch
+    // explanation here: https://leetcode.com/problems/unique-paths/discuss/637666/Python-Math-with-explanation
+    // todo: avoid ulong overflowing in csharp
+    public int UniquePaths(int m, int n)
+    {
+        var result = Factorial(n + m - 2) / (Factorial(n - 1)  *  Factorial(m - 1));
+        return  (int) result;
     }
 
-    public ulong Factorial(int f)
+    private static ulong Factorial(int n)
     {
-        if(f == 0)
-            return 1;
-        else
-            return (ulong)f * Factorial(f-1); 
+        ulong result = 1;
+        for(var i = 1; i <= n; i++)
+        {
+            result *= (ulong)i;
+        }
+        return result;
     }
 }
 
@@ -38,8 +79,9 @@ public class Solution
 [TestCase(3, 7, 28)]
 [TestCase(3, 2, 3)]
 [TestCase(3, 3, 6)]
+[TestCase(5, 7, 210)]
 [TestCase(10, 10, 48620)]
-//[TestCase(23, 12, 193536720)] ulong overflow!
+[TestCase(23, 12, 193536720)] // actual is 0 because of ulong overflow
 public void SolutionTests(int m, int n, int expected)
 {
     var actual = new Solution().UniquePaths(m, n);
