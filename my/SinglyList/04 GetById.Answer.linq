@@ -7,8 +7,8 @@
 // get node value by its index (0-th numbered) or -1 if index is incorrect
 
 /*
-    Time: O(N)
-    Space: O(N)
+    Time: O(N) where N is number of node's in list
+    Space: O(1)
 */
 public class Solution
 {
@@ -26,6 +26,28 @@ public class Solution
             return -1;
 
         return head.Data;
+    }
+}
+
+/*
+    Time: O(N) where N is number of node's in list
+    Space: O(1)
+*/
+public class Solution1
+{
+    public int GetById(SinglyListNode head, int index)
+    {
+        var current = 0;
+        while(head != null)
+        {
+            if(current == index)
+                return head.Data;
+                
+            head = head.Next;
+            current++;
+        }
+        
+        return -1;
     }
 }
 
