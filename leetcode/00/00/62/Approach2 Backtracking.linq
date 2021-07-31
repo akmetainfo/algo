@@ -42,8 +42,9 @@ public class Solution
 [TestCase(3, 7, 28)]
 [TestCase(3, 2, 3)]
 [TestCase(3, 3, 6)]
+[TestCase(5, 7, 210)]
 [TestCase(10, 10, 48620)]
-//[TestCase(23, 12, 193536720)]//  ulong overflow!
+[TestCase(23, 12, 193536720)]
 public void SolutionTests(int m, int n, int expected)
 {
     var actual = new Solution().UniquePaths(m, n);
