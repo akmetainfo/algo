@@ -16,13 +16,13 @@ public class Solution
 {
     public int UniquePaths(int m, int n)
     {
-        double result = 1;
+        ulong result = 1;
         for (int i = n; i <= (m + n - 2); i++)
         {
-            result *= i;
-            result /= (i - n + 1);
+            result *= (ulong)i;
+            result /= (ulong)(i - n + 1);
         }
-        return (int)Math.Round(result);
+        return (int)result;
     }
 }
 
