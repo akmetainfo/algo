@@ -7,41 +7,12 @@
 // 100. Same Tree
 // https://leetcode.com/problems/same-tree/
 
-/*
-    Time: O(N), where N is a number of nodes in the tree, since one visits each node exactly once.
-    Space: O(N) in the best case of completely balanced tree and O(N) in the worst case of completely unbalanced tree, to keep a recursion stack. 
-*/
-public class Solution
-{
-    public bool IsSameTree(TreeNode p, TreeNode q)
-    {
-        var stack = new Stack<(TreeNode p, TreeNode q)>();
-        stack.Push((p, q));
-        
-        while(stack.Any())
-        {
-            var curr = stack.Pop();
-            
-            if(curr.p == null && curr.q == null)
-                continue;
-            if(curr.p == null || curr.q == null)
-                return false;
-            if(curr.p.val != curr.q.val)
-                return false;
-            
-            stack.Push((curr.p.right, curr.q.right));
-            stack.Push((curr.p.left, curr.q.left));
-        }
-        
-        return true;
-    }
-}
 
 /*
     Time: O(N), where N is a number of nodes in the tree, since one visits each node exactly once.
     Space: O(N) in the best case of completely balanced tree and O(N) in the worst case of completely unbalanced tree, to keep a recursion stack. 
 */
-public class Solution1
+public class Solution
 {
     public bool IsSameTree(TreeNode p, TreeNode q)
     {
@@ -65,6 +36,36 @@ public class Solution1
             stack.Push(q.left);
             stack.Push(p.right);
             stack.Push(q.right);
+        }
+        
+        return true;
+    }
+}
+
+/*
+    Time: O(N), where N is a number of nodes in the tree, since one visits each node exactly once.
+    Space: O(N) in the best case of completely balanced tree and O(N) in the worst case of completely unbalanced tree, to keep a recursion stack. 
+*/
+public class Solution1
+{
+    public bool IsSameTree(TreeNode p, TreeNode q)
+    {
+        var stack = new Stack<(TreeNode p, TreeNode q)>();
+        stack.Push((p, q));
+        
+        while(stack.Any())
+        {
+            var curr = stack.Pop();
+            
+            if(curr.p == null && curr.q == null)
+                continue;
+            if(curr.p == null || curr.q == null)
+                return false;
+            if(curr.p.val != curr.q.val)
+                return false;
+            
+            stack.Push((curr.p.right, curr.q.right));
+            stack.Push((curr.p.left, curr.q.left));
         }
         
         return true;
