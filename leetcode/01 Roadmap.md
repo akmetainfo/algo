@@ -106,6 +106,7 @@
 * 0104,Maximum Depth of Binary Tree
 * 0144,Binary Tree Preorder Traversal
 * 0145,Binary Tree Postorder Traversal
+* 0257,Binary Tree Paths
 * 0965,Univalued Binary Tree
 
 next challenges:

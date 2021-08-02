@@ -53,6 +53,7 @@
 ? 0219,Contains Duplicate II
 ? 0237,Delete Node in a Linked List
 0242,Valid Anagram
+0257,Binary Tree Paths
 0278,First Bad Version
 ? 0283,Move Zeroes
 0344,Reverse String
