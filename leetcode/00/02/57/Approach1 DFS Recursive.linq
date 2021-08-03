@@ -15,6 +15,42 @@ public class Solution
 {
     public IList<string> BinaryTreePaths(TreeNode root)
     {
+    	var result = new List<string>();
+        
+		if (root == null)
+			return result;
+            
+    	DFS(result, root);
+        
+    	return result;
+    }
+
+    private static void DFS(IList<string> result, TreeNode node, string path = "")
+    {
+        path += node.val;
+        
+		if (node.left == null && node.right == null)
+        {
+			result.Add(path);
+            return;
+        }
+        
+        if(node.left != null)
+		    DFS(result, node.left, path + "->");
+        
+        if(node.right != null)
+		    DFS(result, node.right, path + "->");
+    }
+}
+
+/*
+    Time: O(N)
+    Space: O(H)
+*/
+public class Solution4
+{
+    public IList<string> BinaryTreePaths(TreeNode root)
+    {
         var result = new List<string>();
         DFS(root, new List<string>(), result);
         return result;
