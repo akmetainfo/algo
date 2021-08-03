@@ -9,39 +9,44 @@
 
 /*
     Time: O(N) where N is number of nodes
-    Space: O(N) for storing queue, O(N) for storing result, O(N) for storing paths, O(N) for storing call stack
+    Space: O(N) for storing queue, O(N) for storing result, O(N) for storing paths
 */
 public class Solution
 {
     public IList<string> BinaryTreePaths(TreeNode root)
     {
-        var result = new List<string>(); 
-        var queue = new Queue<TreeNode>(); 
-        var path = new Queue<string>();
+        var result = new List<string>();
             
-        if(root == null )
+        if(root == null)
             return result; 
         
+        var queue = new Queue<TreeNode>();
+        var paths = new Queue<string>();
+        
         queue.Enqueue(root);
-        path.Enqueue(""); 
-        while(queue.Count> 0 )
+        paths.Enqueue("");
+        
+        while(queue.Count() > 0)
         {
-            TreeNode currNode = queue.Dequeue();
-            string currPath = path.Dequeue(); 
+            root = queue.Dequeue();
+            var path = paths.Dequeue();
             
-            if(currNode.left == null && currNode.right == null) 
-                result.Add(currPath + currNode.val); 
-            
-            if(currNode.right != null)
+            if(root.left == null && root.right == null)
             {
-                queue.Enqueue(currNode.right); 
-                path.Enqueue(currPath + currNode.val + "->");
+                result.Add(path + root.val);
+                continue;
             }
             
-            if(currNode.left != null)
+            if(root.right != null)
             {
-                queue.Enqueue(currNode.left); 
-                path.Enqueue(currPath + currNode.val + "->");
+                queue.Enqueue(root.right); 
+                paths.Enqueue(path + root.val + "->");
+            }
+            
+            if(root.left != null)
+            {
+                queue.Enqueue(root.left); 
+                paths.Enqueue(path + root.val + "->");
             }
         }
         
@@ -50,6 +55,9 @@ public class Solution
 }
 
 [Test]
+[TestCase(new object[] { }, new string[] { })]
+[TestCase(new object[] { 1 }, new string[] { "1" })]
+[TestCase(new object[] { 1,2,3 }, new string[] { "1->2","1->3" })]
 [TestCase(new object[] { 1,2,3,null,5 }, new string[] { "1->2->5","1->3" })]
 public void SolutionTests(object[] data, string[] expected)
 {

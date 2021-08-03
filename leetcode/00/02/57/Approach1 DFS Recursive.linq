@@ -20,12 +20,12 @@ public class Solution
 		if (root == null)
 			return result;
             
-    	DFS(result, root);
+    	DFS(result, root, "");
         
     	return result;
     }
 
-    private static void DFS(IList<string> result, TreeNode node, string path = "")
+    private static void DFS(IList<string> result, TreeNode node, string path)
     {
         path += node.val;
         
@@ -43,116 +43,10 @@ public class Solution
     }
 }
 
-/*
-    Time: O(N)
-    Space: O(H)
-*/
-public class Solution4
-{
-    public IList<string> BinaryTreePaths(TreeNode root)
-    {
-        var result = new List<string>();
-        DFS(root, new List<string>(), result);
-        return result;
-    }
-
-    private void DFS(TreeNode root, IList<string> oneResult, IList<string> result)
-    {
-        if (root == null)
-            return;
-        oneResult.Add($"{root.val}");
-        if (root.left == null && root.right == null)
-        {
-            // leaf
-            result.Add(string.Join("->", oneResult));
-        } else {
-            DFS(root.left, oneResult, result);
-            DFS(root.right, oneResult, result);
-        }
-        oneResult.RemoveAt(oneResult.Count - 1);
-    }
-}
-
-/*
-    Time: O(N)
-    Space: O(H)
-*/
-public class Solution3
-{
-    public IList<string> BinaryTreePaths(TreeNode root)
-    {
-    	var result = new List<string>();
-    	DFS(result, root);
-    	return result;
-    }
-
-    void DFS(IList<string> result, TreeNode node, string path = "")
-    {
-		if (node == null)
-			return;
-		if (node.left == null && node.right == null)
-			result.Add($"{path}{node.val}");
-		else
-		{
-			DFS(result, node.left, $"{path}{node.val}->");
-			DFS(result, node.right, $"{path}{node.val}->");
-		}
-    }
-}
-
-/*
-    Time: O(N)
-    Space: O(H)
-*/
-public class Solution2
-{
-	public IList<string> BinaryTreePaths(TreeNode root)
-    {
-		var list = new List<string>();
-		Add(root, string.Empty, list);  
-		return list;
-	}
-
-	private void Add(TreeNode root, string s, IList<string> list)
-    {
-		if (root == null)
-            return;
-
-		if (root.left == null && root.right == null)
-        {
-			s += root.val.ToString();
-			list.Add(s);
-		}
-		else 
-		{
-			s += root.val + "->";
-			Add(root.left, s, list);
-			Add(root.right, s, list);
-		}
-	}
-}
-
-public class Solution1
-{
-    public IList<string> BinaryTreePaths(TreeNode root)
-    {
-        var list = new List<string>();
-        Traverse(root,"", list);
-        return list;
-    }
-
-    private void Traverse(TreeNode root,string path, IList<string> list)
-    {
-        if(root == null)
-            return;       
-        if(root.left == null && root.right == null)
-            list.Add(path+root.val);
-        Traverse(root.left,path+root.val+"->",list);
-        Traverse(root.right,path+root.val+"->",list);
-    }
-}
-
 [Test]
+[TestCase(new object[] { }, new string[] { })]
+[TestCase(new object[] { 1 }, new string[] { "1" })]
+[TestCase(new object[] { 1,2,3 }, new string[] { "1->2","1->3" })]
 [TestCase(new object[] { 1,2,3,null,5 }, new string[] { "1->2->5","1->3" })]
 public void SolutionTests(object[] data, string[] expected)
 {

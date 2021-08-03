@@ -20,6 +20,9 @@ public class Solution
 }
 
 [Test]
+[TestCase(new object[] { }, new string[] { })]
+[TestCase(new object[] { 1 }, new string[] { "1" })]
+[TestCase(new object[] { 1,2,3 }, new string[] { "1->2","1->3" })]
 [TestCase(new object[] { 1,2,3,null,5 }, new string[] { "1->2->5","1->3" })]
 public void SolutionTests(object[] data, string[] expected)
 {
