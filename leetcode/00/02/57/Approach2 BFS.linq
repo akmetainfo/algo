@@ -31,22 +31,24 @@ public class Solution
             root = queue.Dequeue();
             var path = paths.Dequeue();
             
+            path += root.val;
+            
             if(root.left == null && root.right == null)
             {
-                result.Add(path + root.val);
+                result.Add(path);
                 continue;
             }
             
             if(root.right != null)
             {
                 queue.Enqueue(root.right); 
-                paths.Enqueue(path + root.val + "->");
+                paths.Enqueue(path + "->");
             }
             
             if(root.left != null)
             {
-                queue.Enqueue(root.left); 
-                paths.Enqueue(path + root.val + "->");
+                queue.Enqueue(root.left);
+                paths.Enqueue(path + "->");
             }
         }
         
