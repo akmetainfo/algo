@@ -144,10 +144,12 @@ next challenges:
 
 * 0020,Valid Parentheses
 * 0155,Min Stack
+* 0232,Implement Queue using Stacks
 * 0415,Add Strings
 * 1544,Make The String Great
 
 # Queue
 
+* 0232,Implement Queue using Stacks
 * 0392,Is Subsequence
 * 0622,Design Circular Queue
