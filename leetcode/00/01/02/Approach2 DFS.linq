@@ -17,71 +17,26 @@ public class Solution
     {
         var result = new List<IList<int>>();
         
-        if (root == null)
-            return result;
-        
-        result.Add(new List<int>() { root.val });
-        
-        TraverseTree(root.left, result, 0);
-        TraverseTree(root.right, result, 0);
+        DFS(root, result, 0);
         
         return result;
     }
     
-    private void TraverseTree(TreeNode node, IList<IList<int>> result, int depth = 0)
+    private static void DFS(TreeNode root, IList<IList<int>> result, int level)
     {
-        if (node == null)
+        if(root == null)
             return;
             
-        depth++;
-        
-        if (result.Count == depth)
+        if(result.Count == level)
             result.Add(new List<int>());
         
-        result[depth].Add(node.val);
-        
-        TraverseTree(node.left, result, depth);
-        TraverseTree(node.right, result, depth);
-    }    
-}
+        result[level].Add(root.val);
 
-/*
-    Time: O(N) where n - nodes in tree
-    Space: O(H) where h - height of tree and O(N) for storing lists
-*/
-public class Solution1
-{
-    public IList<IList<int>> LevelOrder(TreeNode root)
-    {
-        var result = new List<IList<int>>();
-        
-        if (root == null)
-            return result;
-        
-        result.Add(new List<int>() { root.val });
-        
-        if(root.left != null)
-            TraverseTree(root.left, result, 0);
-        if(root.right != null)
-            TraverseTree(root.right, result, 0);
-        
-        return result;
-    }
-    
-    private void TraverseTree(TreeNode node, IList<IList<int>> result, int depth = 0)
-    {
-        depth++;
-        
-        if (result.Count == depth)
-            result.Add(new List<int>());
-        
-        result[depth].Add(node.val);
-        
-        if(node.left != null)
-            TraverseTree(node.left, result, depth);
-        if(node.right != null)
-            TraverseTree(node.right, result, depth);
-    }    
+        level++;
+
+        DFS(root.left, result, level);
+        DFS(root.right, result, level);
+    }  
 }
 
 private static IEnumerable<object[]> TestCases()
