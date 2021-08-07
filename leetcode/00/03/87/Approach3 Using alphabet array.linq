@@ -8,7 +8,7 @@
 // https://leetcode.com/problems/first-unique-character-in-a-string/
 
 /*
-    Time: O(n)
+    Time: O(N)
     Space: O(1)
 */
 public class Solution

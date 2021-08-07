@@ -8,8 +8,8 @@
 // https://leetcode.com/problems/first-unique-character-in-a-string/
 
 /*
-    Time: O(n)
-    Space: O(1)
+    Time: O(N)
+    Space: O(N)
 */
 public class Solution
 {
