@@ -52,6 +52,7 @@ public class Solution
 }
 
 [Test]
+[TestCase(new object[] { }, 42, false)]
 [TestCase(new object[] { 1,2,3 }, 42, false)]
 [TestCase(new object[] { 1,2,3, null, 5 }, 42, false)]
 [TestCase(new object[] { 1,2 }, 1, false)]
