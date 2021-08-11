@@ -109,9 +109,24 @@ public class MyQueue
 
 [Test]
 [TestCase(
+    new string[] { "MyQueue","push","push","pop","peek" },
+    new object[] { new int[0], new[]{1}, new[] {2}, new int[0], new int[0] },
+    new object[] { null, null, null, 1, 2 }
+)]
+[TestCase(
     new string[] { "MyQueue", "push", "push", "peek", "pop", "empty" },
     new object[] { new int[0], new[]{1}, new[] {2}, new int[0], new int[0], new int[0] },
     new object[] { null, null, null, 1, 1, false }
+)]
+[TestCase(
+    new string[] { "MyQueue","push","pop","empty" },
+    new object[] { new int[0], new[]{1}, new int[0], new int[0] },
+    new object[] { null, null, 1, true }
+)]
+[TestCase(
+    new string[] { "MyQueue","push","push","push","push","pop","push","pop","pop","pop","pop" },
+    new object[] { new int[0], new[]{1}, new[] {2}, new[] {3}, new[] {4}, new int[0], new[] {5}, new int[0], new int[0], new int[0], new int[0] },
+    new object[] { null, null, null, null, null, 1, null, 2, 3, 4, 5 }
 )]
 public void SolutionTests(string[] actionsNames, object[] actionsParams, object[] expectedResult)
 {
