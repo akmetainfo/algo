@@ -8,14 +8,91 @@
 // https://leetcode.com/problems/find-pivot-index/
 
 /*
-    Time: O()
-    Space: O()
+    Time: O(N)
+    Space: O(1)
 */
 public class Solution
 {
     public int PivotIndex(int[] nums)
     {
-        throw new NotImplementedException();
+        var sum = 0;
+        var leftSum = 0;
+        
+        for(var i = 0; i < nums.Length; i++)
+            sum += nums[i];
+        
+        for(var i = 0; i < nums.Length; i++)
+        {
+            var rightSum = sum - leftSum - nums[i];
+            
+            if(leftSum == rightSum)
+                return i;
+            
+            leftSum += nums[i];
+        }
+        
+        return -1;
+    }
+}
+
+/*
+    Time: O(N)
+    Space: O(N)
+*/
+public class Solution2
+{
+    public int PivotIndex(int[] nums)
+    {
+        var pref = new int[nums.Length + 1];
+        
+        var sum = 0;
+        
+        for(var i = 0; i < nums.Length; i++)
+        {
+            pref[i+1] = pref[i] + nums[i];
+            sum += nums[i];
+        }
+        
+        var leftSum = 0;
+        for(var i = 0; i < nums.Length; i++)
+        {
+            var rightSum = sum - pref[i + 1];
+            
+            if(leftSum == rightSum)
+                return i;
+            
+            leftSum += nums[i];
+        }
+        
+        return -1;
+    }
+}
+
+/*
+    Time: O(N)
+    Space: O(N)
+*/
+public class Solution1
+{
+    public int PivotIndex(int[] nums)
+    {
+        var pref = new int[nums.Length + 1];
+        
+        for(var i = 0; i < nums.Length; i++)
+        {
+            pref[i+1] = pref[i] + nums[i];
+        }
+        
+        for(var i = 0; i < nums.Length; i++)
+        {
+            var leftSum = pref[i] - pref[0];
+            var rightSum = pref[nums.Length] - pref[i + 1];
+            
+            if(leftSum == rightSum)
+                return i;
+        }
+        
+        return -1;
     }
 }
 
