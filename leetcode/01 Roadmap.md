@@ -153,3 +153,7 @@ next challenges:
 * 0232,Implement Queue using Stacks
 * 0392,Is Subsequence
 * 0622,Design Circular Queue
+
+# Prefix sums
+
+* 0303,Range Sum Query - Immutable
