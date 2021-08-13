@@ -8,30 +8,14 @@
 // https://leetcode.com/problems/find-pivot-index/
 
 /*
-    Time: O(N^2)
-    Space: O(1)
+    Time: O()
+    Space: O()
 */
 public class Solution
 {
     public int PivotIndex(int[] nums)
     {
-		var leftSum = 0;
-
-		for (var i = 0; i < nums.Length; i++)
-		{
-			leftSum += nums[i];
-			
-			var rightSum = 0;
-			for(var j = i; j < nums.Length; j++)
-			{
-				rightSum += nums[j];
-			}
-            
-			if(leftSum == rightSum)
-				return i;
-		}
-		
-		return -1;
+        throw new NotImplementedException();
     }
 }
 
