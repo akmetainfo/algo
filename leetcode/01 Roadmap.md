@@ -157,3 +157,4 @@ next challenges:
 # Prefix sums
 
 * 0303,Range Sum Query - Immutable
+* 0724,Find Pivot Index
