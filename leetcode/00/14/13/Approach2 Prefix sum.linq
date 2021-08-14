@@ -8,10 +8,54 @@
 // https://leetcode.com/problems/minimum-value-to-get-positive-step-by-step-sum/
 
 /*
+    Time: O(N)
+    Space: O(1)
+*/
+public class Solution
+{
+    public int MinStartValue(int[] nums)
+    {
+        var min = nums[0];
+        for(int i=1; i<nums.Length; i++)
+        {
+            nums[i]+=nums[i-1];
+            min = Math.Min(min, nums[i]);
+        }
+        return Math.Max(1, 1-min);
+    }
+}
+
+/*
+    Time: O(N)
+    Space: O(1)
+*/
+public class Solution
+{
+    public int MinStartValue(int[] nums)
+    {
+        const int minAnswer = 1;
+        
+        var result = minAnswer;
+        
+        var sum = result;
+        for(var i = 0; i < nums.Length; i++)
+        {
+            sum += nums[i];
+            if(sum < minAnswer)
+            {
+                result += minAnswer - sum;
+                sum = minAnswer;
+            }
+        }
+        return result > 1 ? result : 1;
+    }
+}
+
+/*
     Time: O(N) two pass solution
     Space: O(N)
 */
-public class Solution
+public class Solution1
 {
     public int MinStartValue(int[] nums)
     {
