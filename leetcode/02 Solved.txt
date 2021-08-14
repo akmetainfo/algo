@@ -102,4 +102,5 @@
 1295,Find Numbers with Even Number of Digits
 ? 1299,Replace Elements with Greatest Element on Right Side
 ? 1346,Check If N and Its Double Exist
+1413,Minimum Value to Get Positive Step by Step Sum
 1544,Make The String Great
