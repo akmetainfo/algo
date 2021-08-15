@@ -1,0 +1,147 @@
+<div class="content__QRGW">
+    <div>
+        <h2>Solution</h2>
+        <hr>
+        <h4 id="approach-1-using-separate-space">Approach 1: Using Separate Space</h4>
+        <p><strong>Intuition</strong></p>
+        <p>We are required to find the running sum of numbers <code>nums[i]</code> in the input array where
+            <code>i</code> ranges from <code>0</code> to <code>n-1</code> and <code>n</code> is the size of the input
+            array. We can see that the running sum is the sum of all of the elements from index <code>0</code> to index
+            <code>i</code> inclusive. Since we start building our output array at index <code>0</code>, at each index
+            <code>i</code> we have already calculated the sum of all numbers up to and including index <code>i-1</code>.
+            Thus, instead of recalculating the sum, we can get the result for index <code>i</code> by simply adding the
+            element at index <code>i</code> to the previously calculated running sum for index <code>i-1</code>.
+        </p>
+        <p><strong>Algorithm</strong></p>
+        <ol>
+            <li>Define an array <code>result</code>.</li>
+            <li>Initialize the first element of <code>result</code> with the first element of the input array.</li>
+            <li>At index <code>i</code> append the sum of the element <code>nums[i]</code> and previous running sum
+                <code>result[i - 1]</code> to the <code>result</code> array.
+            </li>
+            <li>We repeat step 3 for all indices from <code>1</code> to <code>n-1</code>.</li>
+        </ol>
+        <iframe src="https://leetcode.com/playground/HmpnCZtd/shared" name="HmpnCZtd" width="100%" height="276"
+            frameborder="0"></iframe>
+        <p><strong>Complexity Analysis</strong></p>
+        <ul>
+            <li>
+                <p>Time complexity: <span class="katex"><span class="katex-mathml"><math>
+                                <semantics>
+                                    <mrow>
+                                        <mi>O</mi>
+                                        <mo>(</mo>
+                                        <mi>n</mi>
+                                        <mo>)</mo>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">O(n)</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                                    class="mord mathdefault" style="margin-right:0.02778em;">O</span><span
+                                    class="mopen">(</span><span class="mord mathdefault">n</span><span
+                                    class="mclose">)</span></span></span></span> where <span class="katex"><span
+                            class="katex-mathml"><math>
+                                <semantics>
+                                    <mrow>
+                                        <mi>n</mi>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">n</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut" style="height:0.43056em;vertical-align:0em;"></span><span
+                                    class="mord mathdefault">n</span></span></span></span> is the length of the input
+                    array. This is because we use a single loop that iterates over the entire array to calculate the
+                    running sum.</p>
+            </li>
+            <li>
+                <p>Space complexity: <span class="katex"><span class="katex-mathml"><math>
+                                <semantics>
+                                    <mrow>
+                                        <mi>O</mi>
+                                        <mo>(</mo>
+                                        <mn>1</mn>
+                                        <mo>)</mo>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">O(1)</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                                    class="mord mathdefault" style="margin-right:0.02778em;">O</span><span
+                                    class="mopen">(</span><span class="mord">1</span><span
+                                    class="mclose">)</span></span></span></span> since we don't use any additional space
+                    to find the running sum. <em>Note</em> that we do not take into consideration the space occupied by
+                    the output array.</p>
+            </li>
+        </ul>
+        <br>
+        <hr>
+        <h4 id="approach-2-using-input-array-for-output">Approach 2: Using Input Array for Output</h4>
+        <p><strong>Intuition</strong></p>
+        <p>In the previous approach we created an extra array to store our results. However, we do not actually need to
+            do so. We can obtain the same result without using extra space by performing the same operations on the
+            input array instead.</p>
+        <p><strong>Algorithm</strong></p>
+        <ol>
+            <li>Increase <code>nums[i]</code> by the previous index's running sum. The previous index's running sum is
+                stored at index <code>i-1</code> in the input array.</li>
+            <li>We repeat step 1 for all indices from <code>1</code> to <code>n-1</code>.</li>
+        </ol>
+        <iframe src="https://leetcode.com/playground/8p9N4E2a/shared" name="8p9N4E2a" width="100%" height="225"
+            frameborder="0"></iframe>
+        <p><strong>Complexity Analysis</strong></p>
+        <ul>
+            <li>
+                <p>Time complexity: <span class="katex"><span class="katex-mathml"><math>
+                                <semantics>
+                                    <mrow>
+                                        <mi>O</mi>
+                                        <mo>(</mo>
+                                        <mi>n</mi>
+                                        <mo>)</mo>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">O(n)</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                                    class="mord mathdefault" style="margin-right:0.02778em;">O</span><span
+                                    class="mopen">(</span><span class="mord mathdefault">n</span><span
+                                    class="mclose">)</span></span></span></span> where <span class="katex"><span
+                            class="katex-mathml"><math>
+                                <semantics>
+                                    <mrow>
+                                        <mi>n</mi>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">n</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut" style="height:0.43056em;vertical-align:0em;"></span><span
+                                    class="mord mathdefault">n</span></span></span></span> is the length of input array.
+                </p>
+            </li>
+            <li>
+                <p>Space complexity: <span class="katex"><span class="katex-mathml"><math>
+                                <semantics>
+                                    <mrow>
+                                        <mi>O</mi>
+                                        <mo>(</mo>
+                                        <mn>1</mn>
+                                        <mo>)</mo>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">O(1)</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                                    class="mord mathdefault" style="margin-right:0.02778em;">O</span><span
+                                    class="mopen">(</span><span class="mord">1</span><span
+                                    class="mclose">)</span></span></span></span> since we don't use any additional space
+                    to find the running sum. <em>Note</em> that we do not take into consideration the space occupied by
+                    the output array.</p>
+            </li>
+        </ul>
+        <br>
+    </div>
+</div>
+<link rel="stylesheet" href="../../../boilerplate/simple.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css"
+    integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">

@@ -49,7 +49,7 @@
 * 0088,Merge Sorted Array
 * 0485,Max Consecutive Ones
 * 0896,Monotonic Array
-
+* 1480,Running Sum of 1d Array
 
 # Arrays (two-dimentional)
 
