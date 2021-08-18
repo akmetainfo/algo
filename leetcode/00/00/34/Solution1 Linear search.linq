@@ -73,6 +73,36 @@ public class Solution2
 {
     public int[] SearchRange(int[] nums, int target)
     {
+        var result = new int[] { -1, -1 };
+        
+        for(var i = 0; i < nums.Length; i++)
+            if(nums[i] == target)
+            {
+                result[0] = i;
+                break;
+            }
+            
+        if(result[0] == -1)
+            return result;
+            
+        for(var i = nums.Length - 1; i >= result[0]; i--)
+            if(nums[i] == target)
+            {
+                result[1] = i;
+                break;
+            }
+            
+        return result;
+    }
+}
+/*
+    Time: O(N)
+    Space: O(1)
+*/
+public class Solution3
+{
+    public int[] SearchRange(int[] nums, int target)
+    {
         bool found = false;
         
         var i = 0;
