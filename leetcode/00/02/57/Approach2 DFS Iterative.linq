@@ -9,7 +9,7 @@
 
 /*
     Time: O(N)
-    Space: O(N) for stack and list
+    Space: O(N) for stacks and list
 */
 public class Solution
 {
