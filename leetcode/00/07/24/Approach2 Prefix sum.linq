@@ -23,6 +23,35 @@ public class Solution
         
         for(var i = 0; i < nums.Length; i++)
         {
+            leftSum += nums[i];
+            
+            var rightSum = sum - leftSum + nums[i];
+            
+            if(leftSum == rightSum)
+                return i;
+        }
+        
+        return -1;
+    }
+}
+
+
+/*
+    Time: O(N)
+    Space: O(1)
+*/
+public class Solution1
+{
+    public int PivotIndex(int[] nums)
+    {
+        var sum = 0;
+        var leftSum = 0;
+        
+        for(var i = 0; i < nums.Length; i++)
+            sum += nums[i];
+        
+        for(var i = 0; i < nums.Length; i++)
+        {
             var rightSum = sum - leftSum - nums[i];
             
             if(leftSum == rightSum)
@@ -72,7 +101,7 @@ public class Solution2
     Time: O(N)
     Space: O(N)
 */
-public class Solution1
+public class Solution3
 {
     public int PivotIndex(int[] nums)
     {
