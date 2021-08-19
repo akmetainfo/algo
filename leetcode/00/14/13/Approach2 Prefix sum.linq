@@ -29,7 +29,7 @@ public class Solution
     Time: O(N)
     Space: O(1)
 */
-public class Solution
+public class Solution1
 {
     public int MinStartValue(int[] nums)
     {
@@ -55,7 +55,7 @@ public class Solution
     Time: O(N) two pass solution
     Space: O(N)
 */
-public class Solution1
+public class Solution2
 {
     public int MinStartValue(int[] nums)
     {
