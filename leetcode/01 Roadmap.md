@@ -96,6 +96,7 @@
 * 0217,Contains Duplicate
 * 0242,Valid Anagram
 * 0389,Find the Difference
+* 0561,Array Partition I
 
 # Binary tree
 
