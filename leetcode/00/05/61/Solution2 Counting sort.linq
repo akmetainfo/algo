@@ -43,48 +43,37 @@ public class Solution
 
 /*
     Time: O(n)
-    Space: O(1) because dictionary size depends from constant, not nums.Length
+    Space: O(1)
 */
 public class Solution1
 {
     public int ArrayPairSum(int[] nums)
     {
-        var min = nums[0];
-        var max = nums[0];
-        var map = new Dictionary<int, int>();
-        for (int i=0; i<nums.Length; i++)
+        var min = nums.Min();
+        var max = nums.Max();
+        
+        var hist = new int[Math.Abs(min) + 1 + max];
+        foreach(var num in nums)
+            hist[num - min]++;
+            
+        var result = 0;
+        var firstInPair = true;
+        
+        for(var i = 0; i < hist.Length; i++)
         {
-            if (map.ContainsKey(nums[i]))
-            {
-                map[nums[i]]++;
-            }
-            else
-            {
-                map.Add(nums[i], 1);
-                if (nums[i] < min)
-                    min = nums[i];
-                if (nums[i] > max)
-                    max = nums[i];
-            }
+            var count = hist[i];
+            
+            if(count == 0)
+                continue;
+            
+            result += firstInPair
+                ? (i + min) * ( (count + 1) / 2)
+                : (i + min) * ( count / 2);
+                
+            firstInPair = firstInPair == (count % 2 == 0);
         }
         
-        var sum = 0;
-        var carry = false;
-        for (int i = min; i<=max; i++)
-        {
-            int count;
-            var found = map.TryGetValue(i, out count);
-            if (!found)
-                continue;
-                
-            if (carry)
-                count--;
-            sum += i * (count / 2);
-            carry = (count % 2 != 0);
-            if (carry)
-                sum += i;
-        }
-        return sum;        
+        return result;
     }
 }
 
@@ -93,7 +82,7 @@ public class Solution1
 [TestCase(new int[] { 6,2,6,5,1,2 }, 9)]
 public void SolutionTests(int[] nums, int expected)
 {
-    var actual = new Solution().ArrayPairSum(nums);
+    var actual = new Solution1().ArrayPairSum(nums);
     Assert.That(actual, Is.EqualTo(expected));
 }
 
