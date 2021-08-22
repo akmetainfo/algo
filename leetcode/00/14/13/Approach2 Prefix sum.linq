@@ -8,20 +8,23 @@
 // https://leetcode.com/problems/minimum-value-to-get-positive-step-by-step-sum/
 
 /*
-    Time: O(N)
-    Space: O(1)
+    Time: O(N) two pass solution
+    Space: O(N)
 */
 public class Solution
 {
     public int MinStartValue(int[] nums)
     {
-        var min = nums[0];
-        for(int i=1; i<nums.Length; i++)
-        {
-            nums[i]+=nums[i-1];
-            min = Math.Min(min, nums[i]);
-        }
-        return Math.Max(1, 1-min);
+        const int minAnswer = 1;
+        
+        var pref = new int[nums.Length + 1];
+        
+        for(var i = 0; i < nums.Length; i++)
+            pref[i+1] = pref[i] + nums[i];
+            
+        var minSum = pref.Min();
+        
+        return Math.Max(minAnswer, minAnswer - minSum);
     }
 }
 
@@ -35,45 +38,18 @@ public class Solution1
     {
         const int minAnswer = 1;
         
-        var result = minAnswer;
-        
-        var sum = result;
-        for(var i = 0; i < nums.Length; i++)
+        var sum = nums[0];
+        var minSum = sum;
+        for(int i = 1; i < nums.Length; i++)
         {
             sum += nums[i];
-            if(sum < minAnswer)
-            {
-                result += minAnswer - sum;
-                sum = minAnswer;
-            }
+            minSum = Math.Min(minSum, sum);
         }
-        return result > 1 ? result : 1;
+
+        return Math.Max(minAnswer, minAnswer - minSum);
     }
 }
 
-/*
-    Time: O(N) two pass solution
-    Space: O(N)
-*/
-public class Solution2
-{
-    public int MinStartValue(int[] nums)
-    {
-        var pref = new int[nums.Length + 1];
-        
-        for(var i = 0; i < nums.Length; i++)
-            pref[i+1] = pref[i] + nums[i];
-            
-        var min = pref[0];
-        for(var i = 1; i < pref.Length; i++)
-            if(pref[i] < min)
-                min = pref[i];
-                
-        var result = 1 - min;
-        
-        return result > 1 ? result : 1;
-    }
-}
 
 [Test]
 [TestCase(new int[] { -3,2,-3,4,2 }, 5 )]
