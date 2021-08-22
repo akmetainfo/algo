@@ -161,3 +161,9 @@ next challenges:
 * 0724,Find Pivot Index
 * 1413,Minimum Value to Get Positive Step by Step Sum
 * 1588,Sum of All Odd Length Subarrays
+
+# Sliding window
+
+next challenges:
+
+* 1588, Sum of All Odd Length Subarrays https://leetcode.com/problems/sum-of-all-odd-length-subarrays/discuss/967629/C-Sliding-Window

@@ -8,70 +8,43 @@
 // https://leetcode.com/problems/sum-of-all-odd-length-subarrays/
 
 /*
-    Time: O(N^3)
+    Time: O(?) maybe N^3
     Space: O(1)
+    
+    https://leetcode.com/problems/sum-of-all-odd-length-subarrays/discuss/967629/C-Sliding-Window
 */
 public class Solution
 {
     public int SumOddLengthSubarrays(int[] arr)
     {
-        var result = 0;
-        
-        for(var i = 1; i <= arr.Length; i += 2)
+        int oddStart = arr.Length;
+        int oddTotal = 0;
+        if(arr.Length % 2 == 0) //check to see if the array's length is positive
+            oddStart = arr.Length-1; //if it is take the length - 1 to find the odd starting point
+			
+        for(int i = oddStart; i > 0; i-=2)
         {
-            for(var j = 0; j < arr.Length; j++)
-            {
-                if(j + i > arr.Length)
-                    continue;
-                var sum = 0;
-                for(var m = 0; m < i; m++)
-                    sum += arr[j+m];
-                result += sum;
-            }
+            oddTotal+= getTotal(oddStart, arr);
+            oddStart-=2;
         }
-        
-        return result;
+        return oddTotal;
     }
-}
-
-
-/*
-    Time: O(N^3)
-    Space: O(1)
     
-    Same as above, just debug version
-*/
-public class Solution1
-{
-    public int SumOddLengthSubarrays(int[] arr)
+    public int getTotal(int oddValue, int[] arr)
     {
-        var result = 0;
-        
-        for(var i = 1; i <= arr.Length; i += 2)
+        int head = arr.Length - oddValue;
+        int tail = arr.Length-1;
+        int total = 0;
+        while(head >= 0)
         {
-            $"===={i}====".Dump();
-            for(var j = 0; j < arr.Length; j++)
+            for(int i = head; i <= tail; i++)
             {
-                //  |---------| Length = 5
-                //  |0 1 2 3 4|
-                //  |1 4 2 5 3| 
-                //  |    J    | i = 3
-                if(j + i > arr.Length)
-                    continue;
-                var sum = 0;
-                var temp = new List<int>();
-                for(var m = 0; m < i; m++)
-                {
-                    sum += arr[j+m];
-                    temp.Add(arr[j+m]);
-                }
-                string.Join(", ", temp).Dump();
-                
-                result += sum;
+                total += arr[i];
             }
+            head--;
+            tail--;
         }
-        
-        return result;
+        return total; 
     }
 }
 

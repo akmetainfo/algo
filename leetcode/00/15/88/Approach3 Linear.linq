@@ -8,8 +8,27 @@
 // https://leetcode.com/problems/sum-of-all-odd-length-subarrays/
 
 /*
-    Time: O(N^3)
+    Time: O(N)
     Space: O(1)
+*/
+/*
+https://leetcode.com/problems/sum-of-all-odd-length-subarrays/discuss/857063/C-O(n)-solution
+
+Iterate the input array, for each number arr[i], count how many odd-length subarrys have it. The result will be sum of count * arr[i].
+
+Take [1, 4, 2, 5, 3] as an example.
+
+    1 appears in [1], [1, 4, 2], [1, 4, 2, 5, 3], so result should add 3 * 1.
+    4 appears in [4], [4, 2, 5], [1, 4, 2], [1, 4, 2, 5, 3], so result should add 4 * 4.
+    2 appears in [2], [2, 5, 3], [4, 2, 5], [1, 4, 2], [1, 4, 2, 5, 3], so result should add 5 * 2.
+    5 apperas in [5], [2, 5, 3], [4, 2, 5], [1, 4, 2, 5, 3], so result should add 4 * 5
+    3 apperas in [3], [2, 5, 3], [1, 4, 2, 5, 3], so the result should add 3 * 3
+
+For number arr[i], there are i numbers on its left side and (n - i - 1) numbers on its right side.
+
+In other words, beside arr[i], we choose 0, 1, ..., i numbers on the left side and choose 0, 1,..., (n - i - 1) numbers on the right side to form an array that has arr[i].
+There will be (i + 1) * (n - i) arrays will have arr[i].
+So the number of odd-length array will be [(i + 1) * (n - i) + 1] / 2.
 */
 public class Solution
 {
@@ -17,58 +36,12 @@ public class Solution
     {
         var result = 0;
         
-        for(var i = 1; i <= arr.Length; i += 2)
+        for(int i = 0; i < arr.Length; i++)
         {
-            for(var j = 0; j < arr.Length; j++)
-            {
-                if(j + i > arr.Length)
-                    continue;
-                var sum = 0;
-                for(var m = 0; m < i; m++)
-                    sum += arr[j+m];
-                result += sum;
-            }
-        }
-        
-        return result;
-    }
-}
-
-
-/*
-    Time: O(N^3)
-    Space: O(1)
-    
-    Same as above, just debug version
-*/
-public class Solution1
-{
-    public int SumOddLengthSubarrays(int[] arr)
-    {
-        var result = 0;
-        
-        for(var i = 1; i <= arr.Length; i += 2)
-        {
-            $"===={i}====".Dump();
-            for(var j = 0; j < arr.Length; j++)
-            {
-                //  |---------| Length = 5
-                //  |0 1 2 3 4|
-                //  |1 4 2 5 3| 
-                //  |    J    | i = 3
-                if(j + i > arr.Length)
-                    continue;
-                var sum = 0;
-                var temp = new List<int>();
-                for(var m = 0; m < i; m++)
-                {
-                    sum += arr[j+m];
-                    temp.Add(arr[j+m]);
-                }
-                string.Join(", ", temp).Dump();
-                
-                result += sum;
-            }
+            int left = i + 1;
+            int right = arr.Length - i;
+            
+            result += (left * right + 1) / 2 * arr[i];
         }
         
         return result;
