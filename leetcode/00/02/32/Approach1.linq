@@ -109,6 +109,11 @@ public class MyQueue
     new object[] { new int[0], new[]{1}, new[] {2}, new[] {3}, new[] {4}, new int[0], new[] {5}, new int[0], new int[0], new int[0], new int[0] },
     new object[] { null, null, null, null, null, 1, null, 2, 3, 4, 5 }
 )]
+[TestCase(
+    new string[] { "MyQueue","push","push","pop","push","push","pop","peek" },
+    new object[] { new int[0], new[]{1}, new[] {2}, new int[0], new[]{3}, new[]{4}, new int[0], new int[0] },
+    new object[] { null, null, null, 1, null, null, 2, 3 }
+)]
 public void SolutionTests(string[] actionsNames, object[] actionsParams, object[] expectedResult)
 {
     AssertInputIsCorrect(actionsNames, actionsParams, expectedResult);
