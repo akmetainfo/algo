@@ -28,7 +28,7 @@
 * 0412,Fizz Buzz
 * 0434,Number of Segments in a String
 * 0709,To Lower Case
-
+* 0438,Find All Anagrams in a String
 
 # Digits (Arifemtics, Math, bit manipulations)
 
@@ -168,6 +168,9 @@ next challenges:
 
 # Sliding window
 
+* 0438,Find All Anagrams in a String
+
 next challenges:
 
-* 1588, Sum of All Odd Length Subarrays https://leetcode.com/problems/sum-of-all-odd-length-subarrays/discuss/967629/C-Sliding-Window
+* 1588,Sum of All Odd Length Subarrays https://leetcode.com/problems/sum-of-all-odd-length-subarrays/discuss/967629/C-Sliding-Window
+* 0076,Minimum Window Substring
