@@ -98,6 +98,10 @@
 * 0389,Find the Difference
 * 0561,Array Partition I
 
+# Graph
+
+* 1791,Find Center of Star Graph
+
 # Binary tree
 
 * 0094,Binary Tree Inorder Traversal
