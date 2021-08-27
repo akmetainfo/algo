@@ -8,51 +8,34 @@
 // https://leetcode.com/problems/find-center-of-star-graph/
 
 /*
-    Time: O(N), where N is node's count
-    Space: O(N)
+    Time: O(1)
+    Space: O(1)
 */
 public class Solution
 {
+    // If a graph is properly formed, all edges will hare the center as one of the ends.
+    // So we can just take two first edges and see what vertex is included to both of them.
     public int FindCenter(int[][] edges)
     {
-        var dict = new Dictionary<int, int>();
+        var firstEdge = edges[0];
+        var secondEdge = edges[1];
         
-        foreach (var edge in edges)
-        {
-            if (!dict.ContainsKey(edge[0]))
-                dict.Add(edge[0], 0);
-            
-            dict[edge[0]]++;
-            
-            if (!dict.ContainsKey(edge[1]))
-                dict.Add(edge[1], 0);
-            
-            dict[edge[1]]++;
-        }
+        if(firstEdge[0] == secondEdge[0] || firstEdge[0] == secondEdge[1])
+            return firstEdge[0];
         
-        foreach (var node in dict.Keys)
-            if (dict[node] == dict.Count - 1)
-                return node;
-        
-        throw new Exception("The given edges must represent a valid star graph!");
+        return firstEdge[1];
     }
 }
 
-
 /*
-    Time: O(N)
-    Space: O(?)
+    Time: O(1)
+    Space: O(1)
 */
 public class Solution1
 {
     public int FindCenter(int[][] edges)
     {
-        return edges.Take(2)
-                    .SelectMany(x => x)
-                    .GroupBy(x => x)
-                    .OrderBy(x => x.Count())
-                    .Select(x => x.Key)
-                    .LastOrDefault();
+        return edges[0].Intersect(edges[1]).First();
     }
 }
 
