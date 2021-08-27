@@ -104,19 +104,19 @@
 * 0100,Same Tree
 * 0101,Symmetric Tree
 * 0102,Binary Tree Level Order Traversal
+* 0103,Binary Tree Zigzag Level Order Traversal
 * 0104,Maximum Depth of Binary Tree
+* 0110,Balanced Binary Tree
+* 0112,Path Sum
 * 0144,Binary Tree Preorder Traversal
 * 0145,Binary Tree Postorder Traversal
+* 0226,Invert Binary Tree
 * 0257,Binary Tree Paths
 * 0965,Univalued Binary Tree
 
 next challenges:
 
-* 110. Balanced Binary Tree
 * 111. Minimum Depth of Binary Tree
-* 112. Path Sum
-* 226. Invert Binary Tree
-* 257. Binary Tree Paths
 * 404. Sum of Left Leaves
 * 543. Diameter of Binary Tree
 * 563. Binary Tree Tilt
