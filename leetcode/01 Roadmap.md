@@ -137,16 +137,22 @@ next challenges:
 # Linked list
 
 * 0002,Add Two Numbers
+* 0019,Remove Nth Node From End of List
 * 0141,Linked List Cycle
+* 0142,Linked List Cycle II
+* 0160,Intersection of Two Linked Lists
 * 0203,Remove Linked List Elements
 * 0206,Reverse Linked List
+* 0234,Palindrome Linked List
+* 0237,Delete Node in a Linked List
 * 0328,Odd Even Linked List
+* 0622,Design Circular Queue
 * 0707,Design Linked List
 * 0876,Middle of the Linked List
 
 next challenges:
 
-* 234. Palindrome Linked List
+
 
 # Stack
 
