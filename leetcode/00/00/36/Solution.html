@@ -1,0 +1,826 @@
+<div class="content__QRGW">
+    <div>
+        <h2>Solution</h2>
+        <hr>
+        <h4 id="approach-1-sliding-window">Approach 1: Sliding Window</h4>
+        <p><strong>Intuition</strong></p>
+        <p>The question asks us to return the minimum window from the string <span class="katex"><span
+                    class="katex-mathml"><math>
+                        <semantics>
+                            <mrow>
+                                <mi>S</mi>
+                            </mrow>
+                            <annotation encoding="application/x-tex">S</annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault"
+                            style="margin-right:0.05764em;">S</span></span></span></span> which has all the characters
+            of the string <span class="katex"><span class="katex-mathml"><math>
+                        <semantics>
+                            <mrow>
+                                <mi>T</mi>
+                            </mrow>
+                            <annotation encoding="application/x-tex">T</annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault"
+                            style="margin-right:0.13889em;">T</span></span></span></span>. Let us call a window
+            <code>desirable</code> if it has all the characters from <span class="katex"><span
+                    class="katex-mathml"><math>
+                        <semantics>
+                            <mrow>
+                                <mi>T</mi>
+                            </mrow>
+                            <annotation encoding="application/x-tex">T</annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault"
+                            style="margin-right:0.13889em;">T</span></span></span></span>.
+        </p>
+        <p>We can use a simple sliding window approach to solve this problem.</p>
+        <p>In any sliding window based problem we have two pointers. One <span class="katex"><span
+                    class="katex-mathml"><math>
+                        <semantics>
+                            <mrow>
+                                <mi>r</mi>
+                                <mi>i</mi>
+                                <mi>g</mi>
+                                <mi>h</mi>
+                                <mi>t</mi>
+                            </mrow>
+                            <annotation encoding="application/x-tex">right</annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span
+                            class="mord mathdefault" style="margin-right:0.02778em;">r</span><span
+                            class="mord mathdefault">i</span><span class="mord mathdefault"
+                            style="margin-right:0.03588em;">g</span><span class="mord mathdefault">h</span><span
+                            class="mord mathdefault">t</span></span></span></span> pointer whose job is to expand the
+            current window and then we have the <span class="katex"><span class="katex-mathml"><math>
+                        <semantics>
+                            <mrow>
+                                <mi>l</mi>
+                                <mi>e</mi>
+                                <mi>f</mi>
+                                <mi>t</mi>
+                            </mrow>
+                            <annotation encoding="application/x-tex">left</annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span
+                            class="mord mathdefault" style="margin-right:0.01968em;">l</span><span
+                            class="mord mathdefault">e</span><span class="mord mathdefault"
+                            style="margin-right:0.10764em;">f</span><span
+                            class="mord mathdefault">t</span></span></span></span> pointer whose job is to contract a
+            given window. At any point in time only one of these pointers move and the other one remains fixed.</p>
+        <p>The solution is pretty intuitive. We keep expanding the window by moving the right pointer. When the window
+            has all the desired characters, we contract (if possible) and save the smallest window till now.</p>
+        <p>The answer is the smallest desirable window.</p>
+        <p>For eg. <code>S = "ABAACBAB" T = "ABC"</code>. Then our answer window is <code>"ACB"</code> and shown below
+            is one of the possible desirable windows.</p>
+        <center>
+            <img src="76_Minimum_Window_Substring_1.png" width="500">
+        </center>
+        <br>
+        <p><strong>Algorithm</strong></p>
+        <ol>
+            <li>
+                <p>We start with two pointers, <span class="katex"><span class="katex-mathml"><math>
+                                <semantics>
+                                    <mrow>
+                                        <mi>l</mi>
+                                        <mi>e</mi>
+                                        <mi>f</mi>
+                                        <mi>t</mi>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">left</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut"
+                                    style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span
+                                    class="mord mathdefault" style="margin-right:0.01968em;">l</span><span
+                                    class="mord mathdefault">e</span><span class="mord mathdefault"
+                                    style="margin-right:0.10764em;">f</span><span
+                                    class="mord mathdefault">t</span></span></span></span> and <span class="katex"><span
+                            class="katex-mathml"><math>
+                                <semantics>
+                                    <mrow>
+                                        <mi>r</mi>
+                                        <mi>i</mi>
+                                        <mi>g</mi>
+                                        <mi>h</mi>
+                                        <mi>t</mi>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">right</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut"
+                                    style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span
+                                    class="mord mathdefault" style="margin-right:0.02778em;">r</span><span
+                                    class="mord mathdefault">i</span><span class="mord mathdefault"
+                                    style="margin-right:0.03588em;">g</span><span class="mord mathdefault">h</span><span
+                                    class="mord mathdefault">t</span></span></span></span> initially pointing to the
+                    first element of the string <span class="katex"><span class="katex-mathml"><math>
+                                <semantics>
+                                    <mrow>
+                                        <mi>S</mi>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">S</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut" style="height:0.68333em;vertical-align:0em;"></span><span
+                                    class="mord mathdefault"
+                                    style="margin-right:0.05764em;">S</span></span></span></span>.</p>
+            </li>
+            <li>
+                <p>We use the <span class="katex"><span class="katex-mathml"><math>
+                                <semantics>
+                                    <mrow>
+                                        <mi>r</mi>
+                                        <mi>i</mi>
+                                        <mi>g</mi>
+                                        <mi>h</mi>
+                                        <mi>t</mi>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">right</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut"
+                                    style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span
+                                    class="mord mathdefault" style="margin-right:0.02778em;">r</span><span
+                                    class="mord mathdefault">i</span><span class="mord mathdefault"
+                                    style="margin-right:0.03588em;">g</span><span class="mord mathdefault">h</span><span
+                                    class="mord mathdefault">t</span></span></span></span> pointer to expand the window
+                    until we get a desirable window i.e. a window that contains all of the characters of <span
+                        class="katex"><span class="katex-mathml"><math>
+                                <semantics>
+                                    <mrow>
+                                        <mi>T</mi>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">T</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut" style="height:0.68333em;vertical-align:0em;"></span><span
+                                    class="mord mathdefault"
+                                    style="margin-right:0.13889em;">T</span></span></span></span>.</p>
+            </li>
+            <li>
+                <p>Once we have a window with all the characters, we can move the left pointer ahead one by one. If the
+                    window is still a desirable one we keep on updating the minimum window size.</p>
+            </li>
+            <li>
+                <p>If the window is not desirable any more, we repeat <span class="katex"><span
+                            class="katex-mathml"><math>
+                                <semantics>
+                                    <mrow>
+                                        <mi>s</mi>
+                                        <mi>t</mi>
+                                        <mi>e</mi>
+                                        <mi>p</mi>
+                                        <mtext>  </mtext>
+                                        <mn>2</mn>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">step \; 2</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut"
+                                    style="height:0.8388800000000001em;vertical-align:-0.19444em;"></span><span
+                                    class="mord mathdefault">s</span><span class="mord mathdefault">t</span><span
+                                    class="mord mathdefault">e</span><span class="mord mathdefault">p</span><span
+                                    class="mspace" style="margin-right:0.2777777777777778em;"></span><span
+                                    class="mord">2</span></span></span></span> onwards.</p>
+            </li>
+        </ol>
+        <center>
+            <img src="76_Minimum_Window_Substring_2.png" width="500">
+        </center>
+        <p>The above steps are repeated until we have looked at all the windows. The smallest window is returned.</p>
+        <center>
+            <img src="76_Minimum_Window_Substring_3.png" width="500">
+        </center>
+        <br>
+        <iframe src="https://leetcode.com/playground/XEVk3wZb/shared" name="XEVk3wZb" width="100%" height="500"
+            frameborder="0"></iframe>
+        <p><strong>Complexity Analysis</strong></p>
+        <ul>
+            <li>
+                <p>Time Complexity: <span class="katex"><span class="katex-mathml"><math>
+                                <semantics>
+                                    <mrow>
+                                        <mi>O</mi>
+                                        <mo>(</mo>
+                                        <mi mathvariant="normal">∣</mi>
+                                        <mi>S</mi>
+                                        <mi mathvariant="normal">∣</mi>
+                                        <mo>+</mo>
+                                        <mi mathvariant="normal">∣</mi>
+                                        <mi>T</mi>
+                                        <mi mathvariant="normal">∣</mi>
+                                        <mo>)</mo>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">O(|S| + |T|)</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                                    class="mord mathdefault" style="margin-right:0.02778em;">O</span><span
+                                    class="mopen">(</span><span class="mord">∣</span><span class="mord mathdefault"
+                                    style="margin-right:0.05764em;">S</span><span class="mord">∣</span><span
+                                    class="mspace" style="margin-right:0.2222222222222222em;"></span><span
+                                    class="mbin">+</span><span class="mspace"
+                                    style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span
+                                    class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                                    class="mord">∣</span><span class="mord mathdefault"
+                                    style="margin-right:0.13889em;">T</span><span class="mord">∣</span><span
+                                    class="mclose">)</span></span></span></span> where |S| and |T| represent the lengths
+                    of strings <span class="katex"><span class="katex-mathml"><math>
+                                <semantics>
+                                    <mrow>
+                                        <mi>S</mi>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">S</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut" style="height:0.68333em;vertical-align:0em;"></span><span
+                                    class="mord mathdefault"
+                                    style="margin-right:0.05764em;">S</span></span></span></span> and <span
+                        class="katex"><span class="katex-mathml"><math>
+                                <semantics>
+                                    <mrow>
+                                        <mi>T</mi>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">T</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut" style="height:0.68333em;vertical-align:0em;"></span><span
+                                    class="mord mathdefault"
+                                    style="margin-right:0.13889em;">T</span></span></span></span>.
+                    In the worst case we might end up visiting every element of string <span class="katex"><span
+                            class="katex-mathml"><math>
+                                <semantics>
+                                    <mrow>
+                                        <mi>S</mi>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">S</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut" style="height:0.68333em;vertical-align:0em;"></span><span
+                                    class="mord mathdefault"
+                                    style="margin-right:0.05764em;">S</span></span></span></span> twice, once by left
+                    pointer and once by right pointer. <span class="katex"><span class="katex-mathml"><math>
+                                <semantics>
+                                    <mrow>
+                                        <mi mathvariant="normal">∣</mi>
+                                        <mi>T</mi>
+                                        <mi mathvariant="normal">∣</mi>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">|T|</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                                    class="mord">∣</span><span class="mord mathdefault"
+                                    style="margin-right:0.13889em;">T</span><span
+                                    class="mord">∣</span></span></span></span> represents the length of string <span
+                        class="katex"><span class="katex-mathml"><math>
+                                <semantics>
+                                    <mrow>
+                                        <mi>T</mi>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">T</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut" style="height:0.68333em;vertical-align:0em;"></span><span
+                                    class="mord mathdefault"
+                                    style="margin-right:0.13889em;">T</span></span></span></span>.</p>
+            </li>
+            <li>
+                <p>Space Complexity: <span class="katex"><span class="katex-mathml"><math>
+                                <semantics>
+                                    <mrow>
+                                        <mi>O</mi>
+                                        <mo>(</mo>
+                                        <mi mathvariant="normal">∣</mi>
+                                        <mi>S</mi>
+                                        <mi mathvariant="normal">∣</mi>
+                                        <mo>+</mo>
+                                        <mi mathvariant="normal">∣</mi>
+                                        <mi>T</mi>
+                                        <mi mathvariant="normal">∣</mi>
+                                        <mo>)</mo>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">O(|S| + |T|)</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                                    class="mord mathdefault" style="margin-right:0.02778em;">O</span><span
+                                    class="mopen">(</span><span class="mord">∣</span><span class="mord mathdefault"
+                                    style="margin-right:0.05764em;">S</span><span class="mord">∣</span><span
+                                    class="mspace" style="margin-right:0.2222222222222222em;"></span><span
+                                    class="mbin">+</span><span class="mspace"
+                                    style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span
+                                    class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                                    class="mord">∣</span><span class="mord mathdefault"
+                                    style="margin-right:0.13889em;">T</span><span class="mord">∣</span><span
+                                    class="mclose">)</span></span></span></span>. <span class="katex"><span
+                            class="katex-mathml"><math>
+                                <semantics>
+                                    <mrow>
+                                        <mi mathvariant="normal">∣</mi>
+                                        <mi>S</mi>
+                                        <mi mathvariant="normal">∣</mi>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">|S|</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                                    class="mord">∣</span><span class="mord mathdefault"
+                                    style="margin-right:0.05764em;">S</span><span
+                                    class="mord">∣</span></span></span></span> when the window size is equal to the
+                    entire string <span class="katex"><span class="katex-mathml"><math>
+                                <semantics>
+                                    <mrow>
+                                        <mi>S</mi>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">S</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut" style="height:0.68333em;vertical-align:0em;"></span><span
+                                    class="mord mathdefault"
+                                    style="margin-right:0.05764em;">S</span></span></span></span>. <span
+                        class="katex"><span class="katex-mathml"><math>
+                                <semantics>
+                                    <mrow>
+                                        <mi mathvariant="normal">∣</mi>
+                                        <mi>T</mi>
+                                        <mi mathvariant="normal">∣</mi>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">|T|</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                                    class="mord">∣</span><span class="mord mathdefault"
+                                    style="margin-right:0.13889em;">T</span><span
+                                    class="mord">∣</span></span></span></span> when <span class="katex"><span
+                            class="katex-mathml"><math>
+                                <semantics>
+                                    <mrow>
+                                        <mi>T</mi>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">T</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut" style="height:0.68333em;vertical-align:0em;"></span><span
+                                    class="mord mathdefault"
+                                    style="margin-right:0.13889em;">T</span></span></span></span> has all unique
+                    characters.
+                    <br>
+                    <br>
+                </p>
+            </li>
+        </ul>
+        <hr>
+        <h4 id="approach-2-optimized-sliding-window">Approach 2: Optimized Sliding Window</h4>
+        <p><strong>Intuition</strong></p>
+        <p>A small improvement to the above approach can reduce the time complexity of the algorithm to <span
+                class="katex"><span class="katex-mathml"><math>
+                        <semantics>
+                            <mrow>
+                                <mi>O</mi>
+                                <mo>(</mo>
+                                <mn>2</mn>
+                                <mo>∗</mo>
+                                <mi mathvariant="normal">∣</mi>
+                                <mi>f</mi>
+                                <mi>i</mi>
+                                <mi>l</mi>
+                                <mi>t</mi>
+                                <mi>e</mi>
+                                <mi>r</mi>
+                                <mi>e</mi>
+                                <mi>d</mi>
+                                <mi mathvariant="normal">_</mi>
+                                <mi>S</mi>
+                                <mi mathvariant="normal">∣</mi>
+                                <mo>+</mo>
+                                <mi mathvariant="normal">∣</mi>
+                                <mi>S</mi>
+                                <mi mathvariant="normal">∣</mi>
+                                <mo>+</mo>
+                                <mi mathvariant="normal">∣</mi>
+                                <mi>T</mi>
+                                <mi mathvariant="normal">∣</mi>
+                                <mo>)</mo>
+                            </mrow>
+                            <annotation encoding="application/x-tex">O(2*|filtered\_S| + |S| + |T|)</annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault"
+                            style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span
+                            class="mord">2</span><span class="mspace"
+                            style="margin-right:0.2222222222222222em;"></span><span class="mbin">∗</span><span
+                            class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span
+                        class="base"><span class="strut" style="height:1.06em;vertical-align:-0.31em;"></span><span
+                            class="mord">∣</span><span class="mord mathdefault"
+                            style="margin-right:0.10764em;">f</span><span class="mord mathdefault">i</span><span
+                            class="mord mathdefault" style="margin-right:0.01968em;">l</span><span
+                            class="mord mathdefault">t</span><span class="mord mathdefault">e</span><span
+                            class="mord mathdefault" style="margin-right:0.02778em;">r</span><span
+                            class="mord mathdefault">e</span><span class="mord mathdefault">d</span><span class="mord"
+                            style="margin-right:0.02778em;">_</span><span class="mord mathdefault"
+                            style="margin-right:0.05764em;">S</span><span class="mord">∣</span><span class="mspace"
+                            style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span
+                            class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span
+                        class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                            class="mord">∣</span><span class="mord mathdefault"
+                            style="margin-right:0.05764em;">S</span><span class="mord">∣</span><span class="mspace"
+                            style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span
+                            class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span
+                        class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                            class="mord">∣</span><span class="mord mathdefault"
+                            style="margin-right:0.13889em;">T</span><span class="mord">∣</span><span
+                            class="mclose">)</span></span></span></span>, where <span class="katex"><span
+                    class="katex-mathml"><math>
+                        <semantics>
+                            <mrow>
+                                <mi>f</mi>
+                                <mi>i</mi>
+                                <mi>l</mi>
+                                <mi>t</mi>
+                                <mi>e</mi>
+                                <mi>r</mi>
+                                <mi>e</mi>
+                                <mi>d</mi>
+                                <mi mathvariant="normal">_</mi>
+                                <mi>S</mi>
+                            </mrow>
+                            <annotation encoding="application/x-tex">filtered\_S</annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:1.00444em;vertical-align:-0.31em;"></span><span class="mord mathdefault"
+                            style="margin-right:0.10764em;">f</span><span class="mord mathdefault">i</span><span
+                            class="mord mathdefault" style="margin-right:0.01968em;">l</span><span
+                            class="mord mathdefault">t</span><span class="mord mathdefault">e</span><span
+                            class="mord mathdefault" style="margin-right:0.02778em;">r</span><span
+                            class="mord mathdefault">e</span><span class="mord mathdefault">d</span><span class="mord"
+                            style="margin-right:0.02778em;">_</span><span class="mord mathdefault"
+                            style="margin-right:0.05764em;">S</span></span></span></span> is the string formed from S by
+            removing all the elements not present in <span class="katex"><span class="katex-mathml"><math>
+                        <semantics>
+                            <mrow>
+                                <mi>T</mi>
+                            </mrow>
+                            <annotation encoding="application/x-tex">T</annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault"
+                            style="margin-right:0.13889em;">T</span></span></span></span>.</p>
+        <p>This complexity reduction is evident when <span class="katex"><span class="katex-mathml"><math>
+                        <semantics>
+                            <mrow>
+                                <mi mathvariant="normal">∣</mi>
+                                <mi>f</mi>
+                                <mi>i</mi>
+                                <mi>l</mi>
+                                <mi>t</mi>
+                                <mi>e</mi>
+                                <mi>r</mi>
+                                <mi>e</mi>
+                                <mi>d</mi>
+                                <mi mathvariant="normal">_</mi>
+                                <mi>S</mi>
+                                <mi mathvariant="normal">∣</mi>
+                                <mo>&lt;</mo>
+                                <mo>&lt;</mo>
+                                <mo>&lt;</mo>
+                                <mi mathvariant="normal">∣</mi>
+                                <mi>S</mi>
+                                <mi mathvariant="normal">∣</mi>
+                            </mrow>
+                            <annotation encoding="application/x-tex">|filtered\_S| &lt;&lt;&lt; |S|</annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:1.06em;vertical-align:-0.31em;"></span><span class="mord">∣</span><span
+                            class="mord mathdefault" style="margin-right:0.10764em;">f</span><span
+                            class="mord mathdefault">i</span><span class="mord mathdefault"
+                            style="margin-right:0.01968em;">l</span><span class="mord mathdefault">t</span><span
+                            class="mord mathdefault">e</span><span class="mord mathdefault"
+                            style="margin-right:0.02778em;">r</span><span class="mord mathdefault">e</span><span
+                            class="mord mathdefault">d</span><span class="mord"
+                            style="margin-right:0.02778em;">_</span><span class="mord mathdefault"
+                            style="margin-right:0.05764em;">S</span><span class="mord">∣</span><span class="mspace"
+                            style="margin-right:0.2777777777777778em;"></span><span class="mrel">&lt;</span></span><span
+                        class="base"><span class="strut" style="height:0.5782em;vertical-align:-0.0391em;"></span><span
+                            class="mrel">&lt;</span></span><span class="base"><span class="strut"
+                            style="height:0.5782em;vertical-align:-0.0391em;"></span><span class="mrel">&lt;</span><span
+                            class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span
+                        class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                            class="mord">∣</span><span class="mord mathdefault"
+                            style="margin-right:0.05764em;">S</span><span class="mord">∣</span></span></span></span>.
+        </p>
+        <p>This kind of scenario might happen when length of string <span class="katex"><span
+                    class="katex-mathml"><math>
+                        <semantics>
+                            <mrow>
+                                <mi>T</mi>
+                            </mrow>
+                            <annotation encoding="application/x-tex">T</annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault"
+                            style="margin-right:0.13889em;">T</span></span></span></span> is way too small than the
+            length of string <span class="katex"><span class="katex-mathml"><math>
+                        <semantics>
+                            <mrow>
+                                <mi>S</mi>
+                            </mrow>
+                            <annotation encoding="application/x-tex">S</annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault"
+                            style="margin-right:0.05764em;">S</span></span></span></span> and string <span
+                class="katex"><span class="katex-mathml"><math>
+                        <semantics>
+                            <mrow>
+                                <mi>S</mi>
+                            </mrow>
+                            <annotation encoding="application/x-tex">S</annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault"
+                            style="margin-right:0.05764em;">S</span></span></span></span> consists of numerous
+            characters which are not present in <span class="katex"><span class="katex-mathml"><math>
+                        <semantics>
+                            <mrow>
+                                <mi>T</mi>
+                            </mrow>
+                            <annotation encoding="application/x-tex">T</annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault"
+                            style="margin-right:0.13889em;">T</span></span></span></span>.</p>
+        <p><strong>Algorithm</strong></p>
+        <p>We create a list called <span class="katex"><span class="katex-mathml"><math>
+                        <semantics>
+                            <mrow>
+                                <mi>f</mi>
+                                <mi>i</mi>
+                                <mi>l</mi>
+                                <mi>t</mi>
+                                <mi>e</mi>
+                                <mi>r</mi>
+                                <mi>e</mi>
+                                <mi>d</mi>
+                                <mi mathvariant="normal">_</mi>
+                                <mi>S</mi>
+                            </mrow>
+                            <annotation encoding="application/x-tex">filtered\_S</annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:1.00444em;vertical-align:-0.31em;"></span><span class="mord mathdefault"
+                            style="margin-right:0.10764em;">f</span><span class="mord mathdefault">i</span><span
+                            class="mord mathdefault" style="margin-right:0.01968em;">l</span><span
+                            class="mord mathdefault">t</span><span class="mord mathdefault">e</span><span
+                            class="mord mathdefault" style="margin-right:0.02778em;">r</span><span
+                            class="mord mathdefault">e</span><span class="mord mathdefault">d</span><span class="mord"
+                            style="margin-right:0.02778em;">_</span><span class="mord mathdefault"
+                            style="margin-right:0.05764em;">S</span></span></span></span> which has all the characters
+            from string <span class="katex"><span class="katex-mathml"><math>
+                        <semantics>
+                            <mrow>
+                                <mi>S</mi>
+                            </mrow>
+                            <annotation encoding="application/x-tex">S</annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault"
+                            style="margin-right:0.05764em;">S</span></span></span></span> along with their indices in
+            <span class="katex"><span class="katex-mathml"><math>
+                        <semantics>
+                            <mrow>
+                                <mi>S</mi>
+                            </mrow>
+                            <annotation encoding="application/x-tex">S</annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault"
+                            style="margin-right:0.05764em;">S</span></span></span></span>, but these characters should
+            be present in <span class="katex"><span class="katex-mathml"><math>
+                        <semantics>
+                            <mrow>
+                                <mi>T</mi>
+                            </mrow>
+                            <annotation encoding="application/x-tex">T</annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault"
+                            style="margin-right:0.13889em;">T</span></span></span></span>.
+        </p>
+        <pre>  S = "ABCDDDDDDEEAFFBC" T = "ABC"
+      filtered_S = [(0, 'A'), (1, 'B'), (2, 'C'), (11, 'A'), (14, 'B'), (15, 'C')]
+      Here (0, 'A') means in string S character A is at index 0.
+    </pre>
+        <p>We can now follow our sliding window approach on the smaller string <span class="katex"><span
+                    class="katex-mathml"><math>
+                        <semantics>
+                            <mrow>
+                                <mi>f</mi>
+                                <mi>i</mi>
+                                <mi>l</mi>
+                                <mi>t</mi>
+                                <mi>e</mi>
+                                <mi>r</mi>
+                                <mi>e</mi>
+                                <mi>d</mi>
+                                <mi mathvariant="normal">_</mi>
+                                <mi>S</mi>
+                            </mrow>
+                            <annotation encoding="application/x-tex">filtered\_S</annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:1.00444em;vertical-align:-0.31em;"></span><span class="mord mathdefault"
+                            style="margin-right:0.10764em;">f</span><span class="mord mathdefault">i</span><span
+                            class="mord mathdefault" style="margin-right:0.01968em;">l</span><span
+                            class="mord mathdefault">t</span><span class="mord mathdefault">e</span><span
+                            class="mord mathdefault" style="margin-right:0.02778em;">r</span><span
+                            class="mord mathdefault">e</span><span class="mord mathdefault">d</span><span class="mord"
+                            style="margin-right:0.02778em;">_</span><span class="mord mathdefault"
+                            style="margin-right:0.05764em;">S</span></span></span></span>.</p>
+        <iframe src="https://leetcode.com/playground/EyRdt4FZ/shared" name="EyRdt4FZ" width="100%" height="500"
+            frameborder="0"></iframe>
+        <p><strong>Complexity Analysis</strong></p>
+        <ul>
+            <li>Time Complexity : <span class="katex"><span class="katex-mathml"><math>
+                            <semantics>
+                                <mrow>
+                                    <mi>O</mi>
+                                    <mo>(</mo>
+                                    <mi mathvariant="normal">∣</mi>
+                                    <mi>S</mi>
+                                    <mi mathvariant="normal">∣</mi>
+                                    <mo>+</mo>
+                                    <mi mathvariant="normal">∣</mi>
+                                    <mi>T</mi>
+                                    <mi mathvariant="normal">∣</mi>
+                                    <mo>)</mo>
+                                </mrow>
+                                <annotation encoding="application/x-tex">O(|S| + |T|)</annotation>
+                            </semantics>
+                        </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                                style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault"
+                                style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span
+                                class="mord">∣</span><span class="mord mathdefault"
+                                style="margin-right:0.05764em;">S</span><span class="mord">∣</span><span class="mspace"
+                                style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span
+                                class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span
+                            class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                                class="mord">∣</span><span class="mord mathdefault"
+                                style="margin-right:0.13889em;">T</span><span class="mord">∣</span><span
+                                class="mclose">)</span></span></span></span> where |S| and |T| represent the lengths of
+                strings <span class="katex"><span class="katex-mathml"><math>
+                            <semantics>
+                                <mrow>
+                                    <mi>S</mi>
+                                </mrow>
+                                <annotation encoding="application/x-tex">S</annotation>
+                            </semantics>
+                        </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                                style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault"
+                                style="margin-right:0.05764em;">S</span></span></span></span> and <span
+                    class="katex"><span class="katex-mathml"><math>
+                            <semantics>
+                                <mrow>
+                                    <mi>T</mi>
+                                </mrow>
+                                <annotation encoding="application/x-tex">T</annotation>
+                            </semantics>
+                        </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                                style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault"
+                                style="margin-right:0.13889em;">T</span></span></span></span>. The complexity is same as
+                the previous approach. But in certain cases where <span class="katex"><span class="katex-mathml"><math>
+                            <semantics>
+                                <mrow>
+                                    <mi mathvariant="normal">∣</mi>
+                                    <mi>f</mi>
+                                    <mi>i</mi>
+                                    <mi>l</mi>
+                                    <mi>t</mi>
+                                    <mi>e</mi>
+                                    <mi>r</mi>
+                                    <mi>e</mi>
+                                    <mi>d</mi>
+                                    <mi mathvariant="normal">_</mi>
+                                    <mi>S</mi>
+                                    <mi mathvariant="normal">∣</mi>
+                                </mrow>
+                                <annotation encoding="application/x-tex">|filtered\_S|</annotation>
+                            </semantics>
+                        </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                                style="height:1.06em;vertical-align:-0.31em;"></span><span class="mord">∣</span><span
+                                class="mord mathdefault" style="margin-right:0.10764em;">f</span><span
+                                class="mord mathdefault">i</span><span class="mord mathdefault"
+                                style="margin-right:0.01968em;">l</span><span class="mord mathdefault">t</span><span
+                                class="mord mathdefault">e</span><span class="mord mathdefault"
+                                style="margin-right:0.02778em;">r</span><span class="mord mathdefault">e</span><span
+                                class="mord mathdefault">d</span><span class="mord"
+                                style="margin-right:0.02778em;">_</span><span class="mord mathdefault"
+                                style="margin-right:0.05764em;">S</span><span class="mord">∣</span></span></span></span>
+                &lt;&lt;&lt; <span class="katex"><span class="katex-mathml"><math>
+                            <semantics>
+                                <mrow>
+                                    <mi mathvariant="normal">∣</mi>
+                                    <mi>S</mi>
+                                    <mi mathvariant="normal">∣</mi>
+                                </mrow>
+                                <annotation encoding="application/x-tex">|S|</annotation>
+                            </semantics>
+                        </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                                style="height:1em;vertical-align:-0.25em;"></span><span class="mord">∣</span><span
+                                class="mord mathdefault" style="margin-right:0.05764em;">S</span><span
+                                class="mord">∣</span></span></span></span>, the complexity would reduce because the
+                number of iterations would be <span class="katex"><span class="katex-mathml"><math>
+                            <semantics>
+                                <mrow>
+                                    <mn>2</mn>
+                                    <mo>∗</mo>
+                                    <mi mathvariant="normal">∣</mi>
+                                    <mi>f</mi>
+                                    <mi>i</mi>
+                                    <mi>l</mi>
+                                    <mi>t</mi>
+                                    <mi>e</mi>
+                                    <mi>r</mi>
+                                    <mi>e</mi>
+                                    <mi>d</mi>
+                                    <mi mathvariant="normal">_</mi>
+                                    <mi>S</mi>
+                                    <mi mathvariant="normal">∣</mi>
+                                    <mo>+</mo>
+                                    <mi mathvariant="normal">∣</mi>
+                                    <mi>S</mi>
+                                    <mi mathvariant="normal">∣</mi>
+                                    <mo>+</mo>
+                                    <mi mathvariant="normal">∣</mi>
+                                    <mi>T</mi>
+                                    <mi mathvariant="normal">∣</mi>
+                                </mrow>
+                                <annotation encoding="application/x-tex">2*|filtered\_S| + |S| + |T|</annotation>
+                            </semantics>
+                        </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                                style="height:0.64444em;vertical-align:0em;"></span><span class="mord">2</span><span
+                                class="mspace" style="margin-right:0.2222222222222222em;"></span><span
+                                class="mbin">∗</span><span class="mspace"
+                                style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span
+                                class="strut" style="height:1.06em;vertical-align:-0.31em;"></span><span
+                                class="mord">∣</span><span class="mord mathdefault"
+                                style="margin-right:0.10764em;">f</span><span class="mord mathdefault">i</span><span
+                                class="mord mathdefault" style="margin-right:0.01968em;">l</span><span
+                                class="mord mathdefault">t</span><span class="mord mathdefault">e</span><span
+                                class="mord mathdefault" style="margin-right:0.02778em;">r</span><span
+                                class="mord mathdefault">e</span><span class="mord mathdefault">d</span><span
+                                class="mord" style="margin-right:0.02778em;">_</span><span class="mord mathdefault"
+                                style="margin-right:0.05764em;">S</span><span class="mord">∣</span><span class="mspace"
+                                style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span
+                                class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span
+                            class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                                class="mord">∣</span><span class="mord mathdefault"
+                                style="margin-right:0.05764em;">S</span><span class="mord">∣</span><span class="mspace"
+                                style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span
+                                class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span
+                            class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                                class="mord">∣</span><span class="mord mathdefault"
+                                style="margin-right:0.13889em;">T</span><span
+                                class="mord">∣</span></span></span></span>.</li>
+            <li>Space Complexity : <span class="katex"><span class="katex-mathml"><math>
+                            <semantics>
+                                <mrow>
+                                    <mi>O</mi>
+                                    <mo>(</mo>
+                                    <mi mathvariant="normal">∣</mi>
+                                    <mi>S</mi>
+                                    <mi mathvariant="normal">∣</mi>
+                                    <mo>+</mo>
+                                    <mi mathvariant="normal">∣</mi>
+                                    <mi>T</mi>
+                                    <mi mathvariant="normal">∣</mi>
+                                    <mo>)</mo>
+                                </mrow>
+                                <annotation encoding="application/x-tex">O(|S| + |T|)</annotation>
+                            </semantics>
+                        </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                                style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault"
+                                style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span
+                                class="mord">∣</span><span class="mord mathdefault"
+                                style="margin-right:0.05764em;">S</span><span class="mord">∣</span><span class="mspace"
+                                style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span
+                                class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span
+                            class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                                class="mord">∣</span><span class="mord mathdefault"
+                                style="margin-right:0.13889em;">T</span><span class="mord">∣</span><span
+                                class="mclose">)</span></span></span></span>.
+                <br><br>
+            </li>
+        </ul>
+    </div>
+</div>
+<link rel="stylesheet" href="../../../boilerplate/simple.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css"
+    integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
