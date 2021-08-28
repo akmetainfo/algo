@@ -140,13 +140,13 @@ next challenges:
 * 0141,Linked List Cycle
 * 0203,Remove Linked List Elements
 * 0206,Reverse Linked List
+* 0328,Odd Even Linked List
 * 0707,Design Linked List
 * 0876,Middle of the Linked List
 
 next challenges:
 
 * 234. Palindrome Linked List
-* 0328,Odd Even Linked List
 
 # Stack
 

@@ -15,6 +15,78 @@ public class Solution
 {
     public ListNode OddEvenList(ListNode head)
     {
+        if (head == null || head.next == null)
+            return head;
+        
+        var oddHead = head;
+        var oddTail = oddHead;
+        var evenHead = head.next;
+        var evenTail = evenHead;
+        
+        while (evenTail != null && evenTail.next != null)
+        {
+            oddTail.next = evenTail.next;
+            oddTail = oddTail.next;
+            evenTail.next = oddTail.next;
+            evenTail = evenTail.next;
+        }
+        
+        oddTail.next = evenHead;
+        return oddHead;
+    }
+}
+
+/*
+    Time: O(N)
+    Space: O(1)
+*/
+public class Solution4
+{
+    public ListNode OddEvenList(ListNode head)
+    {
+        if (head == null || head.next == null)
+            return head;
+        
+        var oddHead = head;
+        var oddTail = oddHead;
+        
+        var evenHead = head.next;
+        var evenTail = evenHead;
+        
+        var odd = true;
+        while(head != null)
+        {
+            var next = head.next;
+            head.next = null;
+            if(odd)
+            {
+                oddTail.next = head;
+                oddTail = oddTail.next;
+            }
+            else
+            {
+                evenTail.next = head;
+                evenTail = evenTail.next;
+            }
+
+            odd = !odd;
+            head = next;
+        }
+        
+        oddTail.next = evenHead;
+        
+        return oddHead;        
+    }
+}
+
+/*
+    Time: O(N)
+    Space: O(1)
+*/
+public class Solution3
+{
+    public ListNode OddEvenList(ListNode head)
+    {
         var oddHead = new ListNode(42);
         var oddTail = oddHead;
         
