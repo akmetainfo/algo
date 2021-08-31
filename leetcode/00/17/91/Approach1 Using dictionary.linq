@@ -8,8 +8,8 @@
 // https://leetcode.com/problems/find-center-of-star-graph/
 
 /*
-    Time: O()
-    Space: O()
+    Time: O(N), where N is node's count
+    Space: O(N)    
 */
 public class Solution
 {
