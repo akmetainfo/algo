@@ -19,20 +19,24 @@ public class Solution
         
         foreach (var edge in edges)
         {
-            if (!dict.ContainsKey(edge[0]))
-                dict.Add(edge[0], 0);
+            int vertex;
             
-            dict[edge[0]]++;
-            
-            if (!dict.ContainsKey(edge[1]))
-                dict.Add(edge[1], 0);
-            
-            dict[edge[1]]++;
+            vertex = edge[0];
+
+            if (!dict.ContainsKey(vertex))
+                dict.Add(vertex, 0);
+            dict[vertex]++;
+
+            vertex = edge[1];
+
+            if (!dict.ContainsKey(vertex))
+                dict.Add(vertex, 0);
+            dict[vertex]++;
         }
         
-        foreach (var node in dict.Keys)
-            if (dict[node] == dict.Count - 1)
-                return node;
+        foreach (var pair in dict)
+            if (pair.Value == edges.Length) // also: edges.Length = dict.Count - 1
+                return pair.Key;
         
         throw new Exception("The given edges must represent a valid star graph!");
     }
