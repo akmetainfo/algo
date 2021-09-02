@@ -9,7 +9,7 @@
 
 /*
     Time: O(n) where n is the number of ListNode.
-    Space: O(n) why?
+    Space: O(n) for storing call stack
 */
 public class Solution
 {
@@ -25,26 +25,31 @@ public class Solution
         else
             return head;
     }
-    /*
-    // The same as above, but more verbously
+}
+
+/*
+    Time: O(n) where n is the number of ListNode.
+    Space: O(n) for storing call stack
+*/
+public class Solution1
+{
     public ListNode RemoveElements(ListNode head, int val)
     {
         if(head == null)
             return head;
         
-        var n = RemoveElements(head.next, val);
+        var node = RemoveElements(head.next, val);
         
         if(head.val == val)
         {
-            return n;
+            return node;
         }
         else
         {
-            head.next = n;
+            head.next = node;
             return head;
         }
     }
-    */
 }
 
 public class ListNode
