@@ -7,6 +7,10 @@
 // 203. Remove Linked List Elements
 // https://leetcode.com/problems/remove-linked-list-elements/
 
+/*
+    Time: O()
+    Space: O()
+*/
 public class Solution
 {
     public ListNode RemoveElements(ListNode head, int val)
