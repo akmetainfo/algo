@@ -18,10 +18,9 @@ public class Solution
     // An example for string transformation:    
     // For each char in the given string, we replace it with the index of that char's first occurence.
     //
-    // egg -> a = -1, b = -1, ... g = 1 => 01
-    // add -> a = 0, b = -1, ... d = 1 => 01
-    // 01 = 01 so these strings are isomorphic
-    //    
+    //        abcdefg
+    // egg -> 0000102 -> 122
+    // add -> 1002000 -> 122
     public bool IsIsomorphic(string s, string t)
     {
         return TransformString(s).Equals(TransformString(t));
@@ -41,7 +40,8 @@ public class Solution
                 indexMapping.Add(c1, i);
             }
             
-            sb.Append(indexMapping[c1].ToString());
+            sb.Append(indexMapping[c1]);
+            sb.Append(".");
         }
         return sb.ToString();
     }
@@ -52,6 +52,7 @@ public class Solution
 [TestCase("foo", "bar", false)]
 [TestCase("paper", "title", true)]
 [TestCase("bd", "bb", false)]
+[TestCase("abcdefghijklmnopqrstuvwxyzva", "abcdefghijklmnopqrstuvwxyzck", false)]
 public void SolutionTests(string s, string t, bool expected)
 {
 	var actual = new Solution().IsIsomorphic(s,t);

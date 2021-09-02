@@ -24,6 +24,7 @@ public class Solution
 [TestCase("foo", "bar", false)]
 [TestCase("paper", "title", true)]
 [TestCase("bd", "bb", false)]
+[TestCase("abcdefghijklmnopqrstuvwxyzva", "abcdefghijklmnopqrstuvwxyzck", false)]
 public void SolutionTests(string s, string t, bool expected)
 {
 	var actual = new Solution().IsIsomorphic(s,t);
