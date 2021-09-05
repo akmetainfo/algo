@@ -23,6 +23,7 @@ public class Solution
 [TestCase(new int[] { -3,2,-3,4,2 }, 5 )]
 [TestCase(new int[] { 1,2 }, 1 )]
 [TestCase(new int[] { 1,-2,-3 }, 5 )]
+[TestCase(new int[] { 2,3,5,-5,-1 }, 1 )]
 public void SolutionTests(int[] nums, int expected)
 {
     var actual = new Solution().MinStartValue(nums);
