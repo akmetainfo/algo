@@ -104,6 +104,7 @@
 0965,Univalued Binary Tree
 0977,Squares of a Sorted Array
 ? 0989,Add to Array-Form of Integer
+0997,Find the Town Judge
 ? 1089,Duplicate Zeros
 1295,Find Numbers with Even Number of Digits
 ? 1299,Replace Elements with Greatest Element on Right Side

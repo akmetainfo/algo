@@ -102,6 +102,10 @@
 # Graph
 
 * 1791,Find Center of Star Graph
+* 0997,Find the Town Judge
+
+next challenges:
+
 
 # Binary tree
 
