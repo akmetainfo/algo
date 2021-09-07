@@ -18,15 +18,33 @@ public class Solution
         var result = 0;
         
         for(var i = 1; i <= arr.Length; i += 2)
+            for(var j = 0; j <= arr.Length - i; j++)
+                for(var m = 0; m < i; m++)
+                    result += arr[j+m];
+        
+        return result;
+    }
+}
+
+/*
+    Time: O(N^3)
+    Space: O(1)
+*/
+public class Solution1
+{
+    public int SumOddLengthSubarrays(int[] arr)
+    {
+        var result = 0;
+        
+        for(var i = 1; i <= arr.Length; i += 2)
         {
             for(var j = 0; j < arr.Length; j++)
             {
                 if(j + i > arr.Length)
                     continue;
-                var sum = 0;
+                    
                 for(var m = 0; m < i; m++)
-                    sum += arr[j+m];
-                result += sum;
+                    result += arr[j+m];
             }
         }
         
@@ -41,7 +59,7 @@ public class Solution
     
     Same as above, just debug version
 */
-public class Solution1
+public class Solution2
 {
     public int SumOddLengthSubarrays(int[] arr)
     {
@@ -58,16 +76,13 @@ public class Solution1
                 //  |    J    | i = 3
                 if(j + i > arr.Length)
                     continue;
-                var sum = 0;
                 var temp = new List<int>();
                 for(var m = 0; m < i; m++)
                 {
-                    sum += arr[j+m];
+                    result += arr[j+m];
                     temp.Add(arr[j+m]);
                 }
                 string.Join(", ", temp).Dump();
-                
-                result += sum;
             }
         }
         
@@ -81,7 +96,7 @@ public class Solution1
 [TestCase(new int[] { 10,11,12 }, 66)]
 public void SolutionTests(int[] nums, int expected)
 {
-    var actual = new Solution().SumOddLengthSubarrays(nums);
+    var actual = new Solution1().SumOddLengthSubarrays(nums);
     Assert.That(actual, Is.EqualTo(expected));
 }
 
