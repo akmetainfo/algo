@@ -51,6 +51,8 @@
 * 0485,Max Consecutive Ones
 * 0896,Monotonic Array
 * 1480,Running Sum of 1d Array
+* 1608,Special Array With X Elements Greater Than or Equal X
+
 
 # Arrays (two-dimentional)
 
@@ -90,6 +92,10 @@
 * 0278,First Bad Version
 * 0367,Valid Perfect Square
 * 0704,Binary Search
+
+next challenge:
+
+* 1608. Special Array With X Elements Greater Than or Equal X
 
 # Sorting algoritms
 
