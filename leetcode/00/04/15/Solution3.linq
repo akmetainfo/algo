@@ -41,6 +41,44 @@ public class Solution
     }
 }
 
+/*
+    Time: O()
+    Space: O()
+*/
+public class Solution1
+{
+    public string AddStrings(string num1, string num2)
+    {
+        var result = new char[Math.Max(num1.Length, num2.Length)];
+        var carry = 0;
+        var p1 = num1.Length - 1;
+        var p2 = num2.Length - 1;
+        var pos = result.Length - 1;
+
+        while (p1 >= 0 || p2 >= 0)
+        {
+            var v1 = p1 >= 0 ? num1[p1] - '0' : 0;
+            var v2 = p2 >= 0 ? num2[p2] - '0' : 0;
+            var sum = v1 + v2 + carry;
+            var digit = sum % 10;
+            carry = sum / 10;
+            result[pos] = (char)(digit + '0');
+            pos--;
+            p1--;
+            p2--;
+        }
+
+        if (carry == 0)
+            return new string(result);
+
+        var result1 = new char[result.Length + 1];
+        for (int i = 0; i < result.Length; i++)
+            result1[i + 1] = result[i];
+        result1[0] = '1';
+        return new string(result1);
+    }
+}
+
 [Test]
 [TestCase("0", "0", "0")]
 [TestCase("0", "2", "2")]
@@ -48,6 +86,7 @@ public class Solution
 [TestCase("1", "9", "10")]
 [TestCase("100", "201", "301")]
 [TestCase("100", "1201", "1301")]
+[TestCase("9", "9", "18")]
 public void SolutionTests(string num1, string num2, string expected)
 {
     var actual = new Solution().AddStrings(num1, num2);

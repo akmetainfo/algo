@@ -26,6 +26,7 @@ public class Solution
 [TestCase("1", "9", "10")]
 [TestCase("100", "201", "301")]
 [TestCase("100", "1201", "1301")]
+[TestCase("9", "9", "18")]
 public void SolutionTests(string num1, string num2, string expected)
 {
     var actual = new Solution().AddStrings(num1, num2);
