@@ -8,10 +8,91 @@
 // https://leetcode.com/problems/special-array-with-x-elements-greater-than-or-equal-x/
 
 /*
-    Time: O(N^2)
+    Time: O(n log n) because of sorting
     Space: O(1)
 */
 public class Solution
+{
+    public int SpecialArray(int[] nums)
+    {
+        Array.Sort(nums);
+
+        var result = 0; // here is nums.Min() which is always non-negative by problem's description
+
+        for (var i = nums.Length - 1; i >= 0; i--)
+        {
+            if (nums[i] == result)
+                return -1;
+            if (nums[i] < result)
+                return result;
+            result++;
+        }
+
+        return result;
+    }
+}
+
+/*
+    Time: O(n log n) because binary search costs O(log n) and within loop we calculate target costs O(N)
+    Space: O(1)
+*/
+public class Solution4
+{
+    public int SpecialArray(int[] nums)
+    {
+        var left = 0;
+        var right = nums.Length;
+
+        while (left <= right)
+        {
+            var mid = left + (right - left) / 2;
+            var target = nums.Count(x => x >= mid);
+
+            if (mid == target)
+                return mid;
+
+            if (mid < target)
+                left = mid + 1;
+            else
+                right = mid - 1;
+        }
+
+        return -1;
+    }
+}
+
+/*
+    Time: O(N^2)
+    Space: O(N)
+*/
+public class Solution3
+{
+    public int SpecialArray(int[] nums)
+    {
+        var freq = new int[nums.Length + 1];
+
+        for (var i = 0; i <= nums.Length; i++)
+        {
+            for (var j = 0; j < nums.Length; j++)
+                if (nums[j] >= i)
+                    freq[i]++;
+        }
+
+        for (var i = nums.Length; i >= 0; i--)
+        {
+            if (i == freq[i])
+                return i;
+        }
+
+        return -1;
+    }
+}
+
+/*
+    Time: O(N^2)
+    Space: O(1)
+*/
+public class Solution2
 {
     public int SpecialArray(int[] nums)
     {
