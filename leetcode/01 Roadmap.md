@@ -55,6 +55,7 @@ next challenge:
 * 0367,Valid Perfect Square
 * 0389,Find the Difference
 * 0415,Add Strings
+* 1281,Subtract the Product and Sum of Digits of an Integer
 * 1295,Find Numbers with Even Number of Digits
 * 1720,Decode XORed Array
 
