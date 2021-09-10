@@ -52,6 +52,7 @@
 * 0088,Merge Sorted Array
 * 0485,Max Consecutive Ones
 * 0896,Monotonic Array
+* 1431,Kids With the Greatest Number of Candies
 * 1470,Shuffle the Array
 * 1480,Running Sum of 1d Array
 * 1608,Special Array With X Elements Greater Than or Equal X
