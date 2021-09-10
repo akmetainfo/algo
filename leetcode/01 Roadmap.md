@@ -15,6 +15,7 @@
 * 0412,Fizz Buzz
 * 0705,Design HashSet
 * 0706,Design HashMap
+* 0771,Jewels and Stones
 
 
 # strings transformations (Palindrome, isomorphic, anagrams etc)
