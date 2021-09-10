@@ -54,6 +54,7 @@
 * 0896,Monotonic Array
 * 1480,Running Sum of 1d Array
 * 1608,Special Array With X Elements Greater Than or Equal X
+* 1672,Richest Customer Wealth
 
 
 # Arrays (two-dimentional)
