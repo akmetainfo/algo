@@ -17,6 +17,11 @@
 * 0706,Design HashMap
 * 0771,Jewels and Stones
 
+# Classes and OOP
+
+next challenge:
+
+* 1603,Design Parking System
 
 # strings transformations (Palindrome, isomorphic, anagrams etc)
 
