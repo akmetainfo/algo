@@ -56,11 +56,17 @@ public class Solution2
 {
     public int[] Shuffle(int[] nums, int n)
     {
-        return nums.Take(n).Zip(nums.Skip(n).Take(n))
-                           .Select(x => new int[] { x.Item1, x.Item2 })
+        return nums.Take(n).Zip(nums.Skip(n).Take(n), (first, second) => new int[] {first, second})
                            .SelectMany(x => x)
                            .ToArray();
     }
+    //public int[] Shuffle(int[] nums, int n)
+    //{
+    //    return nums.Take(n).Zip(nums.Skip(n).Take(n))
+    //                       .Select(x => new int[] { x.Item1, x.Item2 })
+    //                       .SelectMany(x => x)
+    //                       .ToArray();
+    //}
 }
 
 
@@ -85,7 +91,7 @@ public class Solution3
 [TestCase(new int[] { 1, 1, 2, 2 }, 2, new int[] { 1, 2, 1, 2 })]
 public void SolutionTests(int[] nums, int n, int[] expected)
 {
-    var actual = new Solution2().Shuffle(nums, n);
+    var actual = new Solution().Shuffle(nums, n);
     Assert.That(actual, Is.EqualTo(expected));
 }
 
