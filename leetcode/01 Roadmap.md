@@ -56,6 +56,7 @@ next challenge:
 * 0389,Find the Difference
 * 0415,Add Strings
 * 1295,Find Numbers with Even Number of Digits
+* 1720,Decode XORed Array
 
 # Arrays (one-dimentional)
 
