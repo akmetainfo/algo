@@ -194,3 +194,7 @@ next challenges:
 
 * 1588,Sum of All Odd Length Subarrays https://leetcode.com/problems/sum-of-all-odd-length-subarrays/discuss/967629/C-Sliding-Window
 * 0076,Minimum Window Substring
+
+# Permutations
+
+* 1920,Build Array from Permutation
