@@ -148,6 +148,13 @@ next challenges:
 * 993. Cousins in Binary Tree
 * 1022. Sum of Root To Leaf Binary Numbers
 
+# Binary search tree
+
+Next challenge:
+
+* 938,Range Sum of BST
+
+
 # Dynamical programming
 
 * 0118,Pascal's Triangle
