@@ -17,6 +17,10 @@
 * 0706,Design HashMap
 * 0771,Jewels and Stones
 
+next challenge:
+
+* 1365,How Many Numbers Are Smaller Than the Current Number
+
 # Classes and OOP
 
 next challenge:
@@ -63,6 +67,7 @@ next challenge:
 * 1608,Special Array With X Elements Greater Than or Equal X
 * 1672,Richest Customer Wealth
 * 1512,Number of Good Pairs
+* 1365,How Many Numbers Are Smaller Than the Current Number
 
 # Arithmetic progression
 
