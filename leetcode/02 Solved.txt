@@ -117,6 +117,7 @@
 1470,Shuffle the Array
 1480,Running Sum of 1d Array
 1512,Number of Good Pairs
+1528,Shuffle String
 1544,Make The String Great
 1588,Sum of All Odd Length Subarrays
 1603,Design Parking System
