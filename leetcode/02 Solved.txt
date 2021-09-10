@@ -114,6 +114,7 @@
 1431,Kids With the Greatest Number of Candies
 1470,Shuffle the Array
 1480,Running Sum of 1d Array
+1512,Number of Good Pairs
 1544,Make The String Great
 1588,Sum of All Odd Length Subarrays
 1608,Special Array With X Elements Greater Than or Equal X

@@ -57,7 +57,11 @@
 * 1480,Running Sum of 1d Array
 * 1608,Special Array With X Elements Greater Than or Equal X
 * 1672,Richest Customer Wealth
+* 1512,Number of Good Pairs
 
+# Arithmetic progression
+
+* 1512,Number of Good Pairs
 
 # Arrays (two-dimentional)
 
