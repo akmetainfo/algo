@@ -111,6 +111,7 @@
 ? 1299,Replace Elements with Greatest Element on Right Side
 ? 1346,Check If N and Its Double Exist
 1413,Minimum Value to Get Positive Step by Step Sum
+1470,Shuffle the Array
 1480,Running Sum of 1d Array
 1544,Make The String Great
 1588,Sum of All Odd Length Subarrays
