@@ -58,6 +58,7 @@ next challenge:
 * 1281,Subtract the Product and Sum of Digits of an Integer
 * 1295,Find Numbers with Even Number of Digits
 * 1720,Decode XORed Array
+* 1342,Number of Steps to Reduce a Number to Zero
 
 # Arrays (one-dimentional)
 
