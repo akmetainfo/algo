@@ -111,6 +111,7 @@
 1281,Subtract the Product and Sum of Digits of an Integer
 1295,Find Numbers with Even Number of Digits
 ? 1299,Replace Elements with Greatest Element on Right Side
+1313,Decompress Run-Length Encoded List
 ? 1346,Check If N and Its Double Exist
 ? 1365,How Many Numbers Are Smaller Than the Current Number
 1413,Minimum Value to Get Positive Step by Step Sum
