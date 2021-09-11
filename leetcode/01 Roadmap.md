@@ -75,6 +75,7 @@ next challenge:
 * 1672,Richest Customer Wealth
 * 1512,Number of Good Pairs
 * 1365,How Many Numbers Are Smaller Than the Current Number
+* 1389,Create Target Array in the Given Order
 
 # Arithmetic progression
 
