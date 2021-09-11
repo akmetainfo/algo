@@ -41,6 +41,8 @@ next challenge:
 * 0438,Find All Anagrams in a String
 * 1108,Defanging an IP Address
 * 1528,Shuffle String
+* 0804,Unique Morse Code Words
+
 
 # Digits (Arifemtics, Math, bit manipulations)
 
