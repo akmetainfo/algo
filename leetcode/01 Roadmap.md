@@ -45,6 +45,10 @@ next challenge:
 * 1678,Goal Parser Interpretation
 * 1773,Count Items Matching a Rule
 
+next:
+
+* 1859,Sorting the Sentence
+
 
 # Digits (Arifemtics, Math, bit manipulations)
 
