@@ -64,6 +64,10 @@ next challenge:
 * 1720,Decode XORed Array
 * 1342,Number of Steps to Reduce a Number to Zero
 
+next challenge:
+
+* 338. Counting Bits
+
 # Arrays (one-dimentional)
 
 * 0088,Merge Sorted Array
