@@ -131,6 +131,7 @@
 1588,Sum of All Odd Length Subarrays
 1603,Design Parking System
 1608,Special Array With X Elements Greater Than or Equal X
+? 1614,Maximum Nesting Depth of the Parentheses
 1672,Richest Customer Wealth
 1678,Goal Parser Interpretation
 1720,Decode XORed Array
