@@ -96,6 +96,7 @@
 0709,To Lower Case
 ? 0717,1-bit and 2-bit Characters
 0724,Find Pivot Index
+? 0728,Self Dividing Numbers
 ? 0739,Daily Temperatures
 ? 0747,Largest Number At Least Twice of Others
 0771,Jewels and Stones
@@ -123,6 +124,7 @@
 1431,Kids With the Greatest Number of Candies
 1470,Shuffle the Array
 1480,Running Sum of 1d Array
+? 1486,XOR Operation in an Array
 1512,Number of Good Pairs
 1528,Shuffle String
 1544,Make The String Great

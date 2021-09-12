@@ -67,6 +67,9 @@ next challenge:
 next challenge:
 
 * 338. Counting Bits
+* 728,Self Dividing Numbers
+* 1486,XOR Operation in an Array
+
 
 # Arrays (one-dimentional)
 
