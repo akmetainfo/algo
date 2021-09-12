@@ -49,6 +49,7 @@ next:
 
 * 1859,Sorting the Sentence
 * 1614. Maximum Nesting Depth of the Parentheses
+* 1832. Check if the Sentence Is Pangram
 
 # Digits (Arifemtics, Math, bit manipulations)
 
