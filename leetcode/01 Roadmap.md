@@ -159,6 +159,7 @@ next challenges:
 
 next challenges:
 
+* 0617. Merge Two Binary Trees
 * 111. Minimum Depth of Binary Tree
 * 404. Sum of Left Leaves
 * 543. Diameter of Binary Tree
