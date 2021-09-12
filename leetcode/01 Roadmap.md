@@ -43,6 +43,7 @@ next challenge:
 * 1528,Shuffle String
 * 0804,Unique Morse Code Words
 * 1678,Goal Parser Interpretation
+* 1773,Count Items Matching a Rule
 
 
 # Digits (Arifemtics, Math, bit manipulations)

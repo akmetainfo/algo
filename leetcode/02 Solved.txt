@@ -131,5 +131,6 @@
 1672,Richest Customer Wealth
 1678,Goal Parser Interpretation
 1720,Decode XORed Array
+? 1773,Count Items Matching a Rule
 1791,Find Center of Star Graph
 1920,Build Array from Permutation
