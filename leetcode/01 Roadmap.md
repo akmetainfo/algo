@@ -75,6 +75,7 @@ next challenge:
 * 338. Counting Bits
 * 728,Self Dividing Numbers
 * 1486,XOR Operation in an Array
+* 1913. Maximum Product Difference Between Two Pairs
 
 
 # Arrays (one-dimentional)
