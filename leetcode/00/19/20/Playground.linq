@@ -25,7 +25,7 @@ public class Solution
 public void SolutionTests(int[] nums, int[] expected)
 {
     var actual = new Solution().BuildArray(nums);
-    Assert.That(actual, Is.EquivalentTo(expected));
+    Assert.That(actual, Is.EqualTo(expected));
 }
 
 #region unit tests runner
