@@ -76,6 +76,7 @@ next challenge:
 * 728,Self Dividing Numbers
 * 1486,XOR Operation in an Array
 * 1913. Maximum Product Difference Between Two Pairs
+* 1979. Find Greatest Common Divisor of Array
 
 
 # Arrays (one-dimentional)

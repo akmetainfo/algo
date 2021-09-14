@@ -121,6 +121,7 @@
 ? 1342,Number of Steps to Reduce a Number to Zero
 ? 1346,Check If N and Its Double Exist
 ? 1365,How Many Numbers Are Smaller Than the Current Number
+? 1979. Find Greatest Common Divisor of Array
 ? 1389,Create Target Array in the Given Order
 1413,Minimum Value to Get Positive Step by Step Sum
 1431,Kids With the Greatest Number of Candies
@@ -145,3 +146,4 @@
 ? 1859,Sorting the Sentence
 ? 1913,Maximum Product Difference Between Two Pairs
 1920,Build Array from Permutation
+1979,Find Greatest Common Divisor of Array
