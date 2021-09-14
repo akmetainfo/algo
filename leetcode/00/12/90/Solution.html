@@ -1,0 +1,272 @@
+<div class="content__QRGW">
+    <div>
+        <h2>Solution</h2>
+        <hr>
+        <h4 id="overview">Overview</h4>
+        <p>Here we have two subproblems:</p>
+        <ul>
+            <li>
+                <p>To parse non-empty linked list and to retrieve the digit sequence which represents
+                    a binary number.</p>
+            </li>
+            <li>
+                <p>To convert this sequence into the number in decimal representation.</p>
+            </li>
+        </ul>
+        <p>The first subproblem is easy because the linked list is guaranteed to be
+            non-empty.</p>
+        <iframe src="https://leetcode.com/playground/UioTC7Vw/shared" name="UioTC7Vw" width="100%" height="191"
+            frameborder="0"></iframe>
+        <p>The second subproblem is to convert <span class="katex"><span class="katex-mathml"><math>
+                        <semantics>
+                            <mrow>
+                                <mo>(</mo>
+                                <mn>101</mn>
+                                <msub>
+                                    <mo>)</mo>
+                                    <mn>2</mn>
+                                </msub>
+                            </mrow>
+                            <annotation encoding="application/x-tex">(101)_2</annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span
+                            class="mord">1</span><span class="mord">0</span><span class="mord">1</span><span
+                            class="mclose"><span class="mclose">)</span><span class="msupsub"><span
+                                    class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                            style="height:0.30110799999999993em;"><span
+                                                style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span
+                                                    class="pstrut" style="height:2.7em;"></span><span
+                                                    class="sizing reset-size6 size3 mtight"><span
+                                                        class="mord mtight">2</span></span></span></span><span
+                                            class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                            style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>
+            into
+            <span class="katex"><span class="katex-mathml"><math>
+                        <semantics>
+                            <mrow>
+                                <mn>1</mn>
+                                <mo>×</mo>
+                                <msup>
+                                    <mn>2</mn>
+                                    <mn>2</mn>
+                                </msup>
+                                <mo>+</mo>
+                                <mn>0</mn>
+                                <mo>×</mo>
+                                <msup>
+                                    <mn>2</mn>
+                                    <mn>1</mn>
+                                </msup>
+                                <mo>+</mo>
+                                <mn>1</mn>
+                                <mo>×</mo>
+                                <msup>
+                                    <mn>2</mn>
+                                    <mn>0</mn>
+                                </msup>
+                                <mo>=</mo>
+                                <mn>5</mn>
+                            </mrow>
+                            <annotation encoding="application/x-tex">1 \times 2^2 + 0 \times 2^1 + 1 \times 2^0 = 5
+                            </annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">1</span><span
+                            class="mspace" style="margin-right:0.2222222222222222em;"></span><span
+                            class="mbin">×</span><span class="mspace"
+                            style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span
+                            class="strut" style="height:0.897438em;vertical-align:-0.08333em;"></span><span
+                            class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span
+                                        class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span
+                                                style="top:-3.063em;margin-right:0.05em;"><span class="pstrut"
+                                                    style="height:2.7em;"></span><span
+                                                    class="sizing reset-size6 size3 mtight"><span
+                                                        class="mord mtight">2</span></span></span></span></span></span></span></span><span
+                            class="mspace" style="margin-right:0.2222222222222222em;"></span><span
+                            class="mbin">+</span><span class="mspace"
+                            style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span
+                            class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span
+                            class="mord">0</span><span class="mspace"
+                            style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span
+                            class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span
+                        class="base"><span class="strut"
+                            style="height:0.897438em;vertical-align:-0.08333em;"></span><span class="mord"><span
+                                class="mord">2</span><span class="msupsub"><span class="vlist-t"><span
+                                        class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span
+                                                style="top:-3.063em;margin-right:0.05em;"><span class="pstrut"
+                                                    style="height:2.7em;"></span><span
+                                                    class="sizing reset-size6 size3 mtight"><span
+                                                        class="mord mtight">1</span></span></span></span></span></span></span></span><span
+                            class="mspace" style="margin-right:0.2222222222222222em;"></span><span
+                            class="mbin">+</span><span class="mspace"
+                            style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span
+                            class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span
+                            class="mord">1</span><span class="mspace"
+                            style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span
+                            class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span
+                        class="base"><span class="strut"
+                            style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="mord"><span
+                                class="mord">2</span><span class="msupsub"><span class="vlist-t"><span
+                                        class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span
+                                                style="top:-3.063em;margin-right:0.05em;"><span class="pstrut"
+                                                    style="height:2.7em;"></span><span
+                                                    class="sizing reset-size6 size3 mtight"><span
+                                                        class="mord mtight">0</span></span></span></span></span></span></span></span><span
+                            class="mspace" style="margin-right:0.2777777777777778em;"></span><span
+                            class="mrel">=</span><span class="mspace"
+                            style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span
+                            class="strut" style="height:0.64444em;vertical-align:0em;"></span><span
+                            class="mord">5</span></span></span></span>.
+            It could be solved in two ways. To use classical arithmetic
+            is more straightforward
+        </p>
+        <p align="center"><img src="try1.png" alt="img">
+            <em>Figure 1. Approach 1: num = num * 2 + x</em>
+        </p>
+        <p>and to use bitwise operators is faster</p>
+        <p align="center"><img src="try2.png" alt="img">
+            <em>Figure 2. Approach 2: num = (num &lt;&lt; 1) | x</em>
+        </p>
+        <br>
+        <br>
+        <hr>
+        <h4 id="approach-1-binary-representation">Approach 1: Binary Representation</h4>
+        <p align="center"><img src="try1.png" alt="img">
+            <em>Figure 3. Approach 1: num = num * 2 + x.</em>
+        </p>
+        <ul>
+            <li>
+                <p>Initialize result number to be equal to head value: <code>num = head.val</code>.
+                    This operation is safe because the list is guaranteed to be non-empty.</p>
+            </li>
+            <li>
+                <p>Parse linked list starting from the head: <code>while head.next</code>:</p>
+                <ul>
+                    <li>The current value is <code>head.next.val</code>. Update the result by shifting
+                        it by one to the left and adding the current value:
+                        <code>num = num * 2 + head.next.val</code>.
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <p>Return <code>num</code>.</p>
+            </li>
+        </ul>
+        <p><strong>Implementation</strong></p>
+        <iframe src="https://leetcode.com/playground/f36TfDa4/shared" name="f36TfDa4" width="100%" height="225"
+            frameborder="0"></iframe>
+        <p><strong>Complexity Analysis</strong></p>
+        <ul>
+            <li>
+                <p>Time complexity: <span class="katex"><span class="katex-mathml"><math>
+                                <semantics>
+                                    <mrow>
+                                        <mi mathvariant="script">O</mi>
+                                        <mo>(</mo>
+                                        <mi>N</mi>
+                                        <mo>)</mo>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">\mathcal{O}(N)</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                                    class="mord"><span class="mord mathcal"
+                                        style="margin-right:0.02778em;">O</span></span><span class="mopen">(</span><span
+                                    class="mord mathdefault" style="margin-right:0.10903em;">N</span><span
+                                    class="mclose">)</span></span></span></span>.</p>
+            </li>
+            <li>
+                <p>Space complexity: <span class="katex"><span class="katex-mathml"><math>
+                                <semantics>
+                                    <mrow>
+                                        <mi mathvariant="script">O</mi>
+                                        <mo>(</mo>
+                                        <mn>1</mn>
+                                        <mo>)</mo>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">\mathcal{O}(1)</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                                    class="mord"><span class="mord mathcal"
+                                        style="margin-right:0.02778em;">O</span></span><span class="mopen">(</span><span
+                                    class="mord">1</span><span class="mclose">)</span></span></span></span>.
+                    <br>
+                    <br>
+                </p>
+            </li>
+        </ul>
+        <hr>
+        <h4 id="approach-2-bit-manipulation">Approach 2: Bit Manipulation</h4>
+        <p align="center"><img src="try2.png" alt="img">
+            <em>Figure 4. Approach 2: num = (num &lt;&lt; 1) | x</em>
+        </p>
+        <ul>
+            <li>
+                <p>Initialize result number to be equal to head value: <code>num = head.val</code>.
+                    This operation is safe because the list is guaranteed to be non-empty.</p>
+            </li>
+            <li>
+                <p>Parse linked list starting from the head: <code>while head.next</code>:</p>
+                <ul>
+                    <li>The current value is <code>head.next.val</code>. Update the result by shifting
+                        it by one to the left and adding the current value using logical OR:
+                        <code>num = (num &lt;&lt; 1) | head.next.val</code>.
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <p>Return <code>num</code>.</p>
+            </li>
+        </ul>
+        <p><strong>Implementation</strong></p>
+        <iframe src="https://leetcode.com/playground/TV9mffKX/shared" name="TV9mffKX" width="100%" height="225"
+            frameborder="0"></iframe>
+        <p><strong>Complexity Analysis</strong></p>
+        <ul>
+            <li>
+                <p>Time complexity: <span class="katex"><span class="katex-mathml"><math>
+                                <semantics>
+                                    <mrow>
+                                        <mi mathvariant="script">O</mi>
+                                        <mo>(</mo>
+                                        <mi>N</mi>
+                                        <mo>)</mo>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">\mathcal{O}(N)</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                                    class="mord"><span class="mord mathcal"
+                                        style="margin-right:0.02778em;">O</span></span><span class="mopen">(</span><span
+                                    class="mord mathdefault" style="margin-right:0.10903em;">N</span><span
+                                    class="mclose">)</span></span></span></span>.</p>
+            </li>
+            <li>
+                <p>Space complexity: <span class="katex"><span class="katex-mathml"><math>
+                                <semantics>
+                                    <mrow>
+                                        <mi mathvariant="script">O</mi>
+                                        <mo>(</mo>
+                                        <mn>1</mn>
+                                        <mo>)</mo>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">\mathcal{O}(1)</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                                    class="mord"><span class="mord mathcal"
+                                        style="margin-right:0.02778em;">O</span></span><span class="mopen">(</span><span
+                                    class="mord">1</span><span class="mclose">)</span></span></span></span>.
+                    <br>
+                    <br>
+                </p>
+            </li>
+        </ul>
+        <hr>
+    </div>
+</div>
+<link rel="stylesheet" href="../../../boilerplate/simple.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css"
+    integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">

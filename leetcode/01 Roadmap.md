@@ -211,9 +211,9 @@ Next challenge:
 * 0622,Design Circular Queue
 * 0707,Design Linked List
 * 0876,Middle of the Linked List
+* 1290,Convert Binary Number in a Linked List to Integer
 
 next challenges:
-
 
 
 # Stack
