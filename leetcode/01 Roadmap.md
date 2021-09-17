@@ -168,6 +168,7 @@ next challenges:
 * 0104,Maximum Depth of Binary Tree
 * 0110,Balanced Binary Tree
 * 0112,Path Sum
+* 0114,Flatten Binary Tree to Linked List
 * 0144,Binary Tree Preorder Traversal
 * 0145,Binary Tree Postorder Traversal
 * 0226,Invert Binary Tree
