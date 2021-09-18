@@ -8,7 +8,7 @@
 // https://leetcode.com/problems/search-in-a-binary-search-tree/
 
 /*
-    Time: O(N)
+    Time: O(H) height of the tree, so O(logN) in average and O(N) in worst case
     Space: O(H)
 */
 public class Solution
@@ -37,13 +37,36 @@ public class Solution
     }
 }
 
+/*
+    Time: O(H) height of the tree, so O(logN) in average and O(N) in worst case
+    Space: O(1)
+*/
+public class Solution1
+{
+    public TreeNode SearchBST(TreeNode root, int val)
+    {
+        while(root!=null)
+        {
+            if(root.val == val)
+                return root;
+                
+            if(root.val < val)
+                root = root.right;
+            else
+                root = root.left;
+        }
+        
+        return root;
+    }
+}
+
 [Test]
 [TestCase(new object[] { 4, 2, 7, 1, 3 }, 2, new object[] { 2, 1, 3 })]
 [TestCase(new object[] { 4, 2, 7, 1, 3 }, 5, new object[] { })]
 public void SolutionTests(object[] data, int val, object[] expected)
 {
     var root = CreateTree(data);
-    var actual = new Solution().SearchBST(root, val);
+    var actual = new Solution1().SearchBST(root, val);
     var result = IsSameTree(actual, CreateTree(expected));
     Assert.IsTrue(result);
 }

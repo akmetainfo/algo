@@ -8,7 +8,7 @@
 // https://leetcode.com/problems/search-in-a-binary-search-tree/
 
 /*
-    Time: O(N)
+    Time: O(H) height of the tree, so O(logN) in average and O(N) in worst case
     Space: O(H)
 */
 public class Solution
