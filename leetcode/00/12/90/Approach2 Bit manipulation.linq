@@ -15,6 +15,30 @@ public class Solution
 {
     public int GetDecimalValue(ListNode head)
     {
+        var result = 0;
+        
+        if(head == null)
+            return result;
+        
+        while(head != null)
+        {
+            result += (result << 0) + head.val;
+            head = head.next;
+        }
+        
+        return result;
+    }
+}
+
+
+/*
+    Time: O(N)
+    Space: O(1)
+*/
+public class Solution1
+{
+    public int GetDecimalValue(ListNode head)
+    {
         int num = head.val;
         while (head.next != null)
         {
