@@ -66,6 +66,16 @@ private static IEnumerable<object[]> TestCases()
         },
         new object[] { 3,9,20,null,null,15,17 },
     };
+
+    yield return new object[]
+    {
+        new List<IList<int>> {
+            new List<int> { 1 },
+            new List<int> { 2, 3 },
+            new List<int> { 4, 5 },
+        },
+        new object[] { 1,2,3,4,5 },
+    };
 }
 
 [Test]
