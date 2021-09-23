@@ -5,6 +5,8 @@ https://docs.google.com/spreadsheets/d/1gT2U0un3ggpNkwOKKtJEcMN7UIxvGX8nr5uopwRD
 Single Number
 https://seanprashad.com/leetcode-patterns/
 
+Two Sum
+https://leetcode.com/discuss/general-discussion/460599/blind-75-leetcode-questions
 
 1. Слушаем условия (внимательно)
 2. Задаём уточняющие вопросы
