@@ -1,0 +1,249 @@
+<div class="content__QRGW">
+    <div>
+        <h2>Solution</h2>
+        <hr>
+        <p>This question comes under a broad category of "Array Transformation". This category is the meat of tech
+            interviews. Mostly because arrays are such a simple and easy to use data structure. Traversal or
+            representation doesn't require any boilerplate code and most of your code will look like the Pseudocode
+            itself.</p>
+        <p>The 2 requirements of the question are:</p>
+        <ol>
+            <li>
+                <p>Move all the 0's to the end of array.</p>
+            </li>
+            <li>
+                <p>All the non-zero elements must retain their original order.</p>
+            </li>
+        </ol>
+        <p>It's good to realize here that both the requirements are mutually exclusive, i.e., you can solve the
+            individual sub-problems and then combine them for the final solution.</p>
+        <h4 id="approach-1-space-suboptimal-accepted">Approach #1 (Space Sub-Optimal) [Accepted]</h4>
+        <p><strong>C++</strong></p>
+        <pre><code class="language-c++"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">moveZeroes</span><span class="hljs-params">(<span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">int</span>&gt;&amp; nums)</span> </span>{
+        <span class="hljs-keyword">int</span> n = nums.size();
+    
+        <span class="hljs-comment">// Count the zeroes</span>
+        <span class="hljs-keyword">int</span> numZeroes = <span class="hljs-number">0</span>;
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; n; i++) {
+            numZeroes += (nums[i] == <span class="hljs-number">0</span>);
+        }
+    
+        <span class="hljs-comment">// Make all the non-zero elements retain their original order.</span>
+        <span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">int</span>&gt; ans;
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; n; i++) {
+            <span class="hljs-keyword">if</span> (nums[i] != <span class="hljs-number">0</span>) {
+                ans.push_back(nums[i]);
+            }
+        }
+    
+        <span class="hljs-comment">// Move all zeroes to the end</span>
+        <span class="hljs-keyword">while</span> (numZeroes--) {
+            ans.push_back(<span class="hljs-number">0</span>);
+        }
+    
+        <span class="hljs-comment">// Combine the result</span>
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; n; i++) {
+            nums[i] = ans[i];
+        }
+    }
+    </code></pre>
+        <p><strong>Complexity Analysis</strong></p>
+        <p>Space Complexity : <span class="katex"><span class="katex-mathml"><math>
+                        <semantics>
+                            <mrow>
+                                <mi>O</mi>
+                                <mo>(</mo>
+                                <mi>n</mi>
+                                <mo>)</mo>
+                            </mrow>
+                            <annotation encoding="application/x-tex">O(n)</annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault"
+                            style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span
+                            class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span>. Since
+            we are creating the "ans" array to store results.</p>
+        <p>Time Complexity: <span class="katex"><span class="katex-mathml"><math>
+                        <semantics>
+                            <mrow>
+                                <mi>O</mi>
+                                <mo>(</mo>
+                                <mi>n</mi>
+                                <mo>)</mo>
+                            </mrow>
+                            <annotation encoding="application/x-tex">O(n)</annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault"
+                            style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span
+                            class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span>.
+            However, the total number of operations are sub-optimal. We can achieve the same result in less number of
+            operations.</p>
+        <p>If asked in an interview, the above solution would be a good start. You can explain the interviewer(not code)
+            the above and build your base for the next Optimal Solution.</p>
+        <hr>
+        <h4 id="approach-2-space-optimal,-operation-suboptimal-accepted">Approach #2 (Space Optimal, Operation
+            Sub-Optimal) [Accepted]</h4>
+        <p>This approach works the same way as above, i.e. , first fulfills one requirement and then another. The catch?
+            It does it in a clever way. The above problem can also be stated in alternate way, " Bring all the non 0
+            elements to the front of array keeping their relative order same".</p>
+        <p>This is a 2 pointer approach. The fast pointer which is denoted by variable "cur" does the job of processing
+            new elements. If the newly found element is not a 0, we record it just after the last found non-0 element.
+            The position of last found non-0 element is denoted by the slow pointer "lastNonZeroFoundAt" variable. As we
+            keep finding new non-0 elements, we just overwrite them at the "lastNonZeroFoundAt + 1" 'th index. This
+            overwrite will not result in any loss of data because we already processed what was there(if it were
+            non-0,it already is now written at it's corresponding index,or if it were 0 it will be handled later in
+            time).</p>
+        <p>After the "cur" index reaches the end of array, we now know that all the non-0 elements have been moved to
+            beginning of array in their original order. Now comes the time to fulfil other requirement, "Move all 0's to
+            the end". We now simply need to fill all the indexes after the "lastNonZeroFoundAt" index with 0.</p>
+        <p><strong>C++</strong></p>
+        <pre><code class="language-c++"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">moveZeroes</span><span class="hljs-params">(<span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">int</span>&gt;&amp; nums)</span> </span>{
+        <span class="hljs-keyword">int</span> lastNonZeroFoundAt = <span class="hljs-number">0</span>;
+        <span class="hljs-comment">// If the current element is not 0, then we need to</span>
+        <span class="hljs-comment">// append it just in front of last non 0 element we found. </span>
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; nums.size(); i++) {
+            <span class="hljs-keyword">if</span> (nums[i] != <span class="hljs-number">0</span>) {
+                nums[lastNonZeroFoundAt++] = nums[i];
+            }
+        }
+         <span class="hljs-comment">// After we have finished processing new elements,</span>
+         <span class="hljs-comment">// all the non-zero elements are already at beginning of array.</span>
+         <span class="hljs-comment">// We just need to fill remaining array with 0's.</span>
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = lastNonZeroFoundAt; i &lt; nums.size(); i++) {
+            nums[i] = <span class="hljs-number">0</span>;
+        }
+    }
+    </code></pre>
+        <p><strong>Complexity Analysis</strong></p>
+        <p>Space Complexity : <span class="katex"><span class="katex-mathml"><math>
+                        <semantics>
+                            <mrow>
+                                <mi>O</mi>
+                                <mo>(</mo>
+                                <mn>1</mn>
+                                <mo>)</mo>
+                            </mrow>
+                            <annotation encoding="application/x-tex">O(1)</annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault"
+                            style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span
+                            class="mord">1</span><span class="mclose">)</span></span></span></span>. Only constant space
+            is used.</p>
+        <p>Time Complexity: <span class="katex"><span class="katex-mathml"><math>
+                        <semantics>
+                            <mrow>
+                                <mi>O</mi>
+                                <mo>(</mo>
+                                <mi>n</mi>
+                                <mo>)</mo>
+                            </mrow>
+                            <annotation encoding="application/x-tex">O(n)</annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault"
+                            style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span
+                            class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span>.
+            However, the total number of operations are still sub-optimal. The total operations (array writes) that code
+            does is <span class="katex"><span class="katex-mathml"><math>
+                        <semantics>
+                            <mrow>
+                                <mi>n</mi>
+                            </mrow>
+                            <annotation encoding="application/x-tex">n</annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:0.43056em;vertical-align:0em;"></span><span
+                            class="mord mathdefault">n</span></span></span></span> (Total number of elements).</p>
+        <hr>
+        <h4 id="approach-3-optimal-accepted">Approach #3 (Optimal) [Accepted]</h4>
+        <p>The total number of operations of the previous approach is sub-optimal. For example, the array which has all
+            (except last) leading zeroes: [0, 0, 0, ..., 0, 1].How many write operations to the array? For the previous
+            approach, it writes 0's <span class="katex"><span class="katex-mathml"><math>
+                        <semantics>
+                            <mrow>
+                                <mi>n</mi>
+                                <mo>−</mo>
+                                <mn>1</mn>
+                            </mrow>
+                            <annotation encoding="application/x-tex">n-1</annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:0.66666em;vertical-align:-0.08333em;"></span><span
+                            class="mord mathdefault">n</span><span class="mspace"
+                            style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span
+                            class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span
+                        class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span
+                            class="mord">1</span></span></span></span> times, which is not necessary. We could have
+            instead written just once. How?
+            .....
+            By only fixing the non-0 element,i.e., 1.</p>
+        <p>The optimal approach is again a subtle extension of above solution. A simple realization is if the current
+            element is non-0, its' correct position can at best be it's current position or a position earlier. If it's
+            the latter one, the current position will be eventually occupied by a non-0 ,or a 0, which lies at a index
+            greater than 'cur' index. We fill the current position by 0 right away,so that unlike the previous solution,
+            we don't need to come back here in next iteration.</p>
+        <p>In other words, the code will maintain the following invariant:</p>
+        <blockquote>
+            <ol>
+                <li>
+                    <p>All elements before the slow pointer (lastNonZeroFoundAt) are non-zeroes.</p>
+                </li>
+                <li>
+                    <p>All elements between the current and slow pointer are zeroes.</p>
+                </li>
+            </ol>
+        </blockquote>
+        <p>Therefore, when we encounter a non-zero element, we need to swap elements pointed by current and slow
+            pointer, then advance both pointers. If it's zero element, we just advance current pointer.</p>
+        <p>With this invariant in-place, it's easy to see that the algorithm will work.</p>
+        <p><strong>C++</strong></p>
+        <pre><code class="language-c++"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">moveZeroes</span><span class="hljs-params">(<span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">int</span>&gt;&amp; nums)</span> </span>{
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> lastNonZeroFoundAt = <span class="hljs-number">0</span>, cur = <span class="hljs-number">0</span>; cur &lt; nums.size(); cur++) {
+            <span class="hljs-keyword">if</span> (nums[cur] != <span class="hljs-number">0</span>) {
+                swap(nums[lastNonZeroFoundAt++], nums[cur]);
+            }
+        }
+    }
+    </code></pre>
+        <p><strong>Complexity Analysis</strong></p>
+        <p>Space Complexity : <span class="katex"><span class="katex-mathml"><math>
+                        <semantics>
+                            <mrow>
+                                <mi>O</mi>
+                                <mo>(</mo>
+                                <mn>1</mn>
+                                <mo>)</mo>
+                            </mrow>
+                            <annotation encoding="application/x-tex">O(1)</annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault"
+                            style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span
+                            class="mord">1</span><span class="mclose">)</span></span></span></span>. Only constant space
+            is used.</p>
+        <p>Time Complexity: <span class="katex"><span class="katex-mathml"><math>
+                        <semantics>
+                            <mrow>
+                                <mi>O</mi>
+                                <mo>(</mo>
+                                <mi>n</mi>
+                                <mo>)</mo>
+                            </mrow>
+                            <annotation encoding="application/x-tex">O(n)</annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault"
+                            style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span
+                            class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span>.
+            However, the total number of operations are optimal. The total operations (array writes) that code does is
+            Number of non-0 elements.This gives us a much better best-case (when most of the elements are 0) complexity
+            than last solution. However, the worst-case (when all elements are non-0) complexity for both the algorithms
+            is same.</p>
+        <p>Analysis written by: @spandan.pathak</p>
+    </div>
+</div>
+<link rel="stylesheet" href="../../../boilerplate/simple.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css"
+    integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
