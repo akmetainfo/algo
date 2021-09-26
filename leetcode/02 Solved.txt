@@ -46,7 +46,7 @@
 ? 0181,Employees Earning More Than Their Managers
 ? 0182,Duplicate Emails
 ? 0183,Customers Who Never Order
-? 0189,Rotate Array
+0189,Rotate Array
 ? 0196,Delete Duplicate Emails
 ? 0202,Happy Number
 0203,Remove Linked List Elements
