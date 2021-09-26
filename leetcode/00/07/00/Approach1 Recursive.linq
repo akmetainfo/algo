@@ -24,10 +24,7 @@ public class Solution
         if (root.val > val)
             return SearchBST(root.left, val);
 
-        if (root.val < val)
-            return SearchBST(root.right, val);
-            
-        return null;
+        return SearchBST(root.right, val);
     }
 }
 
