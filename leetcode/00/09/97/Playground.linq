@@ -64,6 +64,14 @@ private static IEnumerable<object[]> TestCases()
         },
         3
     };
+    yield return new object[]
+    {
+        1,
+        new int[][]
+        {
+        },
+        1
+    };
 }
 
 [Test]
