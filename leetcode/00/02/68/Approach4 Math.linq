@@ -12,15 +12,17 @@
     Space: O(1)
 */
 /*
-Total sum of  arithmetic progression is n * (n - 1) / 2
+arithmetic progression 0,1...(n-1) contains n elements (note: n = nums.Length + 1)
+Total sum of such progression  is ( (0) + (n - 1) ) * (n) / 2 
 */
 public class Solution
 {
     public int MissingNumber(int[] nums)
     {
+        var n = nums.Length + 1;
         var sum = nums.Sum();
-        var n = nums.Length;
-        return n * (n - 1) / 2 - sum + n;
+        var expectedTotalSum = n * (n - 1) / 2;
+        return expectedTotalSum - sum;
     }
 }
 

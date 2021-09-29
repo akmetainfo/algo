@@ -5,7 +5,7 @@
 0012,Integer to Roman
 0013,Roman to Integer
 ? 0014,Longest Common Prefix
-? 0019,Remove Nth Node From End of List
+0019,Remove Nth Node From End of List
 0020,Valid Parentheses
 0022,Generate Parentheses
 0026,Remove Duplicates from Sorted Array
