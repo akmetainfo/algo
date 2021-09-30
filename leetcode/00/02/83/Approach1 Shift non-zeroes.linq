@@ -37,7 +37,7 @@ public class Solution
 public void SolutionTests(int[] nums, int[] expected)
 {
     new Solution().MoveZeroes(nums);
-    Assert.That(nums, Is.EquivalentTo(expected));
+    Assert.That(nums, Is.EqualTo(expected));
 }
 
 #region unit tests runner
