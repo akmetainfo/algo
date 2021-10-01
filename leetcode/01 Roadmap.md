@@ -185,6 +185,7 @@ next challenges:
 * 563. Binary Tree Tilt
 * 0700, Search in a Binary Search Tree
 * 872. Leaf-Similar Trees
+* 0897,Increasing Order Search Tree
 * 993. Cousins in Binary Tree
 * 1022. Sum of Root To Leaf Binary Numbers
 
