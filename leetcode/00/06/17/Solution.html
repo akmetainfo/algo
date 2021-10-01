@@ -1,0 +1,506 @@
+<div class="content__QRGW">
+    <div>
+        <h2>Solution</h2>
+        <hr>
+        <h4 id="approach-1-using-recursion-accepted">Approach #1 Using Recursion [Accepted]</h4>
+        <p>We can traverse both the given trees in a preorder fashion. At every step, we check if the current node
+            exists(isn't null) for both the trees. If so, we add the values in the current nodes of both the trees and
+            update the value in the current node of the first tree to reflect this sum obtained. At every step, we also
+            call the original function <code>mergeTrees()</code> with the left children and then with the right children
+            of the current nodes of the two trees. If at any step, one of these children happens to be null, we return
+            the child of the other tree(representing the corresponding child subtree) to be added as a child subtree to
+            the calling parent node in the first tree. At the end, the first tree will represent the required resultant
+            merged binary tree.</p>
+        <p>The following animation illustrates the process.</p>
+        <div>
+            <div>
+                <div class="dia-container__jsK9" style="width: 758.5px; height: 427px;">
+                    <div class="diaporama__1pV2"><img alt="Current" class="dia-img__3g12"
+                            src="blob:https://leetcode.com/200de199-7918-4d68-a42d-3ebb070f8d4b"></div>
+                    <div class="initial-play-wrapper__2HUL">
+                        <div class="initial-play__2m2N play-container__2y5J"><svg viewBox="0 0 24 24" width="1em"
+                                height="1em" class="icon__1Md2">
+                                <defs>
+                                    <path id="play-arrow_svg__a" d="M8 5v14l11-7z"></path>
+                                    <mask id="play-arrow_svg__b">
+                                        <use fill-rule="evenodd" xlink:href="#play-arrow_svg__a"></use>
+                                    </mask>
+                                </defs>
+                                <g fill-rule="evenodd">
+                                    <use xlink:href="#play-arrow_svg__a"></use>
+                                    <g fill-rule="nonzero" mask="url(#play-arrow_svg__b)">
+                                        <path d="M0 0h24v24H0z"></path>
+                                    </g>
+                                </g>
+                            </svg></div>
+                    </div>
+                    <div class="control-panel__1ogu">
+                        <div class="controls__3i3n"><svg viewBox="0 0 24 24" width="1em" height="1em"
+                                class="icon__1Md2 control-group__3APN">
+                                <path fill-rule="evenodd" d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"></path>
+                            </svg><svg viewBox="0 0 24 24" width="1em" height="1em"
+                                class="icon__1Md2 toggle-play__3nt0 control-group__3APN">
+                                <defs>
+                                    <path id="play-arrow_svg__a" d="M8 5v14l11-7z"></path>
+                                    <mask id="play-arrow_svg__b">
+                                        <use fill-rule="evenodd" xlink:href="#play-arrow_svg__a"></use>
+                                    </mask>
+                                </defs>
+                                <g fill-rule="evenodd">
+                                    <use xlink:href="#play-arrow_svg__a"></use>
+                                    <g fill-rule="nonzero" mask="url(#play-arrow_svg__b)">
+                                        <path d="M0 0h24v24H0z"></path>
+                                    </g>
+                                </g>
+                            </svg><svg viewBox="0 0 24 24" width="1em" height="1em"
+                                class="icon__1Md2 control-group__3APN">
+                                <path fill-rule="evenodd" d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"></path>
+                            </svg></div>
+                        <div class="frame-counter__mLmP">1 / 15</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <iframe src="https://leetcode.com/playground/d9nZDPEJ/shared" name="d9nZDPEJ" width="100%" height="428"
+            frameborder="0"></iframe>
+        <p><strong>Complexity Analysis</strong></p>
+        <ul>
+            <li>
+                <p>Time complexity : <span class="katex"><span class="katex-mathml"><math>
+                                <semantics>
+                                    <mrow>
+                                        <mi>O</mi>
+                                        <mo>(</mo>
+                                        <mi>m</mi>
+                                        <mo>)</mo>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">O(m)</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                                    class="mord mathdefault" style="margin-right:0.02778em;">O</span><span
+                                    class="mopen">(</span><span class="mord mathdefault">m</span><span
+                                    class="mclose">)</span></span></span></span>. A total of <span class="katex"><span
+                            class="katex-mathml"><math>
+                                <semantics>
+                                    <mrow>
+                                        <mi>m</mi>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">m</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut" style="height:0.43056em;vertical-align:0em;"></span><span
+                                    class="mord mathdefault">m</span></span></span></span> nodes need to be traversed.
+                    Here, <span class="katex"><span class="katex-mathml"><math>
+                                <semantics>
+                                    <mrow>
+                                        <mi>m</mi>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">m</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut" style="height:0.43056em;vertical-align:0em;"></span><span
+                                    class="mord mathdefault">m</span></span></span></span> represents the minimum number
+                    of nodes from the two given trees.</p>
+            </li>
+            <li>
+                <p>Space complexity : <span class="katex"><span class="katex-mathml"><math>
+                                <semantics>
+                                    <mrow>
+                                        <mi>O</mi>
+                                        <mo>(</mo>
+                                        <mi>m</mi>
+                                        <mo>)</mo>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">O(m)</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                                    class="mord mathdefault" style="margin-right:0.02778em;">O</span><span
+                                    class="mopen">(</span><span class="mord mathdefault">m</span><span
+                                    class="mclose">)</span></span></span></span>. The depth of the recursion tree can go
+                    upto <span class="katex"><span class="katex-mathml"><math>
+                                <semantics>
+                                    <mrow>
+                                        <mi>m</mi>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">m</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut" style="height:0.43056em;vertical-align:0em;"></span><span
+                                    class="mord mathdefault">m</span></span></span></span> in the case of a skewed tree.
+                    In average case, depth will be <span class="katex"><span class="katex-mathml"><math>
+                                <semantics>
+                                    <mrow>
+                                        <mi>O</mi>
+                                        <mo>(</mo>
+                                        <mi>l</mi>
+                                        <mi>o</mi>
+                                        <mi>g</mi>
+                                        <mi>m</mi>
+                                        <mo>)</mo>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">O(logm)</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                                    class="mord mathdefault" style="margin-right:0.02778em;">O</span><span
+                                    class="mopen">(</span><span class="mord mathdefault"
+                                    style="margin-right:0.01968em;">l</span><span class="mord mathdefault">o</span><span
+                                    class="mord mathdefault" style="margin-right:0.03588em;">g</span><span
+                                    class="mord mathdefault">m</span><span class="mclose">)</span></span></span></span>.
+                </p>
+            </li>
+        </ul>
+        <hr>
+        <h4 id="approach-2-iterative-method-accepted">Approach #2 Iterative Method [Accepted]</h4>
+        <p><strong>Algorithm</strong></p>
+        <p>In the current approach, we again traverse the two trees, but this time we make use of a <span
+                class="katex"><span class="katex-mathml"><math>
+                        <semantics>
+                            <mrow>
+                                <mi>s</mi>
+                                <mi>t</mi>
+                                <mi>a</mi>
+                                <mi>c</mi>
+                                <mi>k</mi>
+                            </mrow>
+                            <annotation encoding="application/x-tex">stack</annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:0.69444em;vertical-align:0em;"></span><span
+                            class="mord mathdefault">s</span><span class="mord mathdefault">t</span><span
+                            class="mord mathdefault">a</span><span class="mord mathdefault">c</span><span
+                            class="mord mathdefault" style="margin-right:0.03148em;">k</span></span></span></span> to do
+            so instead of making use of recursion. Each entry in the <span class="katex"><span
+                    class="katex-mathml"><math>
+                        <semantics>
+                            <mrow>
+                                <mi>s</mi>
+                                <mi>t</mi>
+                                <mi>a</mi>
+                                <mi>c</mi>
+                                <mi>k</mi>
+                            </mrow>
+                            <annotation encoding="application/x-tex">stack</annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:0.69444em;vertical-align:0em;"></span><span
+                            class="mord mathdefault">s</span><span class="mord mathdefault">t</span><span
+                            class="mord mathdefault">a</span><span class="mord mathdefault">c</span><span
+                            class="mord mathdefault" style="margin-right:0.03148em;">k</span></span></span></span>
+            strores data in the form <span class="katex"><span class="katex-mathml"><math>
+                        <semantics>
+                            <mrow>
+                                <mo>[</mo>
+                                <mi>n</mi>
+                                <mi>o</mi>
+                                <mi>d</mi>
+                                <msub>
+                                    <mi>e</mi>
+                                    <mrow>
+                                        <mi>t</mi>
+                                        <mi>r</mi>
+                                        <mi>e</mi>
+                                        <mi>e</mi>
+                                        <mn>1</mn>
+                                    </mrow>
+                                </msub>
+                                <mo separator="true">,</mo>
+                                <mi>n</mi>
+                                <mi>o</mi>
+                                <mi>d</mi>
+                                <msub>
+                                    <mi>e</mi>
+                                    <mrow>
+                                        <mi>t</mi>
+                                        <mi>r</mi>
+                                        <mi>e</mi>
+                                        <mi>e</mi>
+                                        <mn>2</mn>
+                                    </mrow>
+                                </msub>
+                                <mo>]</mo>
+                            </mrow>
+                            <annotation encoding="application/x-tex">[node_{tree1}, node_{tree2}]</annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span
+                            class="mord mathdefault">n</span><span class="mord mathdefault">o</span><span
+                            class="mord mathdefault">d</span><span class="mord"><span
+                                class="mord mathdefault">e</span><span class="msupsub"><span
+                                    class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                            style="height:0.30110799999999993em;"><span
+                                                style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span
+                                                    class="pstrut" style="height:2.7em;"></span><span
+                                                    class="sizing reset-size6 size3 mtight"><span
+                                                        class="mord mtight"><span
+                                                            class="mord mathdefault mtight">t</span><span
+                                                            class="mord mathdefault mtight"
+                                                            style="margin-right:0.02778em;">r</span><span
+                                                            class="mord mathdefault mtight">e</span><span
+                                                            class="mord mathdefault mtight">e</span><span
+                                                            class="mord mtight">1</span></span></span></span></span><span
+                                            class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                            style="height:0.15em;"><span></span></span></span></span></span></span><span
+                            class="mpunct">,</span><span class="mspace"
+                            style="margin-right:0.16666666666666666em;"></span><span
+                            class="mord mathdefault">n</span><span class="mord mathdefault">o</span><span
+                            class="mord mathdefault">d</span><span class="mord"><span
+                                class="mord mathdefault">e</span><span class="msupsub"><span
+                                    class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                            style="height:0.30110799999999993em;"><span
+                                                style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span
+                                                    class="pstrut" style="height:2.7em;"></span><span
+                                                    class="sizing reset-size6 size3 mtight"><span
+                                                        class="mord mtight"><span
+                                                            class="mord mathdefault mtight">t</span><span
+                                                            class="mord mathdefault mtight"
+                                                            style="margin-right:0.02778em;">r</span><span
+                                                            class="mord mathdefault mtight">e</span><span
+                                                            class="mord mathdefault mtight">e</span><span
+                                                            class="mord mtight">2</span></span></span></span></span><span
+                                            class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                            style="height:0.15em;"><span></span></span></span></span></span></span><span
+                            class="mclose">]</span></span></span></span>. Here, <span class="katex"><span
+                    class="katex-mathml"><math>
+                        <semantics>
+                            <mrow>
+                                <mi>n</mi>
+                                <mi>o</mi>
+                                <mi>d</mi>
+                                <msub>
+                                    <mi>e</mi>
+                                    <mrow>
+                                        <mi>t</mi>
+                                        <mi>r</mi>
+                                        <mi>e</mi>
+                                        <mi>e</mi>
+                                        <mn>1</mn>
+                                    </mrow>
+                                </msub>
+                            </mrow>
+                            <annotation encoding="application/x-tex">node_{tree1}</annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:0.84444em;vertical-align:-0.15em;"></span><span
+                            class="mord mathdefault">n</span><span class="mord mathdefault">o</span><span
+                            class="mord mathdefault">d</span><span class="mord"><span
+                                class="mord mathdefault">e</span><span class="msupsub"><span
+                                    class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                            style="height:0.30110799999999993em;"><span
+                                                style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span
+                                                    class="pstrut" style="height:2.7em;"></span><span
+                                                    class="sizing reset-size6 size3 mtight"><span
+                                                        class="mord mtight"><span
+                                                            class="mord mathdefault mtight">t</span><span
+                                                            class="mord mathdefault mtight"
+                                                            style="margin-right:0.02778em;">r</span><span
+                                                            class="mord mathdefault mtight">e</span><span
+                                                            class="mord mathdefault mtight">e</span><span
+                                                            class="mord mtight">1</span></span></span></span></span><span
+                                            class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                            style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>
+            and <span class="katex"><span class="katex-mathml"><math>
+                        <semantics>
+                            <mrow>
+                                <mi>n</mi>
+                                <mi>o</mi>
+                                <mi>d</mi>
+                                <msub>
+                                    <mi>e</mi>
+                                    <mrow>
+                                        <mi>t</mi>
+                                        <mi>r</mi>
+                                        <mi>e</mi>
+                                        <mi>e</mi>
+                                        <mn>2</mn>
+                                    </mrow>
+                                </msub>
+                            </mrow>
+                            <annotation encoding="application/x-tex">node_{tree2}</annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:0.84444em;vertical-align:-0.15em;"></span><span
+                            class="mord mathdefault">n</span><span class="mord mathdefault">o</span><span
+                            class="mord mathdefault">d</span><span class="mord"><span
+                                class="mord mathdefault">e</span><span class="msupsub"><span
+                                    class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                            style="height:0.30110799999999993em;"><span
+                                                style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span
+                                                    class="pstrut" style="height:2.7em;"></span><span
+                                                    class="sizing reset-size6 size3 mtight"><span
+                                                        class="mord mtight"><span
+                                                            class="mord mathdefault mtight">t</span><span
+                                                            class="mord mathdefault mtight"
+                                                            style="margin-right:0.02778em;">r</span><span
+                                                            class="mord mathdefault mtight">e</span><span
+                                                            class="mord mathdefault mtight">e</span><span
+                                                            class="mord mtight">2</span></span></span></span></span><span
+                                            class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                            style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>
+            are the nodes of the first tree and the second tree respectively.</p>
+        <p>We start off by pushing the root nodes of both the trees onto the <span class="katex"><span
+                    class="katex-mathml"><math>
+                        <semantics>
+                            <mrow>
+                                <mi>s</mi>
+                                <mi>t</mi>
+                                <mi>a</mi>
+                                <mi>c</mi>
+                                <mi>k</mi>
+                            </mrow>
+                            <annotation encoding="application/x-tex">stack</annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:0.69444em;vertical-align:0em;"></span><span
+                            class="mord mathdefault">s</span><span class="mord mathdefault">t</span><span
+                            class="mord mathdefault">a</span><span class="mord mathdefault">c</span><span
+                            class="mord mathdefault" style="margin-right:0.03148em;">k</span></span></span></span>.
+            Then, at every step, we remove a node pair from the top of the stack. For every node pair removed, we add
+            the values corresponding to the two nodes and update the value of the corresponding node in the first tree.
+            Then, if the left child of the first tree exists, we push the left child(pair) of both the trees onto the
+            stack. If the left child of the first tree doesn't exist, we append the left child(subtree) of the second
+            tree to the current node of the first tree. We do the same for the right child pair as well.</p>
+        <p>If, at any step, both the current nodes are null, we continue with popping the next nodes from the <span
+                class="katex"><span class="katex-mathml"><math>
+                        <semantics>
+                            <mrow>
+                                <mi>s</mi>
+                                <mi>t</mi>
+                                <mi>a</mi>
+                                <mi>c</mi>
+                                <mi>k</mi>
+                            </mrow>
+                            <annotation encoding="application/x-tex">stack</annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:0.69444em;vertical-align:0em;"></span><span
+                            class="mord mathdefault">s</span><span class="mord mathdefault">t</span><span
+                            class="mord mathdefault">a</span><span class="mord mathdefault">c</span><span
+                            class="mord mathdefault" style="margin-right:0.03148em;">k</span></span></span></span>.</p>
+        <p>The following animation depicts the process.</p>
+        <div>
+            <div>
+                <div class="dia-container__jsK9" style="width: 758.5px; height: 427px;">
+                    <div class="diaporama__1pV2"><img alt="Current" class="dia-img__3g12"
+                            src="blob:https://leetcode.com/b09ab65b-227a-4f93-b56d-30cd3bb12480"></div>
+                    <div class="initial-play-wrapper__2HUL">
+                        <div class="initial-play__2m2N play-container__2y5J"><svg viewBox="0 0 24 24" width="1em"
+                                height="1em" class="icon__1Md2">
+                                <defs>
+                                    <path id="play-arrow_svg__a" d="M8 5v14l11-7z"></path>
+                                    <mask id="play-arrow_svg__b">
+                                        <use fill-rule="evenodd" xlink:href="#play-arrow_svg__a"></use>
+                                    </mask>
+                                </defs>
+                                <g fill-rule="evenodd">
+                                    <use xlink:href="#play-arrow_svg__a"></use>
+                                    <g fill-rule="nonzero" mask="url(#play-arrow_svg__b)">
+                                        <path d="M0 0h24v24H0z"></path>
+                                    </g>
+                                </g>
+                            </svg></div>
+                    </div>
+                    <div class="control-panel__1ogu">
+                        <div class="controls__3i3n"><svg viewBox="0 0 24 24" width="1em" height="1em"
+                                class="icon__1Md2 control-group__3APN">
+                                <path fill-rule="evenodd" d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"></path>
+                            </svg><svg viewBox="0 0 24 24" width="1em" height="1em"
+                                class="icon__1Md2 toggle-play__3nt0 control-group__3APN">
+                                <defs>
+                                    <path id="play-arrow_svg__a" d="M8 5v14l11-7z"></path>
+                                    <mask id="play-arrow_svg__b">
+                                        <use fill-rule="evenodd" xlink:href="#play-arrow_svg__a"></use>
+                                    </mask>
+                                </defs>
+                                <g fill-rule="evenodd">
+                                    <use xlink:href="#play-arrow_svg__a"></use>
+                                    <g fill-rule="nonzero" mask="url(#play-arrow_svg__b)">
+                                        <path d="M0 0h24v24H0z"></path>
+                                    </g>
+                                </g>
+                            </svg><svg viewBox="0 0 24 24" width="1em" height="1em"
+                                class="icon__1Md2 control-group__3APN">
+                                <path fill-rule="evenodd" d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"></path>
+                            </svg></div>
+                        <div class="frame-counter__mLmP">1 / 15</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <iframe src="https://leetcode.com/playground/v2TK7i2x/shared" name="v2TK7i2x" width="100%" height="515"
+            frameborder="0"></iframe>
+        <p><strong>Complexity Analysis</strong></p>
+        <ul>
+            <li>
+                <p>Time complexity : <span class="katex"><span class="katex-mathml"><math>
+                                <semantics>
+                                    <mrow>
+                                        <mi>O</mi>
+                                        <mo>(</mo>
+                                        <mi>n</mi>
+                                        <mo>)</mo>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">O(n)</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                                    class="mord mathdefault" style="margin-right:0.02778em;">O</span><span
+                                    class="mopen">(</span><span class="mord mathdefault">n</span><span
+                                    class="mclose">)</span></span></span></span>. We traverse over a total of <span
+                        class="katex"><span class="katex-mathml"><math>
+                                <semantics>
+                                    <mrow>
+                                        <mi>n</mi>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">n</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut" style="height:0.43056em;vertical-align:0em;"></span><span
+                                    class="mord mathdefault">n</span></span></span></span> nodes. Here, <span
+                        class="katex"><span class="katex-mathml"><math>
+                                <semantics>
+                                    <mrow>
+                                        <mi>n</mi>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">n</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut" style="height:0.43056em;vertical-align:0em;"></span><span
+                                    class="mord mathdefault">n</span></span></span></span> refers to the smaller of the
+                    number of nodes in the two trees.</p>
+            </li>
+            <li>
+                <p>Space complexity : <span class="katex"><span class="katex-mathml"><math>
+                                <semantics>
+                                    <mrow>
+                                        <mi>O</mi>
+                                        <mo>(</mo>
+                                        <mi>n</mi>
+                                        <mo>)</mo>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">O(n)</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                                    class="mord mathdefault" style="margin-right:0.02778em;">O</span><span
+                                    class="mopen">(</span><span class="mord mathdefault">n</span><span
+                                    class="mclose">)</span></span></span></span>. The depth of stack can grow upto <span
+                        class="katex"><span class="katex-mathml"><math>
+                                <semantics>
+                                    <mrow>
+                                        <mi>n</mi>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">n</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut" style="height:0.43056em;vertical-align:0em;"></span><span
+                                    class="mord mathdefault">n</span></span></span></span> in case of a skewed tree.</p>
+            </li>
+        </ul>
+    </div>
+</div>
+<link rel="stylesheet" href="../../../boilerplate/simple.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css"
+    integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
