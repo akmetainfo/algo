@@ -1,0 +1,502 @@
+<div class="content__QRGW">
+    <div>
+        <h2>Solution</h2>
+        <hr>
+        <h4 id="approach-1-brute-force-time-limit-exceeded">Approach 1: Brute force [Time Limit Exceeded]</h4>
+        <p><strong>Intuition</strong></p>
+        <p>Let's start with the most intuitive approach, and do exactly what the question asks us to do: for each cell,
+            find the distance of the closest zero.</p>
+        <p><strong>Algorithm</strong></p>
+        <ul>
+            <li>Initialize <code>dist[i][j]=INT_MAX</code> for all <code>{i,j}</code> cells.</li>
+            <li>Iterate over the matrix.
+                <ul>
+                    <li>If cell is <code>0</code>, <code>dist[i][j]=0</code>,</li>
+                    <li>Otherwise, for each <code>1</code> cell,
+                        <ul>
+                            <li>Iterate over the entire matrix</li>
+                            <li>If the cell is <code>0</code>, calculate its distance from current cell as
+                                <code>abs(k-i) + abs(l-j)</code>.
+                            </li>
+                            <li>If the distance is smaller than the current distance, update it.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+        <p><strong>Implementation</strong></p>
+        <iframe src="https://leetcode.com/playground/S7MnCZav/shared" name="S7MnCZav" width="100%" height="500"
+            frameborder="0"></iframe>
+        <p><strong>Complexity Analysis</strong></p>
+        <ul>
+            <li>
+                <p>Time complexity: <span class="katex"><span class="katex-mathml"><math>
+                                <semantics>
+                                    <mrow>
+                                        <mi>O</mi>
+                                        <mo>(</mo>
+                                        <mo>(</mo>
+                                        <mi>r</mi>
+                                        <mo>⋅</mo>
+                                        <mi>c</mi>
+                                        <msup>
+                                            <mo>)</mo>
+                                            <mn>2</mn>
+                                        </msup>
+                                        <mo>)</mo>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">O((r \cdot c)^2)</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                                    class="mord mathdefault" style="margin-right:0.02778em;">O</span><span
+                                    class="mopen">(</span><span class="mopen">(</span><span class="mord mathdefault"
+                                    style="margin-right:0.02778em;">r</span><span class="mspace"
+                                    style="margin-right:0.2222222222222222em;"></span><span class="mbin">⋅</span><span
+                                    class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span
+                                class="base"><span class="strut"
+                                    style="height:1.064108em;vertical-align:-0.25em;"></span><span
+                                    class="mord mathdefault">c</span><span class="mclose"><span
+                                        class="mclose">)</span><span class="msupsub"><span class="vlist-t"><span
+                                                class="vlist-r"><span class="vlist"
+                                                    style="height:0.8141079999999999em;"><span
+                                                        style="top:-3.063em;margin-right:0.05em;"><span class="pstrut"
+                                                            style="height:2.7em;"></span><span
+                                                            class="sizing reset-size6 size3 mtight"><span
+                                                                class="mord mtight">2</span></span></span></span></span></span></span></span><span
+                                    class="mclose">)</span></span></span></span></p>
+                <p>Iterating over the entire matrix for each <code>1</code> in the matrix.</p>
+            </li>
+            <li>
+                <p>Space complexity: <span class="katex"><span class="katex-mathml"><math>
+                                <semantics>
+                                    <mrow>
+                                        <mi>O</mi>
+                                        <mo>(</mo>
+                                        <mn>1</mn>
+                                        <mo>)</mo>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">O(1)</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                                    class="mord mathdefault" style="margin-right:0.02778em;">O</span><span
+                                    class="mopen">(</span><span class="mord">1</span><span
+                                    class="mclose">)</span></span></span></span></p>
+                <p>No extra space is required other than the space used to store the output (<code>dist</code>), and the
+                    output does not count towards the space complexity.</p>
+            </li>
+        </ul>
+        <hr>
+        <h4 id="approach-2-using-bfs">Approach 2: Using BFS</h4>
+        <p><strong>Intuition</strong></p>
+        <p><em>A better brute force</em>:
+            Looking over the entire matrix appears wasteful and hence, we can use Breadth First Search (BFS) to limit
+            the search to the nearest <code>0</code> found for each <code>1</code>. As soon as a <code>0</code> appears
+            during the BFS, we know that the <code>0</code> is the closest, and hence, we move to the next
+            <code>1</code>.
+        </p>
+        <p><em>Think again</em>:
+            But, in this approach, we will only be able to update the distance of one <code>1</code> using one BFS,
+            which could in fact, result in slightly higher complexity than the brute force approach.
+            But hey, this could be optimized if we start the BFS from <code>0</code>s and thereby, updating the
+            distances of all the <code>1</code>s in the path.</p>
+        <p><strong>Algorithm</strong></p>
+        <ul>
+            <li>For our BFS routine, we keep a queue, <code>q</code> to maintain the queue of cells to be examined next.
+            </li>
+            <li>We start by adding all the cells with <code>0</code>s to <code>q</code>.</li>
+            <li>Intially, distance for each <code>0</code> cell is <code>0</code> and distance for each <code>1</code>
+                is <code>INT_MAX</code>, which is updated during the BFS.</li>
+            <li>Pop the cell from queue, and examine its neighbors. If the new calculated distance for neighbor
+                <code>{i,j}</code> is smaller, we add <code>{i,j}</code> to <code>q</code> and update
+                <code>dist[i][j]</code>.
+            </li>
+        </ul>
+        <p><strong>Implementation</strong></p>
+        <iframe src="https://leetcode.com/playground/iM8noDXh/shared" name="iM8noDXh" width="100%" height="500"
+            frameborder="0"></iframe>
+        <p><strong>Complexity Analysis</strong></p>
+        <ul>
+            <li>
+                <p>Time complexity: <span class="katex"><span class="katex-mathml"><math>
+                                <semantics>
+                                    <mrow>
+                                        <mi>O</mi>
+                                        <mo>(</mo>
+                                        <mi>r</mi>
+                                        <mo>⋅</mo>
+                                        <mi>c</mi>
+                                        <mo>)</mo>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">O(r \cdot c)</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                                    class="mord mathdefault" style="margin-right:0.02778em;">O</span><span
+                                    class="mopen">(</span><span class="mord mathdefault"
+                                    style="margin-right:0.02778em;">r</span><span class="mspace"
+                                    style="margin-right:0.2222222222222222em;"></span><span class="mbin">⋅</span><span
+                                    class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span
+                                class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                                    class="mord mathdefault">c</span><span class="mclose">)</span></span></span></span>
+                </p>
+                <p>Since, the new cells are added to the queue only if their current distance is greater than the
+                    calculated distance, cells are not likely to be added multiple times.</p>
+            </li>
+            <li>
+                <p>Space complexity: <span class="katex"><span class="katex-mathml"><math>
+                                <semantics>
+                                    <mrow>
+                                        <mi>O</mi>
+                                        <mo>(</mo>
+                                        <mi>r</mi>
+                                        <mo>⋅</mo>
+                                        <mi>c</mi>
+                                        <mo>)</mo>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">O(r \cdot c)</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                                    class="mord mathdefault" style="margin-right:0.02778em;">O</span><span
+                                    class="mopen">(</span><span class="mord mathdefault"
+                                    style="margin-right:0.02778em;">r</span><span class="mspace"
+                                    style="margin-right:0.2222222222222222em;"></span><span class="mbin">⋅</span><span
+                                    class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span
+                                class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                                    class="mord mathdefault">c</span><span class="mclose">)</span></span></span></span>
+                </p>
+                <p>An additional <span class="katex"><span class="katex-mathml"><math>
+                                <semantics>
+                                    <mrow>
+                                        <mi>O</mi>
+                                        <mo>(</mo>
+                                        <mi>r</mi>
+                                        <mo>⋅</mo>
+                                        <mi>c</mi>
+                                        <mo>)</mo>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">O(r \cdot c)</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                                    class="mord mathdefault" style="margin-right:0.02778em;">O</span><span
+                                    class="mopen">(</span><span class="mord mathdefault"
+                                    style="margin-right:0.02778em;">r</span><span class="mspace"
+                                    style="margin-right:0.2222222222222222em;"></span><span class="mbin">⋅</span><span
+                                    class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span
+                                class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                                    class="mord mathdefault">c</span><span class="mclose">)</span></span></span></span>
+                    space is required to maintain the queue.</p>
+            </li>
+        </ul>
+        <hr>
+        <h4 id="approach-3-dynamic-programming">Approach 3: Dynamic Programming</h4>
+        <p><strong>Intuition</strong></p>
+        <p>The distance of a cell from <code>0</code> can be calculated if we know the nearest distance for all the
+            neighbors, in which case the distance is minimum distance of any neightbor + 1. And, instantly, the words
+            come to mind Dynamic Programming (DP)!!<br>
+            For each <code>1</code>, the minimum path to <code>0</code> can be in any direction. So, we need to check
+            all the 4 directions. In one iteration from top to bottom, we can check left and top directions, and we need
+            another iteration from bottom to top to check for right and bottom direction.</p>
+        <p><strong>Algorithm</strong></p>
+        <ul>
+            <li>Iterate over the matrix from top to bottom-left to right:
+                <ul>
+                    <li>Update
+                        <span class="katex"><span class="katex-mathml"><math>
+                                    <semantics>
+                                        <mrow>
+                                            <mtext>dist</mtext>
+                                            <mo>[</mo>
+                                            <mi>i</mi>
+                                            <mo>]</mo>
+                                            <mo>[</mo>
+                                            <mi>j</mi>
+                                            <mo>]</mo>
+                                            <mo>=</mo>
+                                            <mi>min</mi>
+                                            <mo>⁡</mo>
+                                            <mo>(</mo>
+                                            <mtext>dist</mtext>
+                                            <mo>[</mo>
+                                            <mi>i</mi>
+                                            <mo>]</mo>
+                                            <mo>[</mo>
+                                            <mi>j</mi>
+                                            <mo>]</mo>
+                                            <mo separator="true">,</mo>
+                                            <mi>min</mi>
+                                            <mo>⁡</mo>
+                                            <mo>(</mo>
+                                            <mtext>dist</mtext>
+                                            <mo>[</mo>
+                                            <mi>i</mi>
+                                            <mo>]</mo>
+                                            <mo>[</mo>
+                                            <mi>j</mi>
+                                            <mo>−</mo>
+                                            <mn>1</mn>
+                                            <mo>]</mo>
+                                            <mo separator="true">,</mo>
+                                            <mtext>dist</mtext>
+                                            <mo>[</mo>
+                                            <mi>i</mi>
+                                            <mo>−</mo>
+                                            <mn>1</mn>
+                                            <mo>]</mo>
+                                            <mo>[</mo>
+                                            <mi>j</mi>
+                                            <mo>]</mo>
+                                            <mo>)</mo>
+                                            <mo>+</mo>
+                                            <mn>1</mn>
+                                            <mo>)</mo>
+                                        </mrow>
+                                        <annotation encoding="application/x-tex">
+                                            \text{dist}[i][j]=\min(\text{dist}[i][j],\min(\text{dist}[i][j-1],\text{dist}[i-1][j])+1)
+                                        </annotation>
+                                    </semantics>
+                                </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                        class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                                        class="mord text"><span class="mord">dist</span></span><span
+                                        class="mopen">[</span><span class="mord mathdefault">i</span><span
+                                        class="mclose">]</span><span class="mopen">[</span><span
+                                        class="mord mathdefault" style="margin-right:0.05724em;">j</span><span
+                                        class="mclose">]</span><span class="mspace"
+                                        style="margin-right:0.2777777777777778em;"></span><span
+                                        class="mrel">=</span><span class="mspace"
+                                        style="margin-right:0.2777777777777778em;"></span></span><span
+                                    class="base"><span class="strut"
+                                        style="height:1em;vertical-align:-0.25em;"></span><span
+                                        class="mop">min</span><span class="mopen">(</span><span class="mord text"><span
+                                            class="mord">dist</span></span><span class="mopen">[</span><span
+                                        class="mord mathdefault">i</span><span class="mclose">]</span><span
+                                        class="mopen">[</span><span class="mord mathdefault"
+                                        style="margin-right:0.05724em;">j</span><span class="mclose">]</span><span
+                                        class="mpunct">,</span><span class="mspace"
+                                        style="margin-right:0.16666666666666666em;"></span><span
+                                        class="mop">min</span><span class="mopen">(</span><span class="mord text"><span
+                                            class="mord">dist</span></span><span class="mopen">[</span><span
+                                        class="mord mathdefault">i</span><span class="mclose">]</span><span
+                                        class="mopen">[</span><span class="mord mathdefault"
+                                        style="margin-right:0.05724em;">j</span><span class="mspace"
+                                        style="margin-right:0.2222222222222222em;"></span><span
+                                        class="mbin">−</span><span class="mspace"
+                                        style="margin-right:0.2222222222222222em;"></span></span><span
+                                    class="base"><span class="strut"
+                                        style="height:1em;vertical-align:-0.25em;"></span><span
+                                        class="mord">1</span><span class="mclose">]</span><span
+                                        class="mpunct">,</span><span class="mspace"
+                                        style="margin-right:0.16666666666666666em;"></span><span class="mord text"><span
+                                            class="mord">dist</span></span><span class="mopen">[</span><span
+                                        class="mord mathdefault">i</span><span class="mspace"
+                                        style="margin-right:0.2222222222222222em;"></span><span
+                                        class="mbin">−</span><span class="mspace"
+                                        style="margin-right:0.2222222222222222em;"></span></span><span
+                                    class="base"><span class="strut"
+                                        style="height:1em;vertical-align:-0.25em;"></span><span
+                                        class="mord">1</span><span class="mclose">]</span><span
+                                        class="mopen">[</span><span class="mord mathdefault"
+                                        style="margin-right:0.05724em;">j</span><span class="mclose">]</span><span
+                                        class="mclose">)</span><span class="mspace"
+                                        style="margin-right:0.2222222222222222em;"></span><span
+                                        class="mbin">+</span><span class="mspace"
+                                        style="margin-right:0.2222222222222222em;"></span></span><span
+                                    class="base"><span class="strut"
+                                        style="height:1em;vertical-align:-0.25em;"></span><span
+                                        class="mord">1</span><span class="mclose">)</span></span></span></span>
+                        i.e., minimum of the current dist and distance from top or left neighbor +1, that would have
+                        been already calculated previously in the current iteration.
+                    </li>
+                </ul>
+            </li>
+            <li>Now, we need to do the back iteration in the similar manner: from bottom to top-right to left:
+                <ul>
+                    <li>Update
+                        <span class="katex"><span class="katex-mathml"><math>
+                                    <semantics>
+                                        <mrow>
+                                            <mtext>dist</mtext>
+                                            <mo>[</mo>
+                                            <mi>i</mi>
+                                            <mo>]</mo>
+                                            <mo>[</mo>
+                                            <mi>j</mi>
+                                            <mo>]</mo>
+                                            <mo>=</mo>
+                                            <mi>min</mi>
+                                            <mo>⁡</mo>
+                                            <mo>(</mo>
+                                            <mtext>dist</mtext>
+                                            <mo>[</mo>
+                                            <mi>i</mi>
+                                            <mo>]</mo>
+                                            <mo>[</mo>
+                                            <mi>j</mi>
+                                            <mo>]</mo>
+                                            <mo separator="true">,</mo>
+                                            <mi>min</mi>
+                                            <mo>⁡</mo>
+                                            <mo>(</mo>
+                                            <mtext>dist</mtext>
+                                            <mo>[</mo>
+                                            <mi>i</mi>
+                                            <mo>]</mo>
+                                            <mo>[</mo>
+                                            <mi>j</mi>
+                                            <mo>+</mo>
+                                            <mn>1</mn>
+                                            <mo>]</mo>
+                                            <mo separator="true">,</mo>
+                                            <mtext>dist</mtext>
+                                            <mo>[</mo>
+                                            <mi>i</mi>
+                                            <mo>+</mo>
+                                            <mn>1</mn>
+                                            <mo>]</mo>
+                                            <mo>[</mo>
+                                            <mi>j</mi>
+                                            <mo>]</mo>
+                                            <mo>)</mo>
+                                            <mo>+</mo>
+                                            <mn>1</mn>
+                                            <mo>)</mo>
+                                        </mrow>
+                                        <annotation encoding="application/x-tex">
+                                            \text{dist}[i][j]=\min(\text{dist}[i][j],\min(\text{dist}[i][j+1],\text{dist}[i+1][j])+1)
+                                        </annotation>
+                                    </semantics>
+                                </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                        class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                                        class="mord text"><span class="mord">dist</span></span><span
+                                        class="mopen">[</span><span class="mord mathdefault">i</span><span
+                                        class="mclose">]</span><span class="mopen">[</span><span
+                                        class="mord mathdefault" style="margin-right:0.05724em;">j</span><span
+                                        class="mclose">]</span><span class="mspace"
+                                        style="margin-right:0.2777777777777778em;"></span><span
+                                        class="mrel">=</span><span class="mspace"
+                                        style="margin-right:0.2777777777777778em;"></span></span><span
+                                    class="base"><span class="strut"
+                                        style="height:1em;vertical-align:-0.25em;"></span><span
+                                        class="mop">min</span><span class="mopen">(</span><span class="mord text"><span
+                                            class="mord">dist</span></span><span class="mopen">[</span><span
+                                        class="mord mathdefault">i</span><span class="mclose">]</span><span
+                                        class="mopen">[</span><span class="mord mathdefault"
+                                        style="margin-right:0.05724em;">j</span><span class="mclose">]</span><span
+                                        class="mpunct">,</span><span class="mspace"
+                                        style="margin-right:0.16666666666666666em;"></span><span
+                                        class="mop">min</span><span class="mopen">(</span><span class="mord text"><span
+                                            class="mord">dist</span></span><span class="mopen">[</span><span
+                                        class="mord mathdefault">i</span><span class="mclose">]</span><span
+                                        class="mopen">[</span><span class="mord mathdefault"
+                                        style="margin-right:0.05724em;">j</span><span class="mspace"
+                                        style="margin-right:0.2222222222222222em;"></span><span
+                                        class="mbin">+</span><span class="mspace"
+                                        style="margin-right:0.2222222222222222em;"></span></span><span
+                                    class="base"><span class="strut"
+                                        style="height:1em;vertical-align:-0.25em;"></span><span
+                                        class="mord">1</span><span class="mclose">]</span><span
+                                        class="mpunct">,</span><span class="mspace"
+                                        style="margin-right:0.16666666666666666em;"></span><span class="mord text"><span
+                                            class="mord">dist</span></span><span class="mopen">[</span><span
+                                        class="mord mathdefault">i</span><span class="mspace"
+                                        style="margin-right:0.2222222222222222em;"></span><span
+                                        class="mbin">+</span><span class="mspace"
+                                        style="margin-right:0.2222222222222222em;"></span></span><span
+                                    class="base"><span class="strut"
+                                        style="height:1em;vertical-align:-0.25em;"></span><span
+                                        class="mord">1</span><span class="mclose">]</span><span
+                                        class="mopen">[</span><span class="mord mathdefault"
+                                        style="margin-right:0.05724em;">j</span><span class="mclose">]</span><span
+                                        class="mclose">)</span><span class="mspace"
+                                        style="margin-right:0.2222222222222222em;"></span><span
+                                        class="mbin">+</span><span class="mspace"
+                                        style="margin-right:0.2222222222222222em;"></span></span><span
+                                    class="base"><span class="strut"
+                                        style="height:1em;vertical-align:-0.25em;"></span><span
+                                        class="mord">1</span><span class="mclose">)</span></span></span></span>
+                        i.e. minimum of current dist and distances calculated from bottom and right neighbors, that
+                        would be already available in current iteration.
+                    </li>
+                </ul>
+            </li>
+        </ul>
+        <p><strong>Implementation</strong></p>
+        <iframe src="https://leetcode.com/playground/GrvBS8vo/shared" name="GrvBS8vo" width="100%" height="500"
+            frameborder="0"></iframe>
+        <p><strong>Complexity Analysis</strong></p>
+        <ul>
+            <li>
+                <p>Time complexity: <span class="katex"><span class="katex-mathml"><math>
+                                <semantics>
+                                    <mrow>
+                                        <mi>O</mi>
+                                        <mo>(</mo>
+                                        <mi>r</mi>
+                                        <mo>⋅</mo>
+                                        <mi>c</mi>
+                                        <mo>)</mo>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">O(r \cdot c)</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                                    class="mord mathdefault" style="margin-right:0.02778em;">O</span><span
+                                    class="mopen">(</span><span class="mord mathdefault"
+                                    style="margin-right:0.02778em;">r</span><span class="mspace"
+                                    style="margin-right:0.2222222222222222em;"></span><span class="mbin">⋅</span><span
+                                    class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span
+                                class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                                    class="mord mathdefault">c</span><span class="mclose">)</span></span></span></span>
+                </p>
+                <p>We perform two passes over the matrix and each pass requires <span class="katex"><span
+                            class="katex-mathml"><math>
+                                <semantics>
+                                    <mrow>
+                                        <mi>O</mi>
+                                        <mo>(</mo>
+                                        <mi>r</mi>
+                                        <mo>⋅</mo>
+                                        <mi>c</mi>
+                                        <mo>)</mo>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">O(r \cdot c)</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                                    class="mord mathdefault" style="margin-right:0.02778em;">O</span><span
+                                    class="mopen">(</span><span class="mord mathdefault"
+                                    style="margin-right:0.02778em;">r</span><span class="mspace"
+                                    style="margin-right:0.2222222222222222em;"></span><span class="mbin">⋅</span><span
+                                    class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span
+                                class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                                    class="mord mathdefault">c</span><span class="mclose">)</span></span></span></span>
+                    time.</p>
+            </li>
+            <li>
+                <p>Space complexity: <span class="katex"><span class="katex-mathml"><math>
+                                <semantics>
+                                    <mrow>
+                                        <mi>O</mi>
+                                        <mo>(</mo>
+                                        <mn>1</mn>
+                                        <mo>)</mo>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">O(1)</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                                    class="mord mathdefault" style="margin-right:0.02778em;">O</span><span
+                                    class="mopen">(</span><span class="mord">1</span><span
+                                    class="mclose">)</span></span></span></span></p>
+                <p>No extra space is required other than the space used to store the output (<code>dist</code>), and the
+                    output does not count towards the space complexity.</p>
+            </li>
+        </ul>
+    </div>
+</div>
+<link rel="stylesheet" href="../../../boilerplate/simple.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css"
+    integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">

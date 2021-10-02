@@ -1,3 +1,149 @@
+<div class="content__QRGW">
+    <div>
+        <h2>Solution</h2>
+        <hr>
+        <h4 id="approach-1-inorder-traversal">Approach 1: In-Order Traversal</h4>
+        <p><strong>Intuition</strong></p>
+        <p>The definition of a binary search tree is that for every node, all the values of the left branch are less
+            than the value at the root, and all the values of the right branch are greater than the value at the root.
+        </p>
+        <p>Because of this, an <em>in-order traversal</em> of the nodes will yield all the values in increasing order.
+        </p>
+        <p><strong>Algorithm</strong></p>
+        <p>Once we have traversed all the nodes in increasing order, we can construct new nodes using those values to
+            form the answer.</p>
+        <iframe src="https://leetcode.com/playground/EuBEVEpE/shared" name="EuBEVEpE" width="100%" height="378"
+            frameborder="0"></iframe>
+        <p><strong>Complexity Analysis</strong></p>
+        <ul>
+            <li>
+                <p>Time Complexity: <span class="katex"><span class="katex-mathml"><math>
+                                <semantics>
+                                    <mrow>
+                                        <mi>O</mi>
+                                        <mo>(</mo>
+                                        <mi>N</mi>
+                                        <mo>)</mo>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">O(N)</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                                    class="mord mathdefault" style="margin-right:0.02778em;">O</span><span
+                                    class="mopen">(</span><span class="mord mathdefault"
+                                    style="margin-right:0.10903em;">N</span><span
+                                    class="mclose">)</span></span></span></span>, where <span class="katex"><span
+                            class="katex-mathml"><math>
+                                <semantics>
+                                    <mrow>
+                                        <mi>N</mi>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">N</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut" style="height:0.68333em;vertical-align:0em;"></span><span
+                                    class="mord mathdefault"
+                                    style="margin-right:0.10903em;">N</span></span></span></span> is the number of nodes
+                    in the given tree.</p>
+            </li>
+            <li>
+                <p>Space Complexity: <span class="katex"><span class="katex-mathml"><math>
+                                <semantics>
+                                    <mrow>
+                                        <mi>O</mi>
+                                        <mo>(</mo>
+                                        <mi>N</mi>
+                                        <mo>)</mo>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">O(N)</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                                    class="mord mathdefault" style="margin-right:0.02778em;">O</span><span
+                                    class="mopen">(</span><span class="mord mathdefault"
+                                    style="margin-right:0.10903em;">N</span><span
+                                    class="mclose">)</span></span></span></span>.
+                    <br>
+                    <br>
+                </p>
+            </li>
+        </ul>
+        <hr>
+        <h4 id="approach-2-traversal-with-relinking">Approach 2: Traversal with Relinking</h4>
+        <p><strong>Intuition and Algorithm</strong></p>
+        <p>We can perform the same in-order traversal as in <em>Approach 1</em>. During the traversal, we'll construct
+            the answer on the fly, reusing the nodes of the given tree by cutting their left child and adjoining them to
+            the answer.</p>
+        <iframe src="https://leetcode.com/playground/HUgspMYR/shared" name="HUgspMYR" width="100%" height="361"
+            frameborder="0"></iframe>
+        <p><strong>Complexity Analysis</strong></p>
+        <ul>
+            <li>
+                <p>Time Complexity: <span class="katex"><span class="katex-mathml"><math>
+                                <semantics>
+                                    <mrow>
+                                        <mi>O</mi>
+                                        <mo>(</mo>
+                                        <mi>N</mi>
+                                        <mo>)</mo>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">O(N)</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                                    class="mord mathdefault" style="margin-right:0.02778em;">O</span><span
+                                    class="mopen">(</span><span class="mord mathdefault"
+                                    style="margin-right:0.10903em;">N</span><span
+                                    class="mclose">)</span></span></span></span>, where <span class="katex"><span
+                            class="katex-mathml"><math>
+                                <semantics>
+                                    <mrow>
+                                        <mi>N</mi>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">N</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut" style="height:0.68333em;vertical-align:0em;"></span><span
+                                    class="mord mathdefault"
+                                    style="margin-right:0.10903em;">N</span></span></span></span> is the number of nodes
+                    in the given tree.</p>
+            </li>
+            <li>
+                <p>Space Complexity: <span class="katex"><span class="katex-mathml"><math>
+                                <semantics>
+                                    <mrow>
+                                        <mi>O</mi>
+                                        <mo>(</mo>
+                                        <mi>H</mi>
+                                        <mo>)</mo>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">O(H)</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                                    class="mord mathdefault" style="margin-right:0.02778em;">O</span><span
+                                    class="mopen">(</span><span class="mord mathdefault"
+                                    style="margin-right:0.08125em;">H</span><span
+                                    class="mclose">)</span></span></span></span> in <em>additional</em> space
+                    complexity, where <span class="katex"><span class="katex-mathml"><math>
+                                <semantics>
+                                    <mrow>
+                                        <mi>H</mi>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">H</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut" style="height:0.68333em;vertical-align:0em;"></span><span
+                                    class="mord mathdefault"
+                                    style="margin-right:0.08125em;">H</span></span></span></span> is the height of the
+                    given tree, and the size of the implicit call stack in our in-order traversal.
+                    <br>
+                    <br>
+                </p>
+            </li>
+        </ul>
+    </div>
+</div>
 <link rel="stylesheet" href="../../../boilerplate/simple.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css"
     integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
