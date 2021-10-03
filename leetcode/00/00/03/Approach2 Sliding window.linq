@@ -38,6 +38,39 @@ public class Solution
     }
 }
 
+/*
+    Time: O(N)
+    Space: O(N)
+*/
+public class Solution1
+{
+    public int LengthOfLongestSubstring(string s)
+    {
+        var left = 0;
+        var right = 0;
+        var max = 0;
+
+        var seen = new HashSet<char>();
+
+        while (right < s.Length)
+        {
+            if (seen.Contains(s[right]))
+            {
+                seen.Remove(s[left]);
+                left++;
+            }
+            else
+            {
+                seen.Add(s[right]);
+                right++;
+                max = Math.Max(max, right - left);
+            }
+        }
+
+        return max;
+    }
+}
+
 [Test]
 [TestCase("abcabcbb", 3)]
 [TestCase("bbbbb", 1)]
@@ -45,6 +78,7 @@ public class Solution
 [TestCase("", 0)]
 [TestCase(" ", 1)]
 [TestCase("au", 2)]
+[TestCase("dvdf", 3)]
 public void SolutionTests(string s, int expected)
 {
     var actual = new Solution().LengthOfLongestSubstring(s);
