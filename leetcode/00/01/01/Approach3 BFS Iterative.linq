@@ -37,49 +37,6 @@ public class Solution
     }    
 }
 
-/*
-    Time: O(N)
-    Space: O(N)
-*/
-public class Solution1
-{
-    public bool IsSymmetric(TreeNode root)
-    {
-        if(root == null)
-            return true;
-            
-        var stack1 = new Stack<TreeNode>();
-        var stack2 = new Stack<TreeNode>();
-        
-        stack1.Push(root.left);
-        stack2.Push(root.right);
-        
-        while(stack1.Count != 0)
-        {
-            var a = stack1.Pop();
-            var b = stack2.Pop();
-            
-            if(a == null && b == null)
-                continue;
-                
-            if(a == null || b == null)
-                return false;
-                
-            if(a.val != b.val)
-                return false;
-                
-            stack1.Push(a.left);
-            stack2.Push(b.right);
-            
-            stack1.Push(a.right);
-            stack2.Push(b.left);
-        }
-        
-        return true;
-    }
-}
-
-
 [Test]
 [TestCase(new object[] { 1,2,2,3,4,4,3 }, true)]
 [TestCase(new object[] { 1,2,2,null,3,null,3 }, false)]
