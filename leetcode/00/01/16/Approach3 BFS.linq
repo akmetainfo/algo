@@ -45,6 +45,51 @@ public class Solution
     }
 }
 
+/*
+    Time: O(N)
+    Space: O(N)
+*/
+public class Solution2
+{
+    // Approach3 BFS
+    public Node Connect(Node root)
+    {
+        if (root == null)
+            return null;
+
+        var queue = new Queue<Node>();
+        queue.Enqueue(root);
+        var result = root;
+        while (queue.Count != 0)
+        {
+            Node dummy = null;
+
+            var size = queue.Count;
+            for (int i = 0; i < size; i++)
+            {
+                root = queue.Dequeue();
+
+                if (i == 0)
+                {
+                    dummy = root;
+                }
+                else
+                {
+                    dummy.next = root;
+                    dummy = dummy.next;
+                }
+
+
+                if (root.left != null)
+                    queue.Enqueue(root.left);
+
+                if (root.right != null)
+                    queue.Enqueue(root.right);
+            }
+        }
+        return result;
+    }
+}
 
 /*
     Time: O(N)
