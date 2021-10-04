@@ -1,0 +1,113 @@
+<Query Kind="Program">
+  <NuGetReference>NUnitLite</NuGetReference>
+  <Namespace>NUnit.Framework</Namespace>
+  <Namespace>NUnitLite</Namespace>
+</Query>
+
+// 77. Combinations
+// https://leetcode.com/problems/combinations/
+
+/*
+    Time: O(C) where C = n! / ( k! * (n - k)! )
+    Space: O(n*k)
+*/
+public class Solution
+{
+    public IList<IList<int>> Combine(int n, int k)
+    {
+        var result = new List<IList<int>>();
+        Backtracking(1, n, k, new List<int>(), result);
+        return result;
+    }
+
+    private void Backtracking(int start, int n, int k, List<int> list, List<IList<int>> result)
+    {
+        if (k == 0)
+        {
+            result.Add(new List<int>(list));
+            return;
+        }
+
+        for (int i = start; i <= n; i++)
+        {
+            list.Add(i);
+            Backtracking(i + 1, n, k - 1, list, result);
+            list.RemoveAt(list.Count - 1);
+        }
+    }
+}
+
+private static IEnumerable<object[]> TestCases()
+{
+    yield return new object[]
+    {
+        4,
+        2,
+        new List<IList<int>> {
+            new List<int> {2, 4},
+            new List<int> {3, 4},
+            new List<int> {2, 3},
+            new List<int> {1, 2},
+            new List<int> {1, 3},
+            new List<int> {1, 4},
+        },
+    };
+    yield return new object[]
+    {
+        1,
+        1,
+        new List<IList<int>> {
+            new List<int> {1,}
+        },
+    };
+}
+
+[Test]
+[TestCaseSource(nameof(TestCases))]
+public void SolutionTests(int n, int k, IList<IList<int>> expected)
+{
+    var actual = new Solution().Combine(n, k);
+    Assert.That(actual, Is.EquivalentTo(expected));
+}
+
+#region unit tests runner
+
+void Main()
+{
+    var workDir = Path.Combine(Util.MyQueriesFolder, "nunit-work");
+
+    var args = new string[]
+    {
+         "-noheader",
+         $"--work={workDir}",
+    };
+
+    RunUnitTests(args);
+}
+
+void RunUnitTests(string[] args, Assembly assembly = null)
+{
+    Console.SetOut(new NoDisposeTextWriter(Console.Out));
+    Console.SetError(new NoDisposeTextWriter(Console.Error));
+    new AutoRun(assembly ?? Assembly.GetExecutingAssembly()).Execute(args);
+}
+
+// https://stackoverflow.com/q/52883672/5752652
+class NoDisposeTextWriter : TextWriter
+{
+    private readonly TextWriter writer;
+    public NoDisposeTextWriter(TextWriter writer) => this.writer = writer;
+
+    public override Encoding Encoding => writer.Encoding;
+    public override IFormatProvider FormatProvider => writer.FormatProvider;
+    public override void Write(char value) => writer.Write(value);
+    public override void Flush() => writer.Flush();
+    // forward all other overrides as necessary
+
+    protected override void Dispose(bool disposing)
+    {
+        // no nothing
+    }
+}
+
+#endregion
