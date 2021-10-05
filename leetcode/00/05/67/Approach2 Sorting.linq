@@ -37,6 +37,8 @@ public class Solution
 [Test]
 [TestCase("ab", "eidbaooo", true)]
 [TestCase("ab", "eidboaoo", false)]
+[TestCase("hello", "ooolleoooleh", false)]
+[TestCase("adc", "dcda", true)]
 public void SolutionTests(string s1, string s2, bool expected)
 {
     var actual = new Solution().CheckInclusion(s1, s2);
