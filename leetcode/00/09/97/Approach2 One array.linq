@@ -17,19 +17,20 @@ public class Solution
 {
     public int FindJudge(int n, int[][] trust)
     {
-        var people = new int[n+1];
-        for(var i = 0; i < trust.Length; i++)
+        var people = new int[n + 1];
+
+        foreach (var tr in trust)
         {
-            people[trust[i][0]]--;
-            people[trust[i][1]]++;
+            people[tr[0]]--;
+            people[tr[1]]++;
         }
-        
-        for(var i = 1; i <= n; i++)
+
+        for (var i = 1; i <= n; i++)
         {
             if (people[i] == n - 1)
                 return i;
         }
-        
+
         return -1;
     }
 }
