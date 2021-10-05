@@ -24,12 +24,41 @@ public class Solution
             people[trust[i][1]]++;
         }
         
-        for(var i = 1; i < people.Length; i++)
+        for(var i = 1; i <= n; i++)
         {
             if (people[i] == n - 1)
                 return i;
         }
         
+        return -1;
+    }
+}
+
+/*
+    Time: O(N)
+    Space: O(N)
+    
+    Same as above, but project numbers from 1..n to the 0-indexed array
+*/
+public class Solution1
+{
+    //  Approach2 One array
+    public int FindJudge(int n, int[][] trust)
+    {
+        var t = new int[n];
+
+        foreach (var tr in trust)
+        {
+            t[tr[0] - 1]--;
+            t[tr[1] - 1]++;
+        }
+
+        for (var i = 1; i <= n; i++)
+        {
+            if (t[i - 1] == n - 1)
+                return i;
+        }
+
         return -1;
     }
 }
