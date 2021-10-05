@@ -44,6 +44,43 @@ public class Solution
     }
 }
 
+/*
+    Time: O(N)
+    Space: O(H)
+*/
+public class Solution1
+{
+    // Approach2 DFS Iterative
+    public Node Connect(Node root)
+    {
+        if (root == null)
+            return null;
+
+        var stack = new Stack<Node>();
+
+        stack.Push(root);
+
+        while (stack.Count != 0)
+        {
+            var node = stack.Pop();
+
+            if (node.left != null)
+                node.left.next = node.right;
+
+            if (node.right != null)
+                node.right.next = node.next?.left;
+
+            if (node.left != null)
+                stack.Push(node.left);
+
+            if (node.right != null)
+                stack.Push(node.right);
+        }
+
+        return root;
+    }
+}
+
 [Test]
 [TestCase(new object[] { 1, 2, 3, 4, 5, 6, 7 }, new object[] { 1, null, 2, 3, null, 4, 5, 6, 7, null })]
 [TestCase(new object[] { }, new object[] { })]
