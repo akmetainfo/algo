@@ -24,6 +24,7 @@ public class Solution
     {
         if (list.Count == nums.Length)
         {
+            // need to create A COPY of list (or it will be empty ALWAYS), also may use result.Add(list.ToList()); to create copy
             result.Add(new List<int>(list));
             return;
         }
