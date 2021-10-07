@@ -128,6 +128,7 @@ public class Solution3
 [Test]
 [TestCase(0, 0)]
 [TestCase(2, 1)]
+[TestCase(3, 1)]
 [TestCase(4, 2)]
 [TestCase(8, 2)]
 [TestCase(2147302921, 46339)]
