@@ -17,24 +17,23 @@ public class Solution
     {
         var dummy = new ListNode(0);
         dummy.next = head;
-        
-        var fast = dummy;
-        var slow = dummy;
 
+        var runner1 = dummy;
         while (n >= 0)
         {
-            fast = fast.next;
+            runner1 = runner1.next;
             n--;
         }
 
-        while (fast != null)
+        var runner2 = dummy;
+        while (runner1 != null)
         {
-            fast = fast.next;
-            slow = slow.next;
+            runner1 = runner1.next;
+            runner2 = runner2.next;
         }
-        
-        slow.next = slow.next.next;
-        
+
+        runner2.next = runner2.next.next;
+
         return dummy.next;
     }
 }
