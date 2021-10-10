@@ -21,8 +21,9 @@ public class Solution
 
 [Test]
 [TestCase("cbaebabacd", "abc", new int[] { 0,6 })]
-[TestCase("abab", "ab", new int[] { 0,1,2 })]
-[TestCase("ababababab", "aab", new int[] { 0,2,4,6 })]
+[TestCase("abab", "ab", new int[] { 0, 1, 2 })]
+[TestCase("ababababab", "aab", new int[] { 0, 2, 4, 6 })]
+[TestCase("baa", "aa", new int[] { 1 })]
 public void SolutionTests(string s, string p, int[] expected)
 {
     var result = new Solution().FindAnagrams(s, p);
