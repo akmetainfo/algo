@@ -18,8 +18,7 @@ public class BSTIterator
     */
     public BSTIterator(TreeNode root)
     {
-        if (root != null)
-            DFS(root);
+        DFS(root);
     }
 
     /*
