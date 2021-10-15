@@ -1,0 +1,936 @@
+<div class="content__QRGW">
+    <div>
+        <h2>Solution</h2>
+        <hr>
+        <h4 id="overview">Overview</h4>
+        <p>As the name of the problem suggests, this problem is an extension of the <a
+                href="https://leetcode.com/problems/permutations/">Permutation</a> problem.
+            The problem is different from the previous permutation problem on the condition that the input array can
+            contain <strong><em>duplicates</em></strong>.</p>
+        <p>The key to solve the problem is still the <strong><em>backtracking</em></strong> algorithm.
+            However, we need some adaptation to ensure that the <em>enumerated</em> solutions generated from our
+            backtracking exploration do not have any duplicates.</p>
+        <blockquote>
+            <p>As a reminder, <strong><a
+                        href="https://leetcode.com/explore/learn/card/recursion-ii/472/backtracking/">backtracking</a></strong>
+                is a general algorithm for finding all (or some) solutions to some problems with constraints.
+                It incrementally builds candidates to the solutions, and abandons a candidate as soon as it determines
+                that the candidate cannot possibly lead to a solution.</p>
+        </blockquote>
+        <p>In this article, we will present a yet another backtracking solution to solve the problem.</p>
+        <hr>
+        <h4 id="approach-1-backtracking-with-groups-of-numbers">Approach 1: Backtracking with Groups of Numbers</h4>
+        <p><strong>Intuition</strong></p>
+        <p>First of all, let us review the general idea of permutation with an example.</p>
+        <p>Given the input array <code>[1, 1, 2]</code>, to generate a permutation of the array, we could follow the
+            <em>Depth-First Search</em> (DFS) approach, or more precisely the backtracking technique as one will see
+            later.
+        </p>
+        <blockquote>
+            <p>The idea is that we pick the numbers one by one. For a permutation of length <span class="katex"><span
+                        class="katex-mathml"><math>
+                            <semantics>
+                                <mrow>
+                                    <mi>N</mi>
+                                </mrow>
+                                <annotation encoding="application/x-tex">N</annotation>
+                            </semantics>
+                        </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                                style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault"
+                                style="margin-right:0.10903em;">N</span></span></span></span>, we would then need <span
+                    class="katex"><span class="katex-mathml"><math>
+                            <semantics>
+                                <mrow>
+                                    <mi>N</mi>
+                                </mrow>
+                                <annotation encoding="application/x-tex">N</annotation>
+                            </semantics>
+                        </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                                style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault"
+                                style="margin-right:0.10903em;">N</span></span></span></span> stages to generate a valid
+                permutation.
+                At each stage, we need to pick one number into the permutation, out of the remaining available numbers.
+                Later at the same stage, we will try out all available choices.
+                By trying out, we progressively build up candidates to the solution, and revert each choice with another
+                alternative until there is no more choice.</p>
+        </blockquote>
+        <p>Let us walk through the example with paper and pencil, as follows:</p>
+        <ul>
+            <li>
+                <p>Given the input of <code>[1, 1, 2]</code>, at the first stage, we have 2 choices to pick a number as
+                    the first number in the final permutation, <em>i.e.</em> <code>1</code> and <code>2</code>.
+                    Suppose that we pick the number <code>1</code>, now the remaining numbers would become
+                    <code>[1, 2]</code>.
+                    <strong>Note:</strong> The reason that we have only 2 choices instead of 3, is that there is a
+                    duplicate in the given input.
+                    Picking any of the duplicate numbers as the first number of the permutation would lead us to the
+                    same permutation at the end.
+                    Should the numbers in the array be all unique, we would then have the same number of choices as the
+                    length of the array.
+                </p>
+            </li>
+            <li>
+                <p>At the second stage, we now then have again 2 choices, <em>i.e.</em> <code>[1, 2]</code>.
+                    Let us pick again the number <code>1</code>, which leaves us the only remaining number
+                    <code>2</code>.
+                </p>
+            </li>
+            <li>
+                <p>Now at the third stage, we have only one candidate number left, <em>i.e.</em> <code>[2]</code>. We
+                    then pick the last remaining number, which leads to a final permutation sequence of
+                    <code>[1, 1, 2]</code>.
+                </p>
+            </li>
+            <li>
+                <p>Moreover, we need to <strong><em>revisit</em></strong> each of the above stages, and make a different
+                    choice in order to try out all possibilities.
+                    The reversion of the choices is what we call <strong><em>backtracking</em></strong>.</p>
+            </li>
+        </ul>
+        <p>We illustrate all potential exploration in the following graph where each node represents a choice at a
+            specific stage:</p>
+        <p><img src="47_permutations.png" alt="permutation tree"></p>
+        <blockquote>
+            <p>A key insight to avoid generating any <strong><em>redundant</em></strong> permutation is that at each
+                step rather than viewing each number as a candidate, we consider each <strong><em>unique</em></strong>
+                number as the true candidate.
+                For instance, at the very beginning, given in the input of <code>[1, 1, 2]</code>, we have only two true
+                candidates instead of three.</p>
+        </blockquote>
+        <p><strong>Algorithm</strong></p>
+        <p>Given the above insight, in order to find out all the unique numbers at each stage, we can build a
+            <strong><em>hash table</em></strong> (denoted as <code>counter</code>), with each unique number as the key
+            and its occurrence as the corresponding value.
+        </p>
+        <p>To implement the algorithm, first we define a function called <code>backtrack(comb, counter)</code> which
+            generates all permutations, starting from the current combination (<code>comb</code>) and the remaining
+            numbers (<code>counter</code>).</p>
+        <p>Once the function is implemented, it suffices to invoke the function with the initial empty combination and
+            the hash table we built out of the input array, to solve the problem.</p>
+        <p>Here are some sample implementations.</p>
+        <iframe src="https://leetcode.com/playground/KghC3tCD/shared" name="KghC3tCD" width="100%" height="500"
+            frameborder="0"></iframe>
+        <p><strong>Note:</strong> for a backtracking algorithm, usually there are some explorations that would lead to a
+            <em>dead end</em>, and we have to abandon those explorations in the middle.
+        </p>
+        <p>However, due to the specificity of this problem and our exploration strategy, each exploration will result in
+            a valid permutation, <em>i.e.</em> none of the efforts is in vain.
+            This insight would prove to be useful in the following complexity analysis.</p>
+        <p><strong>Complexity Analysis</strong></p>
+        <p>Let <span class="katex"><span class="katex-mathml"><math>
+                        <semantics>
+                            <mrow>
+                                <mi>N</mi>
+                            </mrow>
+                            <annotation encoding="application/x-tex">N</annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault"
+                            style="margin-right:0.10903em;">N</span></span></span></span> be the length of the input
+            array.
+            Hence, the number of permutations would be at maximum <span class="katex"><span class="katex-mathml"><math>
+                        <semantics>
+                            <mrow>
+                                <mi>N</mi>
+                                <mo>!</mo>
+                            </mrow>
+                            <annotation encoding="application/x-tex">N!</annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault"
+                            style="margin-right:0.10903em;">N</span><span class="mclose">!</span></span></span></span>,
+            <em>i.e.</em> <span class="katex"><span class="katex-mathml"><math>
+                        <semantics>
+                            <mrow>
+                                <mi>N</mi>
+                                <mo>⋅</mo>
+                                <mo>(</mo>
+                                <mi>N</mi>
+                                <mo>−</mo>
+                                <mn>1</mn>
+                                <mo>)</mo>
+                                <mo>⋅</mo>
+                                <mo>(</mo>
+                                <mi>N</mi>
+                                <mo>−</mo>
+                                <mn>2</mn>
+                                <mo>)</mo>
+                                <mi mathvariant="normal">.</mi>
+                                <mi mathvariant="normal">.</mi>
+                                <mi mathvariant="normal">.</mi>
+                                <mn>1</mn>
+                            </mrow>
+                            <annotation encoding="application/x-tex">N \cdot (N-1) \cdot (N-2) ... 1</annotation>
+                        </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault"
+                            style="margin-right:0.10903em;">N</span><span class="mspace"
+                            style="margin-right:0.2222222222222222em;"></span><span class="mbin">⋅</span><span
+                            class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span
+                        class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                            class="mopen">(</span><span class="mord mathdefault"
+                            style="margin-right:0.10903em;">N</span><span class="mspace"
+                            style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span
+                            class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span
+                        class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                            class="mord">1</span><span class="mclose">)</span><span class="mspace"
+                            style="margin-right:0.2222222222222222em;"></span><span class="mbin">⋅</span><span
+                            class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span
+                        class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                            class="mopen">(</span><span class="mord mathdefault"
+                            style="margin-right:0.10903em;">N</span><span class="mspace"
+                            style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span
+                            class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span
+                        class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                            class="mord">2</span><span class="mclose">)</span><span class="mord">.</span><span
+                            class="mord">.</span><span class="mord">.</span><span
+                            class="mord">1</span></span></span></span>, when each number in the array is unique.
+        </p>
+        <ul>
+            <li>
+                <p>Time Complexity: <span class="katex"><span class="katex-mathml"><math>
+                                <semantics>
+                                    <mrow>
+                                        <mi mathvariant="script">O</mi>
+                                        <mo fence="false">(</mo>
+                                        <msubsup>
+                                            <mo>∑</mo>
+                                            <mrow>
+                                                <mi>k</mi>
+                                                <mo>=</mo>
+                                                <mn>1</mn>
+                                            </mrow>
+                                            <mi>N</mi>
+                                        </msubsup>
+                                        <mrow>
+                                            <mi>P</mi>
+                                            <mo>(</mo>
+                                            <mi>N</mi>
+                                            <mo separator="true">,</mo>
+                                            <mi>k</mi>
+                                            <mo>)</mo>
+                                        </mrow>
+                                        <mo fence="false">)</mo>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">\mathcal{O}\big(\sum_{k = 1}^{N}{P(N,
+                                        k)}\big)</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut" style="height:1.331241em;vertical-align:-0.35001em;"></span><span
+                                    class="mord"><span class="mord mathcal"
+                                        style="margin-right:0.02778em;">O</span></span><span class="mord"><span
+                                        class="delimsizing size1">(</span></span><span class="mspace"
+                                    style="margin-right:0.16666666666666666em;"></span><span class="mop"><span
+                                        class="mop op-symbol small-op"
+                                        style="position:relative;top:-0.0000050000000000050004em;">∑</span><span
+                                        class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span
+                                                    class="vlist" style="height:0.981231em;"><span
+                                                        style="top:-2.40029em;margin-left:0em;margin-right:0.05em;"><span
+                                                            class="pstrut" style="height:2.7em;"></span><span
+                                                            class="sizing reset-size6 size3 mtight"><span
+                                                                class="mord mtight"><span
+                                                                    class="mord mathdefault mtight"
+                                                                    style="margin-right:0.03148em;">k</span><span
+                                                                    class="mrel mtight">=</span><span
+                                                                    class="mord mtight">1</span></span></span></span><span
+                                                        style="top:-3.2029em;margin-right:0.05em;"><span class="pstrut"
+                                                            style="height:2.7em;"></span><span
+                                                            class="sizing reset-size6 size3 mtight"><span
+                                                                class="mord mtight"><span
+                                                                    class="mord mathdefault mtight"
+                                                                    style="margin-right:0.10903em;">N</span></span></span></span></span><span
+                                                    class="vlist-s">​</span></span><span class="vlist-r"><span
+                                                    class="vlist"
+                                                    style="height:0.29971000000000003em;"><span></span></span></span></span></span></span><span
+                                    class="mspace" style="margin-right:0.16666666666666666em;"></span><span
+                                    class="mord"><span class="mord mathdefault"
+                                        style="margin-right:0.13889em;">P</span><span class="mopen">(</span><span
+                                        class="mord mathdefault" style="margin-right:0.10903em;">N</span><span
+                                        class="mpunct">,</span><span class="mspace"
+                                        style="margin-right:0.16666666666666666em;"></span><span
+                                        class="mord mathdefault" style="margin-right:0.03148em;">k</span><span
+                                        class="mclose">)</span></span><span class="mord"><span
+                                        class="delimsizing size1">)</span></span></span></span></span> where <span
+                        class="katex"><span class="katex-mathml"><math>
+                                <semantics>
+                                    <mrow>
+                                        <mi>P</mi>
+                                        <mo>(</mo>
+                                        <mi>N</mi>
+                                        <mo separator="true">,</mo>
+                                        <mi>k</mi>
+                                        <mo>)</mo>
+                                        <mo>=</mo>
+                                        <mfrac>
+                                            <mrow>
+                                                <mi>N</mi>
+                                                <mo>!</mo>
+                                            </mrow>
+                                            <mrow>
+                                                <mo>(</mo>
+                                                <mi>N</mi>
+                                                <mo>−</mo>
+                                                <mi>k</mi>
+                                                <mo>)</mo>
+                                                <mo>!</mo>
+                                            </mrow>
+                                        </mfrac>
+                                        <mo>=</mo>
+                                        <mi>N</mi>
+                                        <mo>(</mo>
+                                        <mi>N</mi>
+                                        <mo>−</mo>
+                                        <mn>1</mn>
+                                        <mo>)</mo>
+                                        <mi mathvariant="normal">.</mi>
+                                        <mi mathvariant="normal">.</mi>
+                                        <mi mathvariant="normal">.</mi>
+                                        <mo>(</mo>
+                                        <mi>N</mi>
+                                        <mo>−</mo>
+                                        <mi>k</mi>
+                                        <mo>+</mo>
+                                        <mn>1</mn>
+                                        <mo>)</mo>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">P(N, k) = \frac{N!}{(N - k)!} = N (N - 1)
+                                        ... (N - k + 1)</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                                    class="mord mathdefault" style="margin-right:0.13889em;">P</span><span
+                                    class="mopen">(</span><span class="mord mathdefault"
+                                    style="margin-right:0.10903em;">N</span><span class="mpunct">,</span><span
+                                    class="mspace" style="margin-right:0.16666666666666666em;"></span><span
+                                    class="mord mathdefault" style="margin-right:0.03148em;">k</span><span
+                                    class="mclose">)</span><span class="mspace"
+                                    style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
+                                    class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span
+                                class="base"><span class="strut"
+                                    style="height:1.400108em;vertical-align:-0.52em;"></span><span class="mord"><span
+                                        class="mopen nulldelimiter"></span><span class="mfrac"><span
+                                            class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                                    style="height:0.8801079999999999em;"><span
+                                                        style="top:-2.655em;"><span class="pstrut"
+                                                            style="height:3em;"></span><span
+                                                            class="sizing reset-size6 size3 mtight"><span
+                                                                class="mord mtight"><span
+                                                                    class="mopen mtight">(</span><span
+                                                                    class="mord mathdefault mtight"
+                                                                    style="margin-right:0.10903em;">N</span><span
+                                                                    class="mbin mtight">−</span><span
+                                                                    class="mord mathdefault mtight"
+                                                                    style="margin-right:0.03148em;">k</span><span
+                                                                    class="mclose mtight">)</span><span
+                                                                    class="mclose mtight">!</span></span></span></span><span
+                                                        style="top:-3.23em;"><span class="pstrut"
+                                                            style="height:3em;"></span><span class="frac-line"
+                                                            style="border-bottom-width:0.04em;"></span></span><span
+                                                        style="top:-3.394em;"><span class="pstrut"
+                                                            style="height:3em;"></span><span
+                                                            class="sizing reset-size6 size3 mtight"><span
+                                                                class="mord mtight"><span
+                                                                    class="mord mathdefault mtight"
+                                                                    style="margin-right:0.10903em;">N</span><span
+                                                                    class="mclose mtight">!</span></span></span></span></span><span
+                                                    class="vlist-s">​</span></span><span class="vlist-r"><span
+                                                    class="vlist"
+                                                    style="height:0.52em;"><span></span></span></span></span></span><span
+                                        class="mclose nulldelimiter"></span></span><span class="mspace"
+                                    style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
+                                    class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span
+                                class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                                    class="mord mathdefault" style="margin-right:0.10903em;">N</span><span
+                                    class="mopen">(</span><span class="mord mathdefault"
+                                    style="margin-right:0.10903em;">N</span><span class="mspace"
+                                    style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span
+                                    class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span
+                                class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                                    class="mord">1</span><span class="mclose">)</span><span class="mord">.</span><span
+                                    class="mord">.</span><span class="mord">.</span><span class="mopen">(</span><span
+                                    class="mord mathdefault" style="margin-right:0.10903em;">N</span><span
+                                    class="mspace" style="margin-right:0.2222222222222222em;"></span><span
+                                    class="mbin">−</span><span class="mspace"
+                                    style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span
+                                    class="strut" style="height:0.77777em;vertical-align:-0.08333em;"></span><span
+                                    class="mord mathdefault" style="margin-right:0.03148em;">k</span><span
+                                    class="mspace" style="margin-right:0.2222222222222222em;"></span><span
+                                    class="mbin">+</span><span class="mspace"
+                                    style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span
+                                    class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                                    class="mord">1</span><span class="mclose">)</span></span></span></span>
+                    is so-called <a href="https://en.wikipedia.org/wiki/Permutation#k-permutations_of_n"
+                        rel="ugc"><em>k-permutations_of_N</em> or <em>partial permutation</em></a>.</p>
+                <ul>
+                    <li>
+                        <p>As one can see in the exploration graph we have shown earlier, the execution of the
+                            backtracking algorithm will unfold itself as a tree, where each node is an invocation of the
+                            recursive function <code>backtrack(comb, counter)</code>.
+                            The total number of steps to complete the exploration is <em>exactly</em> the number of
+                            nodes in the tree.
+                            Therefore, the time complexity of the algorithm is linked directly with the size of the
+                            tree.</p>
+                    </li>
+                    <li>
+                        <p>It now boils down to estimating the number of nodes in the tree.
+                            As we know now, each level of the tree corresponds to a specific <em>stage</em> of the
+                            exploration.
+                            At each stage, the number of candidates to explore is <strong>bounded</strong>.
+                            For instance, at the first stage, <em>at most</em> we would have <span class="katex"><span
+                                    class="katex-mathml"><math>
+                                        <semantics>
+                                            <mrow>
+                                                <mi>N</mi>
+                                            </mrow>
+                                            <annotation encoding="application/x-tex">N</annotation>
+                                        </semantics>
+                                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                            class="strut" style="height:0.68333em;vertical-align:0em;"></span><span
+                                            class="mord mathdefault"
+                                            style="margin-right:0.10903em;">N</span></span></span></span> candidates to
+                            explore, <em>i.e.</em> the number of nodes at this level would be <span class="katex"><span
+                                    class="katex-mathml"><math>
+                                        <semantics>
+                                            <mrow>
+                                                <mi>N</mi>
+                                            </mrow>
+                                            <annotation encoding="application/x-tex">N</annotation>
+                                        </semantics>
+                                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                            class="strut" style="height:0.68333em;vertical-align:0em;"></span><span
+                                            class="mord mathdefault"
+                                            style="margin-right:0.10903em;">N</span></span></span></span>.
+                            Moving on to the next stage, for each of the nodes in the first stage, we would have <span
+                                class="katex"><span class="katex-mathml"><math>
+                                        <semantics>
+                                            <mrow>
+                                                <mi>N</mi>
+                                                <mo>−</mo>
+                                                <mn>1</mn>
+                                            </mrow>
+                                            <annotation encoding="application/x-tex">N-1</annotation>
+                                        </semantics>
+                                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                            class="strut"
+                                            style="height:0.76666em;vertical-align:-0.08333em;"></span><span
+                                            class="mord mathdefault" style="margin-right:0.10903em;">N</span><span
+                                            class="mspace" style="margin-right:0.2222222222222222em;"></span><span
+                                            class="mbin">−</span><span class="mspace"
+                                            style="margin-right:0.2222222222222222em;"></span></span><span
+                                        class="base"><span class="strut"
+                                            style="height:0.64444em;vertical-align:0em;"></span><span
+                                            class="mord">1</span></span></span></span> child nodes. Therefore, the
+                            number of nodes at this stage would be <span class="katex"><span class="katex-mathml"><math>
+                                        <semantics>
+                                            <mrow>
+                                                <mi>N</mi>
+                                                <mo>⋅</mo>
+                                                <mo>(</mo>
+                                                <mi>N</mi>
+                                                <mo>−</mo>
+                                                <mn>1</mn>
+                                                <mo>)</mo>
+                                            </mrow>
+                                            <annotation encoding="application/x-tex">N \cdot (N-1)</annotation>
+                                        </semantics>
+                                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                            class="strut" style="height:0.68333em;vertical-align:0em;"></span><span
+                                            class="mord mathdefault" style="margin-right:0.10903em;">N</span><span
+                                            class="mspace" style="margin-right:0.2222222222222222em;"></span><span
+                                            class="mbin">⋅</span><span class="mspace"
+                                            style="margin-right:0.2222222222222222em;"></span></span><span
+                                        class="base"><span class="strut"
+                                            style="height:1em;vertical-align:-0.25em;"></span><span
+                                            class="mopen">(</span><span class="mord mathdefault"
+                                            style="margin-right:0.10903em;">N</span><span class="mspace"
+                                            style="margin-right:0.2222222222222222em;"></span><span
+                                            class="mbin">−</span><span class="mspace"
+                                            style="margin-right:0.2222222222222222em;"></span></span><span
+                                        class="base"><span class="strut"
+                                            style="height:1em;vertical-align:-0.25em;"></span><span
+                                            class="mord">1</span><span class="mclose">)</span></span></span></span>.
+                            So on and so forwards.</p>
+                    </li>
+                </ul>
+                <p><img src="47_number_of_nodes.png" alt="number of nodes"></p>
+                <ul>
+                    <li>
+                        <p>By summing up all the nodes across the stages, we would then obtain the total number of nodes
+                            as <span class="katex"><span class="katex-mathml"><math>
+                                        <semantics>
+                                            <mrow>
+                                                <msubsup>
+                                                    <mo>∑</mo>
+                                                    <mrow>
+                                                        <mi>k</mi>
+                                                        <mo>=</mo>
+                                                        <mn>1</mn>
+                                                    </mrow>
+                                                    <mi>N</mi>
+                                                </msubsup>
+                                                <mrow>
+                                                    <mi>P</mi>
+                                                    <mo>(</mo>
+                                                    <mi>N</mi>
+                                                    <mo separator="true">,</mo>
+                                                    <mi>k</mi>
+                                                    <mo>)</mo>
+                                                </mrow>
+                                            </mrow>
+                                            <annotation encoding="application/x-tex">\sum_{k = 1}^{N}{P(N, k)}
+                                            </annotation>
+                                        </semantics>
+                                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                            class="strut"
+                                            style="height:1.2809409999999999em;vertical-align:-0.29971000000000003em;"></span><span
+                                            class="mop"><span class="mop op-symbol small-op"
+                                                style="position:relative;top:-0.0000050000000000050004em;">∑</span><span
+                                                class="msupsub"><span class="vlist-t vlist-t2"><span
+                                                        class="vlist-r"><span class="vlist"
+                                                            style="height:0.981231em;"><span
+                                                                style="top:-2.40029em;margin-left:0em;margin-right:0.05em;"><span
+                                                                    class="pstrut" style="height:2.7em;"></span><span
+                                                                    class="sizing reset-size6 size3 mtight"><span
+                                                                        class="mord mtight"><span
+                                                                            class="mord mathdefault mtight"
+                                                                            style="margin-right:0.03148em;">k</span><span
+                                                                            class="mrel mtight">=</span><span
+                                                                            class="mord mtight">1</span></span></span></span><span
+                                                                style="top:-3.2029em;margin-right:0.05em;"><span
+                                                                    class="pstrut" style="height:2.7em;"></span><span
+                                                                    class="sizing reset-size6 size3 mtight"><span
+                                                                        class="mord mtight"><span
+                                                                            class="mord mathdefault mtight"
+                                                                            style="margin-right:0.10903em;">N</span></span></span></span></span><span
+                                                            class="vlist-s">​</span></span><span class="vlist-r"><span
+                                                            class="vlist"
+                                                            style="height:0.29971000000000003em;"><span></span></span></span></span></span></span><span
+                                            class="mspace" style="margin-right:0.16666666666666666em;"></span><span
+                                            class="mord"><span class="mord mathdefault"
+                                                style="margin-right:0.13889em;">P</span><span
+                                                class="mopen">(</span><span class="mord mathdefault"
+                                                style="margin-right:0.10903em;">N</span><span
+                                                class="mpunct">,</span><span class="mspace"
+                                                style="margin-right:0.16666666666666666em;"></span><span
+                                                class="mord mathdefault" style="margin-right:0.03148em;">k</span><span
+                                                class="mclose">)</span></span></span></span></span> where <span
+                                class="katex"><span class="katex-mathml"><math>
+                                        <semantics>
+                                            <mrow>
+                                                <mi>P</mi>
+                                                <mo>(</mo>
+                                                <mi>N</mi>
+                                                <mo separator="true">,</mo>
+                                                <mi>k</mi>
+                                                <mo>)</mo>
+                                                <mo>=</mo>
+                                                <mfrac>
+                                                    <mrow>
+                                                        <mi>N</mi>
+                                                        <mo>!</mo>
+                                                    </mrow>
+                                                    <mrow>
+                                                        <mo>(</mo>
+                                                        <mi>N</mi>
+                                                        <mo>−</mo>
+                                                        <mi>k</mi>
+                                                        <mo>)</mo>
+                                                        <mo>!</mo>
+                                                    </mrow>
+                                                </mfrac>
+                                                <mo>=</mo>
+                                                <mi>N</mi>
+                                                <mo>(</mo>
+                                                <mi>N</mi>
+                                                <mo>−</mo>
+                                                <mn>1</mn>
+                                                <mo>)</mo>
+                                                <mi mathvariant="normal">.</mi>
+                                                <mi mathvariant="normal">.</mi>
+                                                <mi mathvariant="normal">.</mi>
+                                                <mo>(</mo>
+                                                <mi>N</mi>
+                                                <mo>−</mo>
+                                                <mi>k</mi>
+                                                <mo>+</mo>
+                                                <mn>1</mn>
+                                                <mo>)</mo>
+                                            </mrow>
+                                            <annotation encoding="application/x-tex">P(N, k) = \frac{N!}{(N - k)!} = N
+                                                (N - 1) ... (N - k + 1)</annotation>
+                                        </semantics>
+                                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                            class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                                            class="mord mathdefault" style="margin-right:0.13889em;">P</span><span
+                                            class="mopen">(</span><span class="mord mathdefault"
+                                            style="margin-right:0.10903em;">N</span><span class="mpunct">,</span><span
+                                            class="mspace" style="margin-right:0.16666666666666666em;"></span><span
+                                            class="mord mathdefault" style="margin-right:0.03148em;">k</span><span
+                                            class="mclose">)</span><span class="mspace"
+                                            style="margin-right:0.2777777777777778em;"></span><span
+                                            class="mrel">=</span><span class="mspace"
+                                            style="margin-right:0.2777777777777778em;"></span></span><span
+                                        class="base"><span class="strut"
+                                            style="height:1.400108em;vertical-align:-0.52em;"></span><span
+                                            class="mord"><span class="mopen nulldelimiter"></span><span
+                                                class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span
+                                                            class="vlist" style="height:0.8801079999999999em;"><span
+                                                                style="top:-2.655em;"><span class="pstrut"
+                                                                    style="height:3em;"></span><span
+                                                                    class="sizing reset-size6 size3 mtight"><span
+                                                                        class="mord mtight"><span
+                                                                            class="mopen mtight">(</span><span
+                                                                            class="mord mathdefault mtight"
+                                                                            style="margin-right:0.10903em;">N</span><span
+                                                                            class="mbin mtight">−</span><span
+                                                                            class="mord mathdefault mtight"
+                                                                            style="margin-right:0.03148em;">k</span><span
+                                                                            class="mclose mtight">)</span><span
+                                                                            class="mclose mtight">!</span></span></span></span><span
+                                                                style="top:-3.23em;"><span class="pstrut"
+                                                                    style="height:3em;"></span><span class="frac-line"
+                                                                    style="border-bottom-width:0.04em;"></span></span><span
+                                                                style="top:-3.394em;"><span class="pstrut"
+                                                                    style="height:3em;"></span><span
+                                                                    class="sizing reset-size6 size3 mtight"><span
+                                                                        class="mord mtight"><span
+                                                                            class="mord mathdefault mtight"
+                                                                            style="margin-right:0.10903em;">N</span><span
+                                                                            class="mclose mtight">!</span></span></span></span></span><span
+                                                            class="vlist-s">​</span></span><span class="vlist-r"><span
+                                                            class="vlist"
+                                                            style="height:0.52em;"><span></span></span></span></span></span><span
+                                                class="mclose nulldelimiter"></span></span><span class="mspace"
+                                            style="margin-right:0.2777777777777778em;"></span><span
+                                            class="mrel">=</span><span class="mspace"
+                                            style="margin-right:0.2777777777777778em;"></span></span><span
+                                        class="base"><span class="strut"
+                                            style="height:1em;vertical-align:-0.25em;"></span><span
+                                            class="mord mathdefault" style="margin-right:0.10903em;">N</span><span
+                                            class="mopen">(</span><span class="mord mathdefault"
+                                            style="margin-right:0.10903em;">N</span><span class="mspace"
+                                            style="margin-right:0.2222222222222222em;"></span><span
+                                            class="mbin">−</span><span class="mspace"
+                                            style="margin-right:0.2222222222222222em;"></span></span><span
+                                        class="base"><span class="strut"
+                                            style="height:1em;vertical-align:-0.25em;"></span><span
+                                            class="mord">1</span><span class="mclose">)</span><span
+                                            class="mord">.</span><span class="mord">.</span><span
+                                            class="mord">.</span><span class="mopen">(</span><span
+                                            class="mord mathdefault" style="margin-right:0.10903em;">N</span><span
+                                            class="mspace" style="margin-right:0.2222222222222222em;"></span><span
+                                            class="mbin">−</span><span class="mspace"
+                                            style="margin-right:0.2222222222222222em;"></span></span><span
+                                        class="base"><span class="strut"
+                                            style="height:0.77777em;vertical-align:-0.08333em;"></span><span
+                                            class="mord mathdefault" style="margin-right:0.03148em;">k</span><span
+                                            class="mspace" style="margin-right:0.2222222222222222em;"></span><span
+                                            class="mbin">+</span><span class="mspace"
+                                            style="margin-right:0.2222222222222222em;"></span></span><span
+                                        class="base"><span class="strut"
+                                            style="height:1em;vertical-align:-0.25em;"></span><span
+                                            class="mord">1</span><span class="mclose">)</span></span></span></span>.
+                            As a result, the exact time complexity of the algorithm is <span class="katex"><span
+                                    class="katex-mathml"><math>
+                                        <semantics>
+                                            <mrow>
+                                                <mi mathvariant="script">O</mi>
+                                                <mo fence="false">(</mo>
+                                                <msubsup>
+                                                    <mo>∑</mo>
+                                                    <mrow>
+                                                        <mi>k</mi>
+                                                        <mo>=</mo>
+                                                        <mn>1</mn>
+                                                    </mrow>
+                                                    <mi>N</mi>
+                                                </msubsup>
+                                                <mrow>
+                                                    <mi>P</mi>
+                                                    <mo>(</mo>
+                                                    <mi>N</mi>
+                                                    <mo separator="true">,</mo>
+                                                    <mi>k</mi>
+                                                    <mo>)</mo>
+                                                </mrow>
+                                                <mo fence="false">)</mo>
+                                            </mrow>
+                                            <annotation encoding="application/x-tex">\mathcal{O}\big(\sum_{k =
+                                                1}^{N}{P(N, k)}\big)</annotation>
+                                        </semantics>
+                                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                            class="strut"
+                                            style="height:1.331241em;vertical-align:-0.35001em;"></span><span
+                                            class="mord"><span class="mord mathcal"
+                                                style="margin-right:0.02778em;">O</span></span><span class="mord"><span
+                                                class="delimsizing size1">(</span></span><span class="mspace"
+                                            style="margin-right:0.16666666666666666em;"></span><span class="mop"><span
+                                                class="mop op-symbol small-op"
+                                                style="position:relative;top:-0.0000050000000000050004em;">∑</span><span
+                                                class="msupsub"><span class="vlist-t vlist-t2"><span
+                                                        class="vlist-r"><span class="vlist"
+                                                            style="height:0.981231em;"><span
+                                                                style="top:-2.40029em;margin-left:0em;margin-right:0.05em;"><span
+                                                                    class="pstrut" style="height:2.7em;"></span><span
+                                                                    class="sizing reset-size6 size3 mtight"><span
+                                                                        class="mord mtight"><span
+                                                                            class="mord mathdefault mtight"
+                                                                            style="margin-right:0.03148em;">k</span><span
+                                                                            class="mrel mtight">=</span><span
+                                                                            class="mord mtight">1</span></span></span></span><span
+                                                                style="top:-3.2029em;margin-right:0.05em;"><span
+                                                                    class="pstrut" style="height:2.7em;"></span><span
+                                                                    class="sizing reset-size6 size3 mtight"><span
+                                                                        class="mord mtight"><span
+                                                                            class="mord mathdefault mtight"
+                                                                            style="margin-right:0.10903em;">N</span></span></span></span></span><span
+                                                            class="vlist-s">​</span></span><span class="vlist-r"><span
+                                                            class="vlist"
+                                                            style="height:0.29971000000000003em;"><span></span></span></span></span></span></span><span
+                                            class="mspace" style="margin-right:0.16666666666666666em;"></span><span
+                                            class="mord"><span class="mord mathdefault"
+                                                style="margin-right:0.13889em;">P</span><span
+                                                class="mopen">(</span><span class="mord mathdefault"
+                                                style="margin-right:0.10903em;">N</span><span
+                                                class="mpunct">,</span><span class="mspace"
+                                                style="margin-right:0.16666666666666666em;"></span><span
+                                                class="mord mathdefault" style="margin-right:0.03148em;">k</span><span
+                                                class="mclose">)</span></span><span class="mord"><span
+                                                class="delimsizing size1">)</span></span></span></span></span>.</p>
+                    </li>
+                    <li>
+                        <p>The above complexity might appear a bit too abstract to comprehend.
+                            Here we could provide another <strong><em>loose upper bound</em></strong> on the complexity.
+                        </p>
+                    </li>
+                    <li>
+                        <p>It takes <span class="katex"><span class="katex-mathml"><math>
+                                        <semantics>
+                                            <mrow>
+                                                <mi>N</mi>
+                                            </mrow>
+                                            <annotation encoding="application/x-tex">N</annotation>
+                                        </semantics>
+                                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                            class="strut" style="height:0.68333em;vertical-align:0em;"></span><span
+                                            class="mord mathdefault"
+                                            style="margin-right:0.10903em;">N</span></span></span></span> steps to
+                            generate a single permutation. Since there are in total <span class="katex"><span
+                                    class="katex-mathml"><math>
+                                        <semantics>
+                                            <mrow>
+                                                <mi>N</mi>
+                                                <mo>!</mo>
+                                            </mrow>
+                                            <annotation encoding="application/x-tex">N!</annotation>
+                                        </semantics>
+                                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                            class="strut" style="height:0.69444em;vertical-align:0em;"></span><span
+                                            class="mord mathdefault" style="margin-right:0.10903em;">N</span><span
+                                            class="mclose">!</span></span></span></span> possible permutations, at most
+                            it would take us <span class="katex"><span class="katex-mathml"><math>
+                                        <semantics>
+                                            <mrow>
+                                                <mi>N</mi>
+                                                <mo>⋅</mo>
+                                                <mi>N</mi>
+                                                <mo>!</mo>
+                                            </mrow>
+                                            <annotation encoding="application/x-tex">N \cdot N!</annotation>
+                                        </semantics>
+                                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                            class="strut" style="height:0.68333em;vertical-align:0em;"></span><span
+                                            class="mord mathdefault" style="margin-right:0.10903em;">N</span><span
+                                            class="mspace" style="margin-right:0.2222222222222222em;"></span><span
+                                            class="mbin">⋅</span><span class="mspace"
+                                            style="margin-right:0.2222222222222222em;"></span></span><span
+                                        class="base"><span class="strut"
+                                            style="height:0.69444em;vertical-align:0em;"></span><span
+                                            class="mord mathdefault" style="margin-right:0.10903em;">N</span><span
+                                            class="mclose">!</span></span></span></span> steps to generate all
+                            permutations, simply assuming that there is no overlapping effort (which is not true).</p>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <p>Space Complexity: <span class="katex"><span class="katex-mathml"><math>
+                                <semantics>
+                                    <mrow>
+                                        <mi mathvariant="script">O</mi>
+                                        <mo>(</mo>
+                                        <mi>N</mi>
+                                        <mo>)</mo>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">\mathcal{O}(N)</annotation>
+                                </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                                    class="mord"><span class="mord mathcal"
+                                        style="margin-right:0.02778em;">O</span></span><span class="mopen">(</span><span
+                                    class="mord mathdefault" style="margin-right:0.10903em;">N</span><span
+                                    class="mclose">)</span></span></span></span></p>
+                <ul>
+                    <li>
+                        <p>First of all, we build a hash table out of the input numbers. In the worst case where each
+                            number is unique, we would need <span class="katex"><span class="katex-mathml"><math>
+                                        <semantics>
+                                            <mrow>
+                                                <mi mathvariant="script">O</mi>
+                                                <mo>(</mo>
+                                                <mi>N</mi>
+                                                <mo>)</mo>
+                                            </mrow>
+                                            <annotation encoding="application/x-tex">\mathcal{O}(N)</annotation>
+                                        </semantics>
+                                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                            class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                                            class="mord"><span class="mord mathcal"
+                                                style="margin-right:0.02778em;">O</span></span><span
+                                            class="mopen">(</span><span class="mord mathdefault"
+                                            style="margin-right:0.10903em;">N</span><span
+                                            class="mclose">)</span></span></span></span> space for the table.</p>
+                    </li>
+                    <li>
+                        <p>Since we applied recursion in the algorithm which consumes some extra space in the function
+                            call stack, we would need another <span class="katex"><span class="katex-mathml"><math>
+                                        <semantics>
+                                            <mrow>
+                                                <mi mathvariant="script">O</mi>
+                                                <mo>(</mo>
+                                                <mi>N</mi>
+                                                <mo>)</mo>
+                                            </mrow>
+                                            <annotation encoding="application/x-tex">\mathcal{O}(N)</annotation>
+                                        </semantics>
+                                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                            class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                                            class="mord"><span class="mord mathcal"
+                                                style="margin-right:0.02778em;">O</span></span><span
+                                            class="mopen">(</span><span class="mord mathdefault"
+                                            style="margin-right:0.10903em;">N</span><span
+                                            class="mclose">)</span></span></span></span> space for the recursion.</p>
+                    </li>
+                    <li>
+                        <p>During the exploration, we keep a candidate of permutation along the way, which takes yet
+                            another <span class="katex"><span class="katex-mathml"><math>
+                                        <semantics>
+                                            <mrow>
+                                                <mi mathvariant="script">O</mi>
+                                                <mo>(</mo>
+                                                <mi>N</mi>
+                                                <mo>)</mo>
+                                            </mrow>
+                                            <annotation encoding="application/x-tex">\mathcal{O}(N)</annotation>
+                                        </semantics>
+                                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                            class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                                            class="mord"><span class="mord mathcal"
+                                                style="margin-right:0.02778em;">O</span></span><span
+                                            class="mopen">(</span><span class="mord mathdefault"
+                                            style="margin-right:0.10903em;">N</span><span
+                                            class="mclose">)</span></span></span></span>.</p>
+                    </li>
+                    <li>
+                        <p>To sum up, the total space complexity would be <span class="katex"><span
+                                    class="katex-mathml"><math>
+                                        <semantics>
+                                            <mrow>
+                                                <mi mathvariant="script">O</mi>
+                                                <mo>(</mo>
+                                                <mi>N</mi>
+                                                <mo>)</mo>
+                                                <mo>+</mo>
+                                                <mi mathvariant="script">O</mi>
+                                                <mo>(</mo>
+                                                <mi>N</mi>
+                                                <mo>)</mo>
+                                                <mo>+</mo>
+                                                <mi mathvariant="script">O</mi>
+                                                <mo>(</mo>
+                                                <mi>N</mi>
+                                                <mo>)</mo>
+                                                <mo>=</mo>
+                                                <mi mathvariant="script">O</mi>
+                                                <mo>(</mo>
+                                                <mi>N</mi>
+                                                <mo>)</mo>
+                                            </mrow>
+                                            <annotation encoding="application/x-tex">\mathcal{O}(N) + \mathcal{O}(N) +
+                                                \mathcal{O}(N) = \mathcal{O}(N)</annotation>
+                                        </semantics>
+                                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                            class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                                            class="mord"><span class="mord mathcal"
+                                                style="margin-right:0.02778em;">O</span></span><span
+                                            class="mopen">(</span><span class="mord mathdefault"
+                                            style="margin-right:0.10903em;">N</span><span class="mclose">)</span><span
+                                            class="mspace" style="margin-right:0.2222222222222222em;"></span><span
+                                            class="mbin">+</span><span class="mspace"
+                                            style="margin-right:0.2222222222222222em;"></span></span><span
+                                        class="base"><span class="strut"
+                                            style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span
+                                                class="mord mathcal"
+                                                style="margin-right:0.02778em;">O</span></span><span
+                                            class="mopen">(</span><span class="mord mathdefault"
+                                            style="margin-right:0.10903em;">N</span><span class="mclose">)</span><span
+                                            class="mspace" style="margin-right:0.2222222222222222em;"></span><span
+                                            class="mbin">+</span><span class="mspace"
+                                            style="margin-right:0.2222222222222222em;"></span></span><span
+                                        class="base"><span class="strut"
+                                            style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span
+                                                class="mord mathcal"
+                                                style="margin-right:0.02778em;">O</span></span><span
+                                            class="mopen">(</span><span class="mord mathdefault"
+                                            style="margin-right:0.10903em;">N</span><span class="mclose">)</span><span
+                                            class="mspace" style="margin-right:0.2777777777777778em;"></span><span
+                                            class="mrel">=</span><span class="mspace"
+                                            style="margin-right:0.2777777777777778em;"></span></span><span
+                                        class="base"><span class="strut"
+                                            style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span
+                                                class="mord mathcal"
+                                                style="margin-right:0.02778em;">O</span></span><span
+                                            class="mopen">(</span><span class="mord mathdefault"
+                                            style="margin-right:0.10903em;">N</span><span
+                                            class="mclose">)</span></span></span></span>.</p>
+                    </li>
+                    <li>
+                        <p><strong>Note</strong>, we did not take into account the space needed to hold the results.
+                            Otherwise, the space complexity would become <span class="katex"><span
+                                    class="katex-mathml"><math>
+                                        <semantics>
+                                            <mrow>
+                                                <mi mathvariant="script">O</mi>
+                                                <mo>(</mo>
+                                                <mi>N</mi>
+                                                <mo>⋅</mo>
+                                                <mi>N</mi>
+                                                <mo>!</mo>
+                                                <mo>)</mo>
+                                            </mrow>
+                                            <annotation encoding="application/x-tex">\mathcal{O}(N \cdot N!)
+                                            </annotation>
+                                        </semantics>
+                                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                            class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+                                            class="mord"><span class="mord mathcal"
+                                                style="margin-right:0.02778em;">O</span></span><span
+                                            class="mopen">(</span><span class="mord mathdefault"
+                                            style="margin-right:0.10903em;">N</span><span class="mspace"
+                                            style="margin-right:0.2222222222222222em;"></span><span
+                                            class="mbin">⋅</span><span class="mspace"
+                                            style="margin-right:0.2222222222222222em;"></span></span><span
+                                        class="base"><span class="strut"
+                                            style="height:1em;vertical-align:-0.25em;"></span><span
+                                            class="mord mathdefault" style="margin-right:0.10903em;">N</span><span
+                                            class="mclose">!</span><span class="mclose">)</span></span></span></span>.
+                        </p>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+        <hr>
+    </div>
+</div>
+<link rel="stylesheet" href="../../../boilerplate/simple.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css"
+    integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">

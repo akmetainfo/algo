@@ -18,6 +18,7 @@
 0035,Search Insert Position
 0039,Combination Sum
 * 0046,Permutations
+* 0047,Permutations II
 ? 0054,Spiral Matrix
 ? 62,Unique Paths
 0066,Plus One
