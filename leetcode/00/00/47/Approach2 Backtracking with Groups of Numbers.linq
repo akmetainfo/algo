@@ -10,6 +10,8 @@
 /*
     Time: O()
     Space: O()
+    
+    copied from solution tab (java version), but doesn't works :(
 */
 public class Solution
 {
