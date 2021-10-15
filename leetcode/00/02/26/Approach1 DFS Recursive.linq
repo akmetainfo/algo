@@ -18,11 +18,9 @@ public class Solution
         if(root == null)
             return root;
         
-        if(root.left != null)
-            InvertTree(root.left);
+        InvertTree(root.left);
         
-        if(root.right != null)
-            InvertTree(root.right);
+        InvertTree(root.right);
         
         var tmp = root.left;
         root.left = root.right;
