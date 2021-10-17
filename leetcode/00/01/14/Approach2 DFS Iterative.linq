@@ -29,10 +29,10 @@ public class Solution
             dummy.right = root;
             dummy = dummy.right;
             
-            if(dummy.right != null)
-                stack.Push(dummy.right);
-            if(dummy.left != null)
-                stack.Push(dummy.left);
+            if(root.right != null)
+                stack.Push(root.right);
+            if(root.left != null)
+                stack.Push(root.left);
         }
     }
 }
