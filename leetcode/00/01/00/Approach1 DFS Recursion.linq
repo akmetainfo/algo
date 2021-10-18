@@ -30,9 +30,10 @@ public class Solution
 }
 
 [Test]
-[TestCase(new object[] { 1,2,3 }, new object[] { 1,2,3 }, true)]
-[TestCase(new object[] { 1,2 }, new object[] { 1,null,2 }, false)]
-[TestCase(new object[] { 1,2,1 }, new object[] { 1,1,2 }, false)]
+[TestCase(new object[] { 1, 2, 3 }, new object[] { 1, 2, 3 }, true)]
+[TestCase(new object[] { 1, 2 }, new object[] { 1, null, 2 }, false)]
+[TestCase(new object[] { 1, 2, 1 }, new object[] { 1, 1, 2 }, false)]
+[TestCase(new object[] { 0, -5 }, new object[] { 0, -8 }, false)]
 public void SolutionTests(object[] root1, object[] root2, bool expected)
 {
     var p = CreateTree(root1);
