@@ -36,7 +36,7 @@ public class Solution
             choices.Add(nums[i]);
             Backtrack(list, choices, nums, used);
             used[i] = false;
-            choices.RemoveAt(choices.Count - 1);
+            choices.RemoveAt(choices.Count - 1); // do not remove last because of dups!
         }
     }
 }
