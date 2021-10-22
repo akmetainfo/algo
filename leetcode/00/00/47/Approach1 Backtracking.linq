@@ -21,11 +21,11 @@ public class Solution
         return result;
     }
 
-    private void Backtrack(List<IList<int>> list, List<int> tempList, int[] nums, bool[] used)
+    private void Backtrack(List<IList<int>> list, List<int> choices, int[] nums, bool[] used)
     {
-        if (tempList.Count == nums.Length)
+        if (choices.Count == nums.Length)
         {
-            list.Add(new List<int>(tempList));
+            list.Add(new List<int>(choices));
             return;
         }
 
@@ -33,10 +33,10 @@ public class Solution
         {
             if (used[i] || i > 0 && nums[i] == nums[i - 1] && !used[i - 1]) continue;
             used[i] = true;
-            tempList.Add(nums[i]);
-            Backtrack(list, tempList, nums, used);
+            choices.Add(nums[i]);
+            Backtrack(list, choices, nums, used);
             used[i] = false;
-            tempList.RemoveAt(tempList.Count - 1);
+            choices.RemoveAt(choices.Count - 1);
         }
     }
 }
