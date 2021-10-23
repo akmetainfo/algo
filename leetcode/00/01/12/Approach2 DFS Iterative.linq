@@ -15,38 +15,71 @@ public class Solution
 {
     public bool HasPathSum(TreeNode root, int targetSum)
     {
-        if(root == null)
+        if (root == null)
             return false;
-            
-        var stack = new Stack<TreeNode>();
-        var rest = new Stack<int>();
-        
-        stack.Push(root);
-        rest.Push(targetSum);
-        
-        while(stack.Count() > 0)
+
+        var nodes = new Stack<TreeNode>();
+        var targets = new Stack<int>();
+
+        nodes.Push(root);
+        targets.Push(targetSum);
+
+        while (nodes.Count != 0)
         {
-            root = stack.Pop();
-            targetSum = rest.Pop();
-            
-            if(root.left == null && root.right == null)
+            root = nodes.Pop();
+            targetSum = targets.Pop();
+
+            if (root.left == null && root.right == null && targetSum == root.val)
+                return true;
+
+            if (root.left != null)
             {
-                if(targetSum == root.val)
-                    return true;
+                nodes.Push(root.left);
+                targets.Push(targetSum - root.val);
             }
-                
-            if(root.left != null)
+
+            if (root.right != null)
             {
-                stack.Push(root.left);
-                rest.Push(targetSum - root.val);
-            }
-                
-            if(root.right != null)
-            {
-                stack.Push(root.right);
-                rest.Push(targetSum - root.val);
+                nodes.Push(root.right);
+                targets.Push(targetSum - root.val);
             }
         }
+
+        return false;
+    }
+}
+
+/*
+    Time: O(N)
+    Space: O(H)
+*/
+public class Solution1
+{
+    public bool HasPathSum(TreeNode root, int targetSum)
+    {
+        if (root == null)
+            return false;
+
+        var stack = new Stack<(TreeNode, int)>();
+
+        stack.Push((root, targetSum));
+
+        while (stack.Count != 0)
+        {
+            var data = stack.Pop();
+            root = data.Item1;
+            targetSum = data.Item2;
+
+            if (root.left == null && root.right == null && targetSum == root.val)
+                return true;
+
+            if (root.left != null)
+                stack.Push((root.left, targetSum - root.val));
+
+            if (root.right != null)
+                stack.Push((root.right, targetSum - root.val));
+        }
+
         return false;
     }
 }
