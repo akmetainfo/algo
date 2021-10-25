@@ -29,11 +29,44 @@ public class Solution
             return;
         }
 
+        for (int i = start; i < candidates.Length; i++)
+        {
+            if (target < candidates[i]) break;
+            choices.Add(candidates[i]);
+            CombinationSum(candidates, target - candidates[i], result, choices, i);
+            choices.Remove(choices.Last());
+        }
+    }
+}
+
+
+/*
+    Time: O()
+    Space: O()
+*/
+public class Solution1
+{
+    public IList<IList<int>> CombinationSum(int[] candidates, int target)
+    {
+        var result = new List<IList<int>>();
+        Array.Sort(candidates);
+        CombinationSum(candidates, target, result, new List<int>(), 0);
+        return result;
+    }
+
+    public void CombinationSum(int[] candidates, int target, IList<IList<int>> result, IList<int> choices, int start)
+    {
+        if (target == 0)
+        {
+            result.Add(choices.ToList());
+            return;
+        }
+
         for (int i = start; i < candidates.Length && target >= candidates[i]; i++)
         {
             choices.Add(candidates[i]);
             CombinationSum(candidates, target - candidates[i], result, choices, i);
-            choices.Remove(choices.Last());
+            choices.RemoveAt(choices.Count - 1);
         }
     }
 }
