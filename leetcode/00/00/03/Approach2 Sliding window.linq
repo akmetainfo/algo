@@ -79,6 +79,7 @@ public class Solution1
 [TestCase(" ", 1)]
 [TestCase("au", 2)]
 [TestCase("dvdf", 3)]
+[TestCase("ohvhjdml", 6)]
 public void SolutionTests(string s, int expected)
 {
     var actual = new Solution().LengthOfLongestSubstring(s);
