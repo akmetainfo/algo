@@ -52,6 +52,7 @@ public class Solution
 [TestCase(new int[] { 5, 7, 7, 8, 8, 10 }, 8, new int[] { 3, 4 })]
 [TestCase(new int[] { 5, 7, 7, 8, 8, 10 }, 6, new int[] { -1, -1 })]
 [TestCase(new int[] { }, 0, new int[] { -1, -1 })]
+[TestCase(new int[] { 1 }, 1, new int[] { 0, 0 })]
 public void SolutionTests(int[] nums, int target, int[] expected)
 {
 	var actual = new Solution().SearchRange(nums, target);

@@ -13,6 +13,40 @@
 */
 public class Solution
 {
+    // Approach1 Trivial
+    public int MaximumWealth(int[][] accounts)
+    {
+        return accounts.Max(i => i.Sum());
+    }
+}
+
+/*
+    Time: O(N*M)
+    Space: O(1)
+*/
+public class Solution3
+{
+    // Approach1 Trivial
+    public int MaximumWealth(int[][] accounts)
+    {
+        var max = 0;
+
+        for (int i = 0; i < accounts.Length; i++)
+        {
+            var currentWhealth = accounts[i].Sum();
+            if (currentWhealth > max) max = currentWhealth;
+        }
+
+        return max;
+    }
+}
+
+/*
+    Time: O(N*M)
+    Space: O(1)
+*/
+public class Solution2
+{
     public int MaximumWealth(int[][] accounts)
     {
         var result = int.MinValue;
