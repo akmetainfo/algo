@@ -35,6 +35,28 @@ public class Solution
     }
 }
 
+/*
+    Time: O(N^2)
+    Space: O(1)
+    
+    Time Limit
+*/
+public class Solution1
+{
+    public int PivotIndex(int[] nums)
+    {
+        for (int i = 0; i < nums.Length; i++)
+        {
+            var sumLeft = nums.Take(i).Sum();
+            var sumRight = nums.Skip(i + 1).Sum();
+            if (sumLeft == sumRight)
+                return i;
+        }
+
+        return -1;
+    }
+}
+
 [Test]
 [TestCase(new int[] { 1,7,3,6,5,6 }, 3)]
 [TestCase(new int[] { 1,2,3 }, -1)]
