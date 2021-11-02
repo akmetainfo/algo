@@ -9,35 +9,94 @@
 
 /*
     Time: O(N)
-    Space: O(N)
+    Space: O(H) for call-stack and O(N) for creating a copy of tree in a new tree
 */
 public class Solution
 {
-    public TreeNode IncreasingBST(TreeNode root)
+	public TreeNode IncreasingBST(TreeNode root)
     {
-        var list = new List<int>();
-        InOrder(root, list);
-
-        var result = new TreeNode(0);
-        var current = result;
-        foreach (var val in list)
-        {
-            current.right = new TreeNode(val);
-            current = current.right;
-        }
-
+        var dummy = new TreeNode(-1);
+        var result = dummy;
+        InOrder(root, ref dummy);
         return result.right;
     }
 
-    private void InOrder(TreeNode root, List<int> list)
+    public void InOrder(TreeNode root, ref TreeNode result)
     {
-        if (root == null)
-            return;
+        if (root.left != null)
+            InOrder(root.left, ref result);
 
-        InOrder(root.left, list);
-        list.Add(root.val);
-        InOrder(root.right, list);
+        result.right = new TreeNode(root.val);
+
+        result = result.right;
+
+        if (root.right != null)
+            InOrder(root.right, ref result);
     }
+}
+
+/*
+    Time: O(N)
+    Space: O(H) for call-stack and O(N) for creating a copy of tree in a new tree
+*/
+public class Solution2
+{
+	TreeNode current;
+
+	public TreeNode IncreasingBST(TreeNode root)
+	{
+		var result = new TreeNode(0);
+		current = result;
+		InOrder(root);
+		return result.right;
+	}
+
+	public void InOrder(TreeNode node)
+	{
+		if (node == null)
+			return;
+
+		InOrder(node.left);
+
+		node.left = null;
+		current.right = node;
+		current = node;
+
+		InOrder(node.right);
+	}
+}
+
+/*
+    Time: O(N)
+    Space: O(H) for call-stack and O(N) for creating a copy of tree in List and new tree
+*/
+public class Solution1
+{
+	public TreeNode IncreasingBST(TreeNode root)
+	{
+		var list = new List<int>();
+		InOrder(root, list);
+
+		var result = new TreeNode(0);
+		var current = result;
+		foreach (var val in list)
+		{
+			current.right = new TreeNode(val);
+			current = current.right;
+		}
+
+		return result.right;
+	}
+
+	private void InOrder(TreeNode root, List<int> list)
+	{
+		if (root == null)
+			return;
+
+		InOrder(root.left, list);
+		list.Add(root.val);
+		InOrder(root.right, list);
+	}
 }
 
 [Test]

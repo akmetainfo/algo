@@ -9,63 +9,35 @@
 
 /*
     Time: O(N)
-    Space: O(N)
+    Space: O(H) for call-stack and O(N) for creating a copy of tree in a new tree
 */
 public class Solution
 {
-    TreeNode cur;
-    
-    public TreeNode IncreasingBST(TreeNode root)
-    {
-        TreeNode ans = new TreeNode(0);
-        cur = ans;
-        InOrder(root);
-        return ans.right;
-    }
+	public TreeNode IncreasingBST(TreeNode root)
+	{
+		var result = new TreeNode(0);
+		var current = result;
+		var stack = new Stack<TreeNode>();
+		while (stack.Count != 0 || root != null)
+		{
+			if (root != null)
+			{
+				stack.Push(root);
+				root = root.left;
+			}
+			else
+			{
+				root = stack.Pop();
 
-    public void InOrder(TreeNode node)
-    {
-        if (node == null)
-            return;
-            
-        InOrder(node.left);
-        
-        node.left = null;
-        
-        cur.right = node;
-        
-        cur = node;
-        
-        InOrder(node.right);
-    }
-}
+				current.left = null;
+				current.right = new TreeNode(root.val);
+				current = current.right;
 
-/*
-    Time: O(N)
-    Space: O(N)
-*/
-public class Solution1
-{
-    public TreeNode IncreasingBST(TreeNode root)
-    {
-        var dummy = new TreeNode(-1);
-        var result = dummy;
-        InOrder(root, ref dummy);
-        return result.right;
-    }
-
-    public void InOrder(TreeNode root, ref TreeNode result)
-    {
-        if (root.left != null)
-            InOrder(root.left, ref result);
-
-        result.right = new TreeNode(root.val);
-
-        result = result.right;
-
-        if (root.right != null)
-            InOrder(root.right, ref result);
-    }
+				root = root.right;
+			}
+		}
+		return result.right;
+	}
 }
 
 [Test]
