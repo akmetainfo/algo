@@ -17,17 +17,17 @@ public class Solution
 {
     public int FindJudge(int n, int[][] trust)
     {
-        var people = new int[n + 1];
+        var degree = new int[n + 1];
 
-        foreach (var tr in trust)
+        foreach (var edge in trust)
         {
-            people[tr[0]]--;
-            people[tr[1]]++;
+            degree[edge[0]]--;
+            degree[edge[1]]++;
         }
 
         for (var i = 1; i <= n; i++)
         {
-            if (people[i] == n - 1)
+            if (degree[i] == n - 1)
                 return i;
         }
 
@@ -43,20 +43,19 @@ public class Solution
 */
 public class Solution1
 {
-    //  Approach2 One array
     public int FindJudge(int n, int[][] trust)
     {
-        var t = new int[n];
+        var degree = new int[n];
 
-        foreach (var tr in trust)
+        foreach (var edge in trust)
         {
-            t[tr[0] - 1]--;
-            t[tr[1] - 1]++;
+            degree[edge[0] - 1]--;
+            degree[edge[1] - 1]++;
         }
 
         for (var i = 1; i <= n; i++)
         {
-            if (t[i - 1] == n - 1)
+            if (degree[i - 1] == n - 1)
                 return i;
         }
 
