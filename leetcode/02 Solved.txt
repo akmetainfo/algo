@@ -99,6 +99,7 @@
 @ 0520,Detect Capital
 ? 0542,01 Matrix
 ? 0557,Reverse Words in a String III
+0559,Maximum Depth of N-ary Tree
 0561,Array Partition I
 0567,Permutation in String
 0617,Merge Two Binary Trees
