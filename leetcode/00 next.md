@@ -5,7 +5,7 @@ https://docs.google.com/spreadsheets/d/1gT2U0un3ggpNkwOKKtJEcMN7UIxvGX8nr5uopwRD
 
 https://leetcode.com/problems/combination-sum/discuss/16502/A-general-approach-to-backtracking-questions-in-Java-(Subsets-Permutations-Combination-Sum-Palindrome-Partitioning)
 
-Single Number
+Climbing Stairs
 https://seanprashad.com/leetcode-patterns/
 
 Two Sum
