@@ -13,21 +13,41 @@
 */
 public class Solution
 {
-    public ListNode DeleteDuplicates(ListNode head)
-    {
-        if(head == null || head.next == null) return head;
-        if(head.val == head.next.val)
-        {
-            head = DeleteDuplicates(head.next);
-        }
-        head.next = DeleteDuplicates(head.next);
-        return head;
-    }    
+	// Approach3 Recursive
+	public ListNode DeleteDuplicates(ListNode head)
+	{
+		if (head == null || head.next == null) return head;
+
+		head.next = DeleteDuplicates(head.next);
+
+		if (head.val == head.next.val)
+			return head.next;
+
+		return head;
+	}
+}
+
+/*
+    Time: O(N)
+    Space: O(N) for call stack
+*/
+public class Solution1
+{
+	public ListNode DeleteDuplicates(ListNode head)
+	{
+		if (head == null || head.next == null) return head;
+		if (head.val == head.next.val)
+		{
+			head = DeleteDuplicates(head.next);
+		}
+		head.next = DeleteDuplicates(head.next);
+		return head;
+	}
 }
 
 public class ListNode
 {
-    public int val;
+	public int val;
     public ListNode next;
     public ListNode(int x)
     {
