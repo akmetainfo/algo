@@ -1,0 +1,72 @@
+<div class="problem-statement">
+   <div class="header">
+      <h1 class="title">F. Распределение курьеров по зонам доставки</h1>
+      <table>
+         <tbody><tr class="time-limit">
+            <td class="property-title">Ограничение времени</td>
+            <td>1&nbsp;секунда</td>
+         </tr>
+         <tr class="memory-limit">
+            <td class="property-title">Ограничение памяти</td>
+            <td>64Mb</td>
+         </tr>
+         <tr class="input-file">
+            <td class="property-title">Ввод</td>
+            <td colspan="1">стандартный ввод или input.txt</td>
+         </tr>
+         <tr class="output-file">
+            <td class="property-title">Вывод</td>
+            <td colspan="1">стандартный вывод или output.txt</td>
+         </tr>
+      </tbody></table>
+   </div>
+   <h2></h2>
+   <div class="legend"><span style="">
+         <p>Сервис Яндекс.Еда доставляет пользователям заказы из ресторанов. Доставку выполняют курьеры, которые работают сменами по несколько
+            часов. Для распределения курьеров по городу, весь город разбивается на квадратные геозоны размером <span class="tex-math-text">500 ? 500</span> метров. Из этих «кирпичиков» строятся прямоугольные геозоны доставки, а уже потом курьеры распределяются по этим прямоугольникам
+            и выполняют доставку в рамках геозоны. 
+         </p></span><p>Яндекс.Еде важно доставить заказ в срок, обещанный пользователю при заказе. Чтобы оценить насколько хорошо работает доставка,
+         аналитики каждый день считают среднее отклонение фактического времени доставки от планируемого по всем заказам за этот день:
+         
+         </p><div class="tex-math-block"><img class="tex-math" src="/testsys/tex/render/RCA9IFxmcmFjezF9e259IFxzdW1fe2k9MX1ee259ICh0X3tpfV57XHRleHR70YTQsNC60YJ9fSAtIHRfe2l9XntcdGV4dHvQv9C70LDQvX19KQ==.png"></div> Здесь: <span class="tex-math-text">n</span>&nbsp;— число заказов в день, <span class="tex-math-inline"><img class="tex-math" src="/testsys/tex/render/dF97aX1ee1x0ZXh0e9GE0LDQutGCfX0=.png"></span>&nbsp;— фактическое время доставки <span class="tex-math-text">i</span>-ого заказа, <span class="tex-math-inline"><img class="tex-math" src="/testsys/tex/render/dF97aX1ee1x0ZXh0e9C/0LvQsNC9fX0=.png"></span>&nbsp;— планируемое время доставки <span class="tex-math-text">i</span>-ого заказа. Если этот показатель больше нуля, то в среднем курьеры опаздывают, если меньше нуля &nbsp;— доставляют вовремя или раньше. 
+      <p></p>
+      <p>С ростом сервиса растёт количество новых курьеров. Для улучшения качества доставки, при выводе нового курьера используется
+         следующий алгоритм назначения новому курьеру зоны доставки: <br> 1. Для каждой квадратной геозоны <span class="tex-math-text">500 ? 500</span> метров рассчитывается показатель отклонения времени доставки <span class="tex-math-text">D</span> в этой зоне за день <br> 2. В качестве зоны доставки назначается прямоугольная зона, состоящая не более, чем из <span class="tex-math-text">K</span> квадратных геозон <span class="tex-math-text">500 ? 500</span>, сумма значений <span class="tex-math-text">D</span> которых максимальна. <br> 
+      </p>
+      <p>Реализуйте алгоритм поиска зоны доставки для нового курьера на основании данных о временах отклонения фактических времён доставки
+         от планируемых <span class="tex-math-text">D</span> по зонам <span class="tex-math-text">500 ? 500</span> метров. Данные о временах отклонения заданы матрицей размера <span class="tex-math-text">M ? N</span>. 
+      </p>
+   </div>
+   <h2>Формат ввода</h2>
+   <div class="input-specification"><span style="">
+         <p>В первой строке указан параметр <span class="tex-math-text">K</span> со значением из диапазона от 1 до 1000. 
+         </p></span><p>Во второй строке через пробел указаны размеры матрицы <span class="tex-math-text">M</span> (<span class="tex-math-text">1 ? M ? 1000</span>) и <span class="tex-math-text">N</span> (<span class="tex-math-text">1 ? N ? 100</span>) соответственно. 
+      </p>
+      <p>Далее идут <span class="tex-math-text">M</span> строк, каждая из которых содержит <span class="tex-math-text">N</span> целых чисел, записанных через пробел&nbsp;— параметры <span class="tex-math-text">D</span> для геозон <span class="tex-math-text">500 ? 500</span> метров. 
+      </p>
+   </div>
+   <h2>Формат вывода</h2>
+   <div class="output-specification"><span style="">
+         <p>Выведите одно число&nbsp;— сумму значений <span class="tex-math-text">D</span> в найденной зоне (по описанному выше алгоритму) для нового курьера. 
+         </p></span></div>
+   <h2>Пример</h2>
+   <table class="sample-tests">
+      <thead>
+         <tr>
+            <th>Ввод<div class="problem__copy-sample"><button class="button button_theme_pseudo button_size_s button_only-icon_yes problem__copy-button problem__copy-button_type_input i-bem" data-bem="{&quot;button&quot;:{}}" role="button" type="button" title="Скопировать ввод"><span class="button__text">&nbsp;<img class="image button__icon button__icon_role_copy" src="//yastatic.net/lego/_/La6qi18Z8LwgnZdsAr1qy1GwCwo.gif" alt="Скопировать ввод"></span></button></div></th>
+            <th>Вывод<div class="problem__copy-sample"><button class="button button_theme_pseudo button_size_s button_only-icon_yes problem__copy-button problem__copy-button_type_output i-bem" data-bem="{&quot;button&quot;:{}}" role="button" type="button" title="Скопировать вывод"><span class="button__text">&nbsp;<img class="image button__icon button__icon_role_copy" src="//yastatic.net/lego/_/La6qi18Z8LwgnZdsAr1qy1GwCwo.gif" alt="Скопировать вывод"></span></button></div></th>
+         </tr>
+      </thead>
+      <tbody>
+         <tr>
+            <td><pre>4
+2 3
+4 -1 -3
+-2 4 -3
+</pre></td>
+            <td><pre>5
+</pre></td>
+         </tr>
+      </tbody>
+   </table>
+</div>
