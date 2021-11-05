@@ -171,6 +171,7 @@
 ? 1684,Count the Number of Consistent Strings
 ? 1688,Count of Matches in Tournament
 1720,Decode XORed Array
+1732,Find the Highest Altitude
 ? 1773,Count Items Matching a Rule
 1791,Find Center of Star Graph
 ? 1816,Truncate Sentence
