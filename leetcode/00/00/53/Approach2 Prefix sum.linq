@@ -11,7 +11,7 @@
     Time: O(N^2)
     Space: O(N)
     
-    non-working on last test case when all numbers are negative
+    Time Limit Exceeded
 */
 public class Solution
 {
@@ -24,7 +24,7 @@ public class Solution
         var result = int.MinValue;
         for(var i = 0; i < nums.Length; i++)
         {
-            for(var j = 0; j < nums.Length; j++)
+            for(var j = i; j < nums.Length; j++)
             {
                 var sum = pref[j+1] - pref[i];
                 result = Math.Max(result, sum);
