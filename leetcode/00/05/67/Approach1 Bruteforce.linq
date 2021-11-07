@@ -52,6 +52,46 @@ public class Solution
     }
 }
 
+/*
+    Time: O(N!)
+    Space: O(N^2)
+    
+    Time Limit Exceeded
+*/
+public class Solution0
+{
+    public bool CheckInclusion(string s1, string s2)
+    {
+        var flag = false;
+        Permute(s1, s2, ref flag, 0);
+        return flag;
+    }
+    
+    private void Permute(string str, string s2, ref bool flag, int start = 0)
+    {
+        if(start == str.Length)
+        {
+            if(s2.IndexOf(str) >= 0)
+                flag = true;
+            return;
+        }
+        
+        for(var i = start; i < str.Length; i++)
+        {
+            str = Swap(str, start, i);
+            Permute(str, s2, ref flag, i + 1);
+            str = Swap(str, start, i);
+        }
+    }
+
+    private string Swap(string src, int i, int j)
+    {
+        var bytes = src.ToCharArray();
+        (bytes[i], bytes[j]) = (bytes[j], bytes[i]);
+        return new string(bytes);
+    }    
+}
+
 [Test]
 [TestCase("ab", "eidbaooo", true)]
 [TestCase("ab", "eidboaoo", false)]
