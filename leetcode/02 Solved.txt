@@ -42,6 +42,7 @@
 0116,Populating Next Right Pointers in Each Node
 0118,Pascal's Triangle
 0119,Pascal's Triangle II
+0121,Best Time to Buy and Sell Stock
 0125,Valid Palindrome
 0136,Single Number
 ? 0141,Linked List Cycle
