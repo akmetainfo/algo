@@ -26,6 +26,7 @@
 0067,Add Binary
 0069,Sqrt(x)
 0070,Climbing Stairs
+0074,Search a 2D Matrix
 ? 0076,Minimum Window Substring
 0077,Combinations
 0078,Subsets
