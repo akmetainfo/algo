@@ -8,14 +8,97 @@
 // https://leetcode.com/problems/valid-sudoku/
 
 /*
-    Time: O()
-    Space: O()
+    Time: O(1)
+    Space: O(1)
 */
 public class Solution
 {
     public bool IsValidSudoku(char[][] board)
     {
-        throw new NotImplementedException();
+        var m = board.Length;
+        var n = board[0].Length;
+
+        var presenceRow = new bool[9, 9];
+        var presenceCol = new bool[9, 9];
+        var presence = new bool[9, 9];
+
+        for (int i = 0; i < m; i++)
+        {
+            for (int j = 0; j < n; j++)
+            {
+                if (board[i][j] == '.') continue;
+                var num = int.Parse(board[i][j].ToString());
+                // Each row must contain the digits 1-9 without repetition.
+                if (presenceRow[i, num - 1]) return false;
+                presenceRow[i, num - 1] = true;
+                // Each column must contain the digits 1-9 without repetition.
+                if (presenceCol[j, num - 1]) return false;
+                presenceCol[j, num - 1] = true;
+                // Each of the nine 3 x 3 sub-boxes of the grid must contain the digits 1-9 without repetition.
+                var x = i / 3; var y = j / 3; var pos = 3 * x + y;
+                if (presence[pos, num - 1]) return false;
+                presence[pos, num - 1] = true;
+            }
+        }
+
+        return true;
+    }
+}
+
+/*
+    Time: O(1)
+    Space: O(1)
+*/
+public class Solution0
+{
+    public bool IsValidSudoku(char[][] board)
+    {
+        var m = board.Length;
+        var n = board[0].Length;
+
+        // Each row must contain the digits 1-9 without repetition.
+        for (int i = 0; i < m; i++)
+        {
+            var presenceRow = new bool[9];
+            for (int j = 0; j < n; j++)
+            {
+                if (board[i][j] == '.') continue;
+                var num = int.Parse(board[i][j].ToString());
+                if (presenceRow[num - 1]) return false;
+                presenceRow[num - 1] = true;
+            }
+        }
+
+        // Each column must contain the digits 1-9 without repetition.
+        for (int j = 0; j < n; j++)
+        {
+            var presenceCol = new bool[9];
+            for (int i = 0; i < m; i++)
+            {
+                if (board[i][j] == '.') continue;
+                var num = int.Parse(board[i][j].ToString());
+                if (presenceCol[num - 1]) return false;
+                presenceCol[num - 1] = true;
+            }
+        }
+
+        // Each of the nine 3 x 3 sub-boxes of the grid must contain the digits 1-9 without repetition.
+        var presence = new bool[9, 9];
+
+        for (int i = 0; i < m; i++)
+        {
+            for (int j = 0; j < n; j++)
+            {
+                if (board[i][j] == '.') continue;
+                var num = int.Parse(board[i][j].ToString());
+                var x = i / 3; var y = j / 3; var pos = 3 * x + y;
+
+                if (presence[pos, num - 1]) return false;
+                presence[pos, num - 1] = true;
+            }
+        }
+
+        return true;
     }
 }
 
