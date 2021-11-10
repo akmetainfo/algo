@@ -16,25 +16,25 @@ public class Solution
     public IList<IList<int>> Permute(int[] nums)
     {
         var result = new List<IList<int>>();
-        Permute(result, nums, 0, nums.Length - 1);
+        Permute(nums, result, 0);
         return result;
     }
-    
-    private void Permute(IList<IList<int>> result, int[] nums, int start, int finish)
+
+    private void Permute(int[] nums, IList<IList<int>> result, int start)
     {
-        if(start == finish)
+        if (start == nums.Length - 1)
         {
             result.Add(nums.ToList());
             return;
         }
-        
-        for(var i = start; i <= finish; i++)
+
+        for (var i = start; i < nums.Length; i++)
         {
             (nums[start], nums[i]) = (nums[i], nums[start]);
-            Permute(result, nums, start + 1, finish);
+            Permute(nums, result, start + 1);
             (nums[start], nums[i]) = (nums[i], nums[start]);
         }
-    }    
+    }
 }
 
 private static IEnumerable<object[]> TestCases()
