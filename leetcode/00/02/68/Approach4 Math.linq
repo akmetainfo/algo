@@ -26,6 +26,41 @@ public class Solution
     }
 }
 
+/*
+    Time: O(N)
+    Space: O(1)
+*/
+public class Solution1
+{
+    // Approach4 Math 0..n, n = nums.Length
+    public int MissingNumber(int[] nums)
+    {
+        var result = nums.Length;
+        for (int i = 0; i < nums.Length; i++)
+        {
+            result += i;
+            result -= nums[i];
+        }
+        return result;
+    }
+}
+
+/*
+    Time: O(N)
+    Space: O(1)
+*/
+public class Solution0
+{
+    // Approach4 Math 0..n, n = nums.Length
+    public int MissingNumber(int[] nums)
+    {
+        var result = 0;
+        for (int i = 0; i <= nums.Length; i++) result += i;
+        for (int i = 0; i < nums.Length; i++) result -= nums[i];
+        return result;
+    }
+}
+
 [Test]
 [TestCase(new int[] { 3, 0, 1 }, 2)]
 [TestCase(new int[] { 0, 1 }, 2)]
