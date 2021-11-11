@@ -16,16 +16,12 @@ public class Solution
     public int MaxSubArray(int[] nums)
     {
         var sum = 0;
-        var result = nums[0];
+        var result = nums[0]; // or result = int.MinValue;
         for(var i = 0; i < nums.Length; i++)
         {
             sum += nums[i];
-            
-            if(sum > result)
-                result = sum;
-            
-            if(sum < 0)
-                sum = 0;
+            if(sum > result) result = sum;
+            if(sum < 0) sum = 0;
         }
         return result;
     }
