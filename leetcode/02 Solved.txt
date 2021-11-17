@@ -118,6 +118,7 @@
 ? 657. Robot Return to Origin
 0695,Max Area of Island
 0700,Search in a Binary Search Tree
+701,Insert into a Binary Search Tree
 0704,Binary Search
 ? 0705,Design HashSet
 ? 0706,Design HashMap
