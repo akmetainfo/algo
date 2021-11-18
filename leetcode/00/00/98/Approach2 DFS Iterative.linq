@@ -8,14 +8,26 @@
 // https://leetcode.com/problems/validate-binary-search-tree/
 
 /*
-    Time: O()
-    Space: O()
+    Time: O(N)
+    Space: O(H) for storing call stack
 */
 public class Solution
 {
     public bool IsValidBST(TreeNode root)
     {
-        throw new NotImplementedException();
+        if (root == null) return true;
+        var stack = new Stack<(TreeNode, long, long)>();
+        stack.Push((root, long.MinValue, long.MaxValue));
+        while (stack.Count != 0)
+        {
+            var el = stack.Pop();
+            var min = el.Item2; var max = el.Item3; root = el.Item1;
+            if (min >= root.val || root.val >= max) return false;
+            if (root.left != null) stack.Push((root.left, min, root.val));
+            if (root.right != null) stack.Push((root.right, root.val, max));
+        }
+
+        return true;
     }
 }
 

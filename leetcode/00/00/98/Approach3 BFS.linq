@@ -8,14 +8,26 @@
 // https://leetcode.com/problems/validate-binary-search-tree/
 
 /*
-    Time: O()
-    Space: O()
+    Time: O(N)
+    Space: O(N)
 */
 public class Solution
 {
     public bool IsValidBST(TreeNode root)
     {
-        throw new NotImplementedException();
+        if (root == null) return true;
+        var queue = new Queue<(TreeNode, long, long)>();
+        queue.Enqueue((root, long.MinValue, long.MaxValue));
+        while (queue.Count != 0)
+        {
+            var el = queue.Dequeue();
+            var min = el.Item2; var max = el.Item3; root = el.Item1;
+            if (min >= root.val || root.val >= max) return false;
+            if (root.left != null) queue.Enqueue((root.left, min, root.val));
+            if (root.right != null) queue.Enqueue((root.right, root.val, max));
+        }
+
+        return true;
     }
 }
 

@@ -8,16 +8,24 @@
 // https://leetcode.com/problems/validate-binary-search-tree/
 
 /*
-    Time: O()
-    Space: O()
+    Time: O(N)
+    Space: O(H) for storing call stack
 */
 public class Solution
 {
     public bool IsValidBST(TreeNode root)
     {
-        throw new NotImplementedException();
+        return DFS(root, long.MinValue, long.MaxValue);
+    }
+
+    private bool DFS(TreeNode root, long min, long max)
+    {
+        if (root == null) return true;
+        if (min >= root.val || root.val >= max) return false;
+        return DFS(root.left, min, root.val) && DFS(root.right, root.val, max);
     }
 }
+
 
 [Test]
 [TestCase(new object[] { 2, 1, 3 }, true)]
