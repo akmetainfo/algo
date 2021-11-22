@@ -1,7 +1,7 @@
 # kb\algo
 
 * a collection of algo problems from different sites and contests
-* usually solved in csharp
+* usually solved in csharp or in java
 
 # How to run .linq extension?
 
