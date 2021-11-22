@@ -31,7 +31,7 @@ public class Solution
 
         for (int i = 0; i < nums.Length; i++)
         {
-            if (list.Contains(nums[i]))
+            if (list.Contains(nums[i])) // O(N) operation!
                 continue;
                 
             list.Add(nums[i]);
