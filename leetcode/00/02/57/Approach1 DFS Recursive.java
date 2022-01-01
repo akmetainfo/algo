@@ -17,7 +17,7 @@ public class Solution {
         return result;
     }
 
-    private final void dfs(List<String> result, TreeNode node, String path) {
+    private static void dfs(List<String> result, TreeNode node, String path) {
         path += node.val;
 
         if (node.left == null && node.right == null) {
