@@ -10,4 +10,4 @@
 
 И наоборот - массив к листу: return Arrays.stream(result).boxed().collect(Collectors.toList());
 
-119. Pascal's Triangle II
+119. Pascal's Triangle II. Approach3 In-place.java - правда тут может стоило сразу объявить ArrayList известного размера
