@@ -7,3 +7,7 @@
 350. Intersection of Two Arrays II
 
 (мне что-то кажется, что не стоит делать так, есть вариант лучше:         return result.stream().mapToInt(x -> x).toArray();
+
+И наоборот - массив к листу: return Arrays.stream(result).boxed().collect(Collectors.toList());
+
+119. Pascal's Triangle II
