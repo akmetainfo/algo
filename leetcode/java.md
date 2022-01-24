@@ -1,6 +1,8 @@
 Задачи, которые можно решить при помощи stream api:
 
-1512 Number of Good Pairs. Approach3 Sum of arithmetic progression
+561. Array Partition I - min, max
+1431. Kids With the Greatest Number of Candies - max + full
+1512 Number of Good Pairs. Approach3 Sum of arithmetic progression - full
 
 Задачи в которых нужно List привести к массиву:
 
